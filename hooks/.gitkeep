@@ -1,0 +1,2 @@
+# hooks — custom React hooks (useXxx.ts). Client-only logic (e.g. useMediaQuery,
+# useStickyCta, useScrollSpy). See CLAUDE.md §5.

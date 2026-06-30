@@ -1,0 +1,2 @@
+# components/ui — presentational primitives (Button, Input, Badge, Card, Section, …).
+# Reusable, style-only, no business logic. See CLAUDE.md §5.

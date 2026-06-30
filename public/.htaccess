@@ -1,0 +1,6 @@
+# gagoline.co.il — static export (Next.js) served by Apache on cPanel.
+# Cloudflare manages HTTPS/redirects at the edge; this file only handles static serving.
+
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html

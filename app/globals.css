@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-gray-900 antialiased;
+    font-family: var(--font-heebo), system-ui, Arial, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-rubik), var(--font-heebo), system-ui, sans-serif;
+  }
+
+  /* Respect reduced-motion preference globally (brief Part I4 / WCAG). */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Isolate latin/LTR snippets (phone, email, URLs) inside RTL Hebrew text. */
+  .ltr {
+    direction: ltr;
+    unicode-bidi: isolate;
+  }
+}
