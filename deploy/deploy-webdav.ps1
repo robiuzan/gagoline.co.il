@@ -66,7 +66,7 @@ function Dav-Send([string]$method, [string]$url, [string]$infile) {
     $attempt++
     try {
       $r = [Net.HttpWebRequest]::Create($url); $r.Method = $method; $r.Headers['Authorization'] = $basic
-      $r.Timeout = 120000; $r.ReadWriteTimeout = 120000; $r.KeepAlive = $false
+      $r.Timeout = 120000; $r.ReadWriteTimeout = 120000; $r.KeepAlive = $true
       if ($infile) {
         $bytes = [IO.File]::ReadAllBytes($infile); $r.ContentLength = $bytes.Length
         $s = $r.GetRequestStream(); $s.Write($bytes, 0, $bytes.Length); $s.Close()
