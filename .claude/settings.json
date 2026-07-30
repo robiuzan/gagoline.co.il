@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run lint)",
+      "Bash(npm run typecheck)",
+      "Bash(npm run build)",
+      "Bash(npm run dev)",
+      "Bash(npm run format)",
+      "Bash(npm run format:check)",
+      "Edit(.claude/**)",
+      "Write(.claude/**)"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\robiu\\antigravity\\Projects\\gagoline.co.il\\.claude\\hooks\\format-changed.ps1\"",
+            "statusMessage": "Formatting changed files with Prettier",
+            "async": true
+          }
+        ]
+      }
+    ]
+  }
+}

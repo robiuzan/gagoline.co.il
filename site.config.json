@@ -1,0 +1,40 @@
+{
+  "_comment": "Normalized per-site manifest. SYNCED FROM THE HUB: 'Israeli services sites'/roster/sites/gagoline.json. Edit there (the canonical roster) and sync here. Conforms to @ishub/site-kit SiteManifest.",
+  "domain": "gagoline.co.il",
+  "url": "https://gagoline.co.il",
+  "brandName": "גגוליין",
+  "brandNameEn": "Gagoline",
+  "legalName": "גגוליין",
+  "locale": "he-IL",
+  "dir": "rtl",
+  "foundedYear": 2014,
+  "tagline": "גג יבש, ראש שקט — איטום גגות מקצועי עם אחריות בכתב",
+  "shortPitch": null,
+  "contact": {
+    "phoneDisplay": "055-6601006",
+    "phoneE164": "+972556601006",
+    "whatsappE164": "+972556601006",
+    "email": "info@gagoline.co.il",
+    "formAccessKey": "0d470b1a-07ec-4ffc-89a1-8fb531e77e17",
+    "phoneOverride": false
+  },
+  "brand": {
+    "themeColor": "#0E2E4E",
+    "primary": "#0E2E4E",
+    "secondary": "#1F8FD0",
+    "accent": "#F5841F",
+    "fontHeading": "Rubik",
+    "fontBody": "Heebo"
+  },
+  "schema": {
+    "type": "RoofingContractor",
+    "address": { "addressRegion": "מרכז", "addressCountry": "IL" },
+    "priceRange": "₪₪",
+    "areaServed": "תל אביב והמרכז — עד רדיוס 50 ק\"מ",
+    "sameAs": []
+  },
+  "analytics": {
+    "gtmId": "GTM-KWGGH438",
+    "googleSiteVerification": "ezF8RK2XRQm2cTJRfJPuCQ9fPj29xDv4SIAc0UX0E_w"
+  }
+}

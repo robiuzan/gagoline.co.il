@@ -13,6 +13,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@ishub/site-kit": "file:../Israeli services sites/packages/site-kit/ishub-site-kit-0.0.0.tgz",
     "clsx": "^2.1.1",
     "framer-motion": "^11.3.31",
     "lucide-react": "^0.439.0",
@@ -22,16 +23,16 @@
     "tailwind-merge": "^2.5.2"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.2",
     "@types/node": "^20.16.5",
     "@types/react": "^18.3.7",
     "@types/react-dom": "^18.3.0",
-    "autoprefixer": "^10.4.20",
     "eslint": "^8.57.1",
     "eslint-config-next": "^14.2.13",
     "postcss": "^8.4.47",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.8",
-    "tailwindcss": "^3.4.12",
+    "tailwindcss": "^4.3.2",
     "typescript": "^5.6.2"
   },
   "engines": {

@@ -1,12 +1,18 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * Subtle fade-up on scroll-into-view. A small client wrapper so server-rendered
- * sections stay RSC. Respects `prefers-reduced-motion`.
+ * Subtle fade-up as content scrolls into view — implemented as *progressive
+ * enhancement*. The content is fully visible by default (SSR / no-JS / if the
+ * observer never fires) and only opts into the hidden→visible animation once
+ * JS has mounted and can guarantee it will be revealed again. This matters on
+ * the static export: nothing can get "stuck" at opacity:0 if a client-side
+ * observer fails to fire. Respects `prefers-reduced-motion`.
  */
+type RevealState = "static" | "hidden" | "shown";
+
 export function Reveal({
   className,
   delay = 0,
@@ -16,19 +22,50 @@ export function Reveal({
   delay?: number;
   children: React.ReactNode;
 }) {
-  const reduce = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  // Start "static" (= fully visible) so the very first paint is never hidden.
+  const [state, setState] = useState<RevealState>("static");
 
-  if (reduce) return <div className={className}>{children}</div>;
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    // Already on screen at mount → just show it (no hide-then-fade flash).
+    const rect = el.getBoundingClientRect();
+    const inViewNow = rect.top < window.innerHeight && rect.bottom > 0;
+    if (inViewNow) {
+      setState("shown");
+      return;
+    }
+
+    // Below the fold → hide it, then fade up when it scrolls into view.
+    setState("hidden");
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setState("shown");
+          obs.disconnect();
+        }
+      },
+      { rootMargin: "-60px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <motion.div
-      className={cn(className)}
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, delay, ease: "easeOut" }}
+    <div
+      ref={ref}
+      style={delay ? { transitionDelay: `${delay}s` } : undefined}
+      className={cn(
+        "transition-[opacity,transform] duration-500 ease-out",
+        state === "hidden" ? "translate-y-4 opacity-0" : "translate-y-0 opacity-100",
+        className,
+      )}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

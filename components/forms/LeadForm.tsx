@@ -2,17 +2,24 @@
 
 import { useState } from "react";
 import { Check, MessageCircle, Send } from "lucide-react";
-import { whatsappHref, services } from "@/lib/site-config";
+import { siteConfig, whatsappHref, services } from "@/lib/site-config";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
+import { trackEvent } from "@ishub/site-kit/analytics";
 
 /**
  * Primary lead/quote form (brief G1). Low-friction: name + phone required.
  *
- * Submits to `/lead.php` (PHP mail handler in the cPanel docroot) so the lead is emailed
- * to the business. WhatsApp is offered as a one-tap alternative. Honeypot blocks bots.
- * Note: `/lead.php` exists only on the deployed host (not in `next dev`).
+ * Delivers via Web3Forms (https://api.web3forms.com/submit) so the lead is emailed to the
+ * business inbox (contact.email) from any static host — no backend/PHP needed. The PUBLIC
+ * access key comes from the manifest (siteConfig.formAccessKey), with a NEXT_PUBLIC_WEB3FORMS_KEY
+ * env override for local dev. WhatsApp is offered as a one-tap alternative and as the fallback
+ * if delivery fails. Honeypot blocks bots.
  */
+const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
+const WEB3FORMS_KEY =
+  siteConfig.formAccessKey ?? process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "";
+
 export function LeadForm({ className }: { className?: string }) {
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
@@ -45,13 +52,39 @@ export function LeadForm({ className }: { className?: string }) {
     setError(null);
     setStatus("sending");
 
+    // No access key (local dev only): simulate so `next dev` works. Production builds always
+    // ship a provisioned key, so an empty key in production is a misconfig — fall back to
+    // WhatsApp rather than silently pretending the lead was sent.
+    if (!WEB3FORMS_KEY) {
+      if (process.env.NODE_ENV !== "production") {
+        await new Promise((r) => setTimeout(r, 600));
+        setStatus("done");
+        return;
+      }
+      setStatus("error");
+      window.open(buildWhatsapp(form), "_blank", "noopener");
+      return;
+    }
+
     try {
-      const res = await fetch("/lead.php", {
+      const res = await fetch(WEB3FORMS_ENDPOINT, {
         method: "POST",
-        body: new URLSearchParams(data as unknown as Record<string, string>),
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `פנייה חדשה מהאתר — ${name}`,
+          from_name: siteConfig.name,
+          name,
+          phone,
+          service: (data.get("service") as string) || "לא צוין",
+          message: (data.get("message") as string) || "—",
+        }),
       });
-      if (!res.ok) throw new Error("bad status");
+      const result: { success?: boolean } = await res.json();
+      if (!res.ok || !result.success) throw new Error("bad status");
       setStatus("done");
+      // GTM conversion hook: fires only on a CONFIRMED send (the dev simulation above does not).
+      trackEvent("lead_submit", { form: "lead" });
     } catch {
       // Fall back to WhatsApp so the lead is never lost.
       setStatus("error");

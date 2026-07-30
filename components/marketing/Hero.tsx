@@ -43,12 +43,12 @@ export function Hero() {
           </ul>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button href={telHref} variant="accent" size="lg">
+            <Button href={telHref} data-cta="hero-call" variant="accent" size="lg">
               <Phone className="h-5 w-5" aria-hidden />
               חייגו עכשיו: <span dir="ltr">{siteConfig.phone}</span>
             </Button>
             <Button
-              href={whatsappHref("היי, אני מעוניין/ת בהצעת מחיר לאיטום גג")}
+              href={whatsappHref("היי, אני מעוניין/ת בהצעת מחיר לאיטום גג")} data-cta="hero-whatsapp"
               variant="whatsapp"
               size="lg"
             >

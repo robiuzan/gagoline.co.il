@@ -7,21 +7,33 @@
  * 🔶 = assumption from the brief; confirm with client before launch.
  */
 
+import siteManifest from "@/site.config.json";
+import {
+  telHref as kitTelHref,
+  whatsappHref as kitWhatsappHref,
+  type SiteManifest,
+} from "@ishub/site-kit";
+
+/** Normalized per-site manifest (single source of truth for NAP/identity/schema). */
+export const manifest = siteManifest as unknown as SiteManifest;
+
 export const siteConfig = {
-  name: "גגוליין",
-  nameEn: "Gagoline",
+  name: manifest.brandName ?? "",
+  nameEn: manifest.brandNameEn ?? "",
   /** One-line elevator pitch (brief A2). */
-  tagline: "גג יבש, ראש שקט — איטום גגות מקצועי עם אחריות בכתב",
-  domain: "https://gagoline.co.il",
-  founded: 2014,
+  tagline: manifest.tagline ?? "",
+  domain: manifest.url,
+  founded: manifest.foundedYear ?? 0,
 
   // ── Contact (brief A4) ───────────────────────────────────────────────────
-  phone: "055-6601006",
+  phone: manifest.contact.phoneDisplay,
   /** E.164 form for `tel:` links. */
-  phoneE164: "+972556601006",
-  whatsapp: "972556601006", // 🔶 confirm — assumed same as phone
-  email: "info@gagoline.co.il", // 🔶 confirm
-  serviceArea: 'תל אביב והמרכז — עד רדיוס 50 ק"מ',
+  phoneE164: manifest.contact.phoneE164,
+  whatsapp: manifest.contact.whatsappE164.replace(/\D/g, ""),
+  email: manifest.contact.email,
+  /** Web3Forms PUBLIC access key (per-site UUID). Delivery inbox = email. null until provisioned. */
+  formAccessKey: (manifest.contact as { formAccessKey?: string | null }).formAccessKey ?? null,
+  serviceArea: manifest.schema.areaServed ?? "",
 
   /** 🔶 Confirm business hours. */
   hours: {
@@ -90,11 +102,10 @@ export type CitySlug = (typeof cities)[number]["slug"];
 
 // ── Link helpers ───────────────────────────────────────────────────────────
 
-/** `tel:` href for click-to-call. */
-export const telHref = `tel:${siteConfig.phoneE164}`;
+/** `tel:` href for click-to-call (shared @ishub/site-kit, bound to the manifest). */
+export const telHref = kitTelHref(manifest);
 
-/** WhatsApp click-to-chat href, with an optional pre-filled message. */
+/** WhatsApp click-to-chat href, with an optional pre-filled message (shared kit). */
 export function whatsappHref(message?: string): string {
-  const base = `https://wa.me/${siteConfig.whatsapp}`;
-  return message ? `${base}?text=${encodeURIComponent(message)}` : base;
+  return kitWhatsappHref(manifest, message);
 }

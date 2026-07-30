@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { siteConfig } from "@/lib/site-config";
+import { manifest } from "@/lib/site-config";
 import { faqs } from "@/lib/content";
+import { localBusinessJsonLd, jsonLdScript } from "@ishub/site-kit/seo";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Hero } from "@/components/marketing/Hero";
@@ -14,24 +15,15 @@ import { ServiceAreas } from "@/components/marketing/ServiceAreas";
 import { Faq } from "@/components/marketing/Faq";
 import { FinalCta } from "@/components/marketing/FinalCta";
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "RoofingContractor",
-  name: siteConfig.name,
-  description: siteConfig.tagline,
-  url: siteConfig.domain,
-  telephone: siteConfig.phoneE164,
-  foundingDate: String(siteConfig.founded),
-  areaServed: "תל אביב והמרכז",
-  address: { "@type": "PostalAddress", addressRegion: "מרכז", addressCountry: "IL" },
-};
+// Site-wide LocalBusiness JSON-LD — now from the shared @ishub/site-kit builder (manifest-driven).
+const jsonLd = localBusinessJsonLd(manifest);
 
 export default function HomePage() {
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
       <Hero />
       <TrustBar />

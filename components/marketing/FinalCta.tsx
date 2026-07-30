@@ -17,12 +17,12 @@ export function FinalCta() {
           </p>
         </div>
         <div className="flex flex-col gap-3 sm:flex-row">
-          <Button href={telHref} variant="primary" size="lg">
+          <Button href={telHref} data-cta="finalcta-call" variant="primary" size="lg">
             <Phone className="h-5 w-5" aria-hidden />
             חייגו עכשיו: <span dir="ltr">{siteConfig.phone}</span>
           </Button>
           <Button
-            href={whatsappHref("היי, אני מעוניין/ת בהצעת מחיר לאיטום גג")}
+            href={whatsappHref("היי, אני מעוניין/ת בהצעת מחיר לאיטום גג")} data-cta="finalcta-whatsapp"
             variant="whatsapp"
             size="lg"
           >

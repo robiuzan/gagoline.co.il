@@ -91,8 +91,8 @@ Adopt the matching persona for the task at hand:
 - **Class merging:** compose conditional classes with `cn()` from `@/lib/utils` (clsx + tailwind-merge).
 - **Styling:** Tailwind utilities only — **mobile-first** (style the base/mobile case, then add
   `sm: md: lg:` overrides). No inline `style={{}}` except for truly dynamic values. Use the design
-  tokens from `tailwind.config.ts` (`primary`, `secondary`, `accent`, `font-heading`, `font-sans`) —
-  do **not** hardcode brand hex values in components.
+  tokens from the `@theme` block in `app/globals.css` (`primary`, `secondary`, `accent`,
+  `font-heading`, `font-sans`) — do **not** hardcode brand hex values in components.
 - **Files:** components in PascalCase (`ServiceCard.tsx`); hooks `useXxx.ts`; utilities camelCase.
 - **Single source of truth:** business NAP, services, and city lists live in `lib/site-config.ts`.
   Never hardcode the phone number, service names, or city slugs in components — import them.
@@ -113,7 +113,7 @@ Adopt the matching persona for the task at hand:
 
 ## 5. Tech stack & architecture (brief Part I1)
 
-- **Framework:** Next.js **14** (App Router) · **React 18** · **TypeScript** · **Tailwind CSS v3**.
+- **Framework:** Next.js **14** (App Router) · **React 18** · **TypeScript** · **Tailwind CSS v4** (CSS-first `@theme` in `app/globals.css`; fleet standard, migrated 2026-07-09).
 - **UI/UX libs:** `lucide-react` (icons), `framer-motion` (animation), `clsx` + `tailwind-merge`
   (class composition, via `cn()`).
 - **Content:** in-code / MDX, **no CMS** (static site). Hosting target: **Vercel** + automatic SSL.

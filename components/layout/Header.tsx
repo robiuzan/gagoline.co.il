@@ -40,7 +40,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button href={telHref} variant="accent" className="hidden sm:inline-flex">
+          <Button href={telHref} data-cta="header-call" variant="accent" className="hidden sm:inline-flex">
             <Phone className="h-4 w-4" aria-hidden />
             <span dir="ltr">{siteConfig.phone}</span>
           </Button>
@@ -77,7 +77,7 @@ export function Header() {
               ))}
             </ul>
           </nav>
-          <Button href={telHref} variant="accent" size="lg" className="mt-3 w-full">
+          <Button href={telHref} data-cta="header-call" variant="accent" size="lg" className="mt-3 w-full">
             <Phone className="h-5 w-5" aria-hidden />
             חייגו עכשיו: <span dir="ltr">{siteConfig.phone}</span>
           </Button>

@@ -18,7 +18,7 @@ export function Footer() {
           <ul className="mt-5 space-y-2 text-sm">
             <li className="flex items-center gap-2">
               <Phone className="h-4 w-4 text-accent-400" aria-hidden />
-              <a href={telHref} className="hover:text-white" dir="ltr">
+              <a href={telHref} data-cta="footer-call" className="hover:text-white" dir="ltr">
                 {siteConfig.phone}
               </a>
             </li>
