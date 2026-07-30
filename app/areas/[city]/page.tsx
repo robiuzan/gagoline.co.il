@@ -16,6 +16,7 @@ export function generateMetadata({ params }: { params: { city: string } }): Meta
   const city = cities.find((c) => c.slug === params.city);
   if (!city) return {};
   return {
+    alternates: { canonical: `/areas/${city.slug}/` },
     title: `איטום גגות ב${city.name} | אחריות בכתב + מחיר שקוף`,
     description: `קבלן איטום גגות ב${city.name} — איתור נזילות, זיפות ויריעות ביטומניות, אחריות בכתב ומחיר שקוף. שירות מקצועי מ-2014.`,
   };

@@ -4,6 +4,7 @@ import { Section } from "@/components/ui/Section";
 import { FinalCta } from "@/components/marketing/FinalCta";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/gallery/" },
   title: "גלריה — לפני ואחרי",
   description:
     "תיעוד עבודות איטום גגות של גגוליין — תמונות לפני ואחרי מהשטח בתל אביב והמרכז.",

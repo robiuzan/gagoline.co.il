@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { siteConfig } from "@/lib/site-config";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Section } from "@/components/ui/Section";
+import { EmailText } from "@/components/ui/EmailAddress";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/privacy/" },
   title: "מדיניות פרטיות",
   description: "מדיניות הפרטיות של אתר גגוליין.",
 };
@@ -37,8 +39,7 @@ export default function PrivacyPage() {
           <h2 className="font-heading text-lg font-bold text-primary">יצירת קשר</h2>
           <p>
             בכל שאלה בנושא פרטיות ניתן לפנות אלינו בטלפון{" "}
-            <span dir="ltr">{siteConfig.phone}</span> או בדוא״ל{" "}
-            <span dir="ltr">{siteConfig.email}</span>.
+            <span dir="ltr">{siteConfig.phone}</span> או בדוא״ל <EmailText />.
           </p>
         </div>
       </Section>

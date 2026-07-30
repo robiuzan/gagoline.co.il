@@ -3,9 +3,11 @@ import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { siteConfig, telHref, whatsappHref } from "@/lib/site-config";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Section } from "@/components/ui/Section";
+import { EmailLink } from "@/components/ui/EmailAddress";
 import { LeadForm } from "@/components/forms/LeadForm";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact/" },
   title: "צור קשר",
   description:
     "צרו קשר עם גגוליין לאיטום גגות בתל אביב והמרכז. טלפון, וואטסאפ או טופס — נחזור אליכם עם הצעת מחיר.",
@@ -49,13 +51,7 @@ export default function ContactPage() {
                 <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-secondary-50 text-secondary">
                   <Mail className="h-5 w-5" aria-hidden />
                 </span>
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="font-medium hover:text-primary"
-                  dir="ltr"
-                >
-                  {siteConfig.email}
-                </a>
+                <EmailLink className="font-medium hover:text-primary" />
               </li>
               <li className="flex items-center gap-3">
                 <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100 text-gray-600">

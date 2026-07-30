@@ -6,6 +6,7 @@ import { Faq } from "@/components/marketing/Faq";
 import { FinalCta } from "@/components/marketing/FinalCta";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/faq/" },
   title: "שאלות ותשובות",
   description:
     "שאלות נפוצות על איטום גגות: כמה זה עולה, כמה זה מחזיק, מתי לאטום, ההבדל בין השיטות ועוד.",

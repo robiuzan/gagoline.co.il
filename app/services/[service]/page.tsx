@@ -23,6 +23,7 @@ export function generateMetadata({ params }: { params: { service: string } }): M
   const card = serviceCards.find((c) => c.slug === params.service);
   if (!card) return {};
   return {
+    alternates: { canonical: `/services/${card.slug}/` },
     title: `${card.name} בתל אביב והמרכז`,
     description: card.description,
   };

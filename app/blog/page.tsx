@@ -4,6 +4,7 @@ import { Section } from "@/components/ui/Section";
 import { FinalCta } from "@/components/marketing/FinalCta";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/blog/" },
   title: "בלוג",
   description: "טיפים ומדריכים על איטום גגות, מניעת נזילות והכנת הגג לחורף.",
 };

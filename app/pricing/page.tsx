@@ -4,6 +4,7 @@ import { Section } from "@/components/ui/Section";
 import { PricingTeaser } from "@/components/marketing/PricingTeaser";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/pricing/" },
   title: "מחירון איטום גגות",
   description:
     "מחירון איטום גגות להתרשמות: יריעות ביטומניות, זיפות, סיוד ואיתור נזילות. מחיר סופי לפי ביקור ואבחון — שקוף ובלי הפתעות.",

@@ -6,6 +6,7 @@ import { TrustBar } from "@/components/marketing/TrustBar";
 import { FinalCta } from "@/components/marketing/FinalCta";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/about/" },
   title: "אודות גגוליין",
   description:
     "גגוליין — איטום גגות מקצועי מאז 2014 בתל אביב והמרכז. אבחון מקור הנזילה, אחריות בכתב ועבודה נקייה.",

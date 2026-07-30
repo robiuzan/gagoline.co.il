@@ -23,6 +23,10 @@ const rubik = Rubik({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.domain),
+  // Homepage canonical. Every other route sets its own in page metadata, so nothing
+  // inherits this — see the skyshade regression where a root canonical with no per-page
+  // overrides made all 33 pages claim to be the homepage.
+  alternates: { canonical: "/" },
   title: {
     default: `${siteConfig.name} — איטום גגות בתל אביב והמרכז`,
     template: `%s | ${siteConfig.name}`,
@@ -60,7 +64,9 @@ export default function RootLayout({
             />
           </noscript>
         )}
-        {gtmHead && <script id="gtm-init" dangerouslySetInnerHTML={{ __html: gtmHead }} />}
+        {gtmHead && (
+          <script id="gtm-init" dangerouslySetInnerHTML={{ __html: gtmHead }} />
+        )}
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

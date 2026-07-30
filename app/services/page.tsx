@@ -4,6 +4,7 @@ import { ServicesGrid } from "@/components/marketing/ServicesGrid";
 import { FinalCta } from "@/components/marketing/FinalCta";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/services/" },
   title: "השירותים שלנו",
   description:
     "שירותי איטום גגות מלאים בתל אביב והמרכז: איטום גגות, זיפות, יריעות ביטומניות, מרפסות, איתור נזילות ועוד — עם אחריות בכתב.",

@@ -4,6 +4,7 @@ import { Reviews } from "@/components/marketing/Reviews";
 import { FinalCta } from "@/components/marketing/FinalCta";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/reviews/" },
   title: "המלצות",
   description:
     "מה לקוחות מספרים על גגוליין — איטום גגות מקצועי עם אחריות בכתב בתל אביב והמרכז.",

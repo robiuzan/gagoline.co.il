@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { Section } from "@/components/ui/Section";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/terms/" },
   title: "תקנון ותנאי שימוש",
   description: "תקנון ותנאי השימוש באתר גגוליין.",
 };
