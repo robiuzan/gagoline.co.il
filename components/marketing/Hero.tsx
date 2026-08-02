@@ -22,7 +22,7 @@ export function Hero() {
           <p className="mb-3 text-sm font-semibold text-accent-300">
             מאז 2014 · תל אביב והמרכז
           </p>
-          <h1 className="font-heading text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
+          <h1 className="font-heading text-3xl leading-tight font-extrabold sm:text-4xl lg:text-5xl">
             איטום גגות מקצועי שמחזיק שנים
           </h1>
           <p className="mt-5 max-w-xl text-lg text-white/85">
@@ -48,7 +48,8 @@ export function Hero() {
               חייגו עכשיו: <span dir="ltr">{siteConfig.phone}</span>
             </Button>
             <Button
-              href={whatsappHref("היי, אני מעוניין/ת בהצעת מחיר לאיטום גג")} data-cta="hero-whatsapp"
+              href={whatsappHref("היי, אני מעוניין/ת בהצעת מחיר לאיטום גג")}
+              data-cta="hero-whatsapp"
               variant="whatsapp"
               size="lg"
             >

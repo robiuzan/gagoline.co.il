@@ -18,9 +18,11 @@ the `ServicesGrid` card, and `sitemap.ts` all update on the next build.
      `ShieldCheck | Brush | Layers | Building2 | Search | Building | Sun | Waves`.
 
 2. **Add the service to `lib/site-config.ts`** — append to the `services` array:
+
    ```ts
    { slug: "<slug>", name: "<Hebrew name>" },
    ```
+
    (This extends the `ServiceSlug` union automatically — keep the `as const`.)
 
 3. **Add display copy to `lib/content.ts`** — add a `serviceMeta["<slug>"]` entry with `tagline`,
@@ -39,5 +41,6 @@ the `ServicesGrid` card, and `sitemap.ts` all update on the next build.
    `Service` + `BreadcrumbList` JSON-LD (currently missing on service pages).
 
 ## Guardrails
+
 - Don't hardcode the service anywhere outside `site-config.ts` / `content.ts`.
 - Keep slug English/kebab; keep name Hebrew. Confirm the service is real — don't invent offerings.

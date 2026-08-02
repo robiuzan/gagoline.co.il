@@ -18,9 +18,11 @@ intro copy, and metadata). You do **not** create a page file.
      (`siteConfig.serviceArea`). If it's outside, flag it to the user before adding.
 
 2. **Add the city to `lib/site-config.ts`** — append to the `cities` array:
+
    ```ts
    { slug: "<slug>", name: "<Hebrew name>" },
    ```
+
    (Extends the `CitySlug` union automatically — keep the `as const`.)
 
 3. **No new file or copy needed.** The page template builds the title
@@ -31,6 +33,7 @@ intro copy, and metadata). You do **not** create a page file.
    and `npm run lint` stays green.
 
 ## Notes & guardrails
+
 - City pages are currently **generic** (identical except the city name). If the user wants
   city-specific copy or local landmarks, that's a template change — say so; this skill only adds the
   entry. Optionally hand off to `local-seo` to add the city `LocalBusiness` + `BreadcrumbList` JSON-LD

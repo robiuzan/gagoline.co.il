@@ -22,7 +22,8 @@ export function FinalCta() {
             חייגו עכשיו: <span dir="ltr">{siteConfig.phone}</span>
           </Button>
           <Button
-            href={whatsappHref("היי, אני מעוניין/ת בהצעת מחיר לאיטום גג")} data-cta="finalcta-whatsapp"
+            href={whatsappHref("היי, אני מעוניין/ת בהצעת מחיר לאיטום גג")}
+            data-cta="finalcta-whatsapp"
             variant="whatsapp"
             size="lg"
           >
