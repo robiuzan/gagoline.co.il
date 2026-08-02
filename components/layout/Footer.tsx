@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { siteConfig, telHref, services, cities } from "@/lib/site-config";
 import { Container } from "@/components/ui/Container";
+import { EmailLink } from "@/components/ui/EmailAddress";
 
 export function Footer() {
   const year = 2026; // static export — keep build deterministic; update yearly.
@@ -18,19 +19,18 @@ export function Footer() {
           <ul className="mt-5 space-y-2 text-sm">
             <li className="flex items-center gap-2">
               <Phone className="h-4 w-4 text-accent-400" aria-hidden />
-              <a href={telHref} data-cta="footer-call" className="hover:text-white" dir="ltr">
+              <a
+                href={telHref}
+                data-cta="footer-call"
+                className="hover:text-white"
+                dir="ltr"
+              >
                 {siteConfig.phone}
               </a>
             </li>
             <li className="flex items-center gap-2">
               <Mail className="h-4 w-4 text-accent-400" aria-hidden />
-              <a
-                href={`mailto:${siteConfig.email}`}
-                className="hover:text-white"
-                dir="ltr"
-              >
-                {siteConfig.email}
-              </a>
+              <EmailLink className="hover:text-white" />
             </li>
             <li className="flex items-center gap-2">
               <MapPin className="h-4 w-4 text-accent-400" aria-hidden />
