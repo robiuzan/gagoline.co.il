@@ -9,6 +9,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.domain;
   const now = new Date();
 
+  /**
+   * `trailingSlash: true` in next.config.mjs means the host serves `/about/` and
+   * 301-redirects `/about`. A sitemap must list final destinations, so every URL
+   * here ends with a slash — matching the per-page `alternates.canonical` values.
+   */
+  const url = (path: string) => (path ? `${base}/${path}/` : `${base}/`);
+
   const staticPaths = [
     "",
     "services",
@@ -25,17 +32,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const staticEntries: MetadataRoute.Sitemap = staticPaths.map((path) => ({
-    url: path ? `${base}/${path}` : base,
+    url: url(path),
     lastModified: now,
   }));
 
   const serviceEntries: MetadataRoute.Sitemap = services.map((s) => ({
-    url: `${base}/services/${s.slug}`,
+    url: url(`services/${s.slug}`),
     lastModified: now,
   }));
 
   const cityEntries: MetadataRoute.Sitemap = cities.map((c) => ({
-    url: `${base}/areas/${c.slug}`,
+    url: url(`areas/${c.slug}`),
     lastModified: now,
   }));
 
