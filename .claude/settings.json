@@ -31,7 +31,10 @@
       "Skill(new-service)",
       "Skill(new-article)",
       "Skill(qa-build-gate)",
-      "Skill(deploy-gagoline)"
+      "Skill(deploy-gagoline)",
+      "Bash(npm run seo:assert)",
+      "Bash(npm run links:check)",
+      "Bash(npm run gate)"
     ]
   },
   "hooks": {

@@ -5,6 +5,10 @@ description: Build the link mesh on gagoline — a header that reaches all 8 ser
 
 # Internal linking
 
+**Acceptance bar: [docs/link-graph.md](../../../docs/link-graph.md)** — tiers, required edges, degree
+thresholds and the measured baseline. `ia-auditor` audits against it; `scripts/link-graph-check.mjs`
+enforces the numeric half in CI.
+
 Forty-three content pages, and the link graph between them is close to a star: everything hangs off the
 homepage and almost nothing connects sideways.
 

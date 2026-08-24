@@ -197,3 +197,53 @@ certification the business doesn't hold; a photo presented as our work that isn'
 - [ ] Exactly one H1; heading order unbroken.
 - [ ] Links out to 2+ internal pages with descriptive anchors, each with a trailing slash.
 - [ ] Prices interpolate from `priceRows` rather than restating a literal.
+
+---
+
+## 9. Contextual links and Hebrew anchor text
+
+Every internal link on the site today is a card, a chip or a nav label, so the domain emits almost no
+anchor-text diversity. Thirty-one pages of copy are about to be written; this section is the bar they
+are written against.
+
+**A prerequisite, not a polish.** Copy lives in `lib/content.ts` as plain strings (§7), and you cannot
+put a `<Link>` inside a string — so contextual links are not _expressible_ until the `RichText` model
+(`string | { text, href }`) and its `Prose` renderer land. Ship that with the data model, before the
+first depth block is authored, or every page needs rewriting afterwards.
+
+### Rules
+
+- **2–3 in-copy links per authored block.** More reads as SEO spam to a human.
+- **At most one link per target per page.** The first mention wins.
+- **Anchor text is the target's primary term in natural Hebrew inflection** — never the raw H1, never a
+  bare URL.
+- **Every `href` ends in a trailing slash.** `trailingSlash: true`, and the breadcrumb JSON-LD builder
+  does no normalisation (see [link-graph.md](link-graph.md) §3).
+- **Never link `/reviews/`, `/gallery/` or `/blog/` while they are parked** — they are `noindex` and
+  deliberately unlinked.
+
+### Approved anchors
+
+| Target                             | Anchor                        |
+| ---------------------------------- | ----------------------------- |
+| `/services/leak-detection/`        | איתור מקור הנזילה בבדיקת הצפה |
+| `/services/roof-sealing/`          | איטום גג בחומרים מתקדמים      |
+| `/services/roof-tarring/`          | זיפות גג בביטומן חם           |
+| `/services/bituminous-sheets/`     | הלחמת יריעות ביטומניות        |
+| `/services/balcony-sealing/`       | איטום מרפסת מרוצפת            |
+| `/services/exterior-wall-sealing/` | איטום קירות חוץ וסדקים        |
+| `/services/roof-whitening/`        | הלבנת גג להורדת חום בקיץ      |
+| `/services/basement-sealing/`      | איטום מרתף ואיטום שלילי       |
+| `/areas/{city}/`                   | איטום גגות ב{city}            |
+| `/pricing/`                        | טווחי המחיר לאיטום גג         |
+
+**Banned:** "לחצו כאן" · "כאן" · a standalone "למידע נוסף" · a bare URL. Note the "למידע נוסף" inside
+`ServicesGrid` is acceptable only because it sits within a whole-card link whose accessible name
+includes the card title — it must never become a standalone anchor.
+
+### Verify
+
+```bash
+grep -rn 'לחצו כאן\|למידע נוסף<\|>כאן<' app components lib     # expect nothing
+grep -o 'href="/[a-z/-]*[^/]"' out/services/roof-sealing/index.html   # expect nothing
+```

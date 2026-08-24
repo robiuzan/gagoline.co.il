@@ -5,6 +5,12 @@ description: The release gate before any deploy — clean build, lint, typecheck
 
 # Build gate
 
+> **Most of this file is now executable.** `npm run gate` runs lint, typecheck, format:check, build,
+> then `scripts/seo-assert.mjs` (markers, doubled brand, title uniqueness, one H1, canonicals,
+> trailing slashes, unsourced ratings, sitemap parity) and `scripts/link-graph-check.mjs` (orphans,
+> inbound degree, BreadcrumbList item URLs). Prose gates do not fail builds — and one of the greps
+> below was silently broken for weeks. Prefer the scripts; keep the manual commands for diagnosis.
+
 Everything here runs against `out/` — the artifact that actually ships. A passing `npm run build` is
 the start of this gate, not the end of it.
 
@@ -27,7 +33,7 @@ unformatted file means something bypassed it.
 
 ```bash
 find out -name index.html | wc -l          # expect 44 (43 content + 404)
-grep -c '<url>' out/sitemap.xml            # expect 43
+grep -c '<url>' out/sitemap.xml            # expect 40 (3 routes are noindex)
 test -f out/robots.txt && echo ok
 ```
 
@@ -42,7 +48,7 @@ grep -rho '<title>[^<]*</title>' out --include=index.html | sort | uniq -c | sor
 grep -rl 'גגוליין | גגוליין' out --include=index.html
 ```
 
-The second command must return **nothing**. It currently matches `out/about/index.html` (backlog §2.1).
+The second command must return **nothing**. Clean since Phase 0 (2026-08-17) — protect it.
 Also confirm no two routes share a `<title>` or a description — the homepage and `/404/` legitimately
 share one, and nothing else should.
 
@@ -76,17 +82,16 @@ grep -rl 'להחלפה\|בקרוב נעלה' out --include=index.html
 shell locale and the check silently passes — verified 2026-08-17, when the naive form returned 0 files
 and `grep -rlP '\x{1F536}'` returned **10**. Any gate written the naive way is decorative.
 
-Both must return **nothing**. They currently return **10 pages**: `/`, `/reviews/`, `/gallery/`,
-`/blog/`, `/about/`, `/pricing/`, `/privacy/`, `/terms/`, `/accessibility/` and `/faq/` — the last one
-ships the marker **inside the `FAQPage` JSON-LD**, i.e. as machine-readable structured data. See
-backlog §7.1–7.4 and `docs/business-facts.md` §A. **This is the highest-severity check in this file** —
+Both must return **nothing**, and both are clean since Phase 0. Before that they returned **10 pages**,
+including `/faq/`, which shipped the marker **inside the `FAQPage` JSON-LD** — i.e. as machine-readable
+structured data. See backlog §7.1–7.9 and `docs/business-facts.md` §A. **This is the highest-severity check in this file** —
 everything else is a ranking issue; this one is fabricated content served to customers and to crawlers.
 
 ## 7. Structured data
 
 ```bash
 grep -rL 'application/ld+json' out --include=index.html   # pages with no schema
-grep -rl 'BreadcrumbList' out --include=index.html | wc -l  # target 43 (all but / and /404)
+grep -rl 'BreadcrumbList' out --include=index.html | wc -l  # target 42 (all but / and /404)
 grep -rl 'aggregateRating\|"@type": *"Review"' out --include=index.html  # expect none until sourced
 ```
 
@@ -113,9 +118,10 @@ grep -rho 'href="/[^"]*"' out --include=index.html | sed 's|href="||; s|"$||' | 
 comm -23 /tmp/emitted.txt /tmp/linked.txt
 ```
 
-Currently prints 11 city pages — `Footer.tsx:71` renders `cities.slice(0, 12)` (backlog §5.8). Note the
-comparison is slash-sensitive and most internal hrefs omit the trailing slash (§1.8), which will show
-up here as noise until that's fixed.
+Prefer `npm run links:check` — this naive version counts a page's own breadcrumb as an inbound link,
+which hides real orphans. It prints `/404/` plus the three parked routes (`/reviews/`, `/gallery/`,
+`/blog/`), all expected. The real finding is degree, not orphaning: 11 cities sit at **1** inbound link
+because of `Footer.tsx:71`'s `cities.slice(0, 12)` — see [docs/link-graph.md](../../../docs/link-graph.md) §4.
 
 ## 10. Output weight
 
@@ -135,14 +141,17 @@ pages (~80).
 
 For a substantive change, run the relevant agents against the fresh `out/`:
 
-| Changed                    | Run                  |
-| -------------------------- | -------------------- |
-| metadata, routes, sitemap  | `seo-auditor`        |
-| JSON-LD                    | `schema-auditor`     |
-| copy, claims, imagery      | `eeat-trust-auditor` |
-| components, colours, fonts | `perf-a11y-auditor`  |
-| headers, form, deps        | `security-auditor`   |
-| any TS/React               | `ts-react-reviewer`  |
+| Changed                    | Run                     |
+| -------------------------- | ----------------------- |
+| metadata, routes, sitemap  | `seo-auditor`           |
+| JSON-LD                    | `schema-auditor`        |
+| copy, claims, imagery      | `eeat-trust-auditor`    |
+| components, colours, fonts | `perf-a11y-auditor`     |
+| headers, form, deps        | `security-auditor`      |
+| any TS/React               | `ts-react-reviewer`     |
+| links, nav, hubs           | `ia-auditor`            |
+| CTAs, form, tracking       | `conversion-auditor`    |
+| copy depth, city pages     | `content-depth-auditor` |
 
 ## Stop-ship list
 

@@ -10,7 +10,10 @@
     "lint": "next lint",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "seo:assert": "node scripts/seo-assert.mjs",
+    "links:check": "node scripts/link-graph-check.mjs",
+    "gate": "npm run lint && npm run typecheck && npm run format:check && npm run build && npm run seo:assert && npm run links:check"
   },
   "dependencies": {
     "@ishub/site-kit": "file:../Israeli services sites/packages/site-kit/ishub-site-kit-0.0.0.tgz",
