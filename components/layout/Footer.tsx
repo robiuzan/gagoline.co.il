@@ -49,7 +49,12 @@ export function Footer() {
 
         {/* Services */}
         <nav aria-label="שירותים">
-          <p className="font-semibold text-white">השירותים שלנו</p>
+          <Link
+            href="/services/"
+            className="font-semibold text-white hover:text-accent-400"
+          >
+            השירותים שלנו
+          </Link>
           <ul className="mt-4 space-y-2 text-sm">
             {services.map((s) => (
               <li key={s.slug}>
@@ -66,7 +71,9 @@ export function Footer() {
 
         {/* Areas */}
         <nav aria-label="אזורי שירות">
-          <p className="font-semibold text-white">אזורי שירות</p>
+          <Link href="/areas/" className="font-semibold text-white hover:text-accent-400">
+            אזורי שירות
+          </Link>
           <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
             {/* All 23 — a .slice() here previously left 11 cities with a single inbound link
                 while the other 12 had 43. See docs/link-graph.md §4. */}

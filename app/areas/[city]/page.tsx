@@ -33,7 +33,7 @@ export default function AreaPage({ params }: { params: { city: string } }) {
         subtitle={`אחריות בכתב, מחיר שקוף ואבחון מדויק של מקור הנזילה — שירות איטום מקצועי ב${city.name} והסביבה.`}
         crumbs={[
           { label: "בית", href: "/" },
-          { label: "אזורי שירות", href: `/areas/${city.slug}` },
+          { label: "אזורי שירות", href: "/areas/" },
           { label: city.name },
         ]}
       />

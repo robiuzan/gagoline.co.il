@@ -5,7 +5,7 @@
  *
  * 🔶 = assumption from the brief; confirm with client (esp. prices, stats, testimonials).
  */
-import { services, type ServiceSlug } from "@/lib/site-config";
+import { services, type RegionId, type ServiceSlug } from "@/lib/site-config";
 
 export type IconName =
   | "ShieldCheck"
@@ -208,9 +208,47 @@ export const faqs = [
  */
 export const navItems = [
   { label: "השירותים שלנו", href: "/services/" },
-  { label: "אזורי שירות", href: "/areas/tel-aviv/" },
+  { label: "אזורי שירות", href: "/areas/" },
   { label: "אודות", href: "/about/" },
   { label: "מחירון", href: "/pricing/" },
   { label: "שאלות נפוצות", href: "/faq/" },
   { label: "צור קשר", href: "/contact/" },
 ] as const;
+
+/**
+ * Copy for the `/areas/` hub.
+ *
+ * Everything here is free to state per docs/content-standards.md §6: the service area and radius
+ * come from the manifest, and the roof-stock notes are statements about the **built environment**
+ * — publicly verifiable architecture, not claims about work this business has done. That
+ * distinction is what lets the hub carry real local substance while the owner questions in
+ * docs/business-facts.md §E are still open.
+ *
+ * Deliberately absent, and must stay absent until §E is answered: per-city response times, any
+ * availability promise, and any "we have worked in X".
+ */
+export const areasContent = {
+  /** 40–60 word answer block (content-standards §5), under a question-form H2. */
+  answerQ: "באילו אזורים אנחנו נותנים שירות?",
+  answerA:
+    "אנחנו עובדים בתל אביב ובכל אזור המרכז, ברדיוס של עד כ-50 ק״מ — מגוש דן, דרך השרון ועד דרום המרכז והשפלה. השירות כולל איטום גגות, זיפות, יריעות ביטומניות ואיתור נזילות, לבתים פרטיים, לבניינים משותפים ולעסקים. לא בטוחים שאתם בטווח? התקשרו ונבדוק יחד.",
+
+  intro: [
+    "לגג בתל אביב ולגג בכפר סבא קוראים אותו דבר, אבל הם כמעט אף פעם לא אותה עבודה. סוג הגג, הגיל שלו, ומה שכבר נעשה עליו בעבר — כל אלה משתנים מאזור לאזור, והם שקובעים איזו שיטת איטום בכלל מתאימה.",
+    "לכן הביקור הראשון אצלנו הוא תמיד אבחון ולא הצעת מחיר בטלפון. אנחנו עולים לגג, מבינים מאיפה המים באמת נכנסים, ורק אז אומרים מה צריך לעשות וכמה זה עולה.",
+  ],
+
+  /** One line of built-environment character per sub-region. Public architectural fact. */
+  regionNotes: {
+    "gush-dan":
+      "המגוון הגדול ביותר: גגות בטון שטוחים מתקופת הבנייה הבינלאומית בלב תל אביב, שנושאים לא פעם שכבות זיפות שנצברו לאורך עשורים; שיכונים משנות ה-50 וה-60 עם גגות מרוצפים ברמת גן, בבני ברק ובפתח תקווה; מגדלים חדשים עם מערכות יריעות; ואזורי תעשייה עם גגות איסכורית סביב אזור וקרית אריה.",
+    sharon:
+      "כאן בולטת הבנייה של שנות ה-80 וה-90 — הרבה גגות רעפים משופעים ברעננה, בהוד השרון ובכפר סבא, שבהם הבעיות הן בדרך כלל רעפים שזזו, חיפוי רכס שהתבלה ויריעת תת-רעף שהתייבשה. הרצליה ונתניה מוסיפות את קרבת הים, שמאיצה בלאי של שכבות איטום חשופות.",
+    "south-center":
+      "שילוב של שיכונים ותיקים עם גגות מרוצפים בחולון, בבת ים ובראשון לציון, לצד אזורי תעשייה עם גגות פח ואיסכורית. בבת ים, כמו בכל קו החוף, מלח ולחות הם גורם שחיקה שצריך לקחת בחשבון כשבוחרים שכבה עליונה.",
+  } satisfies Record<RegionId, string>,
+
+  /** Closing note. States the radius, and explicitly does NOT promise per-city timing. */
+  outro:
+    "אם העיר שלכם לא ברשימה אבל אתם באזור המרכז — עדיין שווה להתקשר. אנחנו בודקים כל פנייה לפי המיקום המדויק ולפי סוג העבודה, ואומרים מראש אם זה בטווח שלנו.",
+} as const;

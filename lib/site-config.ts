@@ -70,36 +70,62 @@ export const services = [
 export type ServiceSlug = (typeof services)[number]["slug"];
 
 /**
- * Local-SEO city matrix (brief Part H1) — within ~50 km of Tel Aviv / the Center.
- * Drives `app/areas/[city]` (`איטום גגות ב[עיר]`).
+ * Sub-regions used to group the city list on `/areas/`, in the footer and in `ServiceAreas`.
+ *
+ * A flat 23-chip row is a wall to a homeowner scanning for their own city, and a flat list to a
+ * crawler. Grouping adds a middle layer to the silo **without adding a route**, which matters
+ * because docs/keyword-map.md §6 caps route expansion hard.
+ *
+ * Order here is the display order.
  */
-export const cities = [
-  { slug: "tel-aviv", name: "תל אביב" },
-  { slug: "ramat-gan", name: "רמת גן" },
-  { slug: "givatayim", name: "גבעתיים" },
-  { slug: "bnei-brak", name: "בני ברק" },
-  { slug: "herzliya", name: "הרצליה" },
-  { slug: "ramat-hasharon", name: "רמת השרון" },
-  { slug: "givat-shmuel", name: "גבעת שמואל" },
-  { slug: "kiryat-ono", name: "קרית אונו" },
-  { slug: "or-yehuda", name: "אור יהודה" },
-  { slug: "yehud", name: "יהוד" },
-  { slug: "petah-tikva", name: "פתח תקווה" },
-  { slug: "rosh-haayin", name: "ראש העין" },
-  { slug: "holon", name: "חולון" },
-  { slug: "bat-yam", name: "בת ים" },
-  { slug: "rishon-lezion", name: "ראשון לציון" },
-  { slug: "rehovot", name: "רחובות" },
-  { slug: "nes-ziona", name: "נס ציונה" },
-  { slug: "kfar-saba", name: "כפר סבא" },
-  { slug: "raanana", name: "רעננה" },
-  { slug: "hod-hasharon", name: "הוד השרון" },
-  { slug: "netanya", name: "נתניה" },
-  { slug: "ganei-tikva", name: "גני תקווה" },
-  { slug: "azor", name: "אזור" },
+export const regions = [
+  { id: "gush-dan", name: "גוש דן" },
+  { id: "sharon", name: "השרון" },
+  { id: "south-center", name: "דרום המרכז" },
 ] as const;
 
+export type RegionId = (typeof regions)[number]["id"];
+
+/**
+ * Local-SEO city matrix (brief Part H1) — within ~50 km of Tel Aviv / the Center.
+ * Drives `app/areas/[city]` (`איטום גגות ב[עיר]`) and the `/areas/` hub.
+ *
+ * `region` is geography, which is public fact and needs no owner confirmation. Whether every city
+ * is served on identical terms is a *different* question and is still open — docs/business-facts.md
+ * §E. Do not write per-city response times or availability until that is answered.
+ */
+export const cities = [
+  { slug: "tel-aviv", name: "תל אביב", region: "gush-dan" },
+  { slug: "ramat-gan", name: "רמת גן", region: "gush-dan" },
+  { slug: "givatayim", name: "גבעתיים", region: "gush-dan" },
+  { slug: "bnei-brak", name: "בני ברק", region: "gush-dan" },
+  { slug: "herzliya", name: "הרצליה", region: "sharon" },
+  { slug: "ramat-hasharon", name: "רמת השרון", region: "sharon" },
+  { slug: "givat-shmuel", name: "גבעת שמואל", region: "gush-dan" },
+  { slug: "kiryat-ono", name: "קרית אונו", region: "gush-dan" },
+  { slug: "or-yehuda", name: "אור יהודה", region: "gush-dan" },
+  { slug: "yehud", name: "יהוד", region: "gush-dan" },
+  { slug: "petah-tikva", name: "פתח תקווה", region: "gush-dan" },
+  { slug: "rosh-haayin", name: "ראש העין", region: "gush-dan" },
+  { slug: "holon", name: "חולון", region: "south-center" },
+  { slug: "bat-yam", name: "בת ים", region: "south-center" },
+  { slug: "rishon-lezion", name: "ראשון לציון", region: "south-center" },
+  { slug: "rehovot", name: "רחובות", region: "south-center" },
+  { slug: "nes-ziona", name: "נס ציונה", region: "south-center" },
+  { slug: "kfar-saba", name: "כפר סבא", region: "sharon" },
+  { slug: "raanana", name: "רעננה", region: "sharon" },
+  { slug: "hod-hasharon", name: "הוד השרון", region: "sharon" },
+  { slug: "netanya", name: "נתניה", region: "sharon" },
+  { slug: "ganei-tikva", name: "גני תקווה", region: "gush-dan" },
+  { slug: "azor", name: "אזור", region: "gush-dan" },
+] as const satisfies readonly { slug: string; name: string; region: RegionId }[];
+
 export type CitySlug = (typeof cities)[number]["slug"];
+
+/** Cities of one sub-region, in array order. */
+export function citiesInRegion(id: RegionId) {
+  return cities.filter((c) => c.region === id);
+}
 
 // ── Link helpers ───────────────────────────────────────────────────────────
 
