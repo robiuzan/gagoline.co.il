@@ -115,11 +115,18 @@ export const processSteps = [
   { title: "בדיקת איכות + אחריות", body: "בדיקה סופית ואחריות בכתב על העבודה." },
 ] as const;
 
-/** Trust stats for the trust bar (🔶 confirm exact figures). */
+/**
+ * Trust stats for the trust bar.
+ *
+ * Every value here must be free to state per docs/content-standards.md §6. Two former rows were
+ * removed 2026-08-17: "מאות גגות יבשים" (an unsourced volume claim — business-facts §B) and
+ * "עד 10 שנים אחריות" (a warranty term the FAQ on the same page explicitly declines to state —
+ * business-facts §D). Do not reinstate a number here without a confirmed source.
+ */
 export const trustStats = [
   { value: "2014", label: "פעילים מאז" },
-  { value: "מאות", label: "גגות יבשים" }, // 🔶
-  { value: "עד 10 שנים", label: "אחריות בכתב" }, // 🔶
+  { value: "אבחון", label: "לפני כל איטום" },
+  { value: "בכתב", label: "אחריות על כל עבודה" },
   { value: "תל אביב והמרכז", label: "אזור שירות" },
 ] as const;
 
@@ -135,29 +142,25 @@ export const priceRows = [
 ] as const;
 
 /**
- * Testimonials — 🔶 PLACEHOLDERS. Replace with real Google reviews before launch
- * (brief D4 flags reviews as a key conversion gap vs. competitors).
+ * Testimonials — REMOVED 2026-08-17.
+ *
+ * Three invented five-star quotes attributed to "לקוח/ה — להחלפה 🔶" were rendering live on `/`
+ * and `/reviews/`. A fabricated review is a Google policy violation and a consumer-protection
+ * exposure, not a placeholder (docs/content-standards.md §6, backlog §7.1).
+ *
+ * When real reviews arrive (docs/business-facts.md §A), reinstate them with this shape — note
+ * `sourceUrl` is NOT optional, so an unverifiable entry cannot be added:
+ *
+ *   export interface Review {
+ *     author: string;
+ *     dateISO: string;
+ *     text: string;
+ *     rating: number;
+ *     sourceUrl: string; // public, resolvable — required by design
+ *   }
+ *
+ * `Review` / `AggregateRating` JSON-LD ships only once these exist (docs/schema-graph.md §4.1).
  */
-export const testimonials = [
-  {
-    author: "לקוח/ה — להחלפה 🔶",
-    rating: 5,
-    text: "הגיעו מהר, אבחנו בדיוק מאיפה הנזילה, והגג יבש מאז. עבודה נקייה ומקצועית.",
-    source: "Google",
-  },
-  {
-    author: "לקוח/ה — להחלפה 🔶",
-    rating: 5,
-    text: "הצעת מחיר ברורה בלי הפתעות, ואחריות בכתב. בדיוק מה שחיפשנו בוועד הבית.",
-    source: "Google",
-  },
-  {
-    author: "לקוח/ה — להחלפה 🔶",
-    rating: 5,
-    text: "אחרי שני קבלנים שלא פתרו, פה סוף סוף מצאו את המקור. ממליצים בחום.",
-    source: "Google",
-  },
-] as const;
 
 /** General FAQs (brief D5). */
 export const faqs = [
@@ -167,7 +170,7 @@ export const faqs = [
   },
   {
     q: "כמה זמן מחזיק איטום גג ומה האחריות?",
-    a: "איטום מקצועי בחומרים מתאימים מחזיק שנים רבות. אנחנו מעניקים אחריות בכתב על העבודה. 🔶 (משך האחריות לאישור הלקוח.)",
+    a: "איטום מקצועי בחומרים מתאימים מחזיק שנים רבות. אנחנו מעניקים אחריות בכתב על העבודה, ומפרטים בה בדיוק מה מכוסה ולכמה זמן — לפני שמתחילים.",
   },
   {
     q: "מתי הכי נכון לאטום — לפני החורף?",
@@ -195,14 +198,19 @@ export const faqs = [
   },
 ] as const;
 
-/** Header / footer navigation. */
+/**
+ * Header / footer navigation.
+ *
+ * "המלצות" and "גלריה" were removed 2026-08-17: both routes are noindexed and hold no real content
+ * yet (backlog §7.1–7.2), and pointing sitewide navigation at them spent the site's strongest
+ * internal signal on the two pages that best demonstrated it was unfinished. Restore each entry the
+ * day real reviews / photos land.
+ */
 export const navItems = [
-  { label: "השירותים שלנו", href: "/services" },
-  { label: "אזורי שירות", href: "/areas/tel-aviv" },
-  { label: "אודות", href: "/about" },
-  { label: "המלצות", href: "/reviews" },
-  { label: "גלריה", href: "/gallery" },
-  { label: "מחירון", href: "/pricing" },
-  { label: "שאלות נפוצות", href: "/faq" },
-  { label: "צור קשר", href: "/contact" },
+  { label: "השירותים שלנו", href: "/services/" },
+  { label: "אזורי שירות", href: "/areas/tel-aviv/" },
+  { label: "אודות", href: "/about/" },
+  { label: "מחירון", href: "/pricing/" },
+  { label: "שאלות נפוצות", href: "/faq/" },
+  { label: "צור קשר", href: "/contact/" },
 ] as const;

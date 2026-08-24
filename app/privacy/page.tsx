@@ -21,8 +21,7 @@ export default function PrivacyPage() {
         <div className="mx-auto max-w-3xl space-y-4 text-gray-700">
           <p>
             אנו ב{siteConfig.name} מכבדים את פרטיותכם. עמוד זה מסביר איזה מידע אנו אוספים
-            וכיצד אנו עושים בו שימוש.{" "}
-            <span className="text-gray-400">🔶 נוסח משפטי מלא לאישור.</span>
+            וכיצד אנו עושים בו שימוש.
           </p>
           <h2 className="font-heading text-lg font-bold text-primary">
             איזה מידע אנו אוספים

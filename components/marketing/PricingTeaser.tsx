@@ -22,7 +22,7 @@ export function PricingTeaser() {
                 שירות
               </th>
               <th scope="col" className="px-5 py-3 font-medium">
-                טווח מחיר 🔶
+                טווח מחיר
               </th>
             </tr>
           </thead>

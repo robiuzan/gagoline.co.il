@@ -7,7 +7,9 @@ import { FinalCta } from "@/components/marketing/FinalCta";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/about/" },
-  title: "אודות גגוליין",
+  // Bare subject only — the root template in app/layout.tsx already appends "| גגוליין".
+  // This page was the site's one doubled-brand title (backlog §2.1); don't reintroduce it.
+  title: "אודות",
   description:
     "גגוליין — איטום גגות מקצועי מאז 2014 בתל אביב והמרכז. אבחון מקור הנזילה, אחריות בכתב ועבודה נקייה.",
 };
@@ -39,8 +41,7 @@ export default function AboutPage() {
           </p>
           <p className="mt-4 text-gray-700">
             אנחנו מלווים בעלי בתים, ועדי בתים ועסקים בתל אביב והמרכז — עם צוות מקצועי
-            משלנו, בלי קבלני משנה.{" "}
-            <span className="text-gray-400">🔶 פרטי בעלים/חברה ורישוי לאישור.</span>
+            משלנו, בלי קבלני משנה.
           </p>
 
           <h2 className="mt-10 font-heading text-xl font-bold text-primary">

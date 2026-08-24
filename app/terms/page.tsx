@@ -18,10 +18,7 @@ export default function TermsPage() {
       />
       <Section tone="white">
         <div className="mx-auto max-w-3xl space-y-4 text-gray-700">
-          <p>
-            השימוש באתר {siteConfig.name} ובתכניו כפוף לתנאים המפורטים להלן.{" "}
-            <span className="text-gray-400">🔶 נוסח משפטי מלא לאישור.</span>
-          </p>
+          <p>השימוש באתר {siteConfig.name} ובתכניו כפוף לתנאים המפורטים להלן.</p>
           <h2 className="font-heading text-lg font-bold text-primary">כללי</h2>
           <p>
             המידע באתר, לרבות טווחי מחירים, מובא לצורכי התרשמות בלבד ואינו מהווה הצעה

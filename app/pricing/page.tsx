@@ -21,7 +21,7 @@ export default function PricingPage() {
       <PricingTeaser />
       <Section tone="muted">
         <p className="mx-auto max-w-2xl text-center text-sm text-gray-500">
-          🔶 הטווחים מובאים להתרשמות בלבד ועשויים להשתנות לפי סוג הגג, שטחו, מצבו והנגישות
+          הטווחים מובאים להתרשמות בלבד ועשויים להשתנות לפי סוג הגג, שטחו, מצבו והנגישות
           אליו. המחיר המחייב יינתן רק לאחר ביקור ואבחון.
         </p>
       </Section>

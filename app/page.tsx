@@ -9,7 +9,6 @@ import { TrustBar } from "@/components/marketing/TrustBar";
 import { ServicesGrid } from "@/components/marketing/ServicesGrid";
 import { WhyUs } from "@/components/marketing/WhyUs";
 import { Process } from "@/components/marketing/Process";
-import { Reviews } from "@/components/marketing/Reviews";
 import { PricingTeaser } from "@/components/marketing/PricingTeaser";
 import { ServiceAreas } from "@/components/marketing/ServiceAreas";
 import { Faq } from "@/components/marketing/Faq";
@@ -30,7 +29,6 @@ export default function HomePage() {
       <ServicesGrid />
       <WhyUs />
       <Process />
-      <Reviews />
       <PricingTeaser />
       <ServiceAreas />
 

@@ -16,16 +16,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
    */
   const url = (path: string) => (path ? `${base}/${path}/` : `${base}/`);
 
+  /**
+   * ⚠️ Hand-maintained (backlog §1.3) — a new route is silently absent from the sitemap unless it
+   * is added here. Replace with a typed route registry that the routes themselves reference.
+   *
+   * `reviews`, `gallery` and `blog` were removed 2026-08-17: all three are `noindex` until they
+   * hold real content, and a noindexed URL must not be advertised in the sitemap. Re-add each one
+   * in the same commit that removes its `robots` block.
+   */
   const staticPaths = [
     "",
     "services",
     "about",
-    "reviews",
-    "gallery",
     "pricing",
     "faq",
     "contact",
-    "blog",
     "privacy",
     "accessibility",
     "terms",

@@ -90,16 +90,10 @@ export function Footer() {
                 אודות
               </Link>
             </li>
-            <li>
-              <Link href="/reviews" className="text-white/70 hover:text-white">
-                המלצות
-              </Link>
-            </li>
-            <li>
-              <Link href="/gallery" className="text-white/70 hover:text-white">
-                גלריה
-              </Link>
-            </li>
+            {/*
+              המלצות and גלריה removed 2026-08-17 — both routes are noindex until they hold real
+              content (backlog §7.1–7.2). Restore each link with its content.
+            */}
             <li>
               <Link href="/pricing" className="text-white/70 hover:text-white">
                 מחירון
@@ -123,6 +117,13 @@ export function Footer() {
             <li>
               <Link href="/accessibility" className="text-white/70 hover:text-white">
                 הצהרת נגישות
+              </Link>
+            </li>
+            {/* /terms/ was emitted and sitemapped with zero inbound internal links — a genuine
+                orphan the backlog never named (see §5.8, corrected 2026-08-17). */}
+            <li>
+              <Link href="/terms" className="text-white/70 hover:text-white">
+                תקנון ותנאי שימוש
               </Link>
             </li>
           </ul>
