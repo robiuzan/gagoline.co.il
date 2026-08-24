@@ -13,6 +13,7 @@ import {
 } from "@/lib/site-config";
 import { serviceCards } from "@/lib/content";
 import { cityDepth } from "@/lib/city-depth";
+import { articlesForCity } from "@/content/articles";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
@@ -48,6 +49,7 @@ export default function AreaPage({ params }: { params: { city: string } }) {
   if (!city) notFound();
 
   const depth = cityDepth[city.slug];
+  const relatedArticles = articlesForCity(city.slug);
   const priority = depth.priority
     .map((p) => ({ ...p, card: serviceCards.find((c) => c.slug === p.slug) }))
     .filter((p): p is typeof p & { card: NonNullable<(typeof p)["card"]> } =>
@@ -158,6 +160,32 @@ export default function AreaPage({ params }: { params: { city: string } }) {
                 </li>
               ))}
             </ul>
+
+            {relatedArticles.length > 0 && (
+              <>
+                <h2 className="mt-10 font-heading text-xl font-bold text-primary">
+                  מדריכים שיעזרו לכם
+                </h2>
+                <ul className="mt-4 space-y-3">
+                  {relatedArticles.map((a) => (
+                    <li key={a.slug}>
+                      <Link
+                        href={`/blog/${a.slug}/`}
+                        className="group flex items-start justify-between gap-3 rounded-xl border border-gray-100 bg-white px-4 py-3 hover:border-secondary"
+                      >
+                        <span className="text-sm font-medium text-gray-700 group-hover:text-secondary-600">
+                          {a.title}
+                        </span>
+                        <ChevronLeft
+                          className="mt-0.5 h-4 w-4 shrink-0 text-gray-400 group-hover:text-secondary"
+                          aria-hidden
+                        />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
 
             <h2 className="mt-10 font-heading text-xl font-bold text-primary">
               שאלות נפוצות — איטום גגות ב{city.name}

@@ -1,41 +1,59 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ChevronLeft } from "lucide-react";
+import { articles } from "@/content/articles";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Section } from "@/components/ui/Section";
 import { FinalCta } from "@/components/marketing/FinalCta";
 
 /**
- * `noindex` until the first article ships.
+ * The `noindex` block is GONE as of this commit, and `/blog/` is back in app/sitemap.ts.
  *
- * This route previously rendered "תכני הבלוג בדרך 🔶 — בקרוב נעלה כאן מאמרים" and sat in the
- * sitemap with zero inbound internal links, i.e. an indexed empty page (backlog §7.4, §3.9).
- * Cleaned 2026-08-17 and removed from the sitemap.
- *
- * To restore: build /blog/[slug]/ per the `new-article` skill (typed blocks in content/articles/,
- * Article + BreadcrumbList + FAQPage schema), list the articles here, re-add the sitemap path and
- * drop the `robots` block. Author attribution ships as the Organization until a real person is
- * named — never invent a byline (docs/business-facts.md §B).
+ * It was noindexed on 2026-08-17 because the route rendered "תכני הבלוג בדרך 🔶 — בקרוב" while
+ * sitting in the sitemap: an indexed empty page that spent crawl budget demonstrating the site was
+ * unfinished (backlog §7.4, §3.9). The condition for restoring it was real articles, and those now
+ * exist. Re-adding the robots block would be correct only if every article were removed.
  */
 export const metadata: Metadata = {
   alternates: { canonical: "/blog/" },
-  robots: { index: false, follow: true },
-  title: "בלוג",
+  title: "מדריכים על איטום גגות",
   description:
-    "מדריכים על איטום גגות, איתור נזילות והכנת הגג לחורף. המדריכים הראשונים בהכנה.",
+    "מדריכים מפורטים על איתור נזילות, בחירת שיטת איטום, הכנת הגג לחורף ורטיבות בקירות — מהניסיון שלנו בשטח.",
 };
 
 export default function BlogPage() {
   return (
     <>
       <PageHeader
-        title="בלוג"
-        crumbs={[{ label: "בית", href: "/" }, { label: "בלוג" }]}
+        title="מדריכים על איטום גגות"
+        subtitle="מה שאנחנו מסבירים בשטח, כתוב. איתור נזילות, בחירה בין שיטות, והכנת הגג לחורף."
+        crumbs={[{ label: "בית", href: "/" }, { label: "מדריכים" }]}
       />
+
       <Section tone="white">
-        <p className="mx-auto max-w-2xl text-center text-gray-600">
-          אנחנו מכינים מדריכים על איטום, איתור נזילות והכנת הגג לחורף. עד שהם יעלו — יש
-          לכם שאלה על הגג שלכם? אנחנו זמינים בטלפון ובוואטסאפ.
-        </p>
+        <ul className="mx-auto grid max-w-4xl gap-4">
+          {articles.map((a) => (
+            <li key={a.slug}>
+              <Link
+                href={`/blog/${a.slug}/`}
+                className="group flex items-start justify-between gap-4 rounded-2xl border border-gray-100 bg-gray-50 p-6 hover:border-secondary"
+              >
+                <span>
+                  <h2 className="font-heading text-lg font-bold text-primary group-hover:text-secondary-600">
+                    {a.title}
+                  </h2>
+                  <span className="mt-2 block text-gray-600">{a.description}</span>
+                </span>
+                <ChevronLeft
+                  className="mt-1 h-5 w-5 shrink-0 text-gray-400 group-hover:text-secondary"
+                  aria-hidden
+                />
+              </Link>
+            </li>
+          ))}
+        </ul>
       </Section>
+
       <FinalCta />
     </>
   );

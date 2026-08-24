@@ -14,6 +14,7 @@ import {
 } from "@/lib/site-config";
 import { serviceCards, processSteps } from "@/lib/content";
 import { serviceDepth } from "@/lib/service-depth";
+import { articlesForService } from "@/content/articles";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
@@ -56,6 +57,7 @@ export default function ServicePage({ params }: { params: { service: string } })
   const depth = serviceDepth[card.slug];
   const others = serviceCards.filter((c) => c.slug !== card.slug).slice(0, 4);
   const nearbyCities = citiesForService(card.slug);
+  const relatedArticles = articlesForService(card.slug);
 
   // Service node binds this page to the RoofingContractor node; FAQPage covers the per-service
   // questions rendered below (all visible, so the markup matches what the user sees).
@@ -277,6 +279,31 @@ export default function ServicePage({ params }: { params: { service: string } })
             </Link>
           </p>
         </div>
+
+        {/* Service → article edge. Without it the article wave shipped at inbound degree 1. */}
+        {relatedArticles.length > 0 && (
+          <div className="mt-14 border-t border-gray-100 pt-10">
+            <h2 className="font-heading text-xl font-bold text-primary">מדריכים בנושא</h2>
+            <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+              {relatedArticles.map((a) => (
+                <li key={a.slug}>
+                  <Link
+                    href={`/blog/${a.slug}/`}
+                    className="group flex items-start justify-between gap-3 rounded-xl border border-gray-100 bg-gray-50 px-4 py-4 hover:border-secondary"
+                  >
+                    <span className="text-sm font-medium text-gray-700 group-hover:text-secondary-600">
+                      {a.title}
+                    </span>
+                    <ChevronLeft
+                      className="mt-0.5 h-4 w-4 shrink-0 text-gray-400 group-hover:text-secondary"
+                      aria-hidden
+                    />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {/* Related services */}
         <div className="mt-14 border-t border-gray-100 pt-10">

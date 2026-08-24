@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { siteConfig, services, cities } from "@/lib/site-config";
+import { articles } from "@/content/articles";
 
 /**
  * Generates /sitemap.xml from the static routes + the service and city matrices
@@ -23,6 +24,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
    * `reviews`, `gallery` and `blog` were removed 2026-08-17: all three are `noindex` until they
    * hold real content, and a noindexed URL must not be advertised in the sitemap. Re-add each one
    * in the same commit that removes its `robots` block.
+   *
+   * `blog` came back on 2026-08-24, in the same commit that removed its `robots` block and shipped
+   * seven articles — exactly the trade described above. `reviews` and `gallery` are still out, and
+   * still noindexed, because neither has real content yet (docs/business-facts.md §A).
    */
   const staticPaths = [
     "",
@@ -32,6 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "pricing",
     "faq",
     "contact",
+    "blog",
     "privacy",
     "accessibility",
     "terms",
@@ -52,5 +58,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: now,
   }));
 
-  return [...staticEntries, ...serviceEntries, ...cityEntries];
+  /**
+   * Articles carry their OWN dateModified rather than the build timestamp. Everything else here is
+   * stamped `now`, which tells a crawler nothing — an article's lastmod is a real editorial fact
+   * and worth being accurate about.
+   */
+  const articleEntries: MetadataRoute.Sitemap = articles.map((a) => ({
+    url: url(`blog/${a.slug}`),
+    lastModified: new Date(a.dateModified),
+  }));
+
+  return [...staticEntries, ...serviceEntries, ...cityEntries, ...articleEntries];
 }
