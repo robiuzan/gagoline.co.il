@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ogImageMeta } from "@ishub/site-kit";
 import { Heebo, Rubik } from "next/font/google";
 import { siteConfig, manifest } from "@/lib/site-config";
 import { Header } from "@/components/layout/Header";
@@ -37,6 +38,7 @@ export const metadata: Metadata = {
     google: "ezF8RK2XRQm2cTJRfJPuCQ9fPj29xDv4SIAc0UX0E_w",
   },
   openGraph: {
+    images: ogImageMeta(manifest.images),
     type: "website",
     locale: "he_IL",
     siteName: siteConfig.name,
@@ -52,6 +54,15 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="he" dir="rtl" className={`${heebo.variable} ${rubik.variable}`}>
+      <head>
+        {manifest.images?.mediaHost && (
+          <link
+            rel="preconnect"
+            href={`https://${manifest.images.mediaHost}`}
+            crossOrigin=""
+          />
+        )}
+      </head>
       <body className="flex min-h-screen flex-col font-sans">
         {gtmNoScript && (
           <noscript>

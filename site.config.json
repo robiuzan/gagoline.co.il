@@ -28,7 +28,10 @@
   },
   "schema": {
     "type": "RoofingContractor",
-    "address": { "addressRegion": "מרכז", "addressCountry": "IL" },
+    "address": {
+      "addressRegion": "מרכז",
+      "addressCountry": "IL"
+    },
     "priceRange": "₪₪",
     "areaServed": "תל אביב והמרכז — עד רדיוס 50 ק\"מ",
     "sameAs": []
@@ -36,5 +39,23 @@
   "analytics": {
     "gtmId": "GTM-KWGGH438",
     "googleSiteVerification": "ezF8RK2XRQm2cTJRfJPuCQ9fPj29xDv4SIAc0UX0E_w"
+  },
+  "images": {
+    "mediaHost": "imgquarry.com",
+    "defaultQuality": 80,
+    "og": {
+      "key": "gagoline/og.jpg",
+      "sha256": "f39209a4c9faac5c081f0e0d194e7d611620176d53ea3a4e048d641aa749611b",
+      "alt": "Gagoline - share card",
+      "altHe": "גגוליין - גג יבש, ראש שקט — איטום גגות מקצועי עם אחריות בכתב",
+      "width": 1200,
+      "height": 630,
+      "bytes": 38603,
+      "kind": "raster",
+      "focal": null,
+      "legacySrc": null
+    },
+    "badges": [],
+    "gallery": null
   }
 }
