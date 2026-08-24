@@ -1,199 +1,287 @@
-# CLAUDE.md — גגוליין (Gagoline) project rulebook
+# CLAUDE.md — גגוליין (gagoline.co.il) project rulebook
 
-> This file is the operating manual for any AI agent (and human) working in this repo.
-> It is derived from **`brief.md`** (the strategy/intake document). When this file and the
-> brief disagree, **the brief wins** — update this file to match. When the code and this file
-> disagree, fix the code. The project-level rules here **override** any global defaults.
-
----
-
-## 1. Project context (from brief Parts A & B)
-
-- **Business:** גגוליין (Gagoline) — a roof **waterproofing / sealing** (איטום גגות) contractor.
-- **Founded:** 2014 (positioned as "over a decade of experience", מאז 2014).
-- **Service area:** Tel Aviv + the Center (גוש דן והמרכז), up to a 50 km radius.
-- **Primary phone (click-to-call):** `055-6601006`.
-- **Target audience:** private homeowners (35–65), building committees / shared-building
-  residents (ועדי בתים), property managers, and commercial/business buildings.
-- **Core pain triggers:** winter leaks (נזילות), damp (רטיבות), mold (עובש), ceiling stains —
-  framed around the rainy season. The emotional job-to-be-done is _"a dry roof and peace of mind."_
-- **Positioning / UVP:** _diagnosis-first_ — we find the **source** of the leak, seal it with
-  advanced materials, give a **written warranty**, and quote a **transparent price**. We out-
-  _modernize_ the older veteran competitors rather than out-aging them.
-- **Top 3 differentiators:** (1) diagnosis-based method, (2) written warranty + price transparency,
-  (3) own professional crew (no subcontractors), fast response incl. winter emergency.
-
-### Conversion goals (brief Part B3) — design every page around these
-
-1. **Primary:** phone call → click-to-call `055-6601006`.
-2. **Secondary:** WhatsApp click-to-chat.
-3. **Tertiary:** low-friction lead form ("הצעת מחיר חינם" — name + phone).
-
-Every page must keep a call/WhatsApp action within reach (sticky on mobile), a clear CTA in the
-hero and footer, and at least one lead-capture form.
-
-> ⚠️ Many concrete values in the brief are tagged **🔶 (assumption — confirm with client)**:
-> warranty length, license numbers, insurance, exact prices, business hours, WhatsApp number,
-> email, owner/legal name. **Never present a 🔶 value as a confirmed fact.** Keep them isolated
-> in `lib/site-config.ts` and comment them `// 🔶 confirm`, so they are trivial to update.
+> The operating manual for any AI agent (and human) working in this repo. Project rules here
+> **override** global defaults. When this file and the code disagree, fix the code. When this file and
+> `brief.md` disagree about strategy or voice, **the brief wins**. When either disagrees with
+> `Israeli services sites/roster/sites/gagoline.json` about a business fact, **the roster wins**.
 
 ---
 
-## 2. Agent roles / personas
+## 1. Business context
 
-Adopt the matching persona for the task at hand:
+- **Business:** גגוליין (Gagoline) — roof **waterproofing / sealing** (איטום גגות). Founded **2014**
+  (`foundedYear: 2014` in the manifest — "מאז 2014" is a confirmed fact, not a claim).
+- **Phone (click-to-call):** `055-6601006` · WhatsApp same number · `info@gagoline.co.il`.
+- **Service area:** תל אביב והמרכז, up to a ~50 km radius. 23 location pages, 8 service pages.
+- **Audience:** private homeowners (35–65), ועדי בתים / shared buildings, property managers, commercial
+  buildings.
+- **Positioning — diagnosis first:** find the **source** of the leak, seal it with advanced materials,
+  give a **written warranty**, quote a **transparent price**. Out-modernize the veteran competitors
+  rather than out-aging them.
+- **Voice reference:** _"לפני שאנחנו אוטמים — אנחנו מבינים מאיפה הנזילה מגיעה."_
+- **Conversion goals, in order:** (1) phone call, (2) WhatsApp, (3) lead form. Every page keeps a call
+  and a WhatsApp action within reach; the mobile CTA bar is sticky.
+- **The season sells.** Demand spikes with the first rain. Content that must rank in November has to be
+  published and crawled by September.
 
-- **Copywriter persona (content tasks).** Act as an elite Hebrew conversion copywriter for a
-  trusted local trade business. Write in the **exact voice from brief Part D1**:
-  - Voice: אמין · מקצועי · רגוע ובוטח · ענייני (no-nonsense) · נגיש.
-  - Formality: **friendly-professional** (מקצועי אך בגובה העיניים). Person: **"אנחנו" / גגוליין**.
-  - Reading level: simple & clear for a homeowner, with depth where it builds trust.
-  - **Favor:** גג יבש · אחריות בכתב · אבחון · מקור הנזילה · שקיפות · פתרון לתמיד · מענה מהיר.
-  - **Avoid:** "זול", hype/over-promising, heavy jargon, "פתרון קסם".
-  - Emoji: sparingly (a ✓ or 📞 inside a button is fine; not in body copy).
-  - Reference voice line: _"לפני שאנחנו אוטמים — אנחנו מבינים מאיפה הנזילה מגיעה."_
-- **Front-end engineer persona (build tasks).** Senior Next.js/React/TS engineer. Ship
-  accessible, mobile-first, RTL-correct, strictly-typed components. Follow §4–§6 below.
-- **Local-SEO persona (metadata/schema tasks).** Optimize for the keyword + city matrix in
-  brief Part H. Produce per-page `metadata`, structured data (`LocalBusiness`/`RoofingContractor`,
-  `Service`, `FAQPage`, `Review`, `BreadcrumbList`), and the `איטום גגות ב[עיר]` title formula.
-
----
-
-## 3. Localization & formatting rules (brief Parts A1 & K) — NON-NEGOTIABLE
-
-- **Language:** Hebrew (`he`). **Direction: RTL.** `<html lang="he" dir="rtl">` is already set
-  in `app/layout.tsx` — do not remove it.
-- **Israeli formats:** phone `0XX-XXX-XXXX`, currency `₪`, dates `dd/mm/yyyy`.
-- **RTL Tailwind discipline — mandatory:**
-  - Use **logical (direction-aware) utilities ONLY** for horizontal spacing/positioning:
-    `ps-*` / `pe-*` (padding), `ms-*` / `me-*` (margin), `start-*` / `end-*` (inset),
-    `text-start` / `text-end`, and `space-x-reverse` where horizontal `space-x-*` is used.
-  - **BANNED:** hardcoded physical LTR directions — `pl-*`, `pr-*`, `ml-*`, `mr-*`,
-    `left-*`, `right-*`, `text-left`, `text-right`. These break RTL. The only exception is a
-    genuinely direction-agnostic case, which must carry an explanatory comment.
-  - For flex/grid that should mirror, rely on `dir="rtl"` flow; do not force `flex-row-reverse`
-    unless intentionally overriding for an LTR island (e.g. a phone number `+972…`, code, latin URL).
-  - Latin/LTR snippets embedded in Hebrew (phone, email, URLs) should be wrapped with
-    `dir="ltr"` and `unicode-bidi: isolate` (a `.ltr` helper class is provided in `globals.css`).
-- Keep user-facing strings in Hebrew. Avoid mixing languages in a single sentence.
+> ⚠️ **Placeholder content is live right now.** Three invented testimonials render on `/` and
+> `/reviews/`, six empty tiles on `/gallery/`, and a "coming soon" `/blog/` sits in the sitemap — all
+> four with a visible 🔶 in the shipped copy. See [docs/business-facts.md](docs/business-facts.md) §A
+> and the backlog §7. **Removing a placeholder is always correct; rewriting one is not.**
 
 ---
 
-## 4. Code style & compliance
+## 2. Golden rules
 
-- **TypeScript strict.** `strict: true` and `noUncheckedIndexedAccess: true` are on. No `any`
-  (use `unknown` + narrowing). No non-null `!` to silence the compiler — handle the null case.
-- **Components:** React Server Components by default. Add `"use client"` **only** when a file
-  needs state, effects, browser APIs, or `framer-motion`. Keep client components small/leaf-level.
-- **Imports:** use the `@/*` path alias (e.g. `@/lib/utils`, `@/components/ui/Button`). No deep
-  relative `../../..` chains.
-- **Class merging:** compose conditional classes with `cn()` from `@/lib/utils` (clsx + tailwind-merge).
-- **Styling:** Tailwind utilities only — **mobile-first** (style the base/mobile case, then add
-  `sm: md: lg:` overrides). No inline `style={{}}` except for truly dynamic values. Use the design
-  tokens from the `@theme` block in `app/globals.css` (`primary`, `secondary`, `accent`,
-  `font-heading`, `font-sans`) — do **not** hardcode brand hex values in components.
-- **Files:** components in PascalCase (`ServiceCard.tsx`); hooks `useXxx.ts`; utilities camelCase.
-- **Single source of truth:** business NAP, services, and city lists live in `lib/site-config.ts`.
-  Never hardcode the phone number, service names, or city slugs in components — import them.
-- **No secrets in code.** Read runtime config from env (see `.env.example`). Sanitize/validate all
-  form input on the server; escape any user-rendered output.
-
-### Accessibility (brief Part I4) — target WCAG 2.0 AA + Israeli IS 5568
-
-- Semantic HTML and landmarks (`header`, `nav`, `main`, `footer`, one `h1` per page, ordered headings).
-- All interactive elements keyboard-operable with a visible focus state; real `<button>`/`<a>` (not
-  clickable `div`s). Links/buttons have discernible text or `aria-label` (esp. icon-only buttons).
-- Images need meaningful `alt` (empty `alt=""` for decorative). Color contrast ≥ 4.5:1 for text.
-- Forms: every input has an associated `<label>`; errors are announced and tied via `aria-describedby`.
-- Respect `prefers-reduced-motion` for all `framer-motion` animations.
-- An accessibility statement (הצהרת נגישות) page is part of the sitemap — keep it linked in the footer.
+1. **Never fabricate a business fact.** Warranty terms, prices, volumes, licences, insurance, ratings,
+   reviews, customer names, hours. If it is not in the roster manifest, `lib/site-config.ts`, or
+   `lib/content.ts` as confirmed, mark it `// 🔶 confirm` and add a row to
+   [docs/business-facts.md](docs/business-facts.md). A fabricated review is a Google policy violation,
+   not a style problem.
+2. **A 🔶 must never reach a visitor.** The marker is an internal signal. If a surface can't be filled
+   with something true, remove or `noindex` the surface — don't ship the marker. Four pages break this
+   today.
+3. **Never edit `site.config.json` directly.** It is synced downstream from
+   `Israeli services sites/roster/sites/gagoline.json`. Edit the roster, then sync. The file says so in
+   its own `_comment`.
+4. **Pushing to `main` does not deploy.** Production is **Cloudflare Pages, direct upload via
+   wrangler**, driven by the hub's `ops/deploy-site.ps1 -Domain gagoline.co.il`. See §10.
+   `deploy/deploy-webdav.ps1` and `public/.htaccess` are **dead artifacts of a previous cPanel host** —
+   do not use them (verified 2026-08-17: the WebDAV docroot is no longer served).
+5. **No page ships under the content bar in [docs/content-standards.md](docs/content-standards.md).**
+   A location or service page a find-and-replace could regenerate is a doorway page. All 23 location
+   pages currently are one.
+6. **Business facts come from `lib/site-config.ts`, never hardcoded in components.** Import
+   `siteConfig`, `services`, `cities`, `telHref`, `whatsappHref`. Copy comes from `lib/content.ts`,
+   never typed into JSX.
+7. **Don't touch `components/ui/EmailAddress.tsx` without reading its header.** Cloudflare Scrape
+   Shield email obfuscation is **on** for this zone and rewrites any `mailto:` it finds into a 404 URL.
+   The `email_off` / `email_on` HTML comments are what keep the business email working (commit
+   `ac48484`). It looks like over-engineering; it isn't.
+8. **A GTM snippet in the HTML proves nothing.** Whenever a container id changes, assert
+   `https://www.googletagmanager.com/gtm.js?id=<ID>` returns **200**. Two fabricated ids once cost the
+   IL fleet 18 days of zero analytics across every site.
+9. **Never edit generated or vendored output** — `node_modules/`, `.next/`, `out/`.
 
 ---
 
-## 5. Tech stack & architecture (brief Part I1)
+## 3. Stack
 
-- **Framework:** Next.js **14** (App Router) · **React 18** · **TypeScript** · **Tailwind CSS v4** (CSS-first `@theme` in `app/globals.css`; fleet standard, migrated 2026-07-09).
-- **UI/UX libs:** `lucide-react` (icons), `framer-motion` (animation), `clsx` + `tailwind-merge`
-  (class composition, via `cn()`).
-- **Content:** in-code / MDX, **no CMS** (static site). Hosting target: **Vercel** + automatic SSL.
-- **Layout convention:** **flat** (no `src/`). App Router routes in `app/`. Path alias `@/* -> ./*`.
+Next.js **14.2** App Router · React **18** · TypeScript strict (**`noUncheckedIndexedAccess` is on**) ·
+Tailwind **v4** (CSS-first `@theme` in `app/globals.css` — there is no `tailwind.config.ts`) ·
+`lucide-react` · `clsx` + `tailwind-merge` via `cn()` · `@ishub/site-kit` (hub tarball).
+Flat layout (no `src/`), path alias `@/* -> ./*`.
 
-### Folder map
+**`next.config.mjs` — the constraints that shape everything:**
+
+```js
+output: "export",          // static HTML into out/
+trailingSlash: true,       // every URL ends in /
+images: { unoptimized: true },
+transpilePackages: ["@ishub/site-kit"],
+```
+
+**Static export forbids** `headers()`, `redirects()`, `rewrites()`, middleware, API routes, server
+actions and ISR. Because the host is **Cloudflare Pages**, response headers come from
+`public/_headers` and redirects from `public/_redirects` — both are live features here, and neither
+file exists yet. `public/.htaccess` is inert (previous host) and Apache serves nothing for this site.
+
+> Corrected 2026-08-17. This section previously said the opposite — that `_headers`/`_redirects` did
+> nothing and headers came from `.htaccess`. That was inferred from the leftover cPanel tooling in
+> `deploy/` and cost a misdirected production deploy. The roster is authoritative:
+> `hosting.target: "cloudflare-pages"`, `pagesProject: "gagoline"`.
+
+**Route slugs are Latin ASCII** (`/services/roof-sealing/`, `/areas/tel-aviv/`) with Hebrew display
+names. Unlike the fleet's Hebrew-slug sites, there is no percent-encoding trap in the dynamic routes
+and `app/sitemap.ts` needs no `encodeURI`. The slugs are live and indexed — renaming one needs a 301.
+
+---
+
+## 4. Layout
 
 ```
-app/                 # App Router routes (see §7 sitemap) + layout.tsx, globals.css, robots/sitemap
+app/
+  layout.tsx              # metadata, fonts, GTM, <html lang="he" dir="rtl">
+  page.tsx                # homepage — RoofingContractor JSON-LD
+  sitemap.ts robots.ts    # /sitemap.xml, /robots.txt
+  not-found.tsx           # 404
+  services/               # index + [service] × 8
+  areas/[city]/           # 23 pages (no /areas/ index — see backlog §5.5)
+  about/ contact/ pricing/ faq/ reviews/ gallery/ blog/
+  privacy/ accessibility/ terms/
 components/
-  ui/                # primitives: Button, Input, Badge, Card, Section…
-  layout/            # Header, Footer, Nav, MobileCallBar, Container…
-  forms/             # LeadForm, ContactForm, field components
-  marketing/         # Hero, ServicesGrid, Trustbar, Reviews, FAQ, CTA sections…
-hooks/               # custom React hooks (useXxx)
+  ui/          Button Container Section SectionHeading Reveal EmailAddress
+  layout/      Header Footer PageHeader MobileCtaBar
+  marketing/   Hero TrustBar ServicesGrid WhyUs Process Reviews
+               PricingTeaser ServiceAreas Faq FinalCta
+  forms/       LeadForm
 lib/
-  utils.ts           # cn() and shared helpers
-  site-config.ts     # ⭐ single source of truth: NAP, services, cities, hours
-types/
-  index.d.ts         # global/shared TypeScript types
+  site-config.ts   # ⭐ NAP, services[8], cities[23], telHref, whatsappHref
+  content.ts       # ⭐ all Hebrew copy
+  utils.ts         # cn()
+site.config.json   # SiteManifest — SYNCED FROM THE ROSTER, do not edit here
+brief.md           # the strategy/intake document this site was built from
+docs/              # the acceptance bars every agent cites
+deploy/            # the WebDAV deploy shim
 ```
 
-Place files by responsibility. A reusable, presentation-only primitive → `components/ui`. A page
-section assembled from primitives → `components/marketing`. Structural chrome → `components/layout`.
+Place by responsibility: reusable presentation primitive → `ui/`; page section → `marketing/`;
+structural chrome → `layout/`.
+
+**Route count: 44 emitted, 43 in the sitemap** (the difference is `/404/`, correctly excluded).
 
 ---
 
-## 6. SEO & metadata expectations (brief Part H)
+## 5. Data flow & source of truth
 
-- Per-page `metadata` (title + description) using the keyword set in brief Part H1.
-- Local matrix: `איטום גגות ב[עיר]` pages under `app/areas/[city]`; per-service pages under
-  `app/services/[service]`. Title formula: `איטום גגות ב[עיר] | אחריות בכתב + מחיר שקוף | גגוליין`.
-- Structured data via JSON-LD: `RoofingContractor`/`LocalBusiness`, `Service`, `FAQPage`,
-  `Review`/`AggregateRating`, `BreadcrumbList`. Keep `app/robots.ts` and `app/sitemap.ts` current.
-- Track conversions (brief H4): click-to-call, WhatsApp clicks, form submits, calculator completions.
+```
+Israeli services sites/roster/sites/gagoline.json   ← EDIT HERE for NAP/brand/schema/analytics
+        │  (ops sync)
+        ▼
+site.config.json  (SiteManifest)                   ← never edit directly
+        │
+        ▼
+lib/site-config.ts   manifest · siteConfig · services[8] · cities[23] · telHref · whatsappHref
+        │
+        ├── lib/content.ts     serviceCards · differentiators · processSteps · trustStats
+        │                      priceRows · testimonials · faqs · navItems
+        ▼
+app/**/page.tsx  →  components/**
+```
 
----
-
-## 7. Sitemap → routes (brief Part E1)
-
-| Page                 | Route                             | Notes                                                                                            |
-| -------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------ |
-| Home                 | `app/page.tsx`                    | hero → trust bar → services → why-us → process → gallery → reviews → pricing → areas → FAQ → CTA |
-| Services index       | `app/services/page.tsx`           | lists the 8 services                                                                             |
-| Service detail (×8)  | `app/services/[service]/page.tsx` | dynamic; slugs in `site-config`                                                                  |
-| About                | `app/about/page.tsx`              | story, experience, warranty, licensing                                                           |
-| Reviews              | `app/reviews/page.tsx`            | Google rating + testimonials                                                                     |
-| Gallery              | `app/gallery/page.tsx`            | before/after                                                                                     |
-| Pricing + calculator | `app/pricing/page.tsx`            | indicative ranges + cost calculator                                                              |
-| FAQ                  | `app/faq/page.tsx`                | SEO + trust                                                                                      |
-| City × service       | `app/areas/[city]/page.tsx`       | local SEO matrix                                                                                 |
-| Blog (Phase 2)       | `app/blog/page.tsx`               | optional                                                                                         |
-| Contact              | `app/contact/page.tsx`            | form, map, phone, hours                                                                          |
-| Privacy              | `app/privacy/page.tsx`            | legal                                                                                            |
-| Accessibility        | `app/accessibility/page.tsx`      | הצהרת נגישות                                                                                     |
-| Terms (🔶 optional)  | `app/terms/page.tsx`              | legal                                                                                            |
+Rule of thumb: **identity and NAP go up the chain to the roster; wording goes in `lib/content.ts`;
+layout goes in components.** Copy never gets typed directly into JSX —
+`app/services/[service]/page.tsx:32-37` and `app/about/page.tsx:14-21` both break this today and are
+listed in the backlog, not treated as precedent.
 
 ---
 
-## 8. Commands
+## 6. RTL & localization — NON-NEGOTIABLE
 
-| Task                 | Command                               |
-| -------------------- | ------------------------------------- |
-| Install deps         | `npm install`                         |
-| Dev server           | `npm run dev` (http://localhost:3000) |
-| Production build     | `npm run build`                       |
-| Start built app      | `npm run start`                       |
-| Lint                 | `npm run lint`                        |
-| Type-check (no emit) | `npm run typecheck`                   |
-| Format (write)       | `npm run format`                      |
-| Format (check)       | `npm run format:check`                |
+- `<html lang="he" dir="rtl">` is set in `app/layout.tsx`. Do not remove it.
+- Israeli formats: phone `0XX-XXX-XXXX`, currency `₪` after the number, dates `dd/mm/yyyy`.
+- **Logical Tailwind utilities ONLY** for horizontal spacing/positioning: `ps-*`/`pe-*`, `ms-*`/`me-*`,
+  `start-*`/`end-*`, `text-start`/`text-end`, `space-x-reverse`.
+  **BANNED:** `pl-* pr-* ml-* mr-* left-* right-* text-left text-right`. The only exception is a
+  genuinely direction-agnostic case, which must carry an explanatory comment.
+- Let `dir="rtl"` mirror flex/grid — don't force `flex-row-reverse` except to wrap an LTR island.
+- Latin/LTR snippets inside Hebrew (phone, email, URL, price) get `dir="ltr"` and the `.ltr` helper
+  from `app/globals.css`.
+- Hebrew punctuation: use גרש `׳` and גרשיים `״` — `ק״מ`, `מ״ר` — not straight ASCII quotes.
+- Keep user-facing strings Hebrew. Don't mix languages mid-sentence.
 
-Before committing: `npm run lint && npm run typecheck && npm run format`.
+See the `hebrew-rtl` skill for the full rule set.
 
 ---
 
-## 9. Scope guardrails
+## 7. Code style
 
-- This repo is currently **scaffolding** (Phase 2). Page bodies are placeholders. Implement real
-  UI/sections/content only when explicitly asked.
-- Don't invent business facts. If a value isn't in `brief.md` or `site-config.ts`, treat it as 🔶
-  and surface it rather than fabricating it.
-- Don't edit generated output (`.next/`, `node_modules/`). Change the source.
+- **TypeScript strict.** No `any` (use `unknown` + narrowing). No non-null `!` to silence the
+  compiler — handle the null case. `noUncheckedIndexedAccess` means indexed reads are `T | undefined`;
+  narrow them.
+- **RSC by default.** Add `"use client"` only for state, effects, or browser APIs. Keep client
+  components small and leaf-level. Currently client: `Header`, `Faq`, `LeadForm`, `Reveal`.
+- Imports use the `@/*` alias. No `../../..` chains.
+- Compose conditional classes with `cn()` from `@/lib/utils`.
+- Tailwind utilities only, **mobile-first**. Use the `@theme` tokens (`primary`, `secondary`,
+  `accent`, `font-heading`, `font-sans`) — **never hardcode a brand hex in a component**. (The
+  WhatsApp green `#25D366` currently is hardcoded in four places; it belongs in the theme.)
+- Components PascalCase; hooks `useXxx.ts`; utilities camelCase.
+
+---
+
+## 8. SEO, schema, accessibility
+
+- **One `<h1>` per page**, matched to search intent. Everything else `<h2>`/`<h3>`, no skipped levels.
+- **Titles:** the root `template` in `app/layout.tsx:33` already appends `| גגוליין`. A page's own
+  `title` must therefore **never append the brand again** — `app/about/page.tsx:10` does, and it is the
+  one live doubled title. See the `seo-metadata` skill.
+- **Canonicals:** self-referencing, with the trailing slash, byte-identical to the `sitemap.xml`
+  `<loc>`. All 44 routes have one — don't regress it.
+- **JSON-LD** is built with `@ishub/site-kit/seo` — `localBusinessJsonLd`, `serviceJsonLd`,
+  `faqJsonLd`, `breadcrumbJsonLd`, `jsonLdScript`. Target graph:
+  [docs/schema-graph.md](docs/schema-graph.md). Only **2 of 44** pages emit any schema today.
+  `Review`/`AggregateRating` ship **only** when sourced.
+- **Accessibility target: WCAG 2.1 AA + IS 5568**, and `/accessibility/` publishes a conformance
+  statement — so a contrast failure makes a published statement false. The accent CTA is at **2.56:1**
+  and the WhatsApp CTA at **1.98:1** against white. See the `responsive-accessibility` skill.
+
+---
+
+## 9. Build gate
+
+```
+npm run lint && npm run typecheck && npm run format:check && npm run build
+```
+
+All four must pass before any deploy. The `qa-build-gate` skill adds the output assertions on `out/`
+(route count, unique titles, one H1, canonicals, JSON-LD presence, sitemap parity, no placeholder
+markers, no oversized chunks).
+
+---
+
+## 10. Deploy — read this before shipping
+
+**Production is Cloudflare Pages, direct upload via wrangler. Pushing to `main` deploys nothing.**
+
+Project `gagoline`, serving `gagoline.pages.dev`, `gagoline.co.il` and `www.gagoline.co.il`.
+
+```powershell
+# preview — builds nothing, changes nothing, and runs the drift check
+powershell -File "c:/Users/robiu/antigravity/Projects/Israeli services sites/ops/deploy-site.ps1" -Domain gagoline.co.il -DryRun
+
+# execute — only when the user asks
+powershell -File "c:/Users/robiu/antigravity/Projects/Israeli services sites/ops/deploy-site.ps1" -Domain gagoline.co.il -Confirm
+```
+
+The script resolves the Pages project from the roster, runs a **drift check** against the Cloudflare
+API to confirm that project actually serves this domain, busts the two staleness traps (npm caches
+`file:` tarballs; Next caches under `.next/`), gates the output, preserves `out.prev/` for rollback,
+and logs to `logs/deploys.csv`.
+
+> ⚠️ **`deploy/deploy-webdav.ps1` is dead. Do not run it.** It targets a cPanel Web Disk whose docroot
+> is no longer served. On 2026-08-17 it uploaded 106 files and reported "106 ok, 0 failed" while
+> changing nothing the public could see. `public/.htaccess` is dead for the same reason. Both are
+> kept only until someone confirms they can be deleted. The drift check in `ops/deploy-site.ps1` is
+> the guard that makes the Pages path safe; the WebDAV path has no equivalent.
+
+**Deploying is a production mutation — always ask first.** See the `deploy-gagoline` skill.
+
+Because Cloudflare proxies the zone, several things are true and easy to forget — verified live on
+2026-08-16/17 and written up in [docs/cloudflare-runbook.md](docs/cloudflare-runbook.md):
+
+- **`/robots.txt` is not what `app/robots.ts` emits.** A managed block at the edge sends `Disallow: /`
+  to every major AI crawler, and a probe also returned **403** to five assistant crawlers, so an
+  enforced bot rule sits on top of the advisory file. Search crawling is unaffected.
+- **Five security headers are already served** (HSTS, `X-Frame-Options`, `X-Content-Type-Options`,
+  `Referrer-Policy`, `Permissions-Policy`) with no `public/_headers` in the repo. Only CSP is missing.
+  Find out whether they come from Pages defaults or a Transform Rule **before** adding `_headers`, or
+  you will duplicate them.
+- **`www.gagoline.co.il` serves a full 200 copy** — both hostnames are bound to the same Pages project.
+- **Scrape Shield rewrites email addresses**, which is why `EmailAddress.tsx` exists (§2, rule 7).
+- **A deploy is not verified until the live site proves it.** Re-fetch and diff; the deployment URL
+  updates before the custom domain does.
+
+---
+
+## 11. Commands
+
+| Task             | Command                                   |
+| ---------------- | ----------------------------------------- |
+| Dev server       | `npm run dev`                             |
+| Production build | `npm run build`                           |
+| Lint             | `npm run lint`                            |
+| Type-check       | `npm run typecheck`                       |
+| Format / check   | `npm run format` · `npm run format:check` |
+
+---
+
+## 12. Scope guardrails
+
+- Implement real UI, sections, or content only when asked. Don't opportunistically redesign.
+- Don't add a 24th city until all 23 pass the doorway test in
+  [docs/content-standards.md](docs/content-standards.md).
+- Don't add dependencies without a reason that survives "can the platform already do this?"
+- Don't put PII in `dataLayer`.
+- Cloudflare zone settings (AI crawler policy, Scrape Shield, cache rules) and cPanel configuration are
+  **the owner's to change**. Document the exact toggle; never assume it was done.

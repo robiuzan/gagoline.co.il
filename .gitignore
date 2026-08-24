@@ -34,3 +34,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Editor / tooling backups — never commit. The pre-shim deployer lives in git history (796c4ce).
+*.bak
+
+# Rollback snapshot written by ops/deploy-site.ps1 — build output, never committed.
+out.prev

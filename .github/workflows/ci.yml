@@ -1,0 +1,107 @@
+name: CI
+
+# Build-only. This workflow does NOT deploy — production is a WebDAV upload to the
+# cPanel docroot (`deploy/deploy-webdav.ps1` → the hub's `ops/webdav-deploy.ps1`).
+# A green check here has never meant "shipped". See CLAUDE.md §10.
+#
+# PRECONDITION — this workflow cannot install until the site-kit is vendored.
+# `package.json` currently resolves @ishub/site-kit from
+#   file:../Israeli services sites/packages/site-kit/ishub-site-kit-0.0.0.tgz
+# which is OUTSIDE this repository, so `npm ci` fails on a clean checkout. The fix is
+# the one the rest of the fleet uses: copy the tarball to `vendor/` in this repo and
+# point the dependency at `file:vendor/ishub-site-kit-0.0.0.tgz`. Until that lands,
+# expect this job to fail at the install step — that failure is the reminder, not a bug
+# in the workflow.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+
+      # All four gates are blocking. The scripts already existed; none were ever run in CI.
+      - name: Lint
+        run: npm run lint
+      - name: Type-check
+        run: npm run typecheck
+      - name: Format check
+        run: npm run format:check
+      - name: Build static export
+        run: npm run build
+
+      # Assertions on the artifact that actually ships. Full gate: /qa-build-gate.
+      - name: Assert the export
+        run: |
+          set -euo pipefail
+
+          routes=$(find out -name index.html | wc -l)
+          urls=$(grep -c '<url>' out/sitemap.xml)
+          echo "routes=$routes sitemap_urls=$urls"
+          test "$routes" -ge 44 || { echo "::error::expected >=44 emitted routes, got $routes"; exit 1; }
+          test "$urls" -ge 43 || { echo "::error::expected >=43 sitemap URLs, got $urls"; exit 1; }
+
+          # Every page canonical. Currently 44/44 — this is a passing check to protect.
+          if grep -rL 'rel="canonical"' out --include=index.html | grep -q .; then
+            echo "::error::page(s) missing rel=canonical"; exit 1
+          fi
+
+          # Exactly one <h1> per page. Currently clean.
+          bad_h1=$(for f in $(find out -name index.html); do
+                     n=$(grep -o '<h1' "$f" | wc -l); [ "$n" -ne 1 ] && echo "$f:$n";
+                   done)
+          if [ -n "$bad_h1" ]; then
+            echo "$bad_h1"; echo "::error::page(s) without exactly one <h1>"; exit 1
+          fi
+
+          # Ratings must never ship without a verifiable public source (docs/schema-graph.md §4).
+          if grep -rl 'aggregateRating' out --include=index.html | grep -q .; then
+            echo "::error::aggregateRating present — must be sourced, see docs/business-facts.md §C"; exit 1
+          fi
+
+          # Nothing unreferenced and huge. out/ is ~4.9 MB today with no JS over 1 MB.
+          if find out -name '*.js' -size +1M | grep -q .; then
+            find out -name '*.js' -size +1M -exec ls -lh {} \;
+            echo "::error::JS bundle over 1 MB in the export"; exit 1
+          fi
+
+      # ── Known-red checks ──────────────────────────────────────────────────────────
+      # These two defects are live in production today (backlog §2.1 and §7.1-7.4), so
+      # they are warnings rather than errors — a workflow that is red from the day it
+      # lands teaches everyone to ignore it. Once Phase 1 of docs/optimization-backlog.md
+      # is done, change `::warning::` to `::error::` and add `exit 1` to each block.
+      - name: Known-red checks (warn until backlog Phase 1)
+        run: |
+          set -uo pipefail
+
+          # The brand must appear exactly once per <title>. /about/ appends it on top of
+          # the layout template, producing "אודות גגוליין | גגוליין".
+          if grep -rl 'גגוליין | גגוליין' out --include=index.html; then
+            echo "::warning::doubled brand suffix in <title> (see /seo-metadata, backlog §2.1)"
+          fi
+
+          # Placeholder content must never ship: three invented testimonials on / and
+          # /reviews/, six empty gallery tiles, and a "coming soon" /blog/.
+          # MUST use grep -P with the codepoint: a literal '🔶' pattern matches nothing
+          # under some shell locales and the check silently passes. Verified 2026-08-17 —
+          # the naive form returned 0 while the -P form returned 10 files.
+          if grep -rlP '\x{1F536}' out --include=index.html; then
+            echo "::warning::placeholder marker rendered to visitors (backlog §7.9, business-facts §A)"
+          fi

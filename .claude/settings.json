@@ -1,14 +1,37 @@
 {
   "permissions": {
     "allow": [
+      "Bash(npm run build)",
       "Bash(npm run lint)",
       "Bash(npm run typecheck)",
-      "Bash(npm run build)",
       "Bash(npm run dev)",
       "Bash(npm run format)",
       "Bash(npm run format:check)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
       "Edit(.claude/**)",
-      "Write(.claude/**)"
+      "Write(.claude/**)",
+      "Edit(docs/**)",
+      "Write(docs/**)",
+      "WebFetch(domain:gagoline.co.il)",
+      "Skill(gagoline-architecture)",
+      "Skill(seo-metadata)",
+      "Skill(schema-structured-data)",
+      "Skill(local-seo-il)",
+      "Skill(aeo-answer-content)",
+      "Skill(hebrew-rtl)",
+      "Skill(internal-linking)",
+      "Skill(conversion-cro)",
+      "Skill(tracking-analytics)",
+      "Skill(performance-web-vitals)",
+      "Skill(responsive-accessibility)",
+      "Skill(web-security-headers)",
+      "Skill(new-city)",
+      "Skill(new-service)",
+      "Skill(new-article)",
+      "Skill(qa-build-gate)",
+      "Skill(deploy-gagoline)"
     ]
   },
   "hooks": {
@@ -17,7 +40,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\robiu\\antigravity\\Projects\\gagoline.co.il\\.claude\\hooks\\format-changed.ps1\"",
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"$CLAUDE_PROJECT_DIR/.claude/hooks/format-changed.ps1\"",
             "statusMessage": "Formatting changed files with Prettier",
             "async": true
           }

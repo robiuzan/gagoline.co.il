@@ -1,41 +1,111 @@
 ---
 name: new-city
-description: Add a new service-area city to the Gagoline local-SEO matrix. Use when the user wants to add/create a city or area page. The site is data-driven — this edits one array in site-config and the /areas/[city] route + sitemap update automatically.
+description: Add or deepen a location page the data-driven way — append to cities in lib/site-config.ts, author genuinely unique per-city content in a cityContent map, and the route, footer, link mesh, schema and sitemap follow automatically. Use when expanding coverage or retrofitting one of the 23 thin city pages. Triggers "add a city", "new location page", "cover <city>", "this city page is thin", "doorway".
 ---
 
-# Add a new service-area city
+# Add or deepen a location page
 
-This site is **data-driven**: `app/areas/[city]/page.tsx` renders a generic local page for every city
-in config via `generateStaticParams()` (same service list, city name interpolated into the title,
-intro copy, and metadata). You do **not** create a page file.
+**Read this first: all 23 existing location pages currently fail the doorway test.** They carry ~90
+unique words with `${city.name}` interpolated six times into two shared paragraphs, a shared subtitle
+and a shared H2 — a find-and-replace regenerates any of them from any other. Until that is fixed,
+**retrofitting existing pages outranks adding new ones** (`/local-seo-il` §7).
+
+## The data model
+
+```ts
+// lib/site-config.ts
+export const cities = [
+  { slug: "tel-aviv", name: "תל אביב" },
+  { slug: "ramat-gan", name: "רמת גן" },
+] as const;
+```
+
+- `slug` — the **Latin ASCII** route segment. This site does not use Hebrew slugs; keep the convention.
+  For an existing city the slug is live and load-bearing — renaming needs a 301.
+- `name` — the Hebrew display name. All 23 entries are real cities, so a bare `ב${name}` is
+  grammatical everywhere. If a **region** is ever added (צפון, שרון), it needs `kind` and `prefixed`
+  fields first, because "בצפון" is wrong Hebrew for "בצפון הארץ".
+
+```ts
+// lib/content.ts — what depth needs
+export interface CityContent {
+  answer: string;                     // 40–60 words, the AEO block
+  intro: string[];                    // 2–3 paragraphs, city-specific
+  roofStock: string[];                // the substance — see below
+  neighborhoods?: string[];
+  travel?: string;                    // realistic scheduling + winter response at this distance
+  faqs: { q: string; a: string }[];   // 2–3, city-specific
+  nearby: readonly CitySlug[];        // 2–4 adjacent cities
+}
+
+export const cityContent: Record<CitySlug, CityContent> = { … };
+```
+
+## The doorway test — the gate
+
+> Replace the city name with a different city name. Is the page now correct and publishable for that
+> other city? **If yes, it does not ship.**
+
+To pass, the page needs **three or more** true, specific items. For roof work the richest and most
+honest seam is **roof stock**, which genuinely differs city to city:
+
+- Bauhaus-era flat concrete roofs in central תל אביב, often carrying decades of bituminous layers.
+- 1960s שיכונים with tiled roof decks — the classic "גג מרוצף" job, and the one where lifting tiles
+  versus sealing over them is a real decision.
+- New towers with membrane systems, where a developer warranty may still be in play.
+- Industrial איסכורית in the אזור / חולון belt — different fasteners, different failure mode.
+- Red-tile pitched roofs in רעננה, הוד השרון and כפר סבא.
+
+Plus any of: named neighbourhoods or streets; a real local job reference (with permission) or photo;
+travel and **winter-emergency** reality at that distance; access constraints (crane, parking, ועד בית);
+local pricing reality if it differs; a city-specific FAQ that would read oddly anywhere else.
+
+**If none of those can be said truthfully about a city, that city does not warrant a page.** Record
+that in `docs/business-facts.md` §E rather than padding. A page that exists to hold a keyword is the
+thing Google's doorway policy names, and the penalty lands on the domain.
 
 ## Steps
 
-1. **Gather inputs** (ask the user if missing):
-   - Hebrew city **name** (e.g. `הרצליה`).
-   - English kebab-case **slug** for the URL (e.g. `herzliya`). Must be unique.
-   - **Confirm it's inside the service area** — Tel Aviv + the Center, up to ~50 km
-     (`siteConfig.serviceArea`). If it's outside, flag it to the user before adding.
+1. **Check the cap.** `/local-seo-il` §7 — no 24th city while the existing 23 fail.
+2. Add the entry to `cities` with `slug` and `name`.
+3. Add the `cityContent` entry. Meet the 350-word floor in `docs/content-standards.md` §1 with genuine
+   local substance, not longer versions of the shared paragraphs.
+4. Set `nearby` from real geography, and add this city to the `nearby` of its neighbours — the edge is
+   bidirectional; a one-way link is a modelling error.
+5. Update `app/areas/[city]/page.tsx` to render the new blocks: answer block first, then intro, roof
+   stock, the service list, nearby cities, city FAQ, CTA.
+6. Confirm the metadata follows `docs/keyword-map.md` §3 — `איטום גגות ב{city} | אחריות בכתב + מחיר שקוף`,
+   and **no second brand token** (the template appends it).
+7. Confirm schema: `Service` + `areaServed` typed `City`, plus `BreadcrumbList`
+   (`/schema-structured-data`). **All 23 pages currently emit nothing.**
+8. `npm run lint && npm run typecheck && npm run build`.
+9. Verify the route exists in `out/` **and** in `out/sitemap.xml`.
 
-2. **Add the city to `lib/site-config.ts`** — append to the `cities` array:
+## What follows automatically
 
-   ```ts
-   { slug: "<slug>", name: "<Hebrew name>" },
-   ```
+`generateStaticParams` picks up the route · the footer links it (once the `slice(0, 12)` is gone — see
+`/internal-linking`) · `app/sitemap.ts` includes it · `ServiceAreas` adds its chip.
 
-   (Extends the `CitySlug` union automatically — keep the `as const`.)
+**What does not follow automatically:** there is no `/areas/` index page to list it on, and the
+breadcrumb's middle crumb will point at the page itself until one exists (`/local-seo-il` §5).
 
-3. **No new file or copy needed.** The page template builds the title
-   `איטום גגות ב<name> | אחריות בכתב + מחיר שקוף`, the intro, the service grid, and the
-   `app/sitemap.ts` entry from this single array.
+## Checklist
 
-4. **Verify:** run `npm run typecheck && npm run build`. Confirm `/areas/<slug>` is in the build output
-   and `npm run lint` stays green.
+- [ ] Existing 23 pass the doorway test, or this is a retrofit of one of them.
+- [ ] Slug is Latin ASCII and matches the existing convention.
+- [ ] ≥350 unique words; three or more genuinely local items.
+- [ ] Passes the doorway substitution test.
+- [ ] Opens with a 40–60 word answer block.
+- [ ] `nearby` set on both sides.
+- [ ] Title has the brand exactly once; canonical has both slashes.
+- [ ] Internal links carry the trailing slash.
+- [ ] `Service` + `areaServed` + `BreadcrumbList` emitted.
+- [ ] Present in `out/` and `out/sitemap.xml`.
 
-## Notes & guardrails
+## Gotchas
 
-- City pages are currently **generic** (identical except the city name). If the user wants
-  city-specific copy or local landmarks, that's a template change — say so; this skill only adds the
-  entry. Optionally hand off to `local-seo` to add the city `LocalBusiness` + `BreadcrumbList` JSON-LD
-  (currently missing on city pages).
-- Don't invent cities outside the real service radius. Keep slug English/kebab, name Hebrew.
+- Never invent a neighbourhood, a landmark, a local job, or a response time. Unverified →
+  `// 🔶 confirm` + `docs/business-facts.md` — and **never render the 🔶**.
+- Never rename an existing live slug without a 301 plan at the host or the edge.
+- Confirm the far cities (נתניה, רחובות) are genuinely served on the same terms before writing copy
+  that promises they are — business-facts §E.

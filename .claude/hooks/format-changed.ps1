@@ -33,7 +33,7 @@ try {
 
     $exts = '\.(ts|tsx|js|jsx|mjs|cjs|css|scss|md|mdx|json|html|yml|yaml)$'
     $targets = $files |
-        Where-Object { $_ -match $exts -and $_ -notmatch '(^|/)(node_modules|\.next|dist|build)/' } |
+        Where-Object { $_ -match $exts -and $_ -notmatch '(^|/)(node_modules|\.next|out|out\.prev|dist|build|vendor)/' } |
         Select-Object -Unique
 
     if ($targets.Count -gt 0) {
