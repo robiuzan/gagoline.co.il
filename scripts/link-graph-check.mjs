@@ -98,7 +98,7 @@ if (shallow.length) {
   const entry = [
     `routes below the minimum inbound degree of ${MIN_DEGREE}`,
     shallow.map((r) => `${r} (${degree(r)})`),
-    "link-graph.md §3 — target is 4. Root cause today: Footer.tsx cities.slice(0, 12)",
+    "link-graph.md §3 — target is 4",
   ];
   if (STRICT) {
     failures.push(entry);
@@ -111,18 +111,62 @@ if (shallow.length) {
   }
 }
 
-// A route reachable only from sitewide boilerplate is linked but related to nothing. Informational
-// until the contextual-link work lands, then worth promoting to a failure.
-const boilerplateOnly = [...routes].filter((r) => {
-  if (ALLOWED_ZERO.has(r)) return false;
-  const from = inbound.get(r);
-  return from.size > 0 && from.size === all.length - 1;
-});
-if (boilerplateOnly.length) {
-  console.log(
-    `  note: ${boilerplateOnly.length} route(s) are linked from every page (footer boilerplate) and ` +
-      `from nothing contextual.\n`,
-  );
+// CONTEXTUAL degree — links from a page's body, with the sitewide header and footer stripped.
+//
+// This replaces a check that could never fire. The old version flagged a route when its inbound set
+// equalled every other page, reasoning that "linked from everything" meant "linked from boilerplate
+// only". But the footer links every route, so that condition is true for every route permanently —
+// it stayed true after the contextual links actually landed, and promoting it to a failure (as its
+// own comment suggested) would have failed all 41 routes forever. It measured link presence and
+// called it link context.
+//
+// A route with zero contextual inbound links is reachable but unrelated: nothing on the site says
+// why it exists. That is what "orphan" means once a footer guarantees everything is reachable.
+const stripChrome = (html) =>
+  html
+    .replace(/<header[\s\S]*?<\/header>/gi, " ")
+    .replace(/<footer[\s\S]*?<\/footer>/gi, " ");
+
+const contextual = new Map([...routes].map((r) => [r, new Set()]));
+for (const p of all) {
+  const body = stripChrome(p.html);
+  for (const m of body.matchAll(/href="(\/[^"]*)"/g)) {
+    const t = m[1];
+    if (t === p.route || t.startsWith("/_next")) continue;
+    if (contextual.has(t)) contextual.get(t).add(p.route);
+  }
+}
+
+// Legal and conformance pages belong in the footer and nowhere else. A contextual link to /terms/
+// from a service page would be filler, not context. They are exempt from the contextual floor —
+// but NOT from the plain inbound floor above, which is what caught /terms/ when it was truly
+// orphaned. /about/ and /pricing/ are deliberately not here: they are commercial pages, and a site
+// whose own copy never has cause to mention its pricing or its own story has a content problem.
+const CONTEXT_EXEMPT = new Set(["/privacy/", "/terms/", "/accessibility/"]);
+
+const ctxDegree = (r) => contextual.get(r).size;
+const noContext = [...routes]
+  .filter((r) => !ALLOWED_ZERO.has(r) && !CONTEXT_EXEMPT.has(r) && ctxDegree(r) === 0)
+  .sort();
+
+console.log("  contextual inbound degree (header/footer stripped):");
+for (const r of [...routes].sort((a, b) => ctxDegree(a) - ctxDegree(b)).slice(0, 5))
+  console.log(`    ${String(ctxDegree(r)).padStart(3)}  ${r}`);
+console.log("");
+
+if (noContext.length) {
+  const entry = [
+    "routes with no CONTEXTUAL inbound link (only header/footer boilerplate)",
+    noContext,
+    "reachable but unrelated — nothing in any page body explains why the route exists",
+  ];
+  if (STRICT) {
+    failures.push(entry);
+  } else {
+    console.log(
+      `  WARN  ${entry[0]} (${noContext.length}) — advisory without --strict\n`,
+    );
+  }
 }
 
 const slashless = all.flatMap((p) =>

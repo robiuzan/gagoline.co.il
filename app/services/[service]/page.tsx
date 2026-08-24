@@ -150,6 +150,17 @@ export default function ServicePage({ params }: { params: { service: string } })
             </h2>
             <p className="mt-3 text-gray-700">{depth.duration}</p>
             <p className="mt-3 text-gray-700">{depth.weather}</p>
+            <p className="mt-3 text-gray-700">
+              המחיר נגזר משטח הגג, ממספר השכבות שצריך להסיר ומכמות פרטי הקצה — ולכן הוא
+              נקבע אחרי הביקור ולא בטלפון.{" "}
+              <Link
+                href="/pricing/"
+                className="font-medium text-secondary-600 underline decoration-secondary-200 underline-offset-2 hover:decoration-secondary-600"
+              >
+                טווחי המחירים שלנו
+              </Link>{" "}
+              מפורטים בשקיפות מראש.
+            </p>
 
             <h2 className="mt-10 font-heading text-xl font-bold text-primary">
               מה גורם לאיטום להיכשל
@@ -186,6 +197,17 @@ export default function ServicePage({ params }: { params: { service: string } })
                 </li>
               ))}
             </ol>
+            <p className="mt-4 text-gray-700">
+              אותו תהליך חוזר בכל עבודה שאנחנו מבצעים — אבחון לפני חומר, והצעה כתובה לפני
+              התחלה.{" "}
+              <Link
+                href="/about/"
+                className="font-medium text-secondary-600 underline decoration-secondary-200 underline-offset-2 hover:decoration-secondary-600"
+              >
+                עוד עלינו ועל שיטת העבודה
+              </Link>
+              .
+            </p>
 
             <h2 className="mt-10 font-heading text-xl font-bold text-primary">
               שאלות נפוצות על {card.name}
