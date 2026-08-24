@@ -252,3 +252,233 @@ export const areasContent = {
   outro:
     "אם העיר שלכם לא ברשימה אבל אתם באזור המרכז — עדיין שווה להתקשר. אנחנו בודקים כל פנייה לפי המיקום המדויק ולפי סוג העבודה, ואומרים מראש אם זה בטווח שלנו.",
 } as const;
+
+/**
+ * Copy for `/pricing/` (was 87 words — the thinnest commercial page on the site).
+ *
+ * THE CONSTRAINT THAT SHAPED THIS PAGE: all four ranges in `priceRows` are UNCONFIRMED —
+ * docs/business-facts.md §D tags every one of them 🔶. So the page could not be deepened by saying
+ * more about the numbers. It is deepened by explaining what DRIVES a price and what a written quote
+ * must contain, which is trade-general and free to state, and which is also what someone typing
+ * "כמה עולה איטום גג" actually needs.
+ *
+ * Deliberately absent until §D is answered: whether the call-out fee is credited against the job
+ * (the doc calls it the #1 pre-purchase question), any warranty term in years, any discount, and
+ * any claim about being cheaper than anyone. The FAQ below asks what to check with ANY contractor
+ * rather than stating this business's policy — that is the difference between advice and a claim.
+ */
+export const pricingContent = {
+  answerQ: "כמה עולה איטום גג?",
+  answerA:
+    "מחיר איטום גג נקבע לפי שטח הגג, סוג הגג, מספר שכבות האיטום שצריך להסיר, כמות פרטי הקצה והנגישות אליו. שני גגות באותו גודל יכולים להיבדל מאוד במחיר אם באחד צריך להסיר שלוש שכבות ישנות ולתקן שיפועים. לכן המחיר המחייב ניתן אחרי ביקור, ולא בטלפון.",
+
+  intro: [
+    "הטווחים שבטבלה נועדו לתת סדר גודל לפני שמזמינים ביקור, לא להיות הצעת מחיר. הם משתנים לפי מצב הגג בפועל, ואנחנו מעדיפים להגיד את זה מראש מאשר לתת מספר בטלפון ולתקן אותו אחר כך.",
+  ],
+
+  /** What actually moves the number. Trade-general; no business fact stated. */
+  factorsTitle: "מה קובע את המחיר בפועל",
+  factors: [
+    {
+      title: "שטח הגג",
+      body: "הבסיס לחישוב ברוב שיטות האיטום, אבל לא הגורם היחיד — ולעיתים קרובות לא הדומיננטי.",
+    },
+    {
+      title: "כמה שכבות צריך להסיר",
+      body: "גג שחודש כמה פעמים נושא ערימת שכבות ישנות. הסרה ופינוי שלהן היא עבודה בפני עצמה, ולעיתים היא החלק היקר יותר מהאיטום עצמו.",
+    },
+    {
+      title: "כמות פרטי הקצה",
+      body: "מעקות, נקזים, מעברי צנרת, עיגונים של דודים ומזגנים וחיבורים לקירות. גג קטן עם הרבה פרטים יכול לדרוש יותר עבודה מגג גדול וחלק.",
+    },
+    {
+      title: "מצב המשטח והשיפועים",
+      body: "בטון מתפורר, סדקים או שיפוע שמחזיק שלוליות דורשים תיקון לפני האיטום. בלעדיו השכבה החדשה תיכשל באותה נקודה, ולכן זה לא סעיף שאפשר לוותר עליו.",
+    },
+    {
+      title: "סוג הגג והשיטה",
+      body: "יריעות, זיפות וציפוי אלסטומרי אינם באותו מחיר ואינם מתאימים לאותם גגות. השיטה נקבעת לפי הגג — לא לפי התקציב.",
+    },
+    {
+      title: "נגישות",
+      body: "גובה, אופן הגישה לגג והאם אפשר להביא חומרים בקלות. גג שדורש הנפה או סחיבה ידנית ארוכה מייקר את העבודה בלי קשר לשטח.",
+    },
+  ],
+
+  /** A checklist the reader can use against ANY contractor. Advice, not a policy claim. */
+  quoteTitle: "מה צריכה לכלול הצעת מחיר כתובה",
+  quoteIntro:
+    "הצעה שאפשר להשוות היא הצעה שכתוב בה מה נעשה, לא רק כמה זה עולה. לפני שאתם מחליטים — בין אם אצלנו ובין אם אצל כל קבלן אחר — כדאי לוודא שההצעה מפרטת את הסעיפים האלה:",
+  quoteChecklist: [
+    "השטח המדויק שעליו מדובר, במטרים רבועים",
+    "שיטת האיטום והחומר שבו משתמשים",
+    "האם הסרת שכבות קיימות ופינוי הפסולת כלולים",
+    "טיפול בפרטי הקצה — מעקות, נקזים ומעברי צנרת — ולא רק במשטח",
+    "תיקוני שיפועים או סדקים, אם נדרשים",
+    "מה לא כלול, במפורש",
+    "תנאי האחריות בכתב",
+  ],
+
+  /** The counter-intuitive section: a cheap quote that grows is the expensive one. */
+  warningTitle: "סימנים להצעה שתגדל אחר כך",
+  warnings: [
+    "מחיר שנמסר בטלפון בלי לראות את הגג",
+    "הצעה שלא מזכירה הסרת שכבות קיימות בגג שכבר טופל בעבר",
+    "אין שום התייחסות לפרטי קצה, למרות שרוב הנזילות מתחילות שם",
+    "אחריות שנאמרת בעל פה ולא נכתבת",
+    "הצעה שמורכבת ממספר אחד, בלי פירוט מה הוא כולל",
+  ],
+
+  faqs: [
+    {
+      q: "למה אי אפשר לקבל מחיר בטלפון?",
+      a: "כי המשתנים שקובעים את המחיר לא נראים מהטלפון: כמה שכבות ישנות יש על הגג, מה מצב השיפועים, כמה פרטי קצה יש ומה מצב הבטון. מספר שנמסר בלי לראות אותם הוא ניחוש — ובדרך כלל הוא מתברר כנמוך מדי בדיוק אחרי שהעבודה כבר התחילה.",
+    },
+    {
+      q: "מה כדאי לשאול לפני שמזמינים ביקור?",
+      a: "שאלו האם הביקור והאבחון כרוכים בתשלום, וכמה; האם הסכום מקוזז מהעבודה אם היא מתבצעת; והאם תקבלו הצעה כתובה בסיום. שלוש השאלות האלה מונעות את רוב אי-ההבנות, וכדאי לשאול אותן כל קבלן שאתם שוקלים.",
+    },
+    {
+      q: "למה שתי הצעות לאותו גג יכולות להיות רחוקות כל כך זו מזו?",
+      a: "כמעט תמיד מפני שהן לא מתארות את אותה עבודה. הצעה אחת כוללת הסרת שכבות, תיקון שיפועים וטיפול בפרטי הקצה, והשנייה מציעה שכבה חדשה מעל הקיים. שתיהן נכונות כתיאור של מה שהן מציעות — אבל רק אחת מהן תחזיק. השוו סעיפים, לא סכומים.",
+    },
+  ],
+} as const;
+
+/**
+ * Copy for `/about/` (was 149 words).
+ *
+ * WHAT THIS PAGE MAY AND MAY NOT SAY. Confirmed and free to use: founded 2014, roof waterproofing,
+ * Tel Aviv and the centre within ~50 km, and the diagnosis-first positioning from brief.md.
+ * Everything below describes METHOD — how the work is sequenced and why — which is a description of
+ * practice, not an unverifiable credential.
+ *
+ * NOT added here, and must not be until docs/business-facts.md §B/§C is answered: the owner's name
+ * or years in the trade, team size, licences, insurance, any project count, and any response-time
+ * number. Those are the E-E-A-T assets the site is missing, and inventing them would be the exact
+ * failure CLAUDE.md §2 rule 1 exists to prevent.
+ *
+ * NOTE for whoever edits this next: two claims already live on the page — "צוות מקצועי משלנו, בלי
+ * קבלני משנה" and the winter-emergency line — are owner-drafted but still tagged 🔶 in brief.md:52
+ * and business-facts.md §B/§E. They were left exactly as the owner wrote them and deliberately NOT
+ * expanded on. Do not build further copy on top of them until they are confirmed.
+ */
+export const aboutContent = {
+  answerQ: "מי אנחנו ואיך אנחנו עובדים?",
+  answerA:
+    "גגוליין עוסקת באיטום גגות בתל אביב ובאזור המרכז מאז 2014. שיטת העבודה שלנו מתחילה באבחון: לפני שבוחרים חומר, אנחנו מאתרים מאיפה המים נכנסים בפועל. רק אחר כך נקבעת השיטה, ניתנת הצעה כתובה, ומתבצעת העבודה — עם אחריות בכתב.",
+
+  storyTitle: "למה אנחנו מתחילים באבחון",
+  story: [
+    "רוב הנזילות שאנחנו נקראים אליהן כבר טופלו קודם. מישהו הגיע, מרח שכבה, וזה החזיק עד הגשם הבא. זה קורה מפני שמים בגג לא נעים בקו ישר: הם זורמים על השיפועים ובין השכבות, והכתם שמופיע בתקרה כמעט לעולם לא נמצא מתחת לנקודת החדירה.",
+    "המשמעות המעשית פשוטה — אפשר לאטום גג שלם, בחומר מצוין ובעבודה טובה, ושהנזילה תימשך. לא בגלל שהאיטום נכשל, אלא בגלל שהוא נעשה במקום הלא נכון. לכן הביקור הראשון שלנו הוא בדיקה ולא הצעת מחיר, וכולל בדיקת הצפה כשצריך.",
+    "זה גם מה שמאפשר לנו לומר לפעמים שהעבודה קטנה ממה שחשבתם — שמרזב סתום, שעיגון של דוד שמש הוא כל הבעיה, או שהליקוי עדיין באחריות הקבלן שבנה. אמירה כזו מקטינה את העבודה שלנו, ואנחנו אומרים אותה בכל זאת.",
+  ],
+
+  principlesTitle: "העקרונות שאנחנו עובדים לפיהם",
+  principles: [
+    {
+      title: "אבחון לפני חומר",
+      body: "אף עבודה לא מתחילה לפני שידוע מאיפה המים נכנסים. שיטה נבחרת לפי הגג, לא לפי מה שנוח לספק.",
+    },
+    {
+      title: "הצעה כתובה ומפורטת",
+      body: "מה נכלל, מה לא נכלל ובאיזו שיטה — לפני שמתחילים. הצעה שמורכבת ממספר אחד היא הצעה שאי אפשר להשוות.",
+    },
+    {
+      title: "הכנת משטח, לא רק שכבה",
+      body: "רוב כשלי האיטום שאנחנו רואים הם כשלי הכנה ולא כשלי חומר. שכבה חדשה על משטח מתקלף תיכשל גם אם החומר מצוין.",
+    },
+    {
+      title: "אחריות בכתב",
+      body: "מה מכוסה ולכמה זמן — כתוב, ונמסר לפני תחילת העבודה ולא אחריה.",
+    },
+    {
+      title: "לומר גם כשזה לא הפתרון",
+      body: "כשגג במצב מבני ירוד, איטום הוא טלאי יקר. במקרה כזה נסביר מה באמת צריך לעשות, גם אם זו לא העבודה שלנו.",
+    },
+  ],
+
+  whoTitle: "עם מי אנחנו עובדים",
+  who: "בעלי בתים פרטיים, ועדי בתים ובניינים משותפים, מנהלי נכסים ובתי עסק. בבניין משותף אנחנו מוסרים הצעה כתובה שהוועד יכול להציג לדיירים, ומפרטים בה במיוחד את הטיפול בפרטי הקצה ובנקזים — שם מתחילות רוב הנזילות שמופיעות בדירות העליונות.",
+
+  areaTitle: "איפה אנחנו עובדים",
+  area: "תל אביב וכל אזור המרכז, ברדיוס של עד כ-50 ק״מ — מגוש דן, דרך השרון ועד דרום המרכז והשפלה. אנחנו בודקים כל פנייה לפי המיקום המדויק ואומרים מראש אם היא בטווח.",
+
+  /**
+   * Scope, stated as what we do NOT do. This is a statement about the boundary of the trade, not a
+   * credential, so it is free to state — and it saves both sides a wasted visit. It matches the
+   * `excluded` lists already on every service page in lib/service-depth.ts.
+   */
+  notUsTitle: "מה אנחנו לא עושים",
+  notUs: [
+    "עבודות בנייה כלליות, שיפוצים או שינוי מבני של הגג",
+    "החלפת צנרת, מערכות מיזוג או דודים — אנחנו אוטמים סביבם ומטפלים בנקודות החדירה שלהם",
+    "טיפול מבני בבטון מתפורר או בברזל זיון חשוף. במקרה כזה נגיד לכם שזה מה שנדרש, ושאיטום לבדו יהיה טלאי יקר",
+    "הצעות מחיר בטלפון, בלי לראות את הגג",
+  ],
+  notUsOutro:
+    "הגבולות האלה הם לא סייג באותיות קטנות — הם מה שמאפשר לנו להתמחות בדבר אחד ולעשות אותו כמו שצריך.",
+} as const;
+
+/**
+ * Copy for the `/services/` hub (was 242 words, and every one of them came from the shared
+ * ServicesGrid — the page had no prose of its own at all).
+ *
+ * Its job is to help someone choose, which the grid of eight tiles does not do. Everything here is
+ * trade-general: which service answers which symptom. No business fact, no price, no warranty term.
+ */
+export const servicesContent = {
+  answerQ: "איזה שירות איטום מתאים לגג שלכם?",
+  answerA:
+    "זה תלוי בשאלה אחת: האם ידוע מאיפה המים נכנסים. אם לא — מתחילים באיתור מקור הנזילה, כי איטום במקום הלא נכון לא יעצור אותה. אם כן, השיטה נקבעת לפי סוג הגג ומצב השכבה הקיימת: יריעות, זיפות או ציפוי אלסטומרי.",
+
+  intro: [
+    "שמונה השירותים שלמטה אינם שמונה מוצרים מתחרים — הם תשובות לבעיות שונות. גג בטון שטוח, מרפסת מרוצפת, קיר חיצוני ומרתף נכשלים בדרכים שונות, וכל אחד מהם דורש שיטה אחרת.",
+  ],
+
+  /** Symptom → service. The routing the tile grid cannot express. */
+  chooseTitle: "לפי מה לבחור",
+  choose: [
+    {
+      symptom: "יש נזילה ולא ברור מאיפה",
+      answer: "מתחילים באיתור מקור הנזילה, כולל בדיקת הצפה כשצריך",
+      slug: "leak-detection",
+    },
+    {
+      symptom: "כתם רטיבות בתקרת הקומה העליונה",
+      answer: "בדרך כלל איטום גג — אחרי שמאתרים את נקודת החדירה",
+      slug: "roof-sealing",
+    },
+    {
+      symptom: "הגג טופל בעבר והשכבה התבלתה",
+      answer: "זיפות הוא לרוב החידוש הכלכלי, אם המשטח עצמו תקין",
+      slug: "roof-tarring",
+    },
+    {
+      symptom: "נדרשת שכבה עמידה במיוחד",
+      answer: "יריעות ביטומניות בהלחמה",
+      slug: "bituminous-sheets",
+    },
+    {
+      symptom: "רטיבות בתקרה מתחת למרפסת מרוצפת",
+      answer: "איטום מרפסת — לרוב בלי להרים את הריצוף",
+      slug: "balcony-sealing",
+    },
+    {
+      symptom: "רטיבות בקיר, בעיקר אחרי גשם עם רוח",
+      answer: "איטום קירות חיצוניים — הבעיה איננה בגג",
+      slug: "exterior-wall-sealing",
+    },
+    {
+      symptom: "רטיבות במרתף או בקיר תת-קרקעי",
+      answer: "איטום מרתפים — לחץ מים מהקרקע, לא מלמעלה",
+      slug: "basement-sealing",
+    },
+    {
+      symptom: "הדירה העליונה חמה מאוד בקיץ",
+      answer: "סיוד והלבנת גגות — מוריד חום, אך אינו תחליף לאיטום",
+      slug: "roof-whitening",
+    },
+  ],
+} as const;
