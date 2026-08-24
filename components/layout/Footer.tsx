@@ -109,6 +109,11 @@ export function Footer() {
               </Link>
             </li>
             <li>
+              <Link href="/blog/" className="text-white/70 hover:text-white">
+                מדריכים
+              </Link>
+            </li>
+            <li>
               <Link href="/faq" className="text-white/70 hover:text-white">
                 שאלות נפוצות
               </Link>

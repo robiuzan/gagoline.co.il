@@ -211,6 +211,7 @@ export const navItems = [
   { label: "אזורי שירות", href: "/areas/" },
   { label: "אודות", href: "/about/" },
   { label: "מחירון", href: "/pricing/" },
+  { label: "מדריכים", href: "/blog/" },
   { label: "שאלות נפוצות", href: "/faq/" },
   { label: "צור קשר", href: "/contact/" },
 ] as const;

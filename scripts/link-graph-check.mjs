@@ -19,7 +19,13 @@ const OUT = process.argv.slice(2).find((a) => !a.startsWith("-")) ?? "out";
 
 // Parked by design: noindex, deliberately unlinked until they hold real content (Phase 0).
 // /404/ is never linked. Anything else at zero inbound is a defect.
-const ALLOWED_ZERO = new Set(["/404/", "/reviews/", "/gallery/", "/blog/"]);
+//
+// /blog/ was REMOVED from this set on 2026-08-24, and removing it is the whole lesson. It was
+// parked here while it was a noindexed stub, and shipping seven real articles did not take it out —
+// so every reachability check silently skipped the hub. That is how /blog/ went live linked from
+// nothing but its own articles, with a green gate. An exemption added for a temporary state
+// outlives the state unless removing it is part of the same commit that ends the state.
+const ALLOWED_ZERO = new Set(["/404/", "/reviews/", "/gallery/"]);
 const MIN_DEGREE = 4; // link-graph.md §3. Met since the footer slice was removed 2026-08-24.
 
 // The degree threshold is fatal under --strict, which is now the default (see package.json).
@@ -167,6 +173,31 @@ if (noContext.length) {
       `  WARN  ${entry[0]} (${noContext.length}) — advisory without --strict\n`,
     );
   }
+}
+
+/**
+ * A route linked ONLY by pages inside its own subtree is unreachable in practice.
+ *
+ * This check exists because /blog/ shipped exactly that way and everything above passed it. Its
+ * seven articles each linked back with "לכל המדריכים", so plain inbound degree was 7 — comfortably
+ * over the floor — and every article had contextual inbound links from service and city pages. But
+ * nothing in the header, the footer or any top-level page pointed at /blog/ itself. The only way to
+ * reach the hub was to already be inside it. The user found it in about a minute; the gate never
+ * would have.
+ *
+ * The rule: every route needs at least one inbound link from OUTSIDE its own path prefix. Parent
+ * and children linking to each other is a closed loop, not reachability.
+ */
+const outsideSubtree = [...routes].filter((r) => {
+  if (ALLOWED_ZERO.has(r) || r === "/") return false;
+  return ![...inbound.get(r)].some((from) => !from.startsWith(r));
+});
+if (outsideSubtree.length) {
+  failures.push([
+    "routes linked ONLY from inside their own subtree",
+    outsideSubtree.map((r) => `${r} (all ${degree(r)} inbound links are descendants)`),
+    "a hub reachable only from its own children cannot be found by anyone not already in it",
+  ]);
 }
 
 const slashless = all.flatMap((p) =>
