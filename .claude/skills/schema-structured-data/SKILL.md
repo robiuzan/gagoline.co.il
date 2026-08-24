@@ -1,15 +1,16 @@
 ---
 name: schema-structured-data
-description: Emit the JSON-LD graph with the @ishub/site-kit/seo builders — RoofingContractor from the manifest, Service per service and location page, BreadcrumbList on all 42 nested routes via breadcrumbJsonLd in PageHeader, FAQPage matched to visible FAQs, Offer on the pricing page, and Review/AggregateRating only when genuinely sourced. Use when wiring or auditing structured data, or before a Rich Results Test. Triggers "add schema", "JSON-LD", "BreadcrumbList", "structured data", "rich results", "Offer".
+description: Emit the JSON-LD graph with the @ishub/site-kit/seo builders — RoofingContractor from the manifest, Service per service and location page, BreadcrumbList on all 43 nested routes via breadcrumbJsonLd in PageHeader, FAQPage matched to visible FAQs, Offer on the pricing page, and Review/AggregateRating only when genuinely sourced. Use when wiring or auditing structured data, or before a Rich Results Test. Triggers "add schema", "JSON-LD", "BreadcrumbList", "structured data", "rich results", "Offer".
 ---
 
 # Structured data
 
 Target graph: `docs/schema-graph.md`. This skill is how to emit it.
 
-**Where the site stands: 2 of 44 pages carry any JSON-LD.** The homepage has a `RoofingContractor`
-node; `/faq/` has a hand-rolled `FAQPage`. Everything else — 8 service pages, 23 location pages, every
-static page — emits nothing. This is the largest cheap win available in the repo.
+**Where the site stands: 45 of 45 pages carry JSON-LD** (2026-08-24; it was 2 of 44). The business
+node lives in `app/layout.tsx`, `PageHeader` emits the breadcrumb from its own `crumbs` array, and
+the 8 service + 23 city pages carry `Service` nodes. Remaining: `OfferCatalog` (blocked on prices)
+and the page-type nodes.
 
 ## The builders
 
@@ -32,7 +33,7 @@ you're in the file.
 
 ## The biggest gap: BreadcrumbList
 
-**Zero of 42 nested pages emit one**, while `components/layout/PageHeader.tsx:23-38` renders a visible
+**All 43 nested pages emit one since 2026-08-24.** Previously zero, while `components/layout/PageHeader.tsx:23-38` renders a visible
 breadcrumb `<ol>` on every inner page and `breadcrumbJsonLd()` sits unused in the kit. The fix is to
 feed the builder **the same `crumbs` array the component already receives**, so the markup and the
 graph cannot drift:
@@ -49,7 +50,7 @@ const crumbs = [
 ```
 
 Emit it **from `PageHeader` itself** and every page using that component gets it automatically. Target:
-**42 pages** — every route except `/` (the root) and `/404`.
+**43 pages** — every route except `/` (the root) and `/404`.
 
 Two things to fix in the same pass:
 
@@ -129,7 +130,7 @@ hours are 🔶), `sameAs` (empty array), `aggregateRating`, `founder` — all bl
 
 ```bash
 grep -rL 'application/ld+json' out --include=index.html          # pages with no schema
-grep -rl 'BreadcrumbList' out --include=index.html | wc -l       # target 42
+grep -rl 'BreadcrumbList' out --include=index.html | wc -l       # target 43
 grep -rl 'aggregateRating' out --include=index.html              # expect none
 ```
 

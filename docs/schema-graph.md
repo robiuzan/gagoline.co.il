@@ -4,9 +4,14 @@ What every route should emit. `schema-auditor` validates against this file;
 `schema-structured-data` implements it. Builders come from `@ishub/site-kit/seo`:
 `localBusinessJsonLd` · `serviceJsonLd` · `faqJsonLd` · `breadcrumbJsonLd` · `jsonLdScript`.
 
-**Headline number: 2 of 44 emitted pages carry any JSON-LD.** The homepage has a
-`RoofingContractor` node; `/faq/` has a hand-rolled `FAQPage`. Everything else — all 8 service pages,
-all 23 location pages, and every static page — emits nothing.
+**Status 2026-08-24: 45 of 45 emitted pages carry JSON-LD** — it was 2 of 44. The business node is
+emitted from `app/layout.tsx` so every page has it and every `provider` `@id` resolves on its own
+page; `PageHeader` emits `BreadcrumbList` from the same `crumbs` array it renders (43 routes); the 8
+service and 23 city pages carry `Service` nodes, the city ones with `areaServed: City`.
+
+What is still open: `OfferCatalog` on `/pricing/` (blocked — the prices are unconfirmed) and the
+page-type nodes (`CollectionPage`, `AboutPage`, `ContactPage`), which unlock no SERP feature and are
+deliberately last.
 
 ---
 
@@ -51,7 +56,7 @@ visible `<nav aria-label="פירורי לחם">` trail on **every inner page**, 
 unused in the kit. The builder takes the same `crumbs` array the component already receives — feed it
 there and markup and schema cannot drift.
 
-Target: **42 pages** carrying `BreadcrumbList` — every route except `/` (it is the root) and `/404`.
+Target: **43 pages** carrying `BreadcrumbList` — every route except `/` (it is the root) and `/404`.
 
 ---
 
@@ -145,7 +150,7 @@ breaking as copy is edited.
 grep -rL 'application/ld+json' out --include=index.html
 
 # breadcrumbs everywhere they should be
-grep -rl 'BreadcrumbList' out --include=index.html | wc -l   # target: 42
+grep -rl 'BreadcrumbList' out --include=index.html | wc -l   # target: 43
 
 # nothing fabricated
 grep -rl 'aggregateRating\|"@type": *"Review"' out --include=index.html   # expect none

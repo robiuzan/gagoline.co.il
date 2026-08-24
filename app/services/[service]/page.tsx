@@ -9,6 +9,8 @@ import {
   telHref,
   whatsappHref,
 } from "@/lib/site-config";
+import { serviceJsonLd, jsonLdScript } from "@ishub/site-kit/seo";
+import { manifest } from "@/lib/site-config";
 import { serviceCards, processSteps } from "@/lib/content";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Section } from "@/components/ui/Section";
@@ -42,14 +44,28 @@ export default function ServicePage({ params }: { params: { service: string } })
 
   const others = serviceCards.filter((c) => c.slug !== card.slug).slice(0, 4);
 
+  // Service node. No rich result exists for Service — be clear about that — but it is what binds
+  // this page to the RoofingContractor node and names the category in machine-readable form, which
+  // is what an answer engine reads to resolve "who does X in Tel Aviv". PageHeader emits the
+  // BreadcrumbList alongside it.
+  const jsonLd = serviceJsonLd(manifest, {
+    name: card.name,
+    description: card.description,
+    slug: card.slug,
+  });
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
+      />
       <PageHeader
         title={card.name}
         subtitle={card.tagline}
         crumbs={[
           { label: "בית", href: "/" },
-          { label: "השירותים שלנו", href: "/services" },
+          { label: "השירותים שלנו", href: "/services/" },
           { label: card.name },
         ]}
       />

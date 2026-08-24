@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileCtaBar } from "@/components/layout/MobileCtaBar";
 import { gtmHeadSnippet, gtmNoScriptSrc } from "@ishub/site-kit/analytics";
+import { localBusinessJsonLd, jsonLdScript } from "@ishub/site-kit/seo";
 import "./globals.css";
 
 // Body font — Heebo (clean, legible Hebrew). Heading font — Rubik (modern Hebrew).
@@ -45,6 +46,20 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * The RoofingContractor node, emitted on EVERY page rather than only the homepage.
+ *
+ * Two reasons. Coverage went from 2/45 pages to 45/45 for ~500 bytes each. More importantly,
+ * `serviceJsonLd` wires `provider` to `{"@id": ".../#business"}`, and that reference only resolves
+ * if the business node is present on the same page — otherwise every Service node on the site
+ * points at something Google has to go and find elsewhere.
+ */
+const businessJsonLd = localBusinessJsonLd(manifest, {
+  image: manifest.images?.og?.key
+    ? `https://${manifest.images.mediaHost}/${manifest.images.og.key}`
+    : undefined,
+});
+
 /** Shared GTM loader — inert (renders nothing) until analytics.gtmId is set in the manifest. */
 const gtmHead = gtmHeadSnippet(manifest.analytics?.gtmId);
 const gtmNoScript = gtmNoScriptSrc(manifest.analytics?.gtmId);
@@ -64,6 +79,10 @@ export default function RootLayout({
         )}
       </head>
       <body className="flex min-h-screen flex-col font-sans">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(businessJsonLd) }}
+        />
         {gtmNoScript && (
           <noscript>
             <iframe

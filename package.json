@@ -16,7 +16,7 @@
     "gate": "npm run lint && npm run typecheck && npm run format:check && npm run build && npm run seo:assert && npm run links:check"
   },
   "dependencies": {
-    "@ishub/site-kit": "file:../Israeli services sites/packages/site-kit/ishub-site-kit-0.0.0.tgz",
+    "@ishub/site-kit": "file:vendor/ishub-site-kit-0.0.0.tgz",
     "clsx": "^2.1.1",
     "framer-motion": "^11.3.31",
     "lucide-react": "^0.439.0",

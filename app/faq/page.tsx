@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { faqJsonLd, jsonLdScript } from "@ishub/site-kit/seo";
 import { faqs } from "@/lib/content";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Section } from "@/components/ui/Section";
@@ -12,22 +13,17 @@ export const metadata: Metadata = {
     "שאלות נפוצות על איטום גגות: כמה זה עולה, כמה זה מחזיק, מתי לאטום, ההבדל בין השיטות ועוד.",
 };
 
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((f) => ({
-    "@type": "Question",
-    name: f.q,
-    acceptedAnswer: { "@type": "Answer", text: f.a },
-  })),
-};
+// Was hand-assembled here (backlog §4.6). The kit builder keeps the shape consistent with the
+// rest of the fleet, and jsonLdScript escapes "<" — raw JSON.stringify did not, so an answer
+// containing markup could have broken out of the script tag.
+const jsonLd = faqJsonLd(faqs);
 
 export default function FaqPage() {
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
       <PageHeader
         title="שאלות ותשובות"

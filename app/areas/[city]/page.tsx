@@ -2,7 +2,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
-import { cities, type CitySlug } from "@/lib/site-config";
+import { serviceJsonLd, jsonLdScript } from "@ishub/site-kit/seo";
+import { cities, manifest, type CitySlug } from "@/lib/site-config";
 import { serviceCards } from "@/lib/content";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Section } from "@/components/ui/Section";
@@ -26,8 +27,25 @@ export default function AreaPage({ params }: { params: { city: string } }) {
   const city = cities.find((c) => c.slug === params.city);
   if (!city) notFound();
 
+  // Service + areaServed:City. This is the only machine-readable statement that the business
+  // serves THIS city — everything else on the page is interpolated prose. serviceType stays the
+  // category ("איטום גגות") while name carries the city, so 23 pages do not invent 23 categories.
+  //
+  // Deliberately NOT a business node per city: one operation serving 23 places is the claim, and
+  // 23 RoofingContractor nodes would imply 23 premises that do not exist (docs/schema-graph.md §5).
+  const jsonLd = serviceJsonLd(manifest, {
+    name: `איטום גגות ב${city.name}`,
+    serviceType: "איטום גגות",
+    url: `${manifest.url}/areas/${city.slug}/`,
+    areaServed: { "@type": "City", name: city.name },
+  });
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
+      />
       <PageHeader
         title={`איטום גגות ב${city.name}`}
         subtitle={`אחריות בכתב, מחיר שקוף ואבחון מדויק של מקור הנזילה — שירות איטום מקצועי ב${city.name} והסביבה.`}
