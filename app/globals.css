@@ -48,7 +48,31 @@
   --color-accent-700: #ab570a;
   --color-accent-800: #7e4007;
   --color-accent-900: #522a04;
-  --color-accent-foreground: #ffffff;
+  /*
+   * Dark foreground on accent — measured, not chosen for looks.
+   *
+   * White on accent (#F5841F) is 2.56:1 and fails WCAG AA, and `accent` is the DEFAULT Button
+   * variant: the hero call, the header call, the form submit, the sticky bar's left half, the
+   * FinalCta band and the Process step numbers all inherit it. Navy on accent is 5.40:1.
+   *
+   * The alternative was keeping white text and darkening the surface to accent-700 (5.12:1), but
+   * that repaints every CTA brown and diverges from brand.accent in the roster manifest. Flipping
+   * the foreground keeps the recognisable orange. See docs/growth-plan.md §7.
+   */
+  --color-accent-foreground: #0e2e4e;
+
+  /*
+   * WhatsApp brand green, promoted out of four hardcoded hexes (Button, MobileCtaBar, LeadForm,
+   * contact page). CLAUDE.md §7 forbids a brand hex in a component; these were the only violations.
+   * White on this green is 1.98:1 — the worst ratio on the site — so the foreground is navy (6.97:1).
+   * The -600 stop is the hover: navy on it is 4.46:1, still AA.
+   */
+  --color-whatsapp: #25d366;
+  --color-whatsapp-600: #1da851;
+  /* -700 is the TEXT stop: the green is only legible as text once it is this dark.
+     #1DA851 on white is 3.10:1 (fails); #147A3B is 5.42:1, and 5.04:1 on the 10% tint. */
+  --color-whatsapp-700: #147a3b;
+  --color-whatsapp-foreground: #0e2e4e;
 
   /* Border radius — reproduce the v3 overrides (rounded-lg stays v4 default 0.5rem). */
   --radius-xl: 0.875rem;

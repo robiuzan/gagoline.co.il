@@ -55,9 +55,9 @@ jobs:
       - name: SEO assertions
         run: npm run seo:assert
 
-      # Orphans, missing trailing slashes and bad BreadcrumbList item URLs are fatal.
-      # The inbound-degree threshold is advisory until Footer.tsx's cities.slice(0, 12)
-      # is removed — append `-- --strict` here in the same commit that deletes it.
+      # Orphans, inbound degree, trailing slashes and BreadcrumbList item URLs are all fatal.
+      # Enforcing since the footer slice was removed (2026-08-24) and every route reached 43
+      # inbound links; docs/link-graph.md §3 holds the thresholds.
       - name: Link-graph assertions
         run: npm run links:check
 

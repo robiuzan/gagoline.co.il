@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Check, MessageCircle, Send } from "lucide-react";
-import { siteConfig, whatsappHref, services } from "@/lib/site-config";
+import { siteConfig, telHref, whatsappHref, services } from "@/lib/site-config";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { trackEvent } from "@ishub/site-kit/analytics";
@@ -102,7 +102,23 @@ export function LeadForm({ className }: { className?: string }) {
           תודה! קיבלנו את הפנייה
         </p>
         <p className="mt-1 text-sm text-gray-600">
-          נחזור אליכם בהקדם. צריכים מענה מיידי? התקשרו אלינו.
+          נחזור אליכם בהקדם. צריכים מענה מיידי?{" "}
+          <a
+            href={telHref}
+            data-cta="formsuccess-call"
+            className="font-semibold text-primary hover:underline"
+            dir="ltr"
+          >
+            {siteConfig.phone}
+          </a>{" "}
+          <span className="text-gray-400">·</span>{" "}
+          <a
+            href={whatsappHref("היי, השארתי פרטים באתר")}
+            data-cta="formsuccess-whatsapp"
+            className="font-semibold text-whatsapp-700 hover:underline"
+          >
+            וואטסאפ
+          </a>
         </p>
       </div>
     );
@@ -214,7 +230,8 @@ export function LeadForm({ className }: { className?: string }) {
         מעדיפים וואטסאפ?{" "}
         <a
           href={whatsappHref("היי, אני מעוניין/ת בהצעת מחיר לאיטום גג")}
-          className="inline-flex items-center gap-1 font-semibold text-[#1da851] hover:underline"
+          data-cta="form-whatsapp"
+          className="inline-flex items-center gap-1 font-semibold text-whatsapp-700 hover:underline"
         >
           <MessageCircle className="h-3.5 w-3.5" aria-hidden />
           שלחו לנו הודעה

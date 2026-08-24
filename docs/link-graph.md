@@ -52,7 +52,7 @@ the same commit.
 
 ---
 
-## 4. Measured baseline — 2026-08-24, post-Phase-0
+## 4. Measured baseline — 2026-08-24, after the footer fix
 
 The distribution is bimodal, and one `.slice()` is responsible:
 

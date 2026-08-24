@@ -32,16 +32,22 @@ export default function ContactPage() {
                 <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-accent-50 text-accent-600">
                   <Phone className="h-5 w-5" aria-hidden />
                 </span>
-                <a href={telHref} className="font-medium hover:text-primary" dir="ltr">
+                <a
+                  href={telHref}
+                  data-cta="contact-call"
+                  className="font-medium hover:text-primary"
+                  dir="ltr"
+                >
                   {siteConfig.phone}
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#25D366]/10 text-[#1da851]">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-whatsapp/10 text-whatsapp-700">
                   <MessageCircle className="h-5 w-5" aria-hidden />
                 </span>
                 <a
                   href={whatsappHref("היי, אני מעוניין/ת בהצעת מחיר לאיטום גג")}
+                  data-cta="contact-whatsapp"
                   className="font-medium hover:text-primary"
                 >
                   וואטסאפ
@@ -51,7 +57,10 @@ export default function ContactPage() {
                 <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-secondary-50 text-secondary">
                   <Mail className="h-5 w-5" aria-hidden />
                 </span>
-                <EmailLink className="font-medium hover:text-primary" />
+                <EmailLink
+                  className="font-medium hover:text-primary"
+                  dataCta="contact-email"
+                />
               </li>
               <li className="flex items-center gap-3">
                 <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100 text-gray-600">

@@ -29,13 +29,21 @@ function escapeHtml(value: string): string {
 const email = escapeHtml(siteConfig.email);
 
 /** The address as a click-to-mail link (footer, contact page). */
-export function EmailLink({ className }: { className?: string }) {
+export function EmailLink({
+  className,
+  dataCta,
+}: {
+  className?: string;
+  dataCta?: string;
+}) {
   const classAttr = className ? ` class="${escapeHtml(className)}"` : "";
+  // GTM click triggers match on data-cta; without it an email click is permanently unmeasurable.
+  const ctaAttr = dataCta ? ` data-cta="${escapeHtml(dataCta)}"` : "";
 
   return (
     <span
       dangerouslySetInnerHTML={{
-        __html: `<!--email_off--><a href="mailto:${email}" dir="ltr"${classAttr}>${email}</a><!--email_on-->`,
+        __html: `<!--email_off--><a href="mailto:${email}" dir="ltr"${classAttr}${ctaAttr}>${email}</a><!--email_on-->`,
       }}
     />
   );

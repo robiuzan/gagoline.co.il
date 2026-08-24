@@ -17,7 +17,8 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const OUT = process.argv[2] ?? "out";
+// Positional arg only — flags must not be mistaken for the output directory.
+const OUT = process.argv.slice(2).find((a) => !a.startsWith("-")) ?? "out";
 const BRAND = "גגוליין";
 const MARKER = "\u{1F536}";
 

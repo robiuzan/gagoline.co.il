@@ -12,7 +12,7 @@
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
     "seo:assert": "node scripts/seo-assert.mjs",
-    "links:check": "node scripts/link-graph-check.mjs",
+    "links:check": "node scripts/link-graph-check.mjs --strict",
     "gate": "npm run lint && npm run typecheck && npm run format:check && npm run build && npm run seo:assert && npm run links:check"
   },
   "dependencies": {

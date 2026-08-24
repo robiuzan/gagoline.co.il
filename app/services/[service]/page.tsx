@@ -98,12 +98,13 @@ export default function ServicePage({ params }: { params: { service: string } })
                 ביקור, אבחון והצעה שקופה — ללא התחייבות.
               </p>
               <div className="mt-5 flex flex-col gap-3">
-                <Button href={telHref} variant="accent" size="lg">
+                <Button href={telHref} data-cta="service-call" variant="accent" size="lg">
                   <Phone className="h-5 w-5" aria-hidden />
                   <span dir="ltr">{siteConfig.phone}</span>
                 </Button>
                 <Button
                   href={whatsappHref(`היי, אני מעוניין/ת בהצעת מחיר ל${card.name}`)}
+                  data-cta="service-whatsapp"
                   variant="whatsapp"
                   size="lg"
                 >

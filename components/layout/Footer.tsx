@@ -30,7 +30,7 @@ export function Footer() {
             </li>
             <li className="flex items-center gap-2">
               <Mail className="h-4 w-4 text-accent-400" aria-hidden />
-              <EmailLink className="hover:text-white" />
+              <EmailLink className="hover:text-white" dataCta="footer-email" />
             </li>
             <li className="flex items-center gap-2">
               <MapPin className="h-4 w-4 text-accent-400" aria-hidden />
@@ -68,7 +68,9 @@ export function Footer() {
         <nav aria-label="אזורי שירות">
           <p className="font-semibold text-white">אזורי שירות</p>
           <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-            {cities.slice(0, 12).map((c) => (
+            {/* All 23 — a .slice() here previously left 11 cities with a single inbound link
+                while the other 12 had 43. See docs/link-graph.md §4. */}
+            {cities.map((c) => (
               <li key={c.slug}>
                 <Link
                   href={`/areas/${c.slug}`}

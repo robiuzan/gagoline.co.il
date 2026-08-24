@@ -40,7 +40,7 @@ export function PricingTeaser() {
       </div>
 
       <div className="mt-8 flex justify-center">
-        <Button href="/contact" variant="accent" size="lg">
+        <Button href="/contact/" data-cta="pricing-quote" variant="accent" size="lg">
           <Calculator className="h-5 w-5" aria-hidden />
           קבלו הצעת מחיר מדויקת
         </Button>

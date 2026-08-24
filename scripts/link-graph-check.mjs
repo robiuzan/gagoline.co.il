@@ -14,18 +14,19 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const OUT = process.argv[2] ?? "out";
+// Positional arg only — flags must not be mistaken for the output directory.
+const OUT = process.argv.slice(2).find((a) => !a.startsWith("-")) ?? "out";
 
 // Parked by design: noindex, deliberately unlinked until they hold real content (Phase 0).
 // /404/ is never linked. Anything else at zero inbound is a defect.
 const ALLOWED_ZERO = new Set(["/404/", "/reviews/", "/gallery/", "/blog/"]);
-const MIN_DEGREE = 2; // target is 4 (link-graph.md §3); raised as the link mesh lands
+const MIN_DEGREE = 4; // link-graph.md §3. Met since the footer slice was removed 2026-08-24.
 
-// The degree threshold is ADVISORY by default and fatal under --strict. Reason: 11 city pages sit at
-// degree 1 today because of Footer.tsx's cities.slice(0, 12), which is a known open defect with a
-// one-line fix. A gate that is red the day it lands trains everyone to ignore it. Orphans, missing
-// trailing slashes and bad BreadcrumbList items are fatal immediately — those are all green now.
-// Flip CI to --strict in the same commit that deletes the slice.
+// The degree threshold is fatal under --strict, which is now the default (see package.json).
+// It was advisory for exactly one commit, while Footer.tsx's cities.slice(0, 12) still starved 11
+// city pages down to a single inbound link. That slice is gone, every route now sits at 43, and the
+// gate enforces the real floor. Do not lower MIN_DEGREE to make a failure pass — the failure means
+// a route has been cut out of the mesh.
 const STRICT = process.argv.includes("--strict");
 
 if (!fs.existsSync(OUT)) {
