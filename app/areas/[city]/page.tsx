@@ -136,7 +136,7 @@ export default function AreaPage({ params }: { params: { city: string } }) {
                       <span className="mt-1 block text-sm text-gray-600">{why}</span>
                     </span>
                     <ChevronLeft
-                      className="mt-1 h-4 w-4 shrink-0 text-gray-400 group-hover:text-secondary"
+                      className="mt-1 h-4 w-4 shrink-0 text-gray-400 group-hover:text-secondary-600"
                       aria-hidden
                     />
                   </Link>
@@ -177,7 +177,7 @@ export default function AreaPage({ params }: { params: { city: string } }) {
                           {a.title}
                         </span>
                         <ChevronLeft
-                          className="mt-0.5 h-4 w-4 shrink-0 text-gray-400 group-hover:text-secondary"
+                          className="mt-0.5 h-4 w-4 shrink-0 text-gray-400 group-hover:text-secondary-600"
                           aria-hidden
                         />
                       </Link>

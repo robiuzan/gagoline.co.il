@@ -33,7 +33,7 @@ export function Faq({ items }: { items: readonly FaqItem[] }) {
                 </span>
                 <ChevronDown
                   className={cn(
-                    "h-5 w-5 shrink-0 text-secondary transition-transform",
+                    "h-5 w-5 shrink-0 text-secondary-600 transition-transform",
                     isOpen && "rotate-180",
                   )}
                   aria-hidden

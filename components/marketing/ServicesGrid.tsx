@@ -44,17 +44,19 @@ export function ServicesGrid() {
                 href={`/services/${card.slug}`}
                 className="group flex h-full flex-col rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
               >
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-secondary-50 text-secondary">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-secondary-50 text-secondary-600">
                   <Icon className="h-6 w-6" aria-hidden />
                 </span>
                 <h3 className="mt-4 font-heading text-lg font-bold text-primary">
                   {card.name}
                 </h3>
-                <p className="mt-0.5 text-xs font-medium text-accent-600">
+                {/* accent-700 (5.12:1), not accent-600 (3.41:1) — this is 12px text, which is
+                    nowhere near the "large text" exemption. */}
+                <p className="mt-0.5 text-xs font-medium text-accent-700">
                   {card.tagline}
                 </p>
                 <p className="mt-2 flex-1 text-sm text-gray-600">{card.description}</p>
-                <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-secondary group-hover:gap-2">
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-secondary-600 group-hover:gap-2">
                   למידע נוסף
                   <ChevronLeft className="h-4 w-4" aria-hidden />
                 </span>

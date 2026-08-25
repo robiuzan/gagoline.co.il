@@ -295,7 +295,7 @@ export default function ServicePage({ params }: { params: { service: string } })
                       {a.title}
                     </span>
                     <ChevronLeft
-                      className="mt-0.5 h-4 w-4 shrink-0 text-gray-400 group-hover:text-secondary"
+                      className="mt-0.5 h-4 w-4 shrink-0 text-gray-400 group-hover:text-secondary-600"
                       aria-hidden
                     />
                   </Link>

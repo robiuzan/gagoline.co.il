@@ -49,7 +49,7 @@ export default function HomePage() {
         <Faq items={HOME_FAQS} />
         <p className="mt-6 text-center text-sm text-gray-500">
           יש לכם שאלה נוספת?{" "}
-          <Link href="/faq/" className="font-semibold text-secondary hover:underline">
+          <Link href="/faq/" className="font-semibold text-secondary-600 hover:underline">
             לכל השאלות והתשובות
           </Link>
         </p>

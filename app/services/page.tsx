@@ -63,7 +63,7 @@ export default function ServicesPage() {
                     <span className="mt-1 block text-sm text-gray-600">{c.answer}</span>
                   </span>
                   <ChevronLeft
-                    className="mt-1 h-4 w-4 shrink-0 text-gray-400 group-hover:text-secondary"
+                    className="mt-1 h-4 w-4 shrink-0 text-gray-400 group-hover:text-secondary-600"
                     aria-hidden
                   />
                 </Link>

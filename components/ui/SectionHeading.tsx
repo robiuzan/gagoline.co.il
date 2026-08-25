@@ -21,7 +21,10 @@ export function SectionHeading({
         <p
           className={cn(
             "mb-2 text-sm font-semibold",
-            isLight ? "text-accent-200" : "text-accent-600",
+            // accent-700, not accent-600: the eyebrow is 14px normal-weight-ish text, so SC 1.4.3
+            // wants 4.5:1. accent-600 on white measures 3.41:1 and fails; accent-700 is 5.12:1.
+            // The light variant sits on the primary navy and is already 8.81:1.
+            isLight ? "text-accent-200" : "text-accent-700",
           )}
         >
           {eyebrow}

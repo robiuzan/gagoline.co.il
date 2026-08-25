@@ -13,7 +13,8 @@
     "typecheck": "tsc --noEmit",
     "seo:assert": "node scripts/seo-assert.mjs",
     "links:check": "node scripts/link-graph-check.mjs --strict",
-    "gate": "npm run lint && npm run typecheck && npm run format:check && npm run build && npm run seo:assert && npm run links:check"
+    "gate": "npm run lint && npm run typecheck && npm run format:check && npm run build && npm run seo:assert && npm run links:check && npm run contrast:check",
+    "contrast:check": "node scripts/contrast-check.mjs"
   },
   "dependencies": {
     "@ishub/site-kit": "file:vendor/ishub-site-kit-0.0.0.tgz",

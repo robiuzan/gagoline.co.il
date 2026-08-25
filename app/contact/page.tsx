@@ -29,7 +29,7 @@ export default function ContactPage() {
             <h2 className="font-heading text-xl font-bold text-primary">פרטי התקשרות</h2>
             <ul className="mt-5 space-y-4 text-gray-700">
               <li className="flex items-center gap-3">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-accent-50 text-accent-600">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-accent-50 text-accent-700">
                   <Phone className="h-5 w-5" aria-hidden />
                 </span>
                 <a
@@ -54,7 +54,7 @@ export default function ContactPage() {
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-secondary-50 text-secondary">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-secondary-50 text-secondary-600">
                   <Mail className="h-5 w-5" aria-hidden />
                 </span>
                 <EmailLink
@@ -77,7 +77,7 @@ export default function ContactPage() {
                   <br />
                   {siteConfig.hours.friday}
                   <br />
-                  <span className="text-sm text-accent-600">
+                  <span className="text-sm text-accent-700">
                     {siteConfig.hours.emergency}
                   </span>
                 </span>

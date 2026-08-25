@@ -45,7 +45,7 @@ export default function BlogPage() {
                   <span className="mt-2 block text-gray-600">{a.description}</span>
                 </span>
                 <ChevronLeft
-                  className="mt-1 h-5 w-5 shrink-0 text-gray-400 group-hover:text-secondary"
+                  className="mt-1 h-5 w-5 shrink-0 text-gray-400 group-hover:text-secondary-600"
                   aria-hidden
                 />
               </Link>
