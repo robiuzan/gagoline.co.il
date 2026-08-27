@@ -15,12 +15,18 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-gray-100 bg-white/95 backdrop-blur">
       <Container className="flex h-16 items-center justify-between gap-4">
-        <Link
-          href="/"
-          className="font-heading text-2xl font-extrabold text-primary"
-          aria-label={`${siteConfig.name} — דף הבית`}
-        >
-          {siteConfig.name}
+        <Link href="/" className="shrink-0" aria-label={`${siteConfig.name} — דף הבית`}>
+          {/* Plain <img>, not next/image: `images.unoptimized` is true, so next/image emits no
+              srcset here and only adds client JS. Intrinsic size is declared so the header
+              reserves the box before the logo paints (CLS). */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/gagoline_logo.png"
+            alt={siteConfig.name}
+            width={600}
+            height={166}
+            className="h-9 w-auto sm:h-10"
+          />
         </Link>
 
         {/* Desktop nav */}

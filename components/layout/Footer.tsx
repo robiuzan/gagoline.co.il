@@ -12,9 +12,16 @@ export function Footer() {
       <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         {/* Brand + contact */}
         <div>
-          <p className="font-heading text-2xl font-extrabold text-white">
-            {siteConfig.name}
-          </p>
+          {/* Plain <img>, not next/image — see Header.tsx. The dark-background variant of the
+              mark is a separate file because the footer sits on `bg-primary`. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/gagoline_logo_dark_bg.png"
+            alt={siteConfig.name}
+            width={600}
+            height={176}
+            className="h-10 w-auto"
+          />
           <p className="mt-3 text-sm text-white/70">{siteConfig.tagline}</p>
           <ul className="mt-5 space-y-2 text-sm">
             <li className="flex items-center gap-2">
