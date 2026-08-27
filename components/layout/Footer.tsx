@@ -107,9 +107,14 @@ export function Footer() {
               </Link>
             </li>
             {/*
-              המלצות and גלריה removed 2026-08-17 — both routes are noindex until they hold real
-              content (backlog §7.1–7.2). Restore each link with its content.
+              גלריה restored 2026-08-27 with its photographs. המלצות stays out — still noindex,
+              still no real reviews (backlog §7.1). Restore it with its content, not before.
             */}
+            <li>
+              <Link href="/gallery/" className="text-white/70 hover:text-white">
+                גלריה
+              </Link>
+            </li>
             <li>
               <Link href="/pricing" className="text-white/70 hover:text-white">
                 מחירון

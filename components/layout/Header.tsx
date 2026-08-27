@@ -31,7 +31,7 @@ export function Header() {
 
         {/* Desktop nav */}
         <nav aria-label="ראשי" className="hidden lg:block">
-          <ul className="flex items-center gap-6">
+          <ul className="flex items-center gap-5 xl:gap-6">
             {navItems.map((item) => (
               <li key={item.href}>
                 <Link

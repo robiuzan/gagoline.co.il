@@ -40,3 +40,8 @@ next-env.d.ts
 
 # Rollback snapshot written by ops/deploy-site.ps1 — build output, never committed.
 out.prev
+
+# Supplied 2026-08-27 but NOT publishable: 2 AI-generated, 3 stock, 1 carrying a third
+# party's branding. Kept for reference, deliberately outside public/ so no build can ship
+# them. See the provenance note over `galleryImages` in lib/content.ts.
+/.rejected-photos/

@@ -203,12 +203,15 @@ export const faqs = [
  *
  * "המלצות" and "גלריה" were removed 2026-08-17: both routes are noindexed and hold no real content
  * yet (backlog §7.1–7.2), and pointing sitewide navigation at them spent the site's strongest
- * internal signal on the two pages that best demonstrated it was unfinished. Restore each entry the
- * day real reviews / photos land.
+ * internal signal on the two pages that best demonstrated it was unfinished.
+ *
+ * "גלריה" was restored 2026-08-27 with four verified photographs. "המלצות" stays out until
+ * real reviews land — inventing them is what got the originals deleted.
  */
 export const navItems = [
   { label: "השירותים שלנו", href: "/services/" },
   { label: "אזורי שירות", href: "/areas/" },
+  { label: "גלריה", href: "/gallery/" },
   { label: "אודות", href: "/about/" },
   { label: "מחירון", href: "/pricing/" },
   { label: "מדריכים", href: "/blog/" },
@@ -482,4 +485,67 @@ export const servicesContent = {
       slug: "roof-whitening",
     },
   ],
+} as const;
+
+/**
+ * `/gallery/` — photographs of waterproofing work.
+ *
+ * ⚠️ PROVENANCE, NOT LAYOUT, IS THE POINT OF THIS BLOCK. A portfolio gallery asserts "this is our
+ * work", so every image here is a business fact under CLAUDE.md rule 1 — the same rule that got the
+ * three invented testimonials deleted on 2026-08-17. An unsourced photo is a fabricated review with
+ * better production values.
+ *
+ * Ten photos were supplied on 2026-08-27 and SIX WERE REJECTED. Do not re-add them:
+ *   gagoline_9, gagoline_10 — AI-generated. _9 carries an invented product ("MEMBRANE PRO-SERIES /
+ *                             ROOFSEAL-X4") and a smear of garbled glyphs where a logo would sit.
+ *   gagoline_4              — a THIRD PARTY's branding ("ULTRA-SEAL PRECISION FLASHING SYSTEMS")
+ *                             over a North American skyline.
+ *   gagoline_2, _5, _8      — stock photography; _2 is a northern-European tile roof.
+ *
+ * The four kept are Israeli sites, with real manufacturer stamping and no foreign branding.
+ *
+ * `alt` and `caption` describe ONLY what is inside the frame. No city, no date, no customer, no
+ * מ״ר, and no לפני/אחרי — none of that is sourced (docs/business-facts.md §A), and a caption can
+ * fabricate a fact exactly as easily as a testimonial can. Dimensions are the intrinsic pixel size
+ * of each file and are emitted on the <img>, so the grid reserves its boxes and CLS stays flat.
+ */
+export const galleryImages = [
+  {
+    src: "/gagoline_1.jpg",
+    width: 1000,
+    height: 1000,
+    alt: "גג שטוח מכוסה יריעות ביטומניות, עם פתח ניקוז ורשת ומעטפת איטום סביב ארובה נמוכה",
+    caption:
+      "יריעות ביטומניות פרוסות על כל שטח הגג, עם טיפול נקודתי סביב פתח הניקוז והארובה.",
+  },
+  {
+    src: "/gagoline_7.jpg",
+    width: 1000,
+    height: 1000,
+    alt: "גג שטוח מכוסה יריעות ביטומניות עם הטבעת יצרן, ואיטום סביב צרור צינורות בולטים",
+    caption: "יריעות ביטומניות בעובי 4 מ״מ, עם איטום סביב צרור הצינורות שבמרכז הגג.",
+  },
+  {
+    src: "/gagoline_6.jpg",
+    width: 1334,
+    height: 1000,
+    alt: "עובד ברתמת בטיחות מורח איטום נוזלי במברשת סביב צינור חודר בגג פח",
+    caption:
+      "איטום נוזלי סביב חדירת צינור בגג פח — נקודות החדירה הן המקום שממנו נזילות מתחילות.",
+  },
+  {
+    src: "/gagoline_3.jpg",
+    width: 1777,
+    height: 1000,
+    alt: "גג משופע בשלב עבודה — יריעת איטום פרוסה על המשטח, לטות עץ מעליה וערימות רעפים מוכנות להנחה",
+    caption:
+      "בגג רעפים האיטום נמצא מתחת לרעפים: היריעה נפרסת על המשטח, ורק אחר כך חוזרות הלטות והרעפים.",
+  },
+] as const;
+
+/** Copy for `/gallery/`. Deliberately free of counts, locations and dates — none are sourced. */
+export const galleryContent = {
+  intro:
+    "תמונות מעבודות איטום — יריעות ביטומניות על גגות שטוחים, איטום נוזלי סביב חדירות בגג פח, ואיטום שנפרס מתחת לרעפים. לכל גג יש נקודת תורפה משלו, ורוב הנזילות מתחילות בדיוק במקומות שנראים כאן: פתחי ניקוז, צינורות חודרים וחיבורים.",
+  cta: "רוצים לדעת מה מתאים לגג שלכם? התקשרו אלינו ונסביר בדיוק מה נדרש.",
 } as const;

@@ -26,8 +26,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
    * in the same commit that removes its `robots` block.
    *
    * `blog` came back on 2026-08-24, in the same commit that removed its `robots` block and shipped
-   * seven articles — exactly the trade described above. `reviews` and `gallery` are still out, and
-   * still noindexed, because neither has real content yet (docs/business-facts.md §A).
+   * seven articles — exactly the trade described above. `gallery` came back the same way on
+   * 2026-08-27, with four verified photographs. `reviews` is still out, and still noindexed,
+   * because it has no real content yet (docs/business-facts.md §A).
    */
   const staticPaths = [
     "",
@@ -38,6 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "faq",
     "contact",
     "blog",
+    "gallery",
     "privacy",
     "accessibility",
     "terms",
