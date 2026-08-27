@@ -34,7 +34,7 @@ are read-only: you report, you don't edit.
    `Faq` could be `<details>`/`<summary>` with no JS — while keeping answers in the DOM, which the
    `FAQPage` schema depends on. Flag new client components that don't need to be.
 5. **Single source of truth.** Phone, email, service names and city slugs come from `@/lib/site-config`;
-   copy comes from `@/lib/content`. A literal `055-6601006` in a component is a finding. Copy typed into
+   copy comes from `@/lib/content`. A literal `03-3829118` in a component is a finding. Copy typed into
    JSX is a finding — `app/services/[service]/page.tsx:32-37` (the shared `triggers` array, which puts
    ceiling-damp advice on the basement and roof-whitening pages) and `app/about/page.tsx:14-21` are the
    two existing violations, listed in the backlog rather than treated as precedent.

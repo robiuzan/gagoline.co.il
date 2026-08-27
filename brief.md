@@ -63,8 +63,12 @@ Analyzed 7 competitors: a-adler.co.il · adiv.co.il · arg-itum.co.il · barel-i
 
 ## A4. Contact & location
 
-- Phone (click-to-call) ✅: **055-6601006**
-- WhatsApp number ⭕: **🔶 same as phone — 055-6601006** (confirm if different)
+> **SUPERSEDED 2026-08-27.** The phone below is the original intake answer and is no longer live.
+> Current: **phone 03-3829118**, **WhatsApp 055-6601006** (deliberately different — the phone is a
+> landline). The roster manifest is authoritative; do not copy numbers from this file onto a page.
+
+- Phone (click-to-call) ✅: ~~055-6601006~~ → now **03-3829118**
+- WhatsApp number ✅: **055-6601006** (unchanged — stays on the shared fleet mobile line)
 - Email ⭕: **🔶 info@gagoline.co.il**
 - Physical address ⭕: **🔶 אין משרד פתוח לקהל — שירות שטח בתל אביב והמרכז** (confirm or provide office address)
 - Service area / coverage ✅: **תל אביב והמרכז — עד רדיוס 50 ק"מ**
@@ -96,7 +100,7 @@ Analyzed 7 competitors: a-adler.co.il · adiv.co.il · arg-itum.co.il · barel-i
 
 ## B3. Primary conversion goal
 
-- What is the #1 action a visitor should take? ✅: **שיחת טלפון (click-to-call ל-055-6601006)** — phone call is the dominant CTA in this niche.
+- What is the #1 action a visitor should take? ✅: **שיחת טלפון (click-to-call ל-03-3829118)** — phone call is the dominant CTA in this niche.
 - Secondary action ⭕: **WhatsApp (לחיצה לצ'אט)**; tertiary = **טופס "השאירו פרטים ונחזור אליכם / הצעת מחיר חינם."**
 
 ---
@@ -198,7 +202,7 @@ Analyzed 7 competitors: a-adler.co.il · adiv.co.il · arg-itum.co.il · barel-i
 
 ## D3. Calls to action
 
-- Primary CTA text 🟦: **"חייגו עכשיו: 055-6601006"** / **"קבלו הצעת מחיר חינם"**
+- Primary CTA text 🟦: **"חייגו עכשיו: 03-3829118"** / **"קבלו הצעת מחיר חינם"**
 - Secondary CTA text ⭕: **"שלחו וואטסאפ"** / **"השאירו פרטים ונחזור אליכם"**
 
 ## D4. Social proof ⭕

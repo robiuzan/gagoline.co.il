@@ -45,14 +45,14 @@ Latin and numeric content inside Hebrew must be isolated or the bidi algorithm r
 numbers render backwards, prices lose their currency position, URLs fragment.
 
 ```tsx
-<span className="ltr">055-6601006</span>
+<span className="ltr">03-3829118</span>
 <a href={telHref} dir="ltr">{siteConfig.phone}</a>
 ```
 
 `.ltr` is defined in `app/globals.css:108-111` as `direction: ltr; unicode-bidi: isolate`. Use it for
 phone numbers, emails, URLs, prices with `₪`, version strings, and code.
 
-**Write the plain value in `lib/content.ts`** — `055-6601006`, `80–120 ₪`. The component adds the
+**Write the plain value in `lib/content.ts`** — `03-3829118`, `80–120 ₪`. The component adds the
 isolation. Never put markup in the content file.
 
 ## The email address is a special case
@@ -70,7 +70,7 @@ JSX comments are compile-time only, which is why that component builds a string 
 
 ## Israeli formats
 
-- Phone: `055-6601006` displayed; `+972556601006` in `tel:` (both from `lib/site-config.ts`).
+- Phone: `03-3829118` displayed; `+97233829118` in `tel:` (both from `lib/site-config.ts`).
 - Currency: `₪` **after** the number — `120 ₪`, `80–120 ₪ למ״ר`.
 - Dates: `dd/mm/yyyy`.
 - Ranges: en dash, no spaces — `1–3 ימי עבודה`, `80–120 ₪`.

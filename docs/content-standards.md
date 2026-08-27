@@ -173,7 +173,7 @@ certification the business doesn't hold; a photo presented as our work that isn'
 
 ## 7. Hebrew mechanics
 
-- Israeli formats: phone `055-6601006`, currency `₪` after the number, dates `dd/mm/yyyy`.
+- Israeli formats: phone `03-3829118`, currency `₪` after the number, dates `dd/mm/yyyy`.
 - Hebrew abbreviations use גרש `׳` and גרשיים `״` — `ק״מ`, `מ״ר`, `ח״פ` — not straight ASCII quotes.
   Note `lib/content.ts` currently writes `למ"ר` and `50 ק"מ` with ASCII double quotes; fix on touch.
 - Numerals stay LTR inside RTL text; components wrap them with `dir="ltr"` and the `.ltr` helper.

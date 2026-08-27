@@ -11,7 +11,7 @@
 
 - **Business:** גגוליין (Gagoline) — roof **waterproofing / sealing** (איטום גגות). Founded **2014**
   (`foundedYear: 2014` in the manifest — "מאז 2014" is a confirmed fact, not a claim).
-- **Phone (click-to-call):** `055-6601006` · WhatsApp same number · `info@gagoline.co.il`.
+- **Phone (click-to-call):** `03-3829118` · WhatsApp `055-6601006` (**a different line** — the phone is a landline, so WhatsApp stays on the shared fleet mobile) · `info@gagoline.co.il`.
 - **Service area:** תל אביב והמרכז, up to a ~50 km radius. 23 location pages, 8 service pages.
 - **Audience:** private homeowners (35–65), ועדי בתים / shared buildings, property managers, commercial
   buildings.
