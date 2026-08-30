@@ -34,6 +34,24 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.tagline,
+  /**
+   * Favicon. The source asset the owner supplied is `public/gagoline_favicon.webp`; the .png and
+   * .ico beside it are derived from it, unchanged, at the same 50×50.
+   *
+   * The PNG — not the WebP — is the declared icon on purpose: Safari does not render WebP
+   * favicons, and iOS Safari is a large share of this site's traffic. `favicon.ico` is listed
+   * too because browsers and crawlers request /favicon.ico with no prompting from a link tag.
+   *
+   * No apple-touch-icon yet: iOS wants a 180×180 PNG and the only source available is 50×50.
+   * Upscaling it would ship a blurry home-screen icon — add one when a larger mark exists.
+   */
+  icons: {
+    icon: [
+      { url: "/gagoline_favicon.png", type: "image/png", sizes: "50x50" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    shortcut: "/favicon.ico",
+  },
   verification: {
     // Google Search Console site verification.
     google: "ezF8RK2XRQm2cTJRfJPuCQ9fPj29xDv4SIAc0UX0E_w",
