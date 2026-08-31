@@ -3,8 +3,10 @@ const nextConfig = {
   reactStrictMode: true,
   // Shared hub package (@ishub/site-kit) ships raw TS; Next must transpile it.
   transpilePackages: ["@ishub/site-kit"],
-  // Static HTML export — deploy target is the cPanel (websquadinc) docroot, served by
-  // Apache. Produces an `out/` folder of static files (no Node runtime on the host).
+  // Static HTML export — deploy target is CLOUDFLARE PAGES (project `gagoline`), uploaded by
+  // wrangler via the hub's ops/deploy-site.ps1. Produces an `out/` folder of static files.
+  // This comment used to name a cPanel/Apache docroot; that host stopped being served and the
+  // stale claim cost a misdirected production deploy. See CLAUDE.md §10.
   output: "export",
   trailingSlash: true,
   images: {

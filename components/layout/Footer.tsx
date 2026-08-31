@@ -5,7 +5,11 @@ import { Container } from "@/components/ui/Container";
 import { EmailLink } from "@/components/ui/EmailAddress";
 
 export function Footer() {
-  const year = 2026; // static export — keep build deterministic; update yearly.
+  // Derived at BUILD time, not request time — a static export has no request. That is the whole
+  // reason this was hardcoded, and the reasoning was inverted: a literal is frozen until someone
+  // remembers to edit it, whereas a build-time year self-corrects on the next deploy. The site
+  // deploys often enough that this is strictly better, and it is still deterministic per build.
+  const year = new Date().getFullYear();
 
   return (
     <footer className="bg-primary text-white/90">

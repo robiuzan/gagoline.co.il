@@ -13,14 +13,14 @@
     "typecheck": "tsc --noEmit",
     "seo:assert": "node scripts/seo-assert.mjs",
     "links:check": "node scripts/link-graph-check.mjs --strict",
-    "gate": "npm run lint && npm run typecheck && npm run format:check && npm run build && npm run seo:assert && npm run links:check && npm run contrast:check",
+    "gate": "npm run lint && npm run typecheck && npm run format:check && npm run build && npm run fonts:preload && npm run seo:assert && npm run links:check && npm run contrast:check",
     "contrast:check": "node scripts/contrast-check.mjs",
-    "aeo:check": "node scripts/ai-crawler-check.mjs"
+    "aeo:check": "node scripts/ai-crawler-check.mjs",
+    "fonts:preload": "node scripts/font-preload.mjs"
   },
   "dependencies": {
     "@ishub/site-kit": "file:vendor/ishub-site-kit-0.0.0.tgz",
     "clsx": "^2.1.1",
-    "framer-motion": "^11.3.31",
     "lucide-react": "^0.439.0",
     "next": "^14.2.13",
     "react": "^18.3.1",

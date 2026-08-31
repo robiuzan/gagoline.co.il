@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { ogImageMeta } from "@ishub/site-kit";
 import { Heebo, Rubik } from "next/font/google";
 import { siteConfig, manifest } from "@/lib/site-config";
@@ -52,16 +52,30 @@ export const metadata: Metadata = {
     ],
     shortcut: "/favicon.ico",
   },
-  verification: {
-    // Google Search Console site verification.
-    google: "ezF8RK2XRQm2cTJRfJPuCQ9fPj29xDv4SIAc0UX0E_w",
-  },
+  /**
+   * Search Console verification, read from the manifest rather than hardcoded (backlog §2.7).
+   * The literal that used to sit here could drift from the roster silently — and the roster is
+   * what the ops sync treats as true. `verification.google` accepts undefined and emits nothing,
+   * so an unset manifest value degrades to "no tag" rather than to a wrong one.
+   */
+  verification: { google: manifest.analytics?.googleSiteVerification },
   openGraph: {
     images: ogImageMeta(manifest.images),
     type: "website",
     locale: "he_IL",
     siteName: siteConfig.name,
   },
+};
+
+/**
+ * `brand.themeColor` has existed in the manifest since the site was built and was never read
+ * (backlog §2.7). It tints the browser chrome on Android and the iOS status bar in standalone mode.
+ *
+ * It lives in `viewport`, not `metadata` — Next 14 deprecated `metadata.themeColor` and silently
+ * ignores it, which is the kind of "shipped but inert" change this repo has been bitten by before.
+ */
+export const viewport: Viewport = {
+  themeColor: manifest.brand?.themeColor,
 };
 
 /**
@@ -95,6 +109,16 @@ export default function RootLayout({
             crossOrigin=""
           />
         )}
+        {/*
+         * GTM belongs in <head> (backlog §13.1). It used to render in <body>, below the JSON-LD
+         * and the noscript iframe, so the container could not begin loading until the body started
+         * parsing — the tag manager was the last thing on the page to start and the first thing
+         * every click trigger depends on. The <noscript> iframe correctly stays in <body>, because
+         * an iframe is not valid in <head>.
+         */}
+        {gtmHead && (
+          <script id="gtm-init" dangerouslySetInnerHTML={{ __html: gtmHead }} />
+        )}
       </head>
       <body className="flex min-h-screen flex-col font-sans">
         <script
@@ -111,9 +135,6 @@ export default function RootLayout({
               title="gtm"
             />
           </noscript>
-        )}
-        {gtmHead && (
-          <script id="gtm-init" dangerouslySetInnerHTML={{ __html: gtmHead }} />
         )}
         <Header />
         <main className="flex-1">{children}</main>
