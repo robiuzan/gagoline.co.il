@@ -22,7 +22,7 @@ export function Faq({ items }: { items: readonly FaqItem[] }) {
             <h3>
               <button
                 type="button"
-                className="flex w-full items-center justify-between gap-4 px-5 py-4 text-right"
+                className="flex w-full items-center justify-between gap-4 px-5 py-4 text-start"
                 aria-expanded={isOpen}
                 aria-controls={`faq-panel-${i}`}
                 id={`faq-button-${i}`}

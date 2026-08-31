@@ -14,7 +14,7 @@ export function PricingTeaser() {
       />
 
       <div className="mx-auto mt-10 max-w-2xl overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
-        <table className="w-full text-right">
+        <table className="w-full text-start">
           <caption className="sr-only">טווחי מחיר לשירותי איטום נפוצים</caption>
           <thead className="bg-gray-50 text-sm text-gray-500">
             <tr>
