@@ -12,7 +12,7 @@ import {
   cities,
   type ServiceSlug,
 } from "@/lib/site-config";
-import { serviceCards, processSteps } from "@/lib/content";
+import { serviceCards, processSteps, relatedServices, serviceImage } from "@/lib/content";
 import { serviceDepth } from "@/lib/service-depth";
 import { articlesForService } from "@/content/articles";
 import { PageHeader } from "@/components/layout/PageHeader";
@@ -55,7 +55,22 @@ export default function ServicePage({ params }: { params: { service: string } })
   if (!card) notFound();
 
   const depth = serviceDepth[card.slug];
-  const others = serviceCards.filter((c) => c.slug !== card.slug).slice(0, 4);
+  /**
+   * Related services now come from a declared relevance map (backlog §9.4). This was
+   * `serviceCards.filter(c => c.slug !== card.slug).slice(0, 4)`, which always returned the first
+   * four entries of the `services` array — so the four services declared at the top were linked
+   * from all eight pages and four others were linked from almost none. Internal equity followed
+   * declaration order.
+   *
+   * `.flatMap` rather than `.map` because `noUncheckedIndexedAccess` makes the lookup
+   * `ServiceCard | undefined`, and a slug that no longer resolves should silently drop out rather
+   * than render an empty card.
+   */
+  const others = relatedServices[card.slug].flatMap((slug) => {
+    const match = serviceCards.find((c) => c.slug === slug);
+    return match ? [match] : [];
+  });
+  const photo = serviceImage[card.slug];
   const nearbyCities = citiesForService(card.slug);
   const relatedArticles = articlesForService(card.slug);
 
@@ -96,6 +111,34 @@ export default function ServicePage({ params }: { params: { service: string } })
             </h2>
             <p className="mt-3 text-lg leading-relaxed text-gray-700">{depth.answerA}</p>
 
+            {/*
+             * A real photograph of THIS service, on the three pages where one exists (§7.3). The
+             * other five link to /gallery/ instead — see the note on `serviceImage`: showing a
+             * bituminous-sheet roof on the basement-sealing page would be a fabricated claim, just
+             * a quiet one.
+             *
+             * Plain <img> with intrinsic width/height, matching Header.tsx: images.unoptimized is
+             * true, so next/image would emit no srcset and only add client JS. The dimensions are
+             * what reserve the box and keep CLS flat.
+             */}
+            {photo && (
+              <figure className="mt-6">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  width={photo.width}
+                  height={photo.height}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full rounded-xl"
+                />
+                <figcaption className="mt-2 text-sm text-gray-500">
+                  {photo.caption}
+                </figcaption>
+              </figure>
+            )}
+
             {depth.intro.map((p, i) => (
               <Prose key={i} parts={p} className="mt-4 text-gray-700" />
             ))}
@@ -110,6 +153,27 @@ export default function ServicePage({ params }: { params: { service: string } })
             </h2>
             <p className="mt-3 text-gray-700">{depth.materials}</p>
             <p className="mt-3 text-gray-700">{depth.prep}</p>
+            {/*
+             * The contextual link /gallery/ never had. It sat at 52 inbound links and ZERO
+             * contextual ones — every single link to it came from the footer — while remaining
+             * exempt in link-graph-check, so the gate had not looked at it since it gained real
+             * photographs on 2026-08-27 (backlog §9.8).
+             *
+             * Placed here because this is the paragraph about materials and surface preparation,
+             * and that is literally what the four photographs show. A link from the footer is
+             * reachability; a link from here is a reason.
+             */}
+            <p className="mt-3 text-gray-700">
+              איך זה נראה בפועל —{" "}
+              <Link
+                href="/gallery/"
+                className="font-medium text-secondary-600 underline decoration-secondary-200 underline-offset-2 hover:decoration-secondary-600"
+              >
+                תמונות מעבודות איטום שביצענו
+              </Link>{" "}
+              : יריעות פרוסות על גג שטוח, איטום נוזלי סביב צינור חודר, ואיטום שנפרס מתחת
+              לרעפים.
+            </p>
 
             {/* PER SERVICE. Was a hardcoded array shared by all 8 pages, so ceiling-damp advice
                 rendered on the basement-sealing and roof-whitening pages (backlog §3.3). */}

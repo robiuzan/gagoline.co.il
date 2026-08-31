@@ -81,13 +81,38 @@ without a verifiable source.
 A "Deployment complete" line is **not** verification. Prove it against the live site:
 
 ```bash
-curl -sS https://gagoline.co.il/sitemap.xml | grep -c '<url>'          # expect 40
+curl -sS https://gagoline.co.il/sitemap.xml | grep -c '<url>'          # expect 50
+curl -o /dev/null -w '%{http_code}\n' -s https://gagoline.co.il/llms.txt   # expect 200
 curl -sSL https://gagoline.co.il/ | grep -c 'להחלפה'                    # expect 0
 curl -sS https://gagoline.co.il/about/ | grep -o '<title>[^<]*</title>'
 curl -sSI https://gagoline.co.il/ | grep -iE 'cf-cache-status|strict-transport'
 curl -o /dev/null -w '%{http_code}\n' -s "https://www.googletagmanager.com/gtm.js?id=GTM-KWGGH438"
 curl -sSL https://gagoline.co.il/ | grep -o 'mailto:[^"]*' | head -1
 ```
+
+### Then run the AI-crawler probe — every time
+
+```bash
+npm run aeo:check
+```
+
+**This is not optional and it is not part of `npm run gate`** — it needs network and it hits
+production, so it cannot gate a build. It has to run _after_ a deploy, against the live site.
+
+It checks two layers, and the second is the one that matters:
+
+1. the served `/robots.txt` — **advisory**, a policy crawlers may honour;
+2. a user-agent probe of nine AI agents — **enforcement**, because a WAF or bot rule can return
+   403 while `robots.txt` says `Allow`.
+
+Checking only the file is exactly how an enforced block hides. From 2026-08-16 until some point
+before 2026-08-31, Cloudflare's edge sent `Disallow: /` to every major AI crawler **and** returned
+403 to five of them. Nothing in this repo could see it, no commit caused it, and it capped the whole
+AEO effort for roughly two weeks before anyone probed production. The zone can be changed back the
+same way — by someone who is not in this repo, with no signal reaching it.
+
+A failure here is **never** fixed by a code change. It is Cloudflare → the zone → AI Crawl Control,
+plus WAF/bot rules for the 403s. See [cloudflare-runbook.md](../../../docs/cloudflare-runbook.md) §1.
 
 Two propagation notes, both observed on 2026-08-17:
 

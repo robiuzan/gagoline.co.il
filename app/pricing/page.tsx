@@ -7,6 +7,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { Section } from "@/components/ui/Section";
 import { PricingTeaser } from "@/components/marketing/PricingTeaser";
 import { FinalCta } from "@/components/marketing/FinalCta";
+import { LeadForm } from "@/components/forms/LeadForm";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/pricing/" },
@@ -126,6 +127,37 @@ export default function PricingPage() {
             </Link>
             .
           </p>
+        </div>
+      </Section>
+
+      {/*
+       * A form on the highest buying-intent page on the site (backlog §8.8). /pricing/ offered four
+       * price ranges, an explanation of what drives them, and no way to act on any of it — the
+       * reader had to scroll back to the header or navigate out to /contact/. Someone who has read
+       * this far has already decided to ask for a quote.
+       *
+       * Placed AFTER the ranges and the "what a written quote must contain" checklist rather than
+       * before them: the page earns the ask by explaining the pricing first.
+       */}
+      <Section tone="muted">
+        <div className="mx-auto grid max-w-4xl gap-8 lg:grid-cols-2 lg:items-start">
+          <div>
+            <h2 className="font-heading text-2xl font-bold text-primary">
+              {pricingContent.formTitle}
+            </h2>
+            <p className="mt-3 text-gray-700">{pricingContent.formIntro}</p>
+            <ul className="mt-5 space-y-2">
+              {pricingContent.formPoints.map((t) => (
+                <li key={t} className="flex items-start gap-2 text-gray-700">
+                  <Check className="mt-1 h-4 w-4 shrink-0 text-green-600" aria-hidden />
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="rounded-2xl bg-white p-6 shadow-sm">
+            <LeadForm />
+          </div>
         </div>
       </Section>
 

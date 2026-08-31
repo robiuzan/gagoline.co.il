@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { manifest } from "@/lib/site-config";
-import { faqs } from "@/lib/content";
+import { faqs, homeAnswer } from "@/lib/content";
 import { webSiteJsonLd, faqJsonLd, jsonLdScript } from "@ishub/site-kit/seo";
+import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Hero } from "@/components/marketing/Hero";
@@ -38,6 +39,24 @@ export default function HomePage() {
       />
       <Hero />
       <TrustBar />
+
+      {/*
+       * Answer block (backlog §6.2). 44 of 53 routes already opened with a question-form H2 and a
+       * self-contained answer; the homepage was one of the nine that did not — and it is the page
+       * most likely to be retrieved for the head term. Placed directly under the trust bar so it
+       * is the first prose an extractor meets.
+       */}
+      <section className="bg-white pt-12 sm:pt-16">
+        <Container>
+          <div className="mx-auto max-w-3xl">
+            <h2 className="font-heading text-xl font-bold text-primary">
+              {homeAnswer.q}
+            </h2>
+            <p className="mt-3 text-lg leading-relaxed text-gray-700">{homeAnswer.a}</p>
+          </div>
+        </Container>
+      </section>
+
       <ServicesGrid />
       <WhyUs />
       <Process />

@@ -25,7 +25,12 @@ const OUT = process.argv.slice(2).find((a) => !a.startsWith("-")) ?? "out";
 // so every reachability check silently skipped the hub. That is how /blog/ went live linked from
 // nothing but its own articles, with a green gate. An exemption added for a temporary state
 // outlives the state unless removing it is part of the same commit that ends the state.
-const ALLOWED_ZERO = new Set(["/404/", "/reviews/", "/gallery/"]);
+// /gallery/ LEFT this set on 2026-08-31, in the same commit that gave it a contextual inbound
+// link from all eight service pages. It should have left on 2026-08-27, when it gained four real
+// photographs and dropped its noindex — it did not, so for four days the gate skipped the very
+// route whose reachability had just changed. Measured at the moment of removal: 52 inbound links,
+// every one of them from the footer, and ZERO contextual. Exactly the /blog/ failure again.
+const ALLOWED_ZERO = new Set(["/404/", "/reviews/"]);
 
 // Unlinked BY DESIGN, permanently — a different category from the temporary parks above, and kept
 // in its own set so it never inherits their "remove this when the route gets content" reading.

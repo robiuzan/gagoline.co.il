@@ -272,6 +272,15 @@ export const areasContent = {
  * rather than stating this business's policy — that is the difference between advice and a claim.
  */
 export const pricingContent = {
+  /** The /pricing/ quote block (backlog §8.8). Promises nothing the site does not already promise. */
+  formTitle: "רוצים מחיר מדויק לגג שלכם?",
+  formIntro:
+    "הטווחים למעלה נותנים סדר גודל. המספר האמיתי תלוי בשטח, במצב המשטח ובכמה פרטי קצה יש — ואת זה רואים רק על הגג. השאירו פרטים ונחזור אליכם לתיאום ביקור.",
+  formPoints: [
+    "ביקור ואבחון בשטח — איתור מקור הנזילה לפני שמדברים על פתרון",
+    "הצעה בכתב, מפורטת לפי שלבים",
+    "ללא התחייבות",
+  ],
   answerQ: "כמה עולה איטום גג?",
   answerA:
     "מחיר איטום גג נקבע לפי שטח הגג, סוג הגג, מספר שכבות האיטום שצריך להסיר, כמות פרטי הקצה והנגישות אליו. שני גגות באותו גודל יכולים להיבדל מאוד במחיר אם באחד צריך להסיר שלוש שכבות ישנות ולתקן שיפועים. לכן המחיר המחייב ניתן אחרי ביקור, ולא בטלפון.",
@@ -611,3 +620,137 @@ export const thankYouContent = {
   meanwhile:
     "בינתיים אפשר לראות עבודות איטום שביצענו, או לקרוא מדריכים על הכנת הגג לחורף.",
 } as const;
+
+/**
+ * Which services genuinely relate to which (backlog §9.4).
+ *
+ * `app/services/[service]/page.tsx` used to pick related services with
+ * `serviceCards.filter(c => c.slug !== card.slug).slice(0, 4)` — which always returns the first four
+ * entries of the array. So the four services that happen to sit at the top of `services` were linked
+ * from all eight pages, and `leak-detection`, `exterior-wall-sealing`, `roof-whitening` and
+ * `basement-sealing` were linked from almost none. Internal equity followed declaration order, and
+ * so did the reader.
+ *
+ * Every pairing below is a real relationship a customer would recognise — the method used, the
+ * cheaper alternative, the diagnosis that comes first, or the place the leak turns out to actually
+ * be. `roof-sealing` and `leak-detection` appear most often, and that is correct rather than
+ * accidental: one is the head service and the other is the step that precedes almost everything.
+ */
+export const relatedServices: Record<ServiceSlug, readonly ServiceSlug[]> = {
+  // The head service: the method, the diagnosis before it, the cheaper alternative, the finish after.
+  "roof-sealing": [
+    "bituminous-sheets",
+    "leak-detection",
+    "roof-tarring",
+    "roof-whitening",
+  ],
+  // Tarring is chosen against sealing, so it links to what it is being compared with.
+  "roof-tarring": [
+    "roof-sealing",
+    "bituminous-sheets",
+    "leak-detection",
+    "roof-whitening",
+  ],
+  // The material. Same material at smaller scale is a balcony.
+  "bituminous-sheets": [
+    "roof-sealing",
+    "roof-tarring",
+    "balcony-sealing",
+    "leak-detection",
+  ],
+  // Detection ends in one of four places — the roof, a wall, a balcony or a basement.
+  "leak-detection": [
+    "roof-sealing",
+    "exterior-wall-sealing",
+    "balcony-sealing",
+    "basement-sealing",
+  ],
+  "balcony-sealing": [
+    "leak-detection",
+    "bituminous-sheets",
+    "exterior-wall-sealing",
+    "roof-sealing",
+  ],
+  // The "it isn't the roof" answer, so detection is its most relevant neighbour.
+  "exterior-wall-sealing": [
+    "leak-detection",
+    "balcony-sealing",
+    "basement-sealing",
+    "roof-sealing",
+  ],
+  // Whitening is NOT a substitute for sealing — linking to sealing first is the honest ordering.
+  "roof-whitening": [
+    "roof-sealing",
+    "roof-tarring",
+    "bituminous-sheets",
+    "leak-detection",
+  ],
+  // Water under pressure from the ground, not falling from above — closer to walls than to roofs.
+  "basement-sealing": [
+    "leak-detection",
+    "exterior-wall-sealing",
+    "balcony-sealing",
+    "roof-sealing",
+  ],
+};
+
+/**
+ * The homepage answer block (backlog §6.2).
+ *
+ * 44 of the site's 53 routes already open with a question-form H2 and a self-contained answer; the
+ * homepage was one of the nine that did not — and it is the page most likely to be retrieved for the
+ * head term. An answer engine quoting this site for "איטום גגות תל אביב" had nothing short and
+ * self-contained to lift.
+ *
+ * Every claim here is on the "free to state" list in docs/content-standards.md §6: the
+ * diagnosis-first method as a described process, a written quote, and "אחריות בכתב" as an
+ * unqualified statement that a written warranty is given. NO duration, NO price, NO volume — all
+ * three are still 🔶.
+ */
+export const homeAnswer = {
+  q: "איך בוחרים קבלן לאיטום גג?",
+  a: "לפני שאוטמים צריך לדעת מאיפה המים נכנסים. קבלן שנוקב במחיר בטלפון, בלי לראות את הגג, מנחש — ולכן גם טועה. אנחנו מגיעים לגג, מאתרים את נקודת החדירה, ומסבירים איזו שיטה מתאימה למשטח שלכם. ההצעה נמסרת בכתב, מפורטת לפי שלבים, ועם אחריות בכתב.",
+} as const;
+
+/**
+ * Copy for `/404/` (backlog §1.9).
+ *
+ * The page was a scaffold: an H1 reading "404", one line of Hebrew and a link home. In season, a
+ * visitor who lands here has a leak and no patience — sending them to the homepage to start the
+ * navigation again is the expensive option. The recovery routes are the three things they could
+ * plausibly have been looking for, plus the phone.
+ */
+export const notFoundContent = {
+  title: "הדף לא נמצא",
+  intro:
+    "הכתובת שהגעתם אליה לא קיימת — ייתכן שהיא הוסרה או שנפלה טעות בהקלדה. אם יש נזילה עכשיו, מהיר יותר פשוט להתקשר.",
+  linksHeading: "אולי חיפשתם",
+} as const;
+
+/**
+ * Which service pages carry one of the four verified photographs (backlog §7.3).
+ *
+ * THREE OF EIGHT, AND THE FIVE OMISSIONS ARE THE POINT.
+ *
+ * The four photographs in `galleryImages` show bituminous sheets on flat roofs, liquid sealing
+ * around a pipe penetration on a metal roof, and membrane going down under roof tiles. That is what
+ * is inside the frames. Putting one of them on the זיפות, מרפסות, קירות חיצוניים, סיוד or מרתפים
+ * page would present a photograph of one kind of work as an example of a different kind — which is
+ * the same category of fabrication as an invented testimonial, just harder to notice.
+ * docs/business-facts.md §A: "a photo presented as our work that isn't" is never permitted, and
+ * "our work, but not this work" fails for the same reason.
+ *
+ * NO PHOTOGRAPH GOES ON A CITY PAGE, for the same reason at one remove: a photo on /areas/netanya/
+ * asserts that this roof is in נתניה, and no location is sourced for any of the four.
+ *
+ * The other five pages link to /gallery/ in context instead, which is true and still useful.
+ */
+export const serviceImage: Partial<Record<ServiceSlug, (typeof galleryImages)[number]>> =
+  {
+    // Bituminous sheets over a whole flat roof, with the drain and chimney detailed — roof sealing.
+    "roof-sealing": galleryImages[0],
+    // The same material, photographed close enough to read the manufacturer stamping.
+    "bituminous-sheets": galleryImages[1],
+    // Liquid sealing worked around a pipe penetration: penetrations are where leaks start.
+    "leak-detection": galleryImages[2],
+  };
