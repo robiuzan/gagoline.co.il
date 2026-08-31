@@ -29,6 +29,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
    * seven articles — exactly the trade described above. `gallery` came back the same way on
    * 2026-08-27, with four verified photographs. `reviews` is still out, and still noindexed,
    * because it has no real content yet (docs/business-facts.md §A).
+   *
+   * `thank-you` is absent DELIBERATELY and permanently. It is noindex, and a sitemapped
+   * thank-you page collects organic arrivals who never filled the form in — inflating the exact
+   * number it exists to measure. Do not add it here.
    */
   const staticPaths = [
     "",

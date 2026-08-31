@@ -549,3 +549,65 @@ export const galleryContent = {
     "תמונות מעבודות איטום — יריעות ביטומניות על גגות שטוחים, איטום נוזלי סביב חדירות בגג פח, ואיטום שנפרס מתחת לרעפים. לכל גג יש נקודת תורפה משלו, ורוב הנזילות מתחילות בדיוק במקומות שנראים כאן: פתחי ניקוז, צינורות חודרים וחיבורים.",
   cta: "רוצים לדעת מה מתאים לגג שלכם? התקשרו אלינו ונסביר בדיוק מה נדרש.",
 } as const;
+
+/**
+ * Copy for the lead form (backlog §8.4, §8.5).
+ *
+ * The errors are PER FIELD. The form used to render one generic "נא למלא שם וטלפון" at the bottom
+ * for every failure, which told a visitor whose phone number was malformed nothing about what to
+ * change — and told a screen-reader user nothing about which field to go back to.
+ *
+ * The consent line is a plain statement rather than a checkbox: a required checkbox is friction on
+ * the site's third-priority conversion path, and the wording only restates what `/privacy/` already
+ * commits to ("לצורך מתן מענה והצעת מחיר בלבד"). Do not widen it beyond what that page says.
+ */
+export const leadFormContent = {
+  errors: {
+    name: "נשמח לדעת איך לפנות אליכם.",
+    phoneMissing: "בלי מספר טלפון לא נוכל לחזור אליכם.",
+    phoneInvalid: "המספר לא נראה שלם. אפשר לכתוב 050-0000000 או 03-0000000.",
+    send: "השליחה נכשלה — פתחנו לכם וואטסאפ עם הפרטים, כדי שהפנייה לא תלך לאיבוד.",
+  },
+  /** Split around the `/privacy/` link, which is rendered between `lead` and `tail`. */
+  consent: {
+    lead: "בשליחת הטופס אתם מאשרים שנחזור אליכם בטלפון או בוואטסאפ. הפרטים משמשים למתן מענה והצעת מחיר בלבד, בהתאם ל",
+    linkLabel: "מדיניות הפרטיות",
+    tail: ".",
+  },
+} as const;
+
+/**
+ * Copy for `/thank-you/` — the post-submission route the form navigates to on a CONFIRMED send
+ * (backlog §8.6, §13.6). Its whole reason to exist is that a URL can be counted and an inline state
+ * swap cannot.
+ *
+ * ⚠️ NO RESPONSE TIME APPEARS HERE, deliberately. "Real response time per distance band" is 🔶 in
+ * docs/business-facts.md §E — the site claims "מענה מהיר" sitewide with no number behind it, and a
+ * thank-you page is exactly where a fabricated "תוך שעה" would feel natural and be a promise the
+ * business never made. Add one only when §E is filled in.
+ *
+ * The three steps restate the diagnosis-first positioning already live in `FinalCta`; they add no
+ * commitment the site does not already make.
+ */
+export const thankYouContent = {
+  intro: "הפרטים הגיעו אלינו. נחזור אליכם כדי לשמוע מה קורה בגג ולתאם ביקור אבחון.",
+  stepsHeading: "מה קורה עכשיו",
+  steps: [
+    {
+      title: "שיחת טלפון",
+      body: "נתקשר כדי להבין מה בדיוק קורה — איפה מופיעה הרטיבות, מתי היא התחילה, ומה כבר ניסיתם.",
+    },
+    {
+      title: "ביקור ואבחון בשטח",
+      body: "מגיעים לגג ומאתרים את מקור הנזילה. לפני שאנחנו אוטמים — אנחנו מבינים מאיפה הנזילה מגיעה.",
+    },
+    {
+      title: "הצעת מחיר שקופה",
+      body: "מפרטים מה נדרש, באיזו שיטה ולמה, בלי הפתעות. ללא התחייבות.",
+    },
+  ],
+  urgentHeading: "צריכים מענה מיידי?",
+  urgentBody: "אם יש נזילה פעילה עכשיו, אל תחכו לשיחה חוזרת — התקשרו או שלחו וואטסאפ.",
+  meanwhile:
+    "בינתיים אפשר לראות עבודות איטום שביצענו, או לקרוא מדריכים על הכנת הגג לחורף.",
+} as const;

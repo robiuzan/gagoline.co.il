@@ -26,6 +26,18 @@ const OUT = process.argv.slice(2).find((a) => !a.startsWith("-")) ?? "out";
 // nothing but its own articles, with a green gate. An exemption added for a temporary state
 // outlives the state unless removing it is part of the same commit that ends the state.
 const ALLOWED_ZERO = new Set(["/404/", "/reviews/", "/gallery/"]);
+
+// Unlinked BY DESIGN, permanently — a different category from the temporary parks above, and kept
+// in its own set so it never inherits their "remove this when the route gets content" reading.
+//
+// /thank-you/ is reached only by a scripted navigation from LeadForm after a confirmed send. It is
+// noindex, it must not appear in any nav, and linking to it would let a visitor "convert" without
+// submitting anything — which is precisely what would make the conversion count worthless. There is
+// no future commit that takes it out of this set.
+const NEVER_LINKED = new Set(["/thank-you/"]);
+
+/** Every route allowed to sit at zero inbound links, for either reason. */
+const UNLINKED_OK = new Set([...ALLOWED_ZERO, ...NEVER_LINKED]);
 const MIN_DEGREE = 4; // link-graph.md §3. Met since the footer slice was removed 2026-08-24.
 
 // The degree threshold is fatal under --strict, which is now the default (see package.json).
@@ -88,7 +100,7 @@ console.log(`    ${String(degree(sorted.at(-1))).padStart(3)}  ${sorted.at(-1)}\
 
 const failures = [];
 
-const orphans = sorted.filter((r) => degree(r) === 0 && !ALLOWED_ZERO.has(r));
+const orphans = sorted.filter((r) => degree(r) === 0 && !UNLINKED_OK.has(r));
 if (orphans.length) {
   failures.push([
     "routes with ZERO inbound internal links",
@@ -98,7 +110,7 @@ if (orphans.length) {
 }
 
 const shallow = sorted.filter(
-  (r) => !ALLOWED_ZERO.has(r) && degree(r) > 0 && degree(r) < MIN_DEGREE,
+  (r) => !UNLINKED_OK.has(r) && degree(r) > 0 && degree(r) < MIN_DEGREE,
 );
 if (shallow.length) {
   const entry = [
@@ -152,7 +164,7 @@ const CONTEXT_EXEMPT = new Set(["/privacy/", "/terms/", "/accessibility/"]);
 
 const ctxDegree = (r) => contextual.get(r).size;
 const noContext = [...routes]
-  .filter((r) => !ALLOWED_ZERO.has(r) && !CONTEXT_EXEMPT.has(r) && ctxDegree(r) === 0)
+  .filter((r) => !UNLINKED_OK.has(r) && !CONTEXT_EXEMPT.has(r) && ctxDegree(r) === 0)
   .sort();
 
 console.log("  contextual inbound degree (header/footer stripped):");
@@ -189,7 +201,7 @@ if (noContext.length) {
  * and children linking to each other is a closed loop, not reachability.
  */
 const outsideSubtree = [...routes].filter((r) => {
-  if (ALLOWED_ZERO.has(r) || r === "/") return false;
+  if (UNLINKED_OK.has(r) || r === "/") return false;
   return ![...inbound.get(r)].some((from) => !from.startsWith(r));
 });
 if (outsideSubtree.length) {
