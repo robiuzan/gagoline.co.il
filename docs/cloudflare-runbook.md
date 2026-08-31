@@ -45,7 +45,16 @@ The repo's own `User-Agent: * / Allow: /` and the `Sitemap:` line follow it and 
 search crawling is unaffected. **It is specifically AI access that is blocked**, and `app/robots.ts`
 cannot override it because the managed rules are injected at the edge.
 
-**Every AI-visibility improvement in this project is capped until this changes.**
+> ## ✅ RESOLVED — re-verified live 2026-08-31
+>
+> **Everything above describes the 2026-08-16 state and is kept only as the history of the fix.** The
+> block is gone. `curl https://gagoline.co.il/robots.txt` now returns the fleet allow list, and a
+> user-agent probe returns **200** for GPTBot, ClaudeBot, PerplexityBot, OAI-SearchBot,
+> Google-Extended and CCBot — so the enforced bot rule that previously answered **403** was lifted as
+> well, which the advisory file alone would not have shown.
+>
+> AI visibility is **no longer capped**. Re-run the probe in Step 1's verification block after any
+> Cloudflare change; a zone toggle can be reverted without any signal reaching this repo.
 
 ### The decision
 

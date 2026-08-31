@@ -163,11 +163,13 @@ until confirmed:
 **Never permitted:** an invented customer name or quote; a rating without a public source; a
 certification the business doesn't hold; a photo presented as our work that isn't.
 
-> ⚠️ **This rule is currently being violated in production.** `lib/content.ts:141-160` ships three
-> testimonials attributed to `"לקוח/ה — להחלפה 🔶"` with invented quotes, rendered on `/` and
-> `/reviews/`. A visible 🔶 in shipped copy is not a safeguard — it is the defect. The fix is to remove
-> the section until real reviews exist, not to rewrite the placeholder. Same for the six empty gallery
-> tiles and the "תכני הבלוג בדרך 🔶" blog page.
+> ✅ **Resolved 2026-08-17, and worth keeping as the worked example.** Three testimonials attributed to
+> `"לקוח/ה — להחלפה 🔶"` with invented quotes were rendering on `/` and `/reviews/`, alongside six empty
+> gallery tiles and a "תכני הבלוג בדרך 🔶" blog page. All were **deleted**, not rewritten — a visible 🔶
+> in shipped copy is not a safeguard, it is the defect. `/gallery/` came back on 2026-08-27 with four
+> verified photographs and `/blog/` on 2026-08-24 with seven articles; `/reviews/` is still `noindex`
+> and empty, which is the correct state until real reviews exist. `seo-assert` now fails the build on
+> any rendered 🔶.
 
 ---
 

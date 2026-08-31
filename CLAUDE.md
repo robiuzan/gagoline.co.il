@@ -250,9 +250,12 @@ and logs to `logs/deploys.csv`.
 Because Cloudflare proxies the zone, several things are true and easy to forget — verified live on
 2026-08-16/17 and written up in [docs/cloudflare-runbook.md](docs/cloudflare-runbook.md):
 
-- **`/robots.txt` is not what `app/robots.ts` emits.** A managed block at the edge sends `Disallow: /`
-  to every major AI crawler, and a probe also returned **403** to five assistant crawlers, so an
-  enforced bot rule sits on top of the advisory file. Search crawling is unaffected.
+- **`/robots.txt` is not necessarily what `app/robots.ts` emits.** Cloudflare can prepend a managed
+  block at the edge, and on 2026-08-16 it sent `Disallow: /` to every major AI crawler with a bot rule
+  returning **403** on top of it. **Re-verified live 2026-08-31: both are gone** — the served file
+  carries the fleet allow list and all six probed AI agents return 200. The lesson stands even though
+  the block does not: **the served file is the only evidence.** `curl` it; never infer it from
+  `app/robots.ts`.
 - **Five security headers are already served** (HSTS, `X-Frame-Options`, `X-Content-Type-Options`,
   `Referrer-Policy`, `Permissions-Policy`) with no `public/_headers` in the repo. Only CSP is missing.
   Find out whether they come from Pages defaults or a Transform Rule **before** adding `_headers`, or
