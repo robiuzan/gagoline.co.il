@@ -4,13 +4,23 @@ Zone and host settings are **owner-only**. No agent changes them; this file says
 and how to prove it worked. Cloudflare moves menu items between releases, so each step gives the
 **searchable feature name** as well as a path — search the dashboard for the name if the path has moved.
 
-**The hosting model:** static export → **WebDAV upload to a cPanel docroot (Apache)** → **Cloudflare in
-front as an orange-cloud proxy**. This is _not_ Cloudflare Pages and not Vercel, which means
-`public/_headers` and `public/_redirects` are inert (see CLAUDE.md §3) and response headers come from
-the edge or from `public/.htaccess`.
+**The hosting model:** static export → `wrangler pages deploy` to the **Cloudflare Pages** project
+`gagoline` → apex and `www` are proxied CNAMEs to `gagoline.pages.dev`. Cut over **2026-08-02**.
+`public/_headers` and `public/_redirects` are **live features here** — `public/_headers` ships today
+with a report-only CSP and the asset cache rules.
 
-Verified live **2026-08-16**. Re-verify with the commands at the bottom; never assume a toggle was
-flipped.
+**Measured limit (2026-09-01):** `_headers` cannot override a header the Cloudflare **zone** injects.
+This zone carries the fleet header Transform Rules, so HSTS, `X-Frame-Options`,
+`X-Content-Type-Options`, `Referrer-Policy` and `Permissions-Policy` are **owner/zone actions** and
+re-declaring them in `_headers` is inert, not duplicative. CSP and `Cache-Control` are **not**
+zone-injected, so `_headers` genuinely controls those.
+
+> **History.** Until the 2026-08-02 cutover this site was a WebDAV upload to a cPanel docroot
+> (`server.websquadinc.com`) with Cloudflare in front as a proxy. That host serves nothing now, and
+> `public/.htaccess` — the header mechanism of that era — has been deleted. No Apache is in the path.
+
+Zone facts verified live **2026-08-16**, re-verified **2026-08-31** (Step 1). Re-verify with the
+commands at the bottom; never assume a toggle was flipped.
 
 ---
 
@@ -116,16 +126,22 @@ The edge already returns a solid baseline, measured live:
 | `content-security-policy`     | **absent**                                               |
 | `access-control-allow-origin` | `*` on HTML                                              |
 
-**None of these come from this repo.** `public/.htaccess` sets no headers at all — it only has
-`Options -Indexes`, `DirectoryIndex` and `ErrorDocument`. So the obvious-looking fix of adding
-`Header always set …` directives would **duplicate what already exists**. Don't.
+**The five that are present come from the Cloudflare zone**, not from Pages defaults and not from
+`public/_headers`. The tell is the casing: the zone Transform Rules return them Title-Cased, and the
+HSTS value matches the fleet rule. `public/_headers` **cannot override** them — the zone value wins and
+the `_headers` entry is simply inert, so changing any of the five is **owner action in the zone**.
+
+`public/.htaccess` no longer exists and is not the answer either; no Apache serves this site.
 
 ### What to do
 
-Add **`Content-Security-Policy-Report-Only`** at the same layer as the others. The draft directive set,
-the hosts it must include, and the week-of-observation process are in the `/web-security-headers`
-skill. Ship report-only, watch real traffic — including one real form submission and one tracked call
-click — and only then consider enforcing.
+CSP is the one header the zone does **not** inject, which means `public/_headers` can carry it from
+this repo — no zone change, no owner action. **That file now ships
+`Content-Security-Policy-Report-Only`** (added 2026-09-01) alongside the `/_next/static/*` immutable
+cache rule. The draft directive set, the hosts it must include, and the week-of-observation process are
+in the `/web-security-headers` skill. It stays report-only until violations have been observed on live
+traffic — including one real form submission and one tracked call click — and only then consider
+enforcing.
 
 Optional, owner's call: lengthen HSTS or add `includeSubDomains`. **Do not add `preload`** casually; it
 is close to irreversible. And `access-control-allow-origin: *` on HTML is harmless here but wider than
@@ -168,26 +184,31 @@ Expect `301 -> https://gagoline.co.il/`.
 
 ## Leave these alone
 
-| Setting                               | Current                    | Why                                                                                                                                                                                                                                                                                        |
-| ------------------------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Scrape Shield → Email Obfuscation** | on, and **worked around**  | The live HTML carries a raw `mailto:info@gagoline.co.il` because `components/ui/EmailAddress.tsx` emits `<!--email_off-->` markers. Turning the feature off would also work — but **don't remove the component**, and re-check the live `mailto:` after any zone change (commit `ac48484`) |
-| **Speed → Rocket Loader**             | leave **off**              | Rocket Loader defers scripts and is a classic cause of GTM firing late or not at all. This site's entire conversion measurement depends on GTM click triggers                                                                                                                              |
-| **Auto Minify**                       | n/a                        | Deprecated by Cloudflare and unnecessary — Next already minifies                                                                                                                                                                                                                           |
-| **Caching level / Cache Rules**       | default, `DYNAMIC` on HTML | HTML must stay revalidated (`cache-control: public, max-age=0, must-revalidate`) or a WebDAV deploy won't be visible. Don't cache HTML at the edge without a purge step in the deploy                                                                                                      |
+| Setting                               | Current                                                | Why                                                                                                                                                                                                                                                                                                                                                                    |
+| ------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Scrape Shield → Email Obfuscation** | on, and **worked around**                              | The live HTML carries a raw `mailto:info@gagoline.co.il` because `components/ui/EmailAddress.tsx` emits `<!--email_off-->` markers. Turning the feature off would also work — but **don't remove the component**, and re-check the live `mailto:` after any zone change (commit `ac48484`)                                                                             |
+| **Speed → Rocket Loader**             | leave **off**                                          | Rocket Loader defers scripts and is a classic cause of GTM firing late or not at all. This site's entire conversion measurement depends on GTM click triggers                                                                                                                                                                                                          |
+| **Auto Minify**                       | n/a                                                    | Deprecated by Cloudflare and unnecessary — Next already minifies                                                                                                                                                                                                                                                                                                       |
+| **Caching level / Cache Rules**       | zone default; HTML measured `cf-cache-status: DYNAMIC` | HTML cache-control is now set by **`public/_headers`** (`public, max-age=0, s-maxage=3600, must-revalidate`), not by the zone — leave the zone rules alone so the repo stays the single knob. Don't add a zone Cache Rule that caches HTML with a long browser TTL: a Pages deploy publishes atomically at the edge, but a browser holding a stale page still hides it |
 
 ---
 
 ## The deploy interaction worth knowing
 
-The deploy uploads **only the delta** versus the live site (`/deploy-gagoline`). Combined with an edge
-cache, that produces one specific confusion: a file uploads successfully and the change still isn't
-visible. Before re-deploying, check whether you are looking at a cached copy:
+`wrangler pages deploy` uploads a **full file manifest**, hash-deduped against what the project already
+holds, and then publishes the result as one **atomic deployment** (`/deploy-gagoline`). There is no
+partial state and no delta to get wrong. The confusion that remains is a different one: the
+`*.pages.dev` deployment URL flips first, and the custom domain follows — so a change that is already
+visible on `gagoline.pages.dev` and not yet on `gagoline.co.il` is usually propagation, not a failure.
+
+Before re-deploying, check whether you are looking at a cached copy:
 
 ```bash
 curl -sS "https://gagoline.co.il/?cachebust=$$" | grep -o '<title>[^<]*</title>'
 ```
 
-`public/.htaccess` only reaches the server when you deploy with `-IncludeHtaccess`.
+Everything in `out/` ships — `public/*` is copied there by the export, which is how `public/_headers`
+reaches Pages. There is no per-file opt-in flag on this path.
 
 ---
 

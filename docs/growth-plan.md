@@ -18,10 +18,14 @@ The site is a **well-engineered shell with almost nothing inside it, and it is c
 counterfeit proof.** Those are the two sentences that should drive every decision below.
 
 What is genuinely good — do not spend effort re-fixing it: 44/44 self-referencing trailing-slash
-canonicals, 44/44 exactly one `<h1>`, a clean 4.9 MB export with no dev-chunk pollution, correct
-`ErrorDocument` 404 behaviour, an excellent WhatsApp-fallback lead form that fires its conversion event
-only on confirmed success, a `Reveal` component that degrades correctly, and five security headers
-already set at the edge.
+canonicals, 44/44 exactly one `<h1>`, a clean 4.9 MB export with no dev-chunk pollution, an excellent
+WhatsApp-fallback lead form that fires its conversion event only on confirmed success, a `Reveal`
+component that degrades correctly, and five security headers already injected by the Cloudflare zone.
+
+One item on that list has been demoted: 404 behaviour. The original "correct `ErrorDocument`" claim was
+inherited from the retired Apache host and proves nothing on Cloudflare Pages, which serves
+`out/404.html` by its own convention. Re-verify before relying on it:
+`curl -sI https://gagoline.co.il/nope/`.
 
 **The three things that matter most, in order:**
 
@@ -89,8 +93,10 @@ Nothing here needs a single new business fact. Most of it is deletion.
 | 0.8 | Delete the two untracked `.bak` files and add `*.bak` to `.gitignore`. One is a **runnable copy of the pre-shim deployer** — the full-upload logic that caused the 2026-07-30 partial outage — and it hardcodes a secrets path.                                              | `deploy/deploy-webdav.ps1.pre-shim.bak` · `site.config.json.bak`                                              |
 | 0.9 | Send the owner request list (§13). It has the longest lead time of anything in this plan.                                                                                                                                                                                    | [owner-requests.md](owner-requests.md)                                                                        |
 
-**Then deploy.** `powershell -File "deploy/deploy-webdav.ps1" -DryRun` first. Pushing to `main` deploys
-nothing.
+**Then deploy.** `powershell -File "<hub>/ops/deploy-site.ps1" -Domain gagoline.co.il -DryRun` first,
+then `-Confirm` (`<hub>` = the "Israeli services sites" folder alongside this repo). Pushing to `main`
+deploys nothing. `deploy/deploy-webdav.ps1` is retired and refuses to run — the site has been on
+Cloudflare Pages since 2026-08-02.
 
 ---
 
@@ -391,11 +397,12 @@ every chunk. Don't invent problems. The two real levers:
 - **Zero font preloads.** On an image-free site the LCP element is text, so the webfont swap _is_ the
   perceived load. Hashes change per build, so inject preloads in a `postbuild` script that reads the
   `-s.p.woff2` URLs out of the emitted CSS.
-- **`/_next/static/` is served `max-age=14400, must-revalidate`** — content-hashed files that can never
-  change, revalidated every 4 hours. `Cache-Control` is _not_ one of the five headers the edge sets, so
-  this one **does** belong in `.htaccess`, scoped to `js|css|woff2` and guarded by
-  `<IfModule mod_headers.c>` (an unguarded `Header` directive 500s the whole site on a host without
-  `mod_headers`). Never let it reach HTML, or a delta deploy becomes invisible.
+- **`/_next/static/` was served `max-age=14400, must-revalidate`** (measured 2026-08-17) — content-hashed
+  files that can never change, revalidated every 4 hours. `Cache-Control` is _not_ one of the five headers
+  the Cloudflare zone injects, so **`public/_headers` can set it** — that is the repo-owned header
+  mechanism on Cloudflare Pages. _Done 2026-09-01:_ `public/_headers` now carries
+  `/_next/static/* → Cache-Control: public, max-age=31536000, immutable`. Keep HTML on a short TTL with
+  `must-revalidate` so a deploy is never masked by a stale page.
 
 **Accessibility is the worst of the three and worse than the backlog recorded:**
 
@@ -416,12 +423,16 @@ every chunk. Don't invent problems. The two real levers:
 practice on a site with zero images. A published IS 5568 conformance claim that a five-second check
 disproves is a worse legal position than publishing no statement.
 
-**Security is nearly done.** Five headers are already at the edge — **do not duplicate them in
-`.htaccess`**. Only CSP is missing; ship it **report-only** at the edge, observe a week of real traffic
+**Security is nearly done.** Five headers are already injected by the Cloudflare **zone**;
+`public/_headers` cannot override a zone-injected header, so don't re-declare them expecting a change —
+the entry is inert. CSP is the one header the zone does **not** set, which is exactly why
+`public/_headers` can ship it from this repo, no owner action required. _Done 2026-09-01:_
+`Content-Security-Policy-Report-Only` is live in `public/_headers`; observe a week of real traffic
 including one genuine form submit and one tracked call click, then consider enforcing. Plus: strip the
 dead SMTP path from `.env.example` (a live template for mail credentials on a project with no server),
 and record an `npm audit` disposition — **3 high, all inapplicable**: every Next advisory concerns
-Middleware, Server Actions, rewrites or the Edge runtime, none of which a static export on Apache runs;
+Middleware, Server Actions, rewrites or the Edge runtime, none of which a static export on Cloudflare
+Pages runs;
 14.2.35 is already the newest 14.2.x, and npm's suggested remedy is a two-major-version jump. Write down
 why each is not applicable and **never run `npm audit fix --force`**.
 
@@ -583,8 +594,10 @@ while the `-P` form returned 10.
 - **Do not open AI crawler access while placeholders are live.** Assistants cache what they fetch.
 - **Do not ship an enforcing CSP untested.** It kills analytics or the form silently, which on a lead-gen
   site is a revenue bug.
-- **Do not duplicate the five edge-set security headers in `.htaccess`**, and never add an unguarded
-  `Header` directive — it 500s the whole site on a host without `mod_headers`.
+- **Do not re-declare the five zone-injected security headers in `public/_headers` and expect them to
+  change** — `_headers` cannot override a header the Cloudflare zone sets, so the entry is inert. Those
+  five are owner action in the zone. CSP is the one the zone does not set, so it is the one `_headers`
+  can genuinely ship.
 - **Do not add urgency, badges or counters while trust is damaged.** Pressure without proof makes the
   page worse.
 - **Do not rename live slugs** without a 301 map at the edge.

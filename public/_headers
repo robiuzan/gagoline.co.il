@@ -1,0 +1,51 @@
+# Cloudflare Pages response headers.
+#
+# gagoline.co.il runs on Cloudflare Pages (project `gagoline`), cut over 2026-08-02. Pages reads
+# this file from the deployed output; `public/*` is copied into `out/` by the static export, so it
+# ships with every deploy via <hub>/ops/deploy-site.ps1.
+#
+# WHAT THIS FILE CAN AND CANNOT DO HERE — measured 2026-09-01, not assumed:
+#
+#   CANNOT — override the five headers Cloudflare injects at THIS zone. gagoline is one of the four
+#            zones carrying the fleet header Transform Rules (with netomazganim, visionsecurity and
+#            dangates). Proof: the live response returns them Title-Cased with
+#            `Strict-Transport-Security: max-age=15552000`, which is the zone's value, not one set
+#            here. Sibling sites whose zones have NO such rules (myhomeplumber, thermoleak) serve
+#            their own `_headers` values lowercase — the casing is how you tell the two apart.
+#
+#   CAN    — set anything the zone does not send. CSP and Cache-Control are both in that category,
+#            and gagoline was serving NO Content-Security-Policy at all before this file.
+#
+# So: to change HSTS or Permissions-Policy here, edit the ZONE. Editing this file will not do it.
+
+/*
+  # Mirrored from the zone so the intended policy is visible in the repo and so the site stays
+  # covered if the zone rules are ever removed. The zone currently wins; these are not the live
+  # values you are reading in `curl -sI`.
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Strict-Transport-Security: max-age=15552000
+
+  # REPORT-ONLY, and it must stay that way until violations have been observed on the live site.
+  # The blocker for enforcement is the inline GTM snippet: a static export cannot mint a
+  # per-request nonce, so enforcing needs either 'unsafe-inline' or a hash allowlist regenerated
+  # whenever the snippet changes.
+  #
+  # Origins are the ones actually referenced by the build, not a template: GTM, the Web3Forms
+  # endpoint the lead form POSTs to, the WhatsApp handoff, and the shared imgquarry media host.
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://imgquarry.com https://www.googletagmanager.com https://www.google-analytics.com; font-src 'self' data:; connect-src 'self' https://api.web3forms.com https://www.google-analytics.com https://www.googletagmanager.com; form-action 'self' https://api.web3forms.com; frame-src https://www.googletagmanager.com; frame-ancestors 'self'; base-uri 'self'; object-src 'none'
+
+# Content-addressed: the filename changes whenever the bytes do, so this is safe forever.
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML measured `cf-cache-status: DYNAMIC` — every request reached the origin despite this being a
+# static export that only changes at deploy time. s-maxage lets the edge hold it while browsers
+# revalidate, so a deploy is never masked by a stale page.
+/*.html
+  Cache-Control: public, max-age=0, s-maxage=3600, must-revalidate
+
+/
+  Cache-Control: public, max-age=0, s-maxage=3600, must-revalidate

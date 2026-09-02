@@ -12,7 +12,7 @@ matching agent or skill will wire it into the right place.
   Anything in NAP, identity, schema, or analytics goes here — never edit `site.config.json` directly.
 - **content.ts** = `lib/content.ts` — wording, testimonials, price rows, trust stats.
 - **site-config.ts** = `lib/site-config.ts` — hours, social links, service and city arrays.
-- **Cloudflare / cPanel** = infrastructure the owner controls, not an agent.
+- **Cloudflare zone / Pages project** = infrastructure the owner controls, not an agent.
 
 `brief.md` is the origin document for most of this site's copy. It is a **strategy intake, not a
 verified fact sheet** — every value it tags 🔶 is still 🔶 here.
@@ -24,11 +24,11 @@ verified fact sheet** — every value it tags 🔶 is still 🔶 here.
 These are not gaps. They are fabricated-looking content **currently served to real visitors**, and they
 outrank every other item in this file.
 
-| Field                                                   | Why it's needed                                                                                                                                                                                                                                                 | Lands in                  | Value | Status |
-| ------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- | ----- | ------ |
-| **3+ real reviews** (author, date, text, source URL)    | `lib/content.ts:141-160` ships three testimonials authored as `"לקוח/ה — להחלפה 🔶"` with invented 5-star quotes. They render on **`/` and `/reviews/`**. An invented review is a Google policy violation and a consumer-protection exposure, not a placeholder | content.ts `testimonials` |       | 🔶     |
-| **Real before/after photos** (≥6)                       | `app/gallery/page.tsx:14` renders six empty dashed boxes reading `לפני / אחרי 🔶`. `/gallery/` is in the sitemap and indexable                                                                                                                                  | `public/gallery/`         |       | 🔶     |
-| **Blog content, or the decision to unpublish `/blog/`** | `app/blog/page.tsx` says `תכני הבלוג בדרך 🔶` and is in the sitemap. An indexed empty page is a thin-content signal                                                                                                                                             | `content/` or `app/blog/` |       | 🔶     |
+| Field                                                   | Why it's needed                                                                                                                                                                                                                                                                                                                                                                                           | Lands in                         | Value | Status |
+| ------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- | ----- | ------ |
+| **3+ real reviews** (author, date, text, source URL)    | `lib/content.ts:141-160` ships three testimonials authored as `"לקוח/ה — להחלפה 🔶"` with invented 5-star quotes. They render on **`/` and `/reviews/`**. An invented review is a Google policy violation and a consumer-protection exposure, not a placeholder                                                                                                                                           | content.ts `testimonials`        |       | 🔶     |
+| **More job photographs** (5 services have none)         | **Partly resolved 2026-08-27.** Ten were supplied, four published, six rejected — two AI-generated, one carrying a third party's branding, three stock. `/gallery/` is live and indexed and three service pages carry a photo; זיפות, מרפסות, קירות חיצוניים, הלבנת גגות and מרתפים still have none, and no city page may carry one until a location is sourced. Triage criteria: skill `page-imagery` §8 | `public/*.jpg` → `galleryImages` |       | 🔧     |
+| **Blog content, or the decision to unpublish `/blog/`** | `app/blog/page.tsx` says `תכני הבלוג בדרך 🔶` and is in the sitemap. An indexed empty page is a thin-content signal                                                                                                                                                                                                                                                                                       | `content/` or `app/blog/`        |       | 🔶     |
 
 Until each is resolved, the correct action is **remove or `noindex` the surface**, not soften the
 wording. See [content-standards.md](content-standards.md) §6.
@@ -124,9 +124,14 @@ service-area business with a hidden address. Decide deliberately rather than by 
   `mailto:info@gagoline.co.il` with no `/cdn-cgi/l/email-protection` rewrite.
   `components/ui/EmailAddress.tsx` wraps the address in `email_off` / `email_on` markers, which is what
   keeps it intact. Do not "simplify" that component — see commit `ac48484`.
-- **Security headers.** Five of the six are already served at the edge — HSTS, `X-Frame-Options`,
-  `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`. Nothing needs adding to
-  `.htaccess`; only CSP is missing (§F above).
-- **Deploy path.** WebDAV upload to the cPanel docroot via `deploy/deploy-webdav.ps1` → the hub's
-  `ops/webdav-deploy.ps1`. Cloudflare sits in front as proxy/CDN. **This is not Cloudflare Pages**, so
-  `public/_headers` and `public/_redirects` do nothing here.
+- **Security headers.** Five of the six are injected by the **Cloudflare zone** — HSTS,
+  `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`. Nothing needs
+  adding to `public/_headers` for these five: measured 2026-09-01, `_headers` **cannot override** a
+  zone-injected header, so the entry would be inert. CSP is the one the zone does not set, and because
+  of that `public/_headers` can ship it — it now does, report-only (§F above).
+- **Deploy path.** **Cloudflare Pages**, project `gagoline`, cut over 2026-08-02. Direct upload via
+  `"Israeli services sites/ops/deploy-site.ps1" -Domain gagoline.co.il -DryRun` then `-Confirm` —
+  `wrangler pages deploy` plus a Cloudflare API drift check on the Pages/domain binding, which refuses
+  on mismatch. Apex and `www` are proxied CNAMEs to `gagoline.pages.dev`. `public/_headers` and
+  `public/_redirects` **do** work here. _(Superseded: `deploy/deploy-webdav.ps1` and the cPanel docroot
+  were the path before the cutover; the script now refuses to run.)_

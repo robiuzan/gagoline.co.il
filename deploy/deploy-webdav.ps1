@@ -1,28 +1,43 @@
 <#
-  Deploy this site to its cPanel docroot.
+  RETIRED. This script no longer deploys anything and will refuse to run.
 
-  Thin shim over the shared deployer at ops/webdav-deploy.ps1 in the "Israeli services sites" hub,
-  which owns cross-site ops scripts. This file used to be a full copy of the upload logic, and the
-  three copies (gagoline, netomazganim, myhomeplumber) had already drifted apart.
+  gagoline.co.il moved to CLOUDFLARE PAGES on 2026-08-02 (project 'gagoline'). Apex and www are
+  proxied CNAMEs to gagoline.pages.dev; the Cloudflare API confirms the project serves both.
+  The cPanel/WebDAV host (server.websquadinc.com) stopped being the origin on that date - the
+  domain record in Sys Admin/inventory/domains.json states the cutover "Retires the WebDAV
+  deploy path."
 
-  The shared version uploads only the delta versus the live site, sends assets before HTML, and
-  retries patiently enough to ride out the Web Disk connection-rate block. See its header for why
-  each of those matters - a full 445-file re-upload of a 2-file change caused a partial outage on
-  2026-07-30.
+  Why this file still exists, refusing loudly, rather than being deleted:
 
-  SAFETY: a real run OVERWRITES files in the target. Use -DryRun to preview the delta first.
+  The identical script on the sibling site netomazganim.co.il was run repeatedly after its own
+  cutover. It reported "Upload complete: NNN ok, 0 failed" every time and changed NOTHING public,
+  because a 2xx from the Web Disk means "the file was accepted", not "the file is served". Four
+  weeks of merged work sat invisible in production before anyone noticed.
+
+  A deleted file gives "command not found" and an obvious retry. A file that silently succeeds
+  gives false confidence. This one gives an explanation.
+
+  Original preserved at deploy-webdav.ps1.retired-2026-09-01.bak (and in git history).
 #>
 [CmdletBinding()]
 param(
   [switch]$DryRun,
   [switch]$IncludeHtaccess,
   [int]$PaceSeconds = 3,
-  [string]$OutDir = (Join-Path $PSScriptRoot '..\out')
+  [string]$OutDir
 )
-$ErrorActionPreference = "Stop"
 
-$hub = Join-Path $PSScriptRoot '..\..\Israeli services sites\ops\webdav-deploy.ps1'
-if (-not (Test-Path $hub)) { throw "Shared deployer not found: $hub" }
+Write-Host ""
+Write-Host "  REFUSED - this deploy path was retired on 2026-08-02." -ForegroundColor Red
+Write-Host ""
+Write-Host "  gagoline.co.il is served by Cloudflare Pages (project 'gagoline'), not cPanel/WebDAV." -ForegroundColor Yellow
+Write-Host "  Uploading here changes nothing public - and reports success while doing it." -ForegroundColor Yellow
+Write-Host ""
+Write-Host "  Use the fleet Pages deployer instead. It drift-checks against the Cloudflare API" -ForegroundColor Cyan
+Write-Host "  first, so it REFUSES when the project does not serve the domain:" -ForegroundColor Cyan
+Write-Host ""
+Write-Host '    powershell -File "<hub>/ops/deploy-site.ps1" -Domain gagoline.co.il -DryRun' -ForegroundColor Green
+Write-Host '    powershell -File "<hub>/ops/deploy-site.ps1" -Domain gagoline.co.il -Confirm' -ForegroundColor Green
+Write-Host ""
 
-& $hub -Prefix GAGOLINE -OutDir $OutDir -SiteUrl 'https://gagoline.co.il' `
-  -DryRun:$DryRun -IncludeHtaccess:$IncludeHtaccess -PaceSeconds $PaceSeconds
+exit 1

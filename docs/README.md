@@ -1,6 +1,6 @@
 # docs/ — the map
 
-Eleven strategy documents, thirteen agents and seventeen skills govern this repo. This page is the
+Eleven strategy documents, fourteen agents and eighteen skills govern this repo. This page is the
 index none of them had: **which file owns which decision, and which agent enforces it.**
 
 Read [CLAUDE.md](../CLAUDE.md) first. It outranks everything here except where noted.
@@ -45,6 +45,7 @@ bug** — see §4.
 | Conversion, the lead form, CTA coverage                                      | skill `conversion-cro`                                                                                               | agent `conversion-auditor`                              |
 | WCAG 2.1 AA + IS 5568, contrast, focus, tap targets                          | skill `responsive-accessibility`                                                                                     | `scripts/contrast-check.mjs`, agent `perf-a11y-auditor` |
 | Core Web Vitals, fonts, images, bundle budget                                | skill `performance-web-vitals`                                                                                       | agent `perf-a11y-auditor`                               |
+| **May a picture exist here** — slots, aspect ratios, photo triage, alt text  | skill `page-imagery`                                                                                                 | agent `image-art-director`                              |
 | Security headers, CSP, form PII                                              | skill `web-security-headers`                                                                                         | agent `security-auditor`                                |
 | Hebrew, RTL, logical utilities, LTR islands                                  | skill `hebrew-rtl`                                                                                                   | agent `rtl-frontend-engineer`                           |
 | **Multilingual — adding English**                                            | [i18n-architecture.md](i18n-architecture.md)                                                                         | — (decision not yet taken)                              |

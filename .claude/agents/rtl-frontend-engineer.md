@@ -17,8 +17,15 @@ Tailwind **v4** (CSS-first `@theme` in `app/globals.css` — **there is no `tail
 `@/* -> ./*`.
 
 **`output: "export"` forbids** `headers()`, `redirects()`, `rewrites()`, middleware, API routes, server
-actions and ISR. Response headers come from **Apache** (`public/.htaccess`) or the Cloudflare edge —
-**not** `public/_headers`, which is a Cloudflare Pages feature and does nothing on this host.
+actions and ISR. Response headers come from **`public/_headers`** — this host **is** Cloudflare Pages
+(project `gagoline`, since 2026-08-02), so `public/*` is copied into `out/` and Pages applies the file
+on every deploy. It exists and ships today. `public/.htaccess` is gone: it was the mechanism of the
+retired cPanel host, and no Apache serves this site.
+
+**Measured limit:** `_headers` cannot override a header the Cloudflare **zone** injects. This zone sets
+HSTS, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy` and `Permissions-Policy`, so an
+`_headers` entry for any of those five is inert — changing them is owner action in the zone. CSP and
+`Cache-Control` are not zone-injected, so `_headers` genuinely controls those.
 
 Route slugs are **Latin ASCII** with Hebrew display names. There is no percent-encoding trap in the
 dynamic routes; `params.service` and `params.city` match directly against the config arrays. Don't

@@ -8,9 +8,13 @@ Center. Hebrew, RTL, mobile-first, conversion-focused.
 
 ## Stack
 
-Next.js 14 (App Router) · React 18 · TypeScript (strict) · Tailwind CSS v3 ·
-`framer-motion` · `lucide-react` · `clsx` + `tailwind-merge`. No CMS (static, MDX/code content).
-Hosting target: Vercel.
+Next.js 14 (App Router) · React 18 · TypeScript (strict) · Tailwind CSS v4 (CSS-first `@theme`,
+no config file) · `lucide-react` · `clsx` + `tailwind-merge` · `@ishub/site-kit`. No CMS (static,
+MDX/code content).
+
+**Hosting: Cloudflare Pages**, project `gagoline`, direct upload via wrangler through the hub's
+`ops/deploy-site.ps1 -Domain gagoline.co.il`. Pushing to `main` deploys nothing. See
+[`CLAUDE.md`](./CLAUDE.md) §10.
 
 ## Getting started
 
@@ -26,10 +30,13 @@ npm run dev                  # http://localhost:3000
 | ------------------- | ----------------------------------- |
 | `npm run dev`       | Dev server                          |
 | `npm run build`     | Production build                    |
-| `npm run start`     | Serve the production build          |
 | `npm run lint`      | ESLint (next/core-web-vitals)       |
 | `npm run typecheck` | `tsc --noEmit`                      |
 | `npm run format`    | Prettier (+ Tailwind class sorting) |
+
+> There is no "serve the production build" script. `output: "export"` means `next start` refuses to
+> run — preview what will be deployed with `npx serve out` after `npm run build`. The `start` script
+> is still in `package.json` and is a dead end.
 
 ## Project structure
 

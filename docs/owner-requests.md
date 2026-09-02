@@ -32,21 +32,37 @@ eight weeks to gather reviews before the season; one created in November has non
 
 _(business-facts §C)_
 
-### 2. Before/after photos — and a standing instruction to the crews
+### 2. More job photographs — and a standing instruction to the crews
 
-**What we need:** 6–10 before/after pairs to start, each tagged with the city, plus written customer
-permission. Then an ongoing habit: at the diagnosis visit, one wide shot of the roof and one detail shot
-of the stain; at completion, the same two shots from the same standing position. Three jobs a week fills
-a gallery in a fortnight.
+**Where this stands:** you sent ten photographs on 27/08. **Four are live** on `/gallery/` and on three
+of the eight service pages. Six could not be used — two were AI-generated (one carried an invented
+product name, "MEMBRANE PRO-SERIES"), one showed **another company's** branding, and three were stock
+photography. That is not a complaint about the batch; it is the reason we need pictures from your own
+jobs and nothing found online. Four is enough to open a gallery. It is not enough to give eight service
+pages and 23 city pages their own evidence.
 
-**Why:** the site currently has **zero images** — for a trade whose product _is_ the before/after. The
-gallery page today shows six empty placeholder boxes, which we are removing this week because an empty
-gallery is worse than no gallery. The same photos also feed the service pages and give each city page
-the local evidence it needs to rank rather than look like a template.
+**What we need next, in order of usefulness — five services still have no photograph at all:**
+
+1. **זיפות גגות** — the bitumen going on, mid-application.
+2. **איטום מרפסות** — a balcony deck stripped back, and the upstand where it meets the wall.
+3. **איטום קירות חיצוניים** — a wall face mid-treatment, ideally with the damp patch still visible.
+4. **סיוד והלבנת גגות** — a roof half white, half not. That single frame explains the whole service.
+5. **איטום מרתפים** — a basement wall or floor junction being sealed.
+
+**Then the ongoing habit:** at the diagnosis visit, one wide shot of the roof and one detail shot of the
+stain; at completion, the same two shots from the same standing position. Three jobs a week fills a
+gallery in a fortnight.
+
+**How to shoot them:** a phone is fine. **1600px on the long edge or better** — do not send a WhatsApp
+forward, which compresses. Keep faces, house numbers and number plates out of frame. **Detail beats a
+wide roof:** a wide shot looks like every other roof, while a drain, a pipe penetration, a chimney
+upstand, manufacturer stamping on the sheet or a lifted tile showing the sealing underneath shows what
+you actually did. Written customer permission for anything you want tagged with a city.
 
 Add one line to your quote sheet: _"מאשר/ת פרסום תמונות העבודה ללא פרטים מזהים"_.
 
-_(business-facts §A)_
+_(business-facts §A · the four published and the six rejected are recorded over `galleryImages` in
+`lib/content.ts`)_
 
 ### 3. The warranty document
 
