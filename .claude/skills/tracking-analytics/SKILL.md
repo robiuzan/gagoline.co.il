@@ -71,13 +71,17 @@ grep -rn 'href={telHref}\|whatsappHref(' components app | grep -v 'data-cta'
 
 ## GA4 and Search Console
 
-- **GA4 property** for gagoline.co.il: blocked on `docs/business-facts.md` §F. Once it exists, the
+- **GA4 property** for gagoline.co.il is **`G-22SPQY0188`** — it exists, and has all along (verified
+  live 2026-09-06). It is routed by the container's hostname table, so nothing in this repo loads it.
+  **What is actually missing is the event layer:** the container has zero GA4 event tags and zero click
+  triggers, and contains neither `lead_submit` nor `data-cta`. Page views record; conversions do not.
+  Historical note — the
   measurement id goes in the roster manifest and the container's hostname table.
 - Mark `lead_submit`, call clicks and WhatsApp clicks as **Key events** in GA4, or they won't appear as
   conversions.
-- **Search Console:** the verification token is emitted, but it is **hardcoded** at `app/layout.tsx:38`
-  instead of read from `manifest.analytics.googleSiteVerification` (backlog §2.7). Wire it to the
-  manifest, then submit `https://gagoline.co.il/sitemap.xml`.
+- **Search Console:** the token is read from `manifest.analytics.googleSiteVerification` at
+  `app/layout.tsx:61` as of 2026-08-31 (backlog §2.7 closed). Still to do: submit
+  `https://gagoline.co.il/sitemap.xml`.
 
 ## Verifying a deploy
 

@@ -10,19 +10,50 @@ that governs all of it.
 
 ## 1. Where measurement actually stands (2026-08-31)
 
-| Layer            | State                                                                                                       |
-| ---------------- | ----------------------------------------------------------------------------------------------------------- |
-| Container        | `GTM-KWGGH438` — the **shared Israeli-fleet container**. Every rule must be hostname-scoped                 |
-| Placement        | Renders in `<body>`, not `<head>` — backlog §13.1, still open                                               |
-| CTA coverage     | 17 distinct `data-cta` values, `{location}-{action}` convention. Plus `thankyou-call` / `thankyou-whatsapp` |
-| Events           | `lead_submit` on confirmed Web3Forms success only                                                           |
-| URL conversion   | `/thank-you/` — shipped 2026-08-31, `noindex, follow`, reached by a full navigation                         |
-| **GA4 property** | **🔶 Does not demonstrably exist for this domain.** business-facts.md §F                                    |
-| Search Console   | Token emitted but hardcoded at `app/layout.tsx:38` instead of read from the manifest — backlog §2.7         |
-| Consent          | None. No banner, no consent mode                                                                            |
-| CRM              | None. Leads land in an inbox via Web3Forms                                                                  |
+| Layer            | State                                                                                                         |
+| ---------------- | ------------------------------------------------------------------------------------------------------------- |
+| Container        | `GTM-KWGGH438` — the **shared Israeli-fleet container**. Every rule must be hostname-scoped                   |
+| Placement        | Renders in `<body>`, not `<head>` — backlog §13.1, still open                                                 |
+| CTA coverage     | 17 distinct `data-cta` values, `{location}-{action}` convention. Plus `thankyou-call` / `thankyou-whatsapp`   |
+| Events           | `lead_submit` on confirmed Web3Forms success only                                                             |
+| URL conversion   | `/thank-you/` — shipped 2026-08-31, `noindex, follow`, reached by a full navigation                           |
+| **GA4 property** | ✅ **`G-22SPQY0188`** — exists and is routed by hostname in the shared container. Verified live 2026-09-06    |
+| Search Console   | Token read from the manifest at `app/layout.tsx:61` since 2026-08-31 (§2.7 closed). Sitemap still unsubmitted |
+| Consent          | None. No banner, no consent mode                                                                              |
+| CRM              | None. Leads land in an inbox via Web3Forms                                                                    |
 
-> **The single blocking fact: nothing in this repo proves a GA4 property exists for gagoline.co.il.**
+> **CORRECTED 2026-09-06 — this section had it backwards.** It read: "the single blocking fact: nothing
+> in this repo proves a GA4 property exists." Nothing in the repo ever could: the property is configured
+> in the container, and the live container's hostname Lookup Table maps `(^|\.)gagoline\.co\.il# Measurement architecture
+
+Container mechanics, the `data-cta` inventory, event names and the deploy verification steps live in
+the `tracking-analytics` skill. **This file covers what that skill does not:** the dataLayer contract
+as a stable interface, the double-count risk introduced by `/thank-you/`, whether server-side tagging
+is justified here, how a CRM attaches without touching the critical path, and the performance budget
+that governs all of it.
+
+---
+
+## 1. Where measurement actually stands (2026-08-31)
+
+| Layer            | State                                                                                                         |
+| ---------------- | ------------------------------------------------------------------------------------------------------------- |
+| Container        | `GTM-KWGGH438` — the **shared Israeli-fleet container**. Every rule must be hostname-scoped                   |
+| Placement        | Renders in `<body>`, not `<head>` — backlog §13.1, still open                                                 |
+| CTA coverage     | 17 distinct `data-cta` values, `{location}-{action}` convention. Plus `thankyou-call` / `thankyou-whatsapp`   |
+| Events           | `lead_submit` on confirmed Web3Forms success only                                                             |
+| URL conversion   | `/thank-you/` — shipped 2026-08-31, `noindex, follow`, reached by a full navigation                           |
+| **GA4 property** | ✅ **`G-22SPQY0188`** — exists and is routed by hostname in the shared container. Verified live 2026-09-06    |
+| Search Console   | Token read from the manifest at `app/layout.tsx:61` since 2026-08-31 (§2.7 closed). Sitemap still unsubmitted |
+| Consent          | None. No banner, no consent mode                                                                              |
+| CRM              | None. Leads land in an inbox via Web3Forms                                                                    |
+
+-> **`G-22SPQY0188`**, and `gtag/js?id=G-22SPQY0188` returns a real configured payload (519 KB vs 428 KB for a bogus-ID control).
+
+> **The real blocking fact is narrower and worse.** The container fires page views and nothing else —
+> it holds no GA4 event tags and no click triggers, and contains neither the string `lead_submit` nor
+> `data-cta`. So `/thank-you/` page views ARE recorded, and the `lead_submit` push from `LeadForm` goes
+> nowhere. Conversions are unmeasured, not unrouted.
 > Every event described below currently pushes into a container that may have nowhere to send it.
 > Resolve business-facts.md §F before building anything further. Measurement work done above a missing
 > property produces confident-looking dashboards of nothing.
@@ -90,8 +121,8 @@ It is infrastructure, not a code change, and CLAUDE.md §12 puts zone and DNS de
 
 **The test to apply before proposing it:**
 
-1. Does a GA4 property exist? _No._ → stop here. Server-side tagging routes data to a destination that
-   does not exist.
+1. Does a GA4 property exist? **Yes — `G-22SPQY0188`.** But it currently receives only page views, so
+   there is still no event baseline for server-side tagging to improve on.
 2. Is client-side tag loss measurably hurting decisions? Unknown — there is no baseline.
 3. Is volume high enough that the difference changes an action? A single-location service business in
    the pre-season period is unlikely to clear this.
