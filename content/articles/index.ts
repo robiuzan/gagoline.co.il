@@ -17,8 +17,10 @@ import { article as howLongRoofSealingLasts } from "./how-long-roof-sealing-last
 import { article as sealTiledRoofWithoutLifting } from "./seal-tiled-roof-without-lifting";
 import { article as roofSealingBeforeWinter } from "./roof-sealing-before-winter";
 import { article as dampWallOrRoof } from "./damp-wall-or-roof";
+import { article as roofSealingCostByRoofType } from "./roof-sealing-cost-by-roof-type";
 
 export const articles: readonly Article[] = [
+  roofSealingCostByRoofType,
   findRoofLeakSource,
   whyRoofSealingFailed,
   roofSealingBeforeWinter,
