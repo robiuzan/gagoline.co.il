@@ -51,6 +51,32 @@ function body(): string {
     )
     .join("\n");
 
+  /**
+   * The hub and legal pages (added 2026-09-17). Verified against the live file: llms.txt listed 41
+   * of the site's 51 routes — every service, city and article, but NONE of the top-level pages.
+   * /pricing/ and /faq/ are among the strongest answer surfaces on the site, and an answer engine
+   * reading this file had no idea they existed.
+   *
+   * Hand-listed rather than derived, unlike the three sections above. There are ten of them, they
+   * change about once a year, and each needs a one-line description that cannot be generated from a
+   * slug. ADDING A NEW TOP-LEVEL ROUTE MEANS ADDING IT HERE — the parts that actually grow
+   * (services, cities, articles) stay derived, so the drift risk is bounded to this list.
+   */
+  const hubLines = [
+    ["/pricing/", "מה קובע את מחיר איטום הגג, ומה חייבת לכלול הצעת מחיר כתובה"],
+    ["/faq/", "שאלות ותשובות על איטום גגות, נזילות ורטיבות"],
+    ["/services/", "כל שירותי האיטום, עם הסבר מתי כל שיטה מתאימה"],
+    ["/areas/", "אזורי השירות וערים שבהן אנחנו עובדים"],
+    ["/blog/", "מדריכים מפורטים על גגות, נזילות ואיטום"],
+    ["/gallery/", "תמונות מעבודות איטום שביצענו"],
+    ["/about/", "מי אנחנו ואיך אנחנו עובדים"],
+    ["/contact/", "דרכי יצירת קשר וטופס פנייה"],
+    ["/accessibility/", "הצהרת נגישות לפי ת״י 5568"],
+    ["/privacy/", "מדיניות פרטיות"],
+  ]
+    .map(([path, desc]) => `- [${path}](${base}${path}): ${desc}`)
+    .join("\n");
+
   return `# ${siteConfig.name} (${siteConfig.nameEn})
 
 > ${siteConfig.tagline}. עסק ישראלי לאיטום גגות הפועל מאז ${siteConfig.founded} ב${siteConfig.serviceArea}. השיטה היא אבחון לפני איטום: קודם מאתרים מאיפה המים נכנסים, ורק אחר כך בוחרים חומר ושיטה. הצעת המחיר ניתנת בכתב לאחר ביקור בשטח, ועם אחריות בכתב.
@@ -74,6 +100,10 @@ ${cityLines}
 ## מדריכים
 
 ${articleLines}
+
+## עמודים נוספים
+
+${hubLines}
 
 ## יצירת קשר
 

@@ -45,6 +45,18 @@ export function LeadForm({ className }: { className?: string }) {
     setErrors((prev) => (prev[field] ? { ...prev, [field]: undefined } : prev));
   }
 
+  /**
+   * The WhatsApp rescue path, plus the event that makes it visible.
+   *
+   * Deliberately NOT detecting a blocked popup: `window.open(url, "_blank", "noopener")` returns
+   * `null` even on success, because `noopener` severs the handle by spec. A "popup_blocked" signal
+   * derived from that return value would fire on every successful open. Do not add one.
+   */
+  function fallbackToWhatsapp(form: HTMLFormElement, phone: string, reason: string) {
+    trackEvent("lead_fallback", { form: "lead", reason });
+    window.open(buildWhatsapp(form, phone), "_blank", "noopener");
+  }
+
   function buildWhatsapp(form: HTMLFormElement, phone: string): string {
     const d = new FormData(form);
     const text = [
@@ -63,7 +75,12 @@ export function LeadForm({ className }: { className?: string }) {
     const form = e.currentTarget;
     const data = new FormData(form);
 
-    if ((data.get("company") as string)?.length) return; // honeypot
+    if ((data.get("company") as string)?.length) {
+      // Honeypot. Low volume by design, but reporting it is what turns "the honeypot exists" into
+      // "the honeypot caught N this month" — and a sudden spike is the first sign of a bot wave.
+      trackEvent("lead_submit_blocked", { form: "lead", reason: "honeypot" });
+      return;
+    }
 
     const name = ((data.get("name") as string) ?? "").trim();
     const rawPhone = ((data.get("phone") as string) ?? "").trim();
@@ -79,6 +96,20 @@ export function LeadForm({ className }: { className?: string }) {
       else if (!phone) nextErrors.phone = leadFormContent.errors.phoneInvalid;
       setErrors(nextErrors);
       setSendError(null);
+      /**
+       * ONE event per attempt, naming the FIRST offender — the same field focus moves to below.
+       * Firing one event per invalid field would count a single abandoned attempt twice and make
+       * the drop-off look worse than it is.
+       *
+       * `field` is the field's NAME, never its value: "phone", never what the visitor typed. No PII
+       * in dataLayer (CLAUDE.md §12). That rule is why this is worth having at all — it tells you
+       * WHICH field loses people without collecting anything about the person.
+       */
+      trackEvent("form_error", {
+        form: "lead",
+        field: nextErrors.name ? "name" : "phone",
+        reason: nextErrors.name || !rawPhone ? "missing" : "invalid",
+      });
       // Focus the FIRST offender in DOM order, so a keyboard or screen-reader user lands on the
       // field they have to fix instead of hearing an alert with no way back to it.
       (nextErrors.name ? nameRef : phoneRef).current?.focus();
@@ -103,7 +134,10 @@ export function LeadForm({ className }: { className?: string }) {
       }
       setStatus("error");
       setSendError(leadFormContent.errors.send);
-      window.open(buildWhatsapp(form, phone), "_blank", "noopener");
+      // A production build with no access key is a misconfiguration, not a network failure. Giving
+      // it its own reason keeps a deploy mistake from hiding inside the ordinary send-failure count.
+      trackEvent("lead_submit_failed", { form: "lead", reason: "no_access_key" });
+      fallbackToWhatsapp(form, phone, "no_access_key");
       return;
     }
 
@@ -137,7 +171,11 @@ export function LeadForm({ className }: { className?: string }) {
       // Fall back to WhatsApp so the lead is never lost.
       setStatus("error");
       setSendError(leadFormContent.errors.send);
-      window.open(buildWhatsapp(form, phone), "_blank", "noopener");
+      // Two events, because they are two different facts: the send failed (cause), and the visitor
+      // was handed a rescue route (outcome). Summing them would double-count one incident, but
+      // keeping only one of them loses either the failure rate or the recovery rate.
+      trackEvent("lead_submit_failed", { form: "lead", reason: "send_failed" });
+      fallbackToWhatsapp(form, phone, "send_failed");
     }
   }
 

@@ -13,15 +13,20 @@ import { Button } from "@/components/ui/Button";
  * water coming through a ceiling. Sending them back to the homepage to restart the navigation is
  * the expensive option; the four most likely destinations and a click-to-call are the cheap one.
  *
- * `noindex, follow` is the correct pair. A 404 must never be indexed, but its links should still
- * pass — this page is reachable from any broken inbound link on the web, and follow keeps that
- * equity moving into the service pages instead of dead-ending.
+ * NO `robots` KEY HERE, deliberately (corrected 2026-09-17). Next.js emits its own
+ * `<meta name="robots" content="noindex">` for not-found, so declaring `robots` as well shipped
+ * TWO robots tags on the same page. They agreed, so nothing was mis-indexed — but two directives
+ * where one belongs is the kind of thing that reads as a bug to whoever audits it next.
+ *
+ * Dropping the key loses nothing: `follow` is the default when it is unstated, so Next's bare
+ * `noindex` is equivalent in effect to the `noindex, follow` this used to declare. The page stays
+ * out of the index while its links keep passing equity into the service pages instead of
+ * dead-ending — which matters, because a 404 is reachable from any stale inbound link on the web.
  */
 export const metadata: Metadata = {
   title: notFoundContent.title,
   description:
     "הדף המבוקש לא נמצא באתר גגוליין. כאן אפשר למצוא את השירותים ואת דרכי ההתקשרות.",
-  robots: { index: false, follow: true },
 };
 
 /** The four a lost visitor is most likely to have wanted, by search intent rather than array order. */

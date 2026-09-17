@@ -28,6 +28,10 @@
   Permissions-Policy: geolocation=(), microphone=(), camera=()
   Strict-Transport-Security: max-age=15552000
 
+  # Applies to every route, which is the point — see the note further down about the /*.html glob
+  # that did not. /_next/static/* overrides this for hashed assets.
+  Cache-Control: public, max-age=0, s-maxage=3600, must-revalidate
+
   # REPORT-ONLY, and it must stay that way until violations have been observed on the live site.
   # The blocker for enforcement is the inline GTM snippet: a static export cannot mint a
   # per-request nonce, so enforcing needs either 'unsafe-inline' or a hash allowlist regenerated
@@ -41,11 +45,20 @@
 /_next/static/*
   Cache-Control: public, max-age=31536000, immutable
 
-# HTML measured `cf-cache-status: DYNAMIC` — every request reached the origin despite this being a
-# static export that only changes at deploy time. s-maxage lets the edge hold it while browsers
-# revalidate, so a deploy is never masked by a stale page.
-/*.html
-  Cache-Control: public, max-age=0, s-maxage=3600, must-revalidate
-
-/
-  Cache-Control: public, max-age=0, s-maxage=3600, must-revalidate
+# CORRECTED 2026-09-17. The rule here was `/*.html`, and it matched NOTHING.
+#
+# next.config.mjs sets `trailingSlash: true`, so every live HTML address is directory-style —
+# /pricing/, /services/roof-sealing/, /blog/<slug>/ — and contains no ".html" for the glob to hit.
+# Measured on the live site: 42 of 43 indexed routes fell through to the Pages default, and only
+# "/" carried the intended value, because "/" had its own explicit rule below it. The header that
+# was supposed to cover the whole site covered exactly one page for eleven days.
+#
+# The Cache-Control now lives in the /* block at the top of this file, which does match every
+# route. /_next/static/* appears AFTER it and overrides it for hashed assets — later rules win.
+#
+# ⚠️ AND IT STILL BUYS NOTHING TODAY, which is the more useful half of this note. Even on "/",
+# where the header WAS being served correctly all along, repeated requests kept returning
+# `cf-cache-status: DYNAMIC`: Cloudflare Pages does not honour s-maxage for HTML without an
+# explicit Cache Rule at the zone. Fixing the glob makes this file honest; it does not make the
+# edge cache anything. To actually get edge caching, add a Cache Rule in the dashboard — that is
+# an owner action, like the other zone settings (CLAUDE.md §12).
