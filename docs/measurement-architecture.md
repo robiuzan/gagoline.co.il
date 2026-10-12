@@ -83,6 +83,26 @@ across the fleet; a renamed event silently breaks tags this repo cannot see.
    events but must never be summed with `lead_submit` into a single "leads" number.
 5. Hostname-scope every trigger and tag. An unscoped rule fires on eight other fleet sites.
 
+**The live surfaces' two events (fleet live-kit, CLAUDE.md §13).** `/assets/live.js` pushes them when
+the seasonal card opens and when it closes — the line's id and how it closed, nothing about the person:
+
+```js
+{ event: "surface_view", surface: "dialog", variant: "after-rains" }
+{ event: "surface_dismiss", surface: "dialog", variant: "after-rains", method: "button" }
+// method: "button" | "backdrop" | "action" (a link in the card) | "esc" | "expired"
+```
+
+**One shared GTM trigger for the whole fleet — owner decision 2026-10-12** (fleet wording sign-off
+page), not one per site: `CE - popup events (3locksmiths)` in `GTM-KWGGH438`, its hostname condition
+widened to every fleet site. That is still hostname-scoped (rule 5): the condition lists the fleet's
+hostnames, and the container's `GA4 Measurement ID` lookup sends each event to its own site's
+property — which is why the events carry no `site` parameter. The edit is a container change,
+outside this repo; until it is made, the events are pushed and nothing counts them. The GA4
+property needs the custom dimensions `surface`, `variant`, `method` and `cta_id` (the live-kit
+README). The bar's, the card's and the strip's links carry their own `data-cta` values:
+`topbar-call`, `topbar-whatsapp`, `topbar-link`, `popup-call`, `popup-whatsapp`, `popup-link`,
+`update-link`.
+
 ---
 
 ## 3. `/thank-you/` — two signals, one conversion
