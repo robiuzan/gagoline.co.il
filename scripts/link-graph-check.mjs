@@ -145,10 +145,14 @@ if (shallow.length) {
 //
 // A route with zero contextual inbound links is reachable but unrelated: nothing on the site says
 // why it exists. That is what "orphan" means once a footer guarantees everything is reachable.
+// The fleet live-kit's surfaces are sitewide chrome too: the announcement bar and the seasonal
+// cards are on every page (hidden until their season), so their links are boilerplate, not context.
 const stripChrome = (html) =>
   html
     .replace(/<header[\s\S]*?<\/header>/gi, " ")
-    .replace(/<footer[\s\S]*?<\/footer>/gi, " ");
+    .replace(/<footer[\s\S]*?<\/footer>/gi, " ")
+    .replace(/<div class="live-topbar"[\s\S]*?<\/div><\/div>/gi, " ")
+    .replace(/<div class="live-dialogs"[\s\S]*?<\/dialog><\/div>/gi, " ");
 
 const contextual = new Map([...routes].map((r) => [r, new Set()]));
 for (const p of all) {

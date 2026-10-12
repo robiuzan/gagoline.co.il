@@ -1,0 +1,48 @@
+name: Weekly reminder
+
+# Fleet live-kit (CLAUDE.md §13). Reads PRODUCTION once a week and pushes a message to the
+# owner's phone (ntfy) ONLY when THIS site needs something: the fleet status switch unreadable
+# from gagoline's own origin (or no CORS header for it), the homepage not answering, deploy drift
+# (production lacks the repo's schedule, calm pages, live.js or updates strip), an updates strip
+# 21+ days old or missing (it hides itself at 45), a pre-written runway of seasonal lines ending
+# within 30 days. An all-good week is printed in the run log and pushes nothing. What is the same
+# for every fleet site — the switch's mode, quiet days and chag in the coming week, the
+# calendar's horizon — is printed here only and pushed once for the whole fleet, by the
+# 3locksmiths reminder. scripts/live/check-reminders.mjs (a byte-locked kit copy) says what each
+# line means.
+#
+# It never builds, never deploys and never writes — deploys stay human-only (CLAUDE.md §10;
+# owner decision 5 of the 3locksmiths dynamic-presence plan). The one secret is the ntfy topic
+# (NTFY_TOPIC; optional NTFY_SERVER), the same topic as 3locksmiths, set by the owner:
+#   gh secret set NTFY_TOPIC -R robiuzan/gagoline.co.il
+# Without NTFY_TOPIC the run prints the message and FAILS RED on GitHub on purpose (the script
+# exits 1 when CI is set): an owner who silently gets nothing is the failure this exists to stop.
+#
+# GitHub runs a schedule only from the DEFAULT branch (main): this file does nothing until it is
+# merged there.
+#
+# GitHub pauses scheduled workflows in a repository with no commits for 60 days; it emails the
+# owner first. Any push re-arms it — or run it by hand from the Actions tab.
+
+on:
+  schedule:
+    - cron: "0 5 * * 0" # Sunday 08:00 Israel summer time / 07:00 winter
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Read production and push the weekly message
+        run: node scripts/live/check-reminders.mjs
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          NTFY_SERVER: ${{ secrets.NTFY_SERVER }}

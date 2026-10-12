@@ -288,3 +288,30 @@ Because Cloudflare proxies the zone, several things are true and easy to forget 
 - Don't put PII in `dataLayer`.
 - Cloudflare zone settings (AI crawler policy, Scrape Shield, cache rules) and cPanel configuration are
   **the owner's to change**. Document the exact toggle; never assume it was done.
+
+## 13. Live surfaces — the announcement bar, the seasonal card, the updates strip
+
+Fleet live-kit (owner decision 2026-10-11; canonical in
+`../3locksmiths.co.il/fleet/live-kit/`, see its README). Every page carries a thin announcement
+bar above the header (not sticky) whose line is chosen before first paint by the Israeli calendar
+— memorial days and fasts silence it, Shabbat and chag silence the seasonal lines — and by the
+fleet status switch (`https://imgquarry.com/status/fleet.json`: quiet / reduced / off). One
+seasonal card (a native `<dialog>`, the pilot's rules: 2nd page or 20 s + scroll, never from
+search, once per 14 days, never on calm or no-card pages, never over the open mobile menu). The
+homepage shows an updates strip after the answer block; it hides itself 45 days after the
+newest item.
+
+- **Edit here:** `content/live/_campaigns.mjs` (lines, windows, the card) and
+  `content/live/_updates.mjs` — wording only from sentences the site already shows, each quoted
+  in `source`; nothing 🔶. Calm / no-card pages and this site's own ⛔ claim stems:
+  `live.config.mjs`. Both registers need the owner's `approved: "YYYY-MM-DD — who, how"`, or the
+  build fails (`LIVE_DRAFT=1 npm run build` previews a draft locally only).
+- **Never edit:** `lib/live/**`, `scripts/live/**`, `public/assets/live.js`,
+  `content/live/_calendar*.json`, `live-kit.lock.json` — byte-locked kit copies;
+  `scripts/live/check-live-copy.mjs` fails the build if they change. Fix the kit upstream and
+  re-sync.
+- **Gates:** `prebuild` = check-live-copy → check-live-register → check-live-schedule;
+  `postbuild` = font-preload → check-live-out (the built pages must carry exactly what the
+  registers say). `links:check` strips the live regions as chrome.
+- **Popups:** gagoline had no written rule against them; the card is the owner's 2026-10-11
+  fleet decision and never stacks a second sticky surface (it is modal and short-lived).

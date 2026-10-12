@@ -40,6 +40,9 @@ export default function NotFound() {
 
   return (
     <Section tone="white">
+      {/* Fleet live-kit: this page answers every unknown URL, so no path can mark it calm — it marks
+          itself: no seasonal line, no card (lib/live/live-core.css, public/assets/live.js). */}
+      <div data-live-calm-page hidden />
       <div className="mx-auto max-w-2xl">
         <p className="font-heading text-5xl font-extrabold text-gray-200" aria-hidden>
           404

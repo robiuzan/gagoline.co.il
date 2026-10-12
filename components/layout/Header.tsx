@@ -140,6 +140,8 @@ export function Header() {
         id={MENU_ID}
         ref={panelRef}
         className={cn("border-t border-gray-100 lg:hidden", open ? "block" : "hidden")}
+        // While the menu is open the seasonal card (public/assets/live.js) never opens over it.
+        data-live-block={open ? "" : undefined}
       >
         <Container className="py-4">
           <nav aria-label="ראשי נייד">

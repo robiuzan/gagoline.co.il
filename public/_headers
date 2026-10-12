@@ -35,7 +35,7 @@
   #
   # Origins are the ones actually referenced by the build, not a template: GTM, the Web3Forms
   # endpoint the lead form POSTs to, the WhatsApp handoff, and the shared imgquarry media host.
-  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://imgquarry.com https://www.googletagmanager.com https://www.google-analytics.com; font-src 'self' data:; connect-src 'self' https://api.web3forms.com https://www.google-analytics.com https://www.googletagmanager.com; form-action 'self' https://api.web3forms.com; frame-src https://www.googletagmanager.com; frame-ancestors 'self'; base-uri 'self'; object-src 'none'
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://imgquarry.com https://www.googletagmanager.com https://www.google-analytics.com; font-src 'self' data:; connect-src 'self' https://api.web3forms.com https://www.google-analytics.com https://www.googletagmanager.com https://imgquarry.com; form-action 'self' https://api.web3forms.com; frame-src https://www.googletagmanager.com; frame-ancestors 'self'; base-uri 'self'; object-src 'none'
 
 # Content-addressed: the filename changes whenever the bytes do, so this is safe forever.
 /_next/static/*

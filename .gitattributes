@@ -12,3 +12,10 @@
 *.woff binary
 *.woff2 binary
 *.pdf binary
+
+# fleet live-kit copies are byte-locked: never let a checkout rewrite their line endings
+lib/live/** text eol=lf
+scripts/live/** text eol=lf
+content/live/_calendar*.json text eol=lf
+public/assets/live.js text eol=lf
+live-kit.lock.json text eol=lf

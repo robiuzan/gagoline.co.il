@@ -134,3 +134,50 @@
     unicode-bidi: isolate;
   }
 }
+
+/*
+ * Fleet live-kit theme (lib/live/live-core.css owns the behaviour; these are the colours only).
+ * The bar and the card's call button are the brand navy with white text (13.8:1); WhatsApp keeps
+ * the fleet's dark green (white 7.7:1); links #166fa3 are 5.5:1 on white, 4.9:1 on the strip.
+ *
+ * --live-sticky-offset: the sticky call bar (components/layout/MobileCtaBar.tsx) is 53px tall
+ * with its 1px top border — measured at 390, 1000 and 1023px wide, 2026-10-12 — plus 16px, so the
+ * card's bottom sheet stops 16px above it.
+ */
+:root {
+  --live-bar-bg: #0e2e4e;
+  --live-bar-ink: #ffffff;
+  --live-ink: #0e2e4e;
+  --live-accent: #166fa3;
+  --live-soft-bg: #e8f4fb;
+  --live-call-bg: #0e2e4e;
+  --live-wa-bg: #075e54;
+  --live-max: 72rem;
+  --live-sticky-offset: 69px;
+}
+
+/*
+ * gagoline's mobile layout — and its sticky call bar — runs to 1023px (Tailwind lg = 1024px), the
+ * live-kit's phone rules to 991.98px. In the band between them the bar follows the PHONE rule: open
+ * only while a seasonal, safety or wartime line is live — closed on an evergreen day, with
+ * JavaScript off, on the path-marked calm pages and on the 404 (it marks itself with
+ * [data-live-calm-page]) — and the card is the phone's bottom sheet above the call bar.
+ * Unlayered on purpose: live-core.css is unlayered and loads after this file, and the `html`
+ * prefix is what out-specifies it (review, 2026-10-11).
+ */
+@media (min-width: 992px) and (max-width: 1023.98px) {
+  html:not([data-live]) .live-topbar,
+  html[data-live="evergreen"] .live-topbar,
+  html[data-live-calm]:not([data-live^="safety-"]):not([data-live="reduced"])
+    .live-topbar,
+  html:has([data-live-calm-page]):not([data-live^="safety-"]):not([data-live="reduced"])
+    .live-topbar {
+    display: none;
+  }
+  html .live-dialog {
+    margin: auto auto calc(var(--live-sticky-offset, 69px) + env(safe-area-inset-bottom));
+    max-height: calc(
+      100% - var(--live-sticky-offset, 69px) - env(safe-area-inset-bottom) - 16px
+    );
+  }
+}

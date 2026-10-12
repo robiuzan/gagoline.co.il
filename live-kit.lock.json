@@ -1,0 +1,26 @@
+{
+  "about": "Fleet live-kit copies, installed by 3locksmiths.co.il/fleet/live-kit/sync.mjs — never edit them here; scripts/live/check-live-copy.mjs fails the build if you do.",
+  "source": {
+    "repo": "3locksmiths.co.il",
+    "commit": "cf3a5460aa8b3581a07a5eb2be7d268ba116d010",
+    "date": "2026-10-12"
+  },
+  "files": {
+    "lib/live/resolve.mjs": "a3a11bb21199854f48d93e82cba33ef7c3b19391fd5c46e96f842d1fea98719b",
+    "lib/live/compile.mjs": "249264f4c65fca1a852b08a01e702aa04d4cdb13d719cd3a26054dfc6bf97da9",
+    "lib/live/head-script.mjs": "3b659cd1bc6a776a2a0e6fcabbfe3ea828850e778791ca5549b7b015e7cde1bd",
+    "lib/live/topbar.mjs": "1d3b85c8dbaf49cd4408216ef501031799b95610e650025bd91adb409e6fc450",
+    "lib/live/israel-time.mjs": "1489174f8a4ad17b073d0d13345c033a0de1e967bd9b11a081c263597c837b9c",
+    "lib/live/claims.mjs": "cc39c75a9a49827b8d6e6849311cdb05c4af240a49522675614792cd015513c3",
+    "lib/live/render.mjs": "c0fa14d2c1bd491f4cd3c4a66ee04b927fdf45e00494b731d3c2b7dfed0a788c",
+    "lib/live/live-core.css": "f5a113a423757d60d036f46d23d149bffb34763f1bca58a1df74354cc42b01e0",
+    "public/assets/live.js": "01f5b9c665243320cccaf964533b9d421a1a25bde5e92f7a2f711356e7b55db6",
+    "content/live/_calendar.json": "5b58e5fb2a1b68eacc55e7cbbbe2397ad33c7767253628d4caff8b22aa6d9edd",
+    "content/live/_calendar.overlay.json": "ffd2c3c891299f96bbb15c745457ad9964a8d0d0438353d439d661c6eb9ff4ed",
+    "scripts/live/check-live-copy.mjs": "c8568259fa58b2f4141faf7719478904ea6093253f51a303fb624f0fa8683402",
+    "scripts/live/check-live-register.mjs": "8fd2ef39f6d05dab1078708f60171b33001eb4c89a68f7fb98a8492ca93d337d",
+    "scripts/live/check-live-out.mjs": "ddf6010f9c9ab4142bebc97876f479844cbf7f970bd2887193d49f461c4bd4b4",
+    "scripts/live/check-live-schedule.mjs": "4f3b84016d6cc83cf3dad62a82dfcf77e8801e6d384ca1805785e4a618c5ac85",
+    "scripts/live/check-reminders.mjs": "2437c0f6e4a95eabaa0b55a435c3e4854c8797cfce6e306f4ea73f97d1c72c8c"
+  }
+}

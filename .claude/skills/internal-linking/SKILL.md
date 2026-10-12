@@ -106,8 +106,12 @@ exists.
 ```bash
 # every emitted route
 find out -name index.html | sed 's|^out||; s|index.html$||' | sort > /tmp/routes.txt
-# every internally linked href
-grep -rho 'href="/[^"]*"' out --include=index.html | sed 's|href="||; s|"$||' | sort -u > /tmp/linked.txt
+# every internally linked href — the live bar and cards stripped first: they are sitewide chrome
+# on every page (CLAUDE.md §13), and their links would mask an orphan (links:check strips them
+# from its contextual check too)
+find out -name index.html -print0 \
+  | xargs -0 perl -0777 -ne 's/<div class="live-topbar".*?<\/div><\/div>//gs; s/<div class="live-dialogs".*?<\/dialog><\/div>//gs; print' \
+  | grep -o 'href="/[^"]*"' | sed 's|href="||; s|"$||' | sort -u > /tmp/linked.txt
 comm -23 /tmp/routes.txt /tmp/linked.txt
 ```
 

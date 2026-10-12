@@ -13,6 +13,7 @@ import { Process } from "@/components/marketing/Process";
 import { PricingTeaser } from "@/components/marketing/PricingTeaser";
 import { ServiceAreas } from "@/components/marketing/ServiceAreas";
 import { Faq } from "@/components/marketing/Faq";
+import { LiveUpdates } from "@/components/live/Live";
 import { FinalCta } from "@/components/marketing/FinalCta";
 
 /**
@@ -56,6 +57,9 @@ export default function HomePage() {
           </div>
         </Container>
       </section>
+
+      {/* The updates strip (fleet live-kit): after the answer block, never between it and the trust bar. */}
+      <LiveUpdates />
 
       <ServicesGrid />
       <WhyUs />

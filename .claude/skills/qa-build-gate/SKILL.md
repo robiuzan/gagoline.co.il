@@ -114,7 +114,13 @@ unlike the Hebrew-slug fleet sites no URL-decoding step is needed.
 ## 9. Orphans
 
 ```bash
-grep -rho 'href="/[^"]*"' out --include=index.html | sed 's|href="||; s|"$||' | sort -u > /tmp/linked.txt
+# The live surfaces (CLAUDE.md §13) are sitewide chrome: the announcement bar and the seasonal
+# cards sit on every page, hidden until their season, so their links are boilerplate, not context.
+# Strip both regions before collecting links (links:check strips them from its contextual check
+# too), or a seasonal line would mask a real orphan.
+find out -name index.html -print0 \
+  | xargs -0 perl -0777 -ne 's/<div class="live-topbar".*?<\/div><\/div>//gs; s/<div class="live-dialogs".*?<\/dialog><\/div>//gs; print' \
+  | grep -o 'href="/[^"]*"' | sed 's|href="||; s|"$||' | sort -u > /tmp/linked.txt
 comm -23 /tmp/emitted.txt /tmp/linked.txt
 ```
 

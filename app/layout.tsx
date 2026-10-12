@@ -8,6 +8,8 @@ import { MobileCtaBar } from "@/components/layout/MobileCtaBar";
 import { gtmHeadSnippet, gtmNoScriptSrc } from "@ishub/site-kit/analytics";
 import { localBusinessJsonLd, jsonLdScript } from "@ishub/site-kit/seo";
 import "./globals.css";
+import "@/lib/live/live-core.css";
+import { LiveDialogs, LiveHead, LiveTopBar } from "@/components/live/Live";
 
 // Body font — Heebo (clean, legible Hebrew). Heading font — Rubik (modern Hebrew).
 // Exposed as CSS variables consumed by tailwind.config.ts (font-sans / font-heading).
@@ -100,8 +102,16 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="he" dir="rtl" className={`${heebo.variable} ${rubik.variable}`}>
+    <html
+      lang="he"
+      dir="rtl"
+      className={`${heebo.variable} ${rubik.variable}`}
+      // the live head script sets data-live* on <html> before hydration
+      suppressHydrationWarning
+    >
       <head>
+        {/* The live surfaces decide the line before first paint — first in <head>. */}
+        <LiveHead />
         {manifest.images?.mediaHost && (
           <link
             rel="preconnect"
@@ -136,12 +146,14 @@ export default function RootLayout({
             />
           </noscript>
         )}
+        <LiveTopBar />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
         {/* Spacer so the fixed mobile CTA bar never overlaps footer content. */}
         <div className="h-16 lg:hidden" aria-hidden />
         <MobileCtaBar />
+        <LiveDialogs />
       </body>
     </html>
   );

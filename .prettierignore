@@ -7,3 +7,10 @@ package-lock.json
 pnpm-lock.yaml
 yarn.lock
 out.prev
+
+# fleet live-kit copies (byte-locked)
+lib/live/
+scripts/live/
+content/live/_calendar*.json
+public/assets/live.js
+live-kit.lock.json
