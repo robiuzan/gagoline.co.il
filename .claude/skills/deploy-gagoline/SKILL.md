@@ -124,14 +124,17 @@ Two propagation notes, both observed on 2026-08-17:
 
 ## Rollback
 
-`out.prev/` holds the previous export:
+`out.prev/` holds the previous export. Carry the archived chunks into it first, so the rollback keeps
+the files of the build it rolls back from (Google may already have crawled its HTML):
 
 ```powershell
+node scripts/keep-previous-assets.mjs --into out.prev
 npx wrangler pages deploy .\out.prev --project-name gagoline --branch main
 ```
 
 Cloudflare Pages also keeps prior deployments in its dashboard and can roll back there, which is often
-faster — offer both and let the user choose.
+faster — offer both and let the user choose. A dashboard rollback has the same gap and no fix: the
+restored deployment lacks the chunks of every build deployed after it.
 
 ## Rules
 

@@ -282,10 +282,15 @@ Because Cloudflare proxies the zone, several things are true and easy to forget 
 - **A Pages deploy replaces every file, but Google renders crawled HTML later, from a queue.** Until
   2026-10-14 each deploy deleted the previous build's hashed chunks. A late render then broke, and
   that is the leading explanation for the homepage's canonical (§8). `scripts/keep-previous-assets.mjs`
-  (postbuild) now carries 60 days of earlier builds' `/_next/static` files into each export. It keeps
-  them in the gitignored `.static-archive/` and also archives `out.prev/`, which the deploy script
-  rotates in before building. Never delete `.static-archive/`. A fresh clone starts it empty, so a
-  first deploy from another machine cannot carry what that machine never built.
+  (postbuild) now carries the `/_next/static` files of every earlier build that may still be live
+  into each export, until 60 days after a later deploy replaced it (not 60 days after it was built).
+  It keeps them in the gitignored `.static-archive/`, with `.ledger.json` recording which build owns
+  which file, and also archives `out.prev/`, which the deploy script rotates in before building. It
+  spots that rotation to tell a deploy build from a local rebuild; a local rebuild replaces nothing.
+  Never delete `.static-archive/`. A fresh clone starts it empty, so a first deploy from another
+  machine cannot carry what that machine never built. **Before a rollback upload of `out.prev/`, run
+  `node scripts/keep-previous-assets.mjs --into out.prev`**, or the rollback deletes the chunks of the
+  build it rolls back from.
 
 ---
 
