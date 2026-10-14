@@ -41,6 +41,9 @@ next-env.d.ts
 # Rollback snapshot written by ops/deploy-site.ps1 — build output, never committed.
 out.prev
 
+# Earlier builds' /_next/static files, carried into each export — scripts/keep-previous-assets.mjs.
+/.static-archive/
+
 # Supplied 2026-08-27 but NOT publishable: 2 AI-generated, 3 stock, 1 carrying a third
 # party's branding. Kept for reference, deliberately outside public/ so no build can ship
 # them. See the provenance note over `galleryImages` in lib/content.ts.

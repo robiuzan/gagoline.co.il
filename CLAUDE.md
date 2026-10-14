@@ -128,7 +128,8 @@ deploy/            # the WebDAV deploy shim
 Place by responsibility: reusable presentation primitive → `ui/`; page section → `marketing/`;
 structural chrome → `layout/`.
 
-**Route count: 44 emitted, 43 in the sitemap** (the difference is `/404/`, correctly excluded).
+**Route count: 54 emitted, 51 in the sitemap** (2026-10-14; the difference is `/404/` plus the two
+noindexed routes, `/reviews/` and `/thank-you/`).
 
 ---
 
@@ -197,7 +198,20 @@ See the `hebrew-rtl` skill for the full rule set.
   `title` must therefore **never append the brand again** — `app/about/page.tsx:10` does, and it is the
   one live doubled title. See the `seo-metadata` skill.
 - **Canonicals:** self-referencing, with the trailing slash, byte-identical to the `sitemap.xml`
-  `<loc>`. All 44 routes have one — don't regress it.
+  `<loc>`. `seo-assert` runs in `postbuild`, so a deploy stops unless every content page carries
+  exactly one canonical, inside `<head>`, equal to `https://gagoline.co.il<route>`, and the sitemap
+  and the canonicals name the same URLs. `/404/` is exempt: it inherits the root canonical, harmlessly
+  (404 status, noindex). **Google's choice is a separate fact, and a deploy can break it.** URL
+  Inspection on 2026-10-13 (last crawl 2026-10-07) reports the homepage as "Duplicate without
+  user-selected canonical", Google canonical `https://www.747live.bet/` (a casino site), although
+  the tag has been in the code since `f2a6eec` (2026-07-30) and was in the build Google crawled. By
+  Google's own definitions, the copy it processed had no canonical. Leading explanation, unproven for
+  this site: a render made after a deploy had deleted the chunks the crawled HTML needed. With the
+  old runtime still cached, Next renders its default "Application error" page (empty `<head>`, the
+  same line on every Next.js site), and Google clusters identical pages across sites. This was
+  reproduced 6 of 6 times against the live export on 2026-10-14, and a Sept 2026 casino case matched
+  it. `scripts/keep-previous-assets.mjs` now keeps earlier builds' chunks in every export (§10).
+  Backlog §1.1.
 - **JSON-LD** is built with `@ishub/site-kit/seo` — `localBusinessJsonLd`, `serviceJsonLd`,
   `faqJsonLd`, `breadcrumbJsonLd`, `jsonLdScript`. Target graph:
   [docs/schema-graph.md](docs/schema-graph.md). Only **2 of 44** pages emit any schema today.
@@ -216,7 +230,8 @@ npm run lint && npm run typecheck && npm run format:check && npm run build
 
 All four must pass before any deploy. The `qa-build-gate` skill adds the output assertions on `out/`
 (route count, unique titles, one H1, canonicals, JSON-LD presence, sitemap parity, no placeholder
-markers, no oversized chunks).
+markers, no oversized chunks). The build's `postbuild` also runs `seo-assert`, whose failure fails the
+build and so stops `ops/deploy-site.ps1`, and then `keep-previous-assets` (§10).
 
 ---
 
@@ -264,6 +279,13 @@ Because Cloudflare proxies the zone, several things are true and easy to forget 
 - **Scrape Shield rewrites email addresses**, which is why `EmailAddress.tsx` exists (§2, rule 7).
 - **A deploy is not verified until the live site proves it.** Re-fetch and diff; the deployment URL
   updates before the custom domain does.
+- **A Pages deploy replaces every file, but Google renders crawled HTML later, from a queue.** Until
+  2026-10-14 each deploy deleted the previous build's hashed chunks. A late render then broke, and
+  that is the leading explanation for the homepage's canonical (§8). `scripts/keep-previous-assets.mjs`
+  (postbuild) now carries 60 days of earlier builds' `/_next/static` files into each export. It keeps
+  them in the gitignored `.static-archive/` and also archives `out.prev/`, which the deploy script
+  rotates in before building. Never delete `.static-archive/`. A fresh clone starts it empty, so a
+  first deploy from another machine cannot carry what that machine never built.
 
 ---
 
