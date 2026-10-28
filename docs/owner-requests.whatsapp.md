@@ -21,12 +21,13 @@ the whole winter.
 עשר דקות בטלפון, אבל האימות של גוגל לוקח בין שבוע לחודש — ורק אחריו אפשר להתחיל לאסוף ביקורות.
 זה הכי דחוף מכל הרשימה. שלח לי את הקישור כשזה מאושר.
 
-2️⃣ עוד תמונות מהעבודות
-מהעשר ששלחת — ארבע עלו לאתר. שש לא יכולנו לפרסם (שתיים מ־AI, אחת עם מיתוג של חברה אחרת, שלוש סטוק), אז אנחנו צריכים תמונות מהעבודות שלך בלבד.
-הכי חסר: זיפות, מרפסות, קירות חיצוניים, הלבנת גגות, מרתפים — לחמישה השירותים האלה אין באתר אף תמונה.
-מהטלפון זה בסדר, רק לא דרך פורוורד בוואטסאפ (זה דוחס). בלי פרצופים, בלי מספרי בתים.
+2️⃣ תמונות אמיתיות מהעבודות
+האתר כבר לא מחכה לתמונות: בכל עמוד יש היום הדמיות (עם ניסים ושימי, ועם הערה באתר שאומרת שאלה הדמיות), וגם הארבע ששלחת.
+אבל לפרופיל Google עסק שלי גוגל רוצה רק צילומים אמיתיים — הדמיות לא נכנסות לשם. וכל צילום אמיתי שיגיע מחליף הדמיה באתר, אחת לאחת.
+הכי חסר: זיפות, מרפסות, קירות חיצוניים, הלבנת גגות, מרתפים.
+מהטלפון זה בסדר, רק לא דרך פורוורד בוואטסאפ (זה דוחס). בלי מספרי בתים ובלי לוחיות; פרצופים — רק ניסים ושימי.
 ומכאן והלאה, הרגל קבוע לצוותים: בביקור — צילום רחב של הגג + צילום קרוב של הנזק. בסיום — אותם שני צילומים מאותו מקום.
-שלוש עבודות בשבוע = גלריה מלאה תוך שבועיים.
+שלוש עבודות בשבוע = גלריה אמיתית תוך שבועיים.
 
 3️⃣ מסמך האחריות
 לכמה זמן, מה מכוסה, ומה מבטל אותה. צילום של מה שהלקוח מקבל מספיק.
@@ -43,8 +44,8 @@ the whole winter.
 - **Don't add a fourth item.** The list is short on purpose.
 - If he replies to only one, make it **item 1** — verification is the long pole.
 - Items 2 and 3 are habits, not one-off tasks. Item 2 in particular only works if the crews are told
-  once and then reminded; it feeds the gallery, the eight service pages and the twenty-three city
-  pages simultaneously.
+  once and then reminded; it feeds the Google Business Profile first — renderings never go there —
+  and then replaces the renderings on the gallery, the service pages and the city pages one for one.
 - Do **not** promise him a ranking outcome in return. Nothing in this list guarantees a position, and
   the honest framing — that these are the things a customer checks before calling — is both true and
   more persuasive.

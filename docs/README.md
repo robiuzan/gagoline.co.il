@@ -1,6 +1,6 @@
 # docs/ — the map
 
-Eleven strategy documents, fourteen agents and eighteen skills govern this repo. This page is the
+Eleven strategy documents, fifteen agents and nineteen skills govern this repo. This page is the
 index none of them had: **which file owns which decision, and which agent enforces it.**
 
 Read [CLAUDE.md](../CLAUDE.md) first. It outranks everything here except where noted.
@@ -29,41 +29,43 @@ bug** — see §4.
 
 ## 2. Topic → the file that owns it
 
-| If you are asking about                                                      | Read                                                                                                                 | Enforced by                                             |
-| ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
-| Where anything lives; how the site is built                                  | skill `gagoline-architecture`                                                                                        | —                                                       |
-| **What is true about the business** — prices, warranty, reviews, credentials | [business-facts.md](business-facts.md)                                                                               | agent `eeat-trust-auditor`                              |
-| What may be stated as fact; Hebrew depth bar; answer blocks                  | [content-standards.md](content-standards.md)                                                                         | agent `content-depth-auditor`                           |
-| Keyword tiers, the 8×23 matrix, title/H1/description formulas                | [keyword-map.md](keyword-map.md)                                                                                     | agent `seo-auditor`, skill `seo-metadata`               |
-| **What to build next, in what order, and why**                               | [roadmap.md](roadmap.md) — supersedes growth-plan.md §3–§9                                                           | —                                                       |
-| The original strategy and the seasonal clock                                 | [growth-plan.md](growth-plan.md)                                                                                     | —                                                       |
-| The ranked defect list — cite findings as "backlog §N.N"                     | [optimization-backlog.md](optimization-backlog.md)                                                                   | every auditor agent                                     |
-| JSON-LD target graph                                                         | [schema-graph.md](schema-graph.md)                                                                                   | agent `schema-auditor`, skill `schema-structured-data`  |
-| Internal linking, orphans, inbound degree floors                             | [link-graph.md](link-graph.md)                                                                                       | `scripts/link-graph-check.mjs`, agent `ia-auditor`      |
-| Local SEO, NAP, service-area-business model                                  | skill `local-seo-il`                                                                                                 | agent `local-seo-strategist`                            |
-| AEO / GEO, llms.txt, answer-block form                                       | skill `aeo-answer-content`                                                                                           | agent `aeo-geo-strategist`                              |
-| Conversion, the lead form, CTA coverage                                      | skill `conversion-cro`                                                                                               | agent `conversion-auditor`                              |
-| WCAG 2.1 AA + IS 5568, contrast, focus, tap targets                          | skill `responsive-accessibility`                                                                                     | `scripts/contrast-check.mjs`, agent `perf-a11y-auditor` |
-| Core Web Vitals, fonts, images, bundle budget                                | skill `performance-web-vitals`                                                                                       | agent `perf-a11y-auditor`                               |
-| **May a picture exist here** — slots, aspect ratios, photo triage, alt text  | skill `page-imagery`                                                                                                 | agent `image-art-director`                              |
-| Security headers, CSP, form PII                                              | skill `web-security-headers`                                                                                         | agent `security-auditor`                                |
-| Hebrew, RTL, logical utilities, LTR islands                                  | skill `hebrew-rtl`                                                                                                   | agent `rtl-frontend-engineer`                           |
-| **Multilingual — adding English**                                            | [i18n-architecture.md](i18n-architecture.md)                                                                         | — (decision not yet taken)                              |
-| **Mobile thumb-zone and geo personalization**                                | [personalization-and-mobile.md](personalization-and-mobile.md)                                                       | agent `conversion-auditor`                              |
-| **GTM, GA4, server-side tagging, CRM**                                       | [measurement-architecture.md](measurement-architecture.md), skill `tracking-analytics`                               | —                                                       |
-| What Cloudflare does to this site that the repo cannot                       | [cloudflare-runbook.md](cloudflare-runbook.md)                                                                       | —                                                       |
-| Shipping                                                                     | skill `deploy-gagoline`, skill `qa-build-gate`                                                                       | `npm run gate`                                          |
-| What to ask the owner for                                                    | [owner-requests.md](owner-requests.md) · [.he.md](owner-requests.he.md) · [.whatsapp.md](owner-requests.whatsapp.md) | —                                                       |
+| If you are asking about                                                                                            | Read                                                                                                                 | Enforced by                                                                                              |
+| ------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| Where anything lives; how the site is built                                                                        | skill `gagoline-architecture`                                                                                        | —                                                                                                        |
+| **What is true about the business** — prices, warranty, reviews, credentials                                       | [business-facts.md](business-facts.md)                                                                               | agent `eeat-trust-auditor`                                                                               |
+| What may be stated as fact; Hebrew depth bar; answer blocks                                                        | [content-standards.md](content-standards.md)                                                                         | agent `content-depth-auditor`                                                                            |
+| Keyword tiers, the 8×23 matrix, title/H1/description formulas                                                      | [keyword-map.md](keyword-map.md)                                                                                     | agent `seo-auditor`, skill `seo-metadata`                                                                |
+| **What to build next, in what order, and why**                                                                     | [roadmap.md](roadmap.md) — supersedes growth-plan.md §3–§9                                                           | —                                                                                                        |
+| The original strategy and the seasonal clock                                                                       | [growth-plan.md](growth-plan.md)                                                                                     | —                                                                                                        |
+| The ranked defect list — cite findings as "backlog §N.N"                                                           | [optimization-backlog.md](optimization-backlog.md)                                                                   | every auditor agent                                                                                      |
+| JSON-LD target graph                                                                                               | [schema-graph.md](schema-graph.md)                                                                                   | agent `schema-auditor`, skill `schema-structured-data`                                                   |
+| Internal linking, orphans, inbound degree floors                                                                   | [link-graph.md](link-graph.md)                                                                                       | `scripts/link-graph-check.mjs`, agent `ia-auditor`                                                       |
+| Local SEO, NAP, service-area-business model                                                                        | skill `local-seo-il`                                                                                                 | agent `local-seo-strategist`                                                                             |
+| AEO / GEO, llms.txt, answer-block form                                                                             | skill `aeo-answer-content`                                                                                           | agent `aeo-geo-strategist`                                                                               |
+| Conversion, the lead form, CTA coverage                                                                            | skill `conversion-cro`                                                                                               | agent `conversion-auditor`                                                                               |
+| WCAG 2.1 AA + IS 5568, contrast, focus, tap targets                                                                | skill `responsive-accessibility`                                                                                     | `scripts/contrast-check.mjs`, agent `perf-a11y-auditor`                                                  |
+| Core Web Vitals, fonts, images, bundle budget                                                                      | skill `performance-web-vitals`                                                                                       | agent `perf-a11y-auditor`                                                                                |
+| **What a picture may say, and where it goes** — the illustration rule, slots, ratios, alt and captions, draft mode | skill `page-imagery`                                                                                                 | `scripts/images/check-images-out.mjs`, agent `image-art-director`                                        |
+| **Making the images** — the Media Studio page-images toolkit, the owner's five touches, review, install, retire    | skill `page-images-pipeline` · CLAUDE.md §14 · `Media Studio/page-images/docs/contract.md`                           | `npm run images:check`, agents `image-art-director` (plan, alt) and `image-qa-reviewer` (second opinion) |
+| Security headers, CSP, form PII                                                                                    | skill `web-security-headers`                                                                                         | agent `security-auditor`                                                                                 |
+| Hebrew, RTL, logical utilities, LTR islands                                                                        | skill `hebrew-rtl`                                                                                                   | agent `rtl-frontend-engineer`                                                                            |
+| **Multilingual — adding English**                                                                                  | [i18n-architecture.md](i18n-architecture.md)                                                                         | — (decision not yet taken)                                                                               |
+| **Mobile thumb-zone and geo personalization**                                                                      | [personalization-and-mobile.md](personalization-and-mobile.md)                                                       | agent `conversion-auditor`                                                                               |
+| **GTM, GA4, server-side tagging, CRM**                                                                             | [measurement-architecture.md](measurement-architecture.md), skill `tracking-analytics`                               | —                                                                                                        |
+| What Cloudflare does to this site that the repo cannot                                                             | [cloudflare-runbook.md](cloudflare-runbook.md)                                                                       | —                                                                                                        |
+| Shipping                                                                                                           | skill `deploy-gagoline`, skill `qa-build-gate`                                                                       | `npm run gate`                                                                                           |
+| What to ask the owner for                                                                                          | [owner-requests.md](owner-requests.md) · [.he.md](owner-requests.he.md) · [.whatsapp.md](owner-requests.whatsapp.md) | —                                                                                                        |
 
 ---
 
 ## 3. The gate — what a document is worth if nothing checks it
 
 ```bash
-npm run gate   # lint · typecheck · format:check · build · seo:assert · links:check · contrast:check
+npm run gate   # lint · typecheck · format:check · build (+ postbuild: seo-assert, check-images-out) · seo:assert · links:check · contrast:check · images:check
 ```
 
-Three of those are custom assertions written **because the defect they catch actually shipped**:
+Four of those are custom assertions written **because the defect they catch actually shipped**, or
+was about to:
 
 - `scripts/seo-assert.mjs` — the placeholder-marker check builds its pattern from a codepoint,
   because a literal `🔶` in a shell grep matched nothing under some locales and reported clean while
@@ -74,6 +76,10 @@ Three of those are custom assertions written **because the defect they catch act
 - `scripts/contrast-check.mjs` — proves itself against known ratios (21.00 and 4.54) on every run and
   exits non-zero if it cannot, because the first contrast calculator was wrong in a way that looked
   entirely plausible as a table of numbers.
+- `scripts/images/check-images-out.mjs` — every `<img>` has dimensions and a Hebrew alt without a
+  banned claim, exactly one `priority` per page, no stray, unapproved or draft file, no rendering in
+  schema or `og:image`, the three disclosure markers — because a caption can fabricate a fact as
+  easily as a testimonial, and before 2026-10-28 nothing in the gate looked at an image at all.
 
 **A rule that no script enforces is a suggestion.** When adding a standard to any doc here, ask what
 would fail if it were violated.

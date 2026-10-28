@@ -1,6 +1,6 @@
 ---
 name: performance-web-vitals
-description: Core Web Vitals for a static export on Cloudflare Pages — font preloads as the real LCP lever on an image-free site, wiring the kit's SiteImage/mediaUrl/srcsetFor pipeline before the first image ships, CLS reserves, the INP client-JS budget, and keeping out/ clean. Use before shipping or when LCP, CLS or INP regress. Triggers "perf pass", "Core Web Vitals", "LCP slow", "image optimization", "bundle size", "srcset".
+description: Core Web Vitals for a static export on Cloudflare Pages — the LCP element per route now that every content page carries images (text hero on phones, the first figure or the home strip on desktop), the Figure/SiteImage contract (one priority per page, baked dimensions, byte budgets, lazy rest, no srcset for local files, never delete a published file), the shipped font preloads, CLS reserves, the INP client-JS budget, and keeping out/ clean. Use before shipping or when LCP, CLS or INP regress. Triggers "perf pass", "Core Web Vitals", "LCP slow", "image optimization", "bundle size", "srcset".
 ---
 
 # Core Web Vitals
@@ -10,53 +10,48 @@ Static HTML on Cloudflare Pages — TTFB and edge caching are already good, and 
 
 ## The baseline is healthy
 
-`out/` is **4.9 MB with no JS bundle over 1 MB.** Sibling fleet sites have shipped ~14 MB of dev-only
-chunks per deploy (a polluted `.next/` surviving into the export); this repo does not. Keep it that way
-by running `rm -rf .next out` before a release build — the fix is clearing `.next`, never deleting
-files out of `out/`.
+No JS bundle over 1 MB; `out/` was 4.9 MB before images and 12 MB on 2026-10-18 with the carried
+`_next/static` chunks (`keep-previous-assets`), and it grows by the approved images — `out/images` is
+capped at 20 MB by the gate. Sibling fleet sites have shipped ~14 MB of dev-only chunks per deploy (a
+polluted `.next/` surviving into the export); this repo does not. Keep it that way by running
+`rm -rf .next out` before a release build — the fix is clearing `.next`, never deleting files out of
+`out/`, and **never deleting a file under `public/images/`** (CLAUDE.md §14).
 
 CLS is sound: the sticky mobile bar has its `h-16 lg:hidden` spacer in `app/layout.tsx:81`. Preserve
 that property when adding any fixed or late-loading element.
 
-## Fonts are the LCP story — because there are no images
+## Fonts are preloaded; images now exist — know the LCP element per route
 
-The site currently has **zero images**: no `next/image`, no `<img>`, anywhere. So the LCP element on
-every route is text — the `Hero` heading on `/`, the `PageHeader` band on inner pages.
+Heebo + Rubik self-host via `next/font/google`, and since 2026-08-31 `scripts/font-preload.mjs`
+(postbuild) preloads the two Hebrew faces (backlog §10.3) — the FOUT and the CLS this section used to
+describe are closed.
 
-Heebo + Rubik are self-hosted via `next/font/google` with `display: swap` — correct. But there is **no
-`<link rel="preload">`**, so both families FOUT on first paint on every page. On a text-LCP site that
-is the single highest-leverage performance change available.
+Since 2026-10-28 every content page carries **two or more images** (CLAUDE.md §14). The hero stays
+text + form (owner decision 6), so on phones the LCP element is still the H1; on desktop the first
+figure — about 500 px down on a service or city page, the home strip directly under the hero — can
+become the LCP candidate. That is why **the first content image on a page is its single `priority`
+image** (`fetchpriority="high"`, never lazy — lazy-loading an in-viewport LCP image is the known
+regression) and is byte-capped at 220 KB (`large`), 90 KB for the home strip's first tile. Measure
+with PageSpeed Insights after each deploy that changes images: mobile LCP ≤ 2.5 s, CLS 0; if the home
+strip regresses LCP, it moves below `TrustBar`.
 
-Preload the two subsets actually used above the fold, and verify the LCP element per route type rather
-than assuming — a service page and a location page have different first paints from the homepage.
+## The image contract
 
-## Before the first image ships — read this
+`next.config.mjs` sets `images: { unoptimized: true }`, so `next/image` is not used. Every content
+image renders through `components/ui/Figure.tsx` over the kit's `SiteImage` in ad-hoc mode:
 
-`next.config.mjs` sets `images: { unoptimized: true }`, so `next/image` renders a bare `<img>` with
-**no srcset**, and any `sizes` prop is inert. A 360px phone would download exactly what a 4K desktop
-does. On sibling fleet sites this shipped as 14 `sizes` props that looked correct in review and did
-nothing.
-
-The kit ships a complete pipeline that is currently unused:
-
-```ts
-import { SiteImage } from "@ishub/site-kit/components";
-import { mediaUrl, srcsetFor, preloadPropsFor } from "@ishub/site-kit/media";
-```
-
-`SiteImage` emits a real `srcset` against the `imgquarry.com` media host already declared in the
-manifest (and already `preconnect`ed in `app/layout.tsx:58-60`), and it **requires a non-empty `alt` at
-compile time**. `preloadPropsFor()` generates the LCP preload.
-
-Wire this **before** the gallery and before/after photos land (backlog §7.2, §7.3), not after. Two
-viable routes — pick one deliberately, don't mix:
-
-1. **Adopt `SiteImage`** for content imagery. This is what the kit exists for and what the manifest is
-   already configured for.
-2. **Keep `next/image`** and pre-generate width variants, hand-writing `srcset`. More files to manage,
-   no host dependency.
-
-The worst option is passing `sizes` to an unoptimized image, because it looks right and does nothing.
+- `width`/`height` baked from the manifest's measured pixels — CLS 0 by construction;
+- exactly one `priority` per page (the first content image in DOM order); everything else
+  `loading="lazy" decoding="async"`;
+- **no `srcset` for local files, correctly** — a static export has no resizer, so `srcsetFor` emits
+  nothing and a hand-written `sizes` would be inert. The worst option is still passing `sizes` to an
+  image with no `srcset`, because it looks right and does nothing;
+- byte budgets per size class, enforced by `scripts/images/check-images-out.mjs`: `large` (1600 long
+  edge) ≤ 220 KB, `half`/`tile` (1200) ≤ 170 KB, `thumb` (480) ≤ 45 KB, ≤ 900 KB of images per page,
+  ≤ 20 MB under `out/images`; WebP q80 from the toolkit, re-encoded at q74 above 160 KB;
+- **never delete or rename a published file** — a replacement is a new slug plus a `retired` date
+  (CLAUDE.md §14). The imgquarry/`srcsetFor` route (real width variants against the media host) stays
+  a follow-up; file names are kept compatible with it.
 
 ## JS budget (INP)
 
@@ -68,8 +63,9 @@ Four client components:
 - `Faq` is client for accordion state and could be `<details>`/`<summary>` with zero JS — **while
   keeping answers in the DOM**, which `FAQPage` schema depends on (`/schema-structured-data` §4.3).
 
-`framer-motion@^11` is a dependency **imported nowhere** — `Reveal` is hand-rolled with
-`IntersectionObserver`. Remove it from `package.json` and the lockfile.
+`framer-motion` was removed on 2026-08-31 (backlog §10.4); `Reveal` is hand-rolled with
+`IntersectionObserver`. `Figure`, `FieldStrip` and `TeamTeaser` are server components and add no
+client JS.
 
 ## Measuring
 
@@ -79,17 +75,18 @@ a service page and a location page, not just the homepage.
 
 ## Checklist
 
-- [ ] Fonts preloaded; LCP element identified per route type.
+- [ ] LCP element identified per route type (the H1 on phones; the first figure or the home strip on desktop).
+- [ ] Exactly one `priority` / `fetchpriority="high"` image per page, and it is the first content image.
+- [ ] Every image inside its byte budget; `out/images` ≤ 20 MB (`npm run images:check`).
 - [ ] `out/` contains no unreferenced file over 1 MB.
-- [ ] Content images (when they exist) emit a real `srcset` via the kit pipeline.
-- [ ] At most one `priority` / preloaded image per page.
 - [ ] No `"use client"` without a stated reason.
-- [ ] `framer-motion` removed.
-- [ ] CLS reserves intact for every new block.
+- [ ] CLS reserves intact for every new block; every `<img>` has width/height.
+- [ ] No `public/images/*` file deleted or renamed.
 
 ```bash
 find out -name '*.js' -size +1M -exec ls -lh {} \;   # expect nothing
-du -sh out                                            # ~4.9 MB today
-grep -c 'rel="preload"' out/index.html
-grep -c 'srcset' out/index.html
+du -sh out out/images                                 # out/images ≤ 20 MB
+grep -c 'rel="preload"' out/index.html                # the two Hebrew faces
+grep -c 'fetchpriority="high"' out/services/roof-sealing/index.html   # expect 1
+npm run images:check
 ```

@@ -35,7 +35,11 @@
       "Skill(deploy-gagoline)",
       "Bash(npm run seo:assert)",
       "Bash(npm run links:check)",
-      "Bash(npm run gate)"
+      "Bash(npm run gate)",
+      "Skill(page-images-pipeline)",
+      "Bash(npm run images:check)",
+      "Bash(npm run images:status)",
+      "Bash(npm run dev:images)"
     ]
   },
   "hooks": {

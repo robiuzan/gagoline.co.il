@@ -24,10 +24,15 @@
 - **The season sells.** Demand spikes with the first rain. Content that must rank in November has to be
   published and crawled by September.
 
-> ⚠️ **Placeholder content is live right now.** Three invented testimonials render on `/` and
-> `/reviews/`, six empty tiles on `/gallery/`, and a "coming soon" `/blog/` sits in the sitemap — all
-> four with a visible 🔶 in the shipped copy. See [docs/business-facts.md](docs/business-facts.md) §A
-> and the backlog §7. **Removing a placeholder is always correct; rewriting one is not.**
+> ℹ️ **Images are illustrations, never evidence (owner decision 2026-10-28).** Every content page
+> carries two or more images: AI renderings made through the Media Studio page-images toolkit (some
+> with the two consented technicians, ניסים and שימי) and the four gallery images the owner supplied
+> on 2026-08-27, which were AI-made too. One site-wide note discloses them; no image is a record of a
+> job. The decision, its limits and the consent record are in
+> [docs/business-facts.md](docs/business-facts.md) §A ("Resolved 2026-10-28"); the rules are §14
+> below. The placeholder testimonials, empty gallery tiles and "coming soon" blog that this note used
+> to describe were deleted on 2026-08-17 — content-standards §6 keeps the worked example.
+> **Removing a placeholder is always correct; rewriting one is not.**
 
 ---
 
@@ -37,10 +42,23 @@
    reviews, customer names, hours. If it is not in the roster manifest, `lib/site-config.ts`, or
    `lib/content.ts` as confirmed, mark it `// 🔶 confirm` and add a row to
    [docs/business-facts.md](docs/business-facts.md). A fabricated review is a Google policy violation,
-   not a style problem.
+   not a style problem. **Images are illustrations, never evidence (owner decision 2026-10-28).** A
+   rendering shows how a kind of work looks; the rule is on the **words** around it — no alt,
+   caption, heading or paragraph may present an image as a specific job, city, date, customer, מ״ר,
+   rating, price or duration, and ביצענו never sits next to a picture or a link to `/gallery/`.
+   What stays forbidden: a certificate, licence, insurance document, rating, star badge, review or
+   before/after pair inside an image; generated text, plates, house numbers or logos in frame; any
+   person other than the two consented technicians; a third party's branding. Renderings never go
+   into `og:image`, JSON-LD or the Google Business Profile. The watermark is composited after
+   generation, never drawn by the model. The four supplied gallery images are owner-supplied AI, not
+   "verified real". `scripts/images/check-images-out.mjs` enforces the machine-checkable half of this
+   (§8, §9); the toolkit's two judges, the `image-qa-reviewer` agent and the owner's review board are
+   the rest.
 2. **A 🔶 must never reach a visitor.** The marker is an internal signal. If a surface can't be filled
-   with something true, remove or `noindex` the surface — don't ship the marker. Four pages break this
-   today.
+   with something true, remove or `noindex` the surface — don't ship the marker. Clean since
+   2026-08-17, and `seo-assert` fails the build on a rendered marker. **An image whose manifest
+   status is not `approved` is a 🔶:** it renders only under `IMAGES_DRAFT=1`, which writes
+   `out/.images-draft` and `out/.live-draft` so the hub's deploy script refuses the build.
 3. **Never edit `site.config.json` directly.** It is synced downstream from
    `Israeli services sites/roster/sites/gagoline.json`. Edit the roster, then sync. The file says so in
    its own `_comment`.
@@ -61,7 +79,8 @@
 8. **A GTM snippet in the HTML proves nothing.** Whenever a container id changes, assert
    `https://www.googletagmanager.com/gtm.js?id=<ID>` returns **200**. Two fabricated ids once cost the
    IL fleet 18 days of zero analytics across every site.
-9. **Never edit generated or vendored output** — `node_modules/`, `.next/`, `out/`.
+9. **Never edit generated or vendored output** — `node_modules/`, `.next/`, `out/`, and
+   `content/images/manifest.json` (written by the Media Studio toolkit, §14).
 
 ---
 
@@ -102,27 +121,43 @@ and `app/sitemap.ts` needs no `encodeURI`. The slugs are live and indexed — re
 ```
 app/
   layout.tsx              # metadata, fonts, GTM, <html lang="he" dir="rtl">
-  page.tsx                # homepage — RoofingContractor JSON-LD
-  sitemap.ts robots.ts    # /sitemap.xml, /robots.txt
+  page.tsx                # homepage — RoofingContractor + WebSite + FAQPage JSON-LD
+  sitemap.ts robots.ts    # /sitemap.xml (derived from app/ + the data arrays), /robots.txt
+  llms.txt/route.ts       # /llms.txt, generated from the same arrays
   not-found.tsx           # 404
   services/               # index + [service] × 8
-  areas/[city]/           # 23 pages (no /areas/ index — see backlog §5.5)
-  about/ contact/ pricing/ faq/ reviews/ gallery/ blog/
+  areas/                  # hub (shipped 2026-08-24) + [city] × 23
+  blog/                   # index + [slug] × 8 guides (content/articles/)
+  about/ contact/ pricing/ faq/ reviews/ gallery/ thank-you/
   privacy/ accessibility/ terms/
 components/
-  ui/          Button Container Section SectionHeading Reveal EmailAddress
+  ui/          Button Container Section SectionHeading Reveal EmailAddress Prose Figure
   layout/      Header Footer PageHeader MobileCtaBar
-  marketing/   Hero TrustBar ServicesGrid WhyUs Process Reviews
+  marketing/   Hero TrustBar FieldStrip ServicesGrid WhyUs TeamTeaser Process
                PricingTeaser ServiceAreas Faq FinalCta
   forms/       LeadForm
+  blog/        ArticleBody
 lib/
   site-config.ts   # ⭐ NAP, services[8], cities[23], telHref, whatsappHref
-  content.ts       # ⭐ all Hebrew copy
+  content.ts       # ⭐ all Hebrew copy, incl. imagesNote (the site-wide image disclosure)
+  service-depth.ts city-depth.ts article-jsonld.ts
+  images.ts        # manifest validator + imagesFor/imageFor/stripFor/galleryServiceNames; honours IMAGES_DRAFT
   utils.ts         # cn()
+content/
+  articles/        # the 8 guides (typed blocks, incl. { kind: "figure" })
+  images/          # plan.json — authored slot plan · manifest.json — toolkit-written, never hand-edited
+  live/            # live-surface registers (§13)
+  revisions.ts     # per-section lastModified
+public/images/     # approved images, tracked — never deleted or renamed casually (§14) · _candidates/ gitignored
+assets/images/     # masters/ and review/ for this PC (gitignored); README.md tracked — the provenance history
+scripts/
+  seo-assert.mjs font-preload.mjs keep-previous-assets.mjs link-graph-check.mjs contrast-check.mjs ai-crawler-check.mjs
+  images/          # check-images-out.mjs (postbuild gate) · images-status.mjs · images-dev.mjs · lib/imageinfo.mjs
+  live/            # live-kit copies (byte-locked, §13)
 site.config.json   # SiteManifest — SYNCED FROM THE ROSTER, do not edit here
 brief.md           # the strategy/intake document this site was built from
 docs/              # the acceptance bars every agent cites
-deploy/            # the WebDAV deploy shim
+deploy/            # dead WebDAV deploy shim (§10) — kept until deletion is confirmed
 ```
 
 Place by responsibility: reusable presentation primitive → `ui/`; page section → `marketing/`;
@@ -145,15 +180,25 @@ site.config.json  (SiteManifest)                   ← never edit directly
 lib/site-config.ts   manifest · siteConfig · services[8] · cities[23] · telHref · whatsappHref
         │
         ├── lib/content.ts     serviceCards · differentiators · processSteps · trustStats
-        │                      priceRows · testimonials · faqs · navItems
+        │                      priceRows · faqs · navItems · imagesNote · galleryContent
+        │
+        ├── content/images/plan.json      ← authored here (image-art-director); the toolkit only READS it
+        │       │   Media Studio page-images: brief → the owner's yes → generate → qa → alt → finish → stage / install
+        │       ▼
+        ├── content/images/manifest.json  ← WRITTEN BY THE TOOLKIT (status · alt · caption · provenance); never hand-edited
+        │       ▼
+        ├── lib/images.ts      validates at module init · imagesFor(route, slot) · honours IMAGES_DRAFT=1
         ▼
-app/**/page.tsx  →  components/**
+app/**/page.tsx  →  components/**   (Figure · FieldStrip · TeamTeaser render every content image)
 ```
 
 Rule of thumb: **identity and NAP go up the chain to the roster; wording goes in `lib/content.ts`;
 layout goes in components.** Copy never gets typed directly into JSX —
 `app/services/[service]/page.tsx:32-37` and `app/about/page.tsx:14-21` both break this today and are
-listed in the backlog, not treated as precedent.
+listed in the backlog, not treated as precedent. Image pixels and provenance come from the Media
+Studio toolkit through the manifest; the slot plan is authored here; an image's alt and caption live
+in the manifest — the one visitor-facing text outside `lib/content.ts`, which is why `lib/images.ts`
+validates it.
 
 ---
 
@@ -218,8 +263,19 @@ See the `hebrew-rtl` skill for the full rule set.
   Backlog §1.1.
 - **JSON-LD** is built with `@ishub/site-kit/seo` — `localBusinessJsonLd`, `serviceJsonLd`,
   `faqJsonLd`, `breadcrumbJsonLd`, `jsonLdScript`. Target graph:
-  [docs/schema-graph.md](docs/schema-graph.md). Only **2 of 44** pages emit any schema today.
-  `Review`/`AggregateRating` ship **only** when sourced.
+  [docs/schema-graph.md](docs/schema-graph.md). Every emitted page carries JSON-LD (54/54 on the
+  2026-10-18 export; `BreadcrumbList` on 52 — all but `/` and `/404/`). `Review`/`AggregateRating`
+  ship **only** when sourced, and no image ever enters the graph (§14).
+- **Images (§14).** Exactly one `priority` image per page and it is the first content image in DOM
+  order; everything else `loading="lazy" decoding="async"`. `width`/`height` mandatory and equal to
+  the file's true pixels. Hebrew `alt` describing only what is in frame — 20–200 chars, no
+  `תמונה של`, no city name, no 4-digit year, no digits before מ״ר/מ״מ, no לפני ואחרי, no rating
+  words, no הדמיה/AI (the disclosure is site-wide), no ASCII quote touching a Hebrew letter, never a
+  first name; captions the same, first names only when every placement is `/about/`. The three
+  disclosure markers `data-images-notice="footer|gallery|about"` must be present. No `/images/`
+  path inside any `application/ld+json` or `og:image`. A published `public/images/*` file is never
+  deleted or renamed casually (§10, §14). `scripts/images/check-images-out.mjs` asserts all of this
+  on `out/`; the `page-imagery` skill carries the full list.
 - **Accessibility target: WCAG 2.1 AA + IS 5568**, and `/accessibility/` publishes a conformance
   statement — so a contrast failure makes a published statement false. The accent CTA is at **2.56:1**
   and the WhatsApp CTA at **1.98:1** against white. See the `responsive-accessibility` skill.
@@ -229,13 +285,15 @@ See the `hebrew-rtl` skill for the full rule set.
 ## 9. Build gate
 
 ```
-npm run lint && npm run typecheck && npm run format:check && npm run build
+npm run lint && npm run typecheck && npm run format:check && npm run build && npm run images:check
 ```
 
-All four must pass before any deploy. The `qa-build-gate` skill adds the output assertions on `out/`
-(route count, unique titles, one H1, canonicals, JSON-LD presence, sitemap parity, no placeholder
-markers, no oversized chunks). The build's `postbuild` also runs `seo-assert`, whose failure fails the
-build and so stops `ops/deploy-site.ps1`, and then `keep-previous-assets` (§10).
+All five must pass before any deploy (`npm run gate` runs them plus `seo:assert`, `links:check` and
+`contrast:check`). The `qa-build-gate` skill adds the output assertions on `out/` (route count, unique
+titles, one H1, canonicals, JSON-LD presence, sitemap parity, no placeholder markers, no oversized
+chunks, and the image assertions of §14). The build's `postbuild` runs `font-preload` →
+`check-live-out` → `seo-assert` → `check-images-out` → `keep-previous-assets`; a failure in
+`seo-assert` or `check-images-out` fails the build and so stops `ops/deploy-site.ps1` (§10).
 
 ---
 
@@ -295,18 +353,30 @@ Because Cloudflare proxies the zone, several things are true and easy to forget 
   chunks (run `robocopy out_nextstatic out.prev_nextstatic /E /XC /XN /XO` first); and a
   local build that was never deployed is archived and shipped too (harmless JS/CSS, but to purge
   one, delete its files from `.static-archive/`, `out/` and `out.prev/` and redeploy).
+- **Never delete or rename a published `public/images/*` file as part of a deploy or a rollback.**
+  Crawled HTML, Google Images and shared links keep the URL. Replacement is a new slug plus a
+  `retired` date on the old entry, file kept ≥ 60 days (§14). `keep-previous-assets` does not cover
+  `/images/` and does not need to — the URLs are stable.
+- **A draft build must never ship.** `IMAGES_DRAFT=1` writes `out/.images-draft` and
+  `out/.live-draft`; the hub's `deploy-site.ps1` already refuses `.live-draft`, and a one-line
+  `.images-draft` check in its `Test-OutDir` is a pending follow-up in the hub repo. If either file
+  is in `out/`, rebuild without the variable before anything else.
 
 ---
 
 ## 11. Commands
 
-| Task             | Command                                   |
-| ---------------- | ----------------------------------------- |
-| Dev server       | `npm run dev`                             |
-| Production build | `npm run build`                           |
-| Lint             | `npm run lint`                            |
-| Type-check       | `npm run typecheck`                       |
-| Format / check   | `npm run format` · `npm run format:check` |
+| Task             | Command                                                                     |
+| ---------------- | --------------------------------------------------------------------------- |
+| Dev server       | `npm run dev`                                                               |
+| Draft dev server | `npm run dev:images` (`next dev` with `IMAGES_DRAFT=1` — candidates render) |
+| Production build | `npm run build`                                                             |
+| Lint             | `npm run lint`                                                              |
+| Type-check       | `npm run typecheck`                                                         |
+| Format / check   | `npm run format` · `npm run format:check`                                   |
+| Image gate       | `npm run images:check` (= `node scripts/images/check-images-out.mjs out`)   |
+| Image coverage   | `npm run images:status` (plan vs manifest per route)                        |
+| Full gate        | `npm run gate`                                                              |
 
 ---
 
@@ -316,6 +386,8 @@ Because Cloudflare proxies the zone, several things are true and easy to forget 
 - Don't add a 24th city until all 23 pass the doorway test in
   [docs/content-standards.md](docs/content-standards.md).
 - Don't add dependencies without a reason that survives "can the platform already do this?"
+- `sharp` and the image toolkit live in Media Studio `page-images/` (its own `package.json`), never
+  here. `scripts/images/lib/imageinfo.mjs` reads image headers without a dependency; keep it that way.
 - Don't put PII in `dataLayer`.
 - Cloudflare zone settings (AI crawler policy, Scrape Shield, cache rules) and cPanel configuration are
   **the owner's to change**. Document the exact toggle; never assume it was done.
@@ -334,15 +406,76 @@ newest item.
 
 - **Edit here:** `content/live/_campaigns.mjs` (lines, windows, the card) and
   `content/live/_updates.mjs` — wording only from sentences the site already shows, each quoted
-  in `source`; nothing 🔶. Calm / no-card pages and this site's own ⛔ claim stems:
-  `live.config.mjs`. Both registers need the owner's `approved: "YYYY-MM-DD — who, how"`, or the
-  build fails (`LIVE_DRAFT=1 npm run build` previews a draft locally only).
+  in `source`; nothing 🔶, and never a line quoted from `content/images/` (an AI caption is not a
+  sentence the site asserts — `live.config.mjs` lists it under `forbiddenSources`). Calm / no-card
+  pages and this site's own ⛔ claim stems: `live.config.mjs`. Both registers need the owner's
+  `approved: "YYYY-MM-DD — who, how"`, or the build fails (`LIVE_DRAFT=1 npm run build` previews a
+  draft locally only).
 - **Never edit:** `lib/live/**`, `scripts/live/**`, `public/assets/live.js`,
   `content/live/_calendar*.json`, `live-kit.lock.json` — byte-locked kit copies;
   `scripts/live/check-live-copy.mjs` fails the build if they change. Fix the kit upstream and
   re-sync.
 - **Gates:** `prebuild` = check-live-copy → check-live-register → check-live-schedule;
-  `postbuild` = font-preload → check-live-out → seo-assert → keep-previous-assets (the built pages must carry exactly what the
-  registers say). `links:check` strips the live regions as chrome.
+  `postbuild` = font-preload → check-live-out → seo-assert → check-images-out → keep-previous-assets
+  (the built pages must carry exactly what the registers say). `links:check` strips the live regions
+  as chrome.
 - **Popups:** gagoline had no written rule against them; the card is the owner's 2026-10-11
   fleet decision and never stacks a second sticky surface (it is modal and short-lived).
+
+## 14. Page images — renderings under one note
+
+**Owner decisions, 2026-10-28** (the record, with the consent and the limits:
+[docs/business-facts.md](docs/business-facts.md) §A):
+
+| #   | Decision                                                                                                                                                                                                                                                        |
+| --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | **Disclosure:** one site-wide Hebrew note — the gallery intro, a footer line on every page, an about line. No per-image label. Alt and captions never claim a specific job, city, date, customer, מ״ר, rating, price or duration                                |
+| 2   | **Technicians:** ניסים (manager) and שימי both consented; faces shown; **first names only**, and only in captions on `/about/`. Never a surname, never a name in `alt` or in a file name. Consent record: `Media Studio/refs/gagoline/CONSENT.md` (outside git) |
+| 3   | **Gallery:** the four owner-supplied images stay first; generated scenes follow under the note                                                                                                                                                                  |
+| 4   | **Scope:** 48 content pages. Not `/privacy/ /terms/ /accessibility/ /404/ /thank-you/ /reviews/`                                                                                                                                                                |
+| 5   | **The four supplied images were AI-made.** Everywhere: "owner-supplied, AI-made" — never "verified real"                                                                                                                                                        |
+| 6   | **Homepage top:** a 3-image strip directly under the hero; the hero stays text + lead form                                                                                                                                                                      |
+| 7   | **Spend:** Media Studio's Gemini key; `gemini-3-pro-image` for frames with people (`gemini-nano-banana-2.1` without); hard cap US$50                                                                                                                            |
+
+Defaults, changeable without the owner: renderings never in `og:image`, JSON-LD or the Google
+Business Profile; no IPTC/C2PA marker (`metadataLabel: false`; Google's SynthID stays in the pixels
+and is never tampered with); a harness only near an unguarded edge, no hard hats or hi-vis indoors,
+plain navy polos, no plates, no customers; ניסים is "manager", never inferred to be the founder.
+
+**The pipeline in one paragraph.** `content/images/plan.json` (authored by `image-art-director`:
+subject, Hebrew context, people/phase/season rotation, never a city in a file name) → the Media Studio
+toolkit, `cd "C:/Users/robiu/antigravity/Projects/Media Studio"` then
+`node page-images/cli.mjs <cmd> --site gagoline`: `plan lint` → `brief` (prompts with
+`approved: null`) → `digest` (one page for the owner) → the owner's **yes in chat** →
+`approve --batch <sha8> --by "owner in chat"` → `qa --calibrate` once → `generate` (idempotent, every
+paid call in the ledger, refused past the cap) → `qa` (deterministic checks + two vision judges; a
+HARD code from either rejects, SOFT codes need both) → `alt` (Hebrew alt + caption from the finished
+pixels) → `finish` (exact slot box, logo bottom-right, WebP q80) → `stage` (candidates into
+`public/images/_candidates/` plus `candidate` manifest entries) → **review** (`npm run dev:images`
+and the board at `http://localhost:4310`, each card linking to `#img-<id>` on the real page; the
+`image-qa-reviewer` agent spot-checks first) → `install` (approved → `public/images/<group>/`,
+rejected deleted from `_candidates/`, regenerate queued) → `npm run images:status` → `npm run gate`
+→ deploy (ask) → the post-deploy image checks in the `deploy-gagoline` skill. Every command prints
+its plan with `--dry-run`. Full runbook: skill `page-images-pipeline`. The contract every path, slot
+id, text and command obeys: `Media Studio/page-images/docs/contract.md`.
+
+- **`IMAGES_DRAFT=1`** (read in RSC at build/dev time, like `LIVE_DRAFT`) renders `candidate`
+  entries from `/images/_candidates/` with a «טיוטה — ממתין לאישור» badge. Without it only `approved`
+  entries render and `_candidates/` is pruned from `out/`. A draft build writes `out/.images-draft`
+  **and** `out/.live-draft`; never ship one.
+- **Edit here:** `content/images/plan.json` (the slot plan); alt and captions on the board or, for
+  `candidate` entries, the two text fields in the manifest; the disclosure texts `imagesNote` in
+  `lib/content.ts` only with the owner's word. **Never edit by hand:** the manifest's structure,
+  `status`, `approved` or `provenance` (the toolkit writes them; `lib/images.ts` and the gate validate
+  them), anything under `public/images/`, `site.config.json` or the roster for an image.
+- **Install** means the toolkit's `install`; nothing else moves a file into `public/images/`. A file
+  there without a manifest placement fails `images:check` as a stray.
+- **Retire, never delete.** Replacement = a new slug + `retired: "YYYY-MM-DD"` on the old entry; the
+  old file stays ≥ 60 days, then goes in one commit with its entry. Revoked consent = a people-free
+  twin at the same box, swapped the same way, the refs deleted the same day, live removal within 14
+  days of written notice.
+- **Fleet reuse.** The toolkit is site-agnostic; the per-site policy (faces, names, proof of work,
+  disclosure, excluded routes) lives in `Media Studio/sites/<slug>/site.json`. Onboarding the next
+  site: `Media Studio/runbooks/page-images-for-a-site.md` and that project's skill `page-images`.
+  `sharp` and the toolkit code live there, never here; this repo keeps the plan, the manifest, the
+  approved files, `lib/images.ts`, the three components and the gate.

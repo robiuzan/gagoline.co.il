@@ -35,11 +35,13 @@ Report the method alongside the numbers so a later audit can reproduce them.
 ## What to audit
 
 1. **Word floors** (§1): homepage 800 · service 450 · city 350 · article 900 · index 250 · pricing 400
-   · about 500. Baseline: service pages ~80 unique words, city pages ~90.
+   · about 500. Baseline 2026-08-16: service pages ~80 unique words, city pages ~90; measured
+   2026-08-31 after the depth wave: ~1,040 and ~654 (backlog §3.2, §3.5).
 2. **The doorway test** (§2) — the highest-stakes check on the site. Take a city page, substitute a
    different city name, and ask whether it is now a correct publishable page for that city. All 23
-   currently fail: `${city.name}` is interpolated six times into two shared paragraphs, a shared
-   subtitle and a shared H2. **Demonstrate it** rather than asserting it:
+   failed at the 2026-08-16 baseline (`${city.name}` interpolated six times into shared copy);
+   `cityDepth` closed that on 2026-08-31 (backlog §3.5). **Demonstrate the current state** rather
+   than asserting either:
 
    ```bash
    diff <(sed 's/תל אביב/CITY/g' out/areas/tel-aviv/index.html) \
@@ -48,6 +50,12 @@ Report the method alongside the numbers so a later audit can reproduce them.
 
    A near-zero diff is the finding. Say plainly that the penalty for a doorway cluster lands on the
    **domain**, not the page — so thin city pages endanger the service pages too.
+
+   **A rendering is not a doorway-test item** (2026-10-28). Each city page carries two AI images as
+   illustrations of its roof stock; they add no unique words and their alt and captions never name
+   the city. Strip `alt` and `figcaption` text from word counts, and exclude `<img`, `<figure` and
+   `<figcaption` lines from the diff above — differing image files would otherwise hide a textual
+   doorway. Do not count a city page's images as local evidence either way.
 
 3. **Copy that claims to be per-thing and isn't.** `app/services/[service]/page.tsx` hardcodes four
    "מתי כדאי לפנות אלינו" bullets about ceiling damp, rendered verbatim on all 8 service pages —

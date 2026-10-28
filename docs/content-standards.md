@@ -46,7 +46,8 @@ To pass, a location page needs at least **three** of these, and they must be tru
 - **Roof-stock reality** — this is the strongest lever this trade has. Bauhaus-era flat concrete roofs
   in central תל אביב; 1960s שיכונים with tiled roof decks; new towers with membrane systems; industrial
   איסכורית in the אזור/חולון belt; red-tile pitched roofs in רעננה and הוד השרון.
-- A real job reference from that city (with the customer's permission), or a photo.
+- A real job reference from that city (with the customer's permission), or a real photograph. A
+  rendering does not count — see the note below.
 - Travel and scheduling reality — how far it is, and whether winter emergency response genuinely
   applies at that distance. A job in נתניה or רחובות is not a job in תל אביב — not because of the radius (both are comfortably inside it) but because travel and same-day response differ.
 - A city-specific FAQ that would read oddly anywhere else.
@@ -54,6 +55,13 @@ To pass, a location page needs at least **three** of these, and they must be tru
 
 If none of those can be said truthfully about a city, **that city does not warrant a page.** Say so in
 [business-facts.md](business-facts.md) §E rather than padding.
+
+**A rendering on a city page does not count toward the doorway test** (2026-10-28). Each city page
+carries two AI images — a scene on a roof typical of that city's building stock and a stock or
+exposure detail — as illustrations, under the site-wide note. They add no unique words, their alt
+and captions never name the city, no file is shared between two city pages, and none of them is
+local evidence. When measuring uniqueness, strip `alt` and `figcaption` text and ignore `<img>` and
+`<figure>` lines in the diff, or the differing image files will mask a textual doorway.
 
 The same test applies to service pages with the service name swapped. It currently fails there too:
 `app/services/[service]/page.tsx:32-37` hardcodes four "מתי כדאי לפנות אלינו" bullets about ceiling
@@ -163,11 +171,22 @@ until confirmed:
 **Never permitted:** an invented customer name or quote; a rating without a public source; a
 certification the business doesn't hold; a photo presented as our work that isn't.
 
+> ℹ️ **Exception, 2026-10-28 — images are illustrations under a site-wide note.** AI renderings (and
+> the four owner-supplied images, which were AI-made) appear on every content page as illustrations
+> of how a kind of work looks, disclosed once in the gallery intro, the footer and the about page
+> (CLAUDE.md §14, [business-facts.md](business-facts.md) §A). "A photo presented as our work that
+> isn't" is therefore a rule about the **words**: no alt, caption, heading or paragraph presents an
+> image as a specific job, city, date, customer, מ״ר, rating, price or duration; ביצענו never sits
+> next to a picture or a `/gallery/` link; first names appear only in `/about/` captions. The alt and
+> caption rules and the banned stems are in skill `page-imagery` §7 and are enforced by
+> `scripts/images/check-images-out.mjs`.
+
 > ✅ **Resolved 2026-08-17, and worth keeping as the worked example.** Three testimonials attributed to
 > `"לקוח/ה — להחלפה 🔶"` with invented quotes were rendering on `/` and `/reviews/`, alongside six empty
 > gallery tiles and a "תכני הבלוג בדרך 🔶" blog page. All were **deleted**, not rewritten — a visible 🔶
 > in shipped copy is not a safeguard, it is the defect. `/gallery/` came back on 2026-08-27 with four
-> verified photographs and `/blog/` on 2026-08-24 with seven articles; `/reviews/` is still `noindex`
+> owner-supplied images (AI-made, as the owner stated on 2026-10-28) and `/blog/` on 2026-08-24 with
+> seven articles; `/reviews/` is still `noindex`
 > and empty, which is the correct state until real reviews exist. `seo-assert` now fails the build on
 > any rendered 🔶.
 
@@ -221,8 +240,8 @@ first depth block is authored, or every page needs rewriting afterwards.
   bare URL.
 - **Every `href` ends in a trailing slash.** `trailingSlash: true`, and the breadcrumb JSON-LD builder
   does no normalisation (see [link-graph.md](link-graph.md) §3).
-- **Never link `/reviews/`, `/gallery/` or `/blog/` while they are parked** — they are `noindex` and
-  deliberately unlinked.
+- **Never link `/reviews/` while it is parked** — it is `noindex` and deliberately unlinked.
+  (`/gallery/` and `/blog/` left `noindex` on 2026-08-27 and 2026-08-24 and are linked normally.)
 
 ### Approved anchors
 

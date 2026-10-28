@@ -32,37 +32,42 @@ eight weeks to gather reviews before the season; one created in November has non
 
 _(business-facts §C)_
 
-### 2. More job photographs — and a standing instruction to the crews
+### 2. Real job photographs — for Google, and to replace the renderings one for one
 
-**Where this stands:** you sent ten photographs on 27/08. **Four are live** on `/gallery/` and on three
-of the eight service pages. Six could not be used — two were AI-generated (one carried an invented
-product name, "MEMBRANE PRO-SERIES"), one showed **another company's** branding, and three were stock
-photography. That is not a complaint about the batch; it is the reason we need pictures from your own
-jobs and nothing found online. Four is enough to open a gallery. It is not enough to give eight service
-pages and 23 city pages their own evidence.
+**Where this stands (28/10):** the site no longer waits for photographs. Every page now carries
+illustrations — AI renderings made with ניסים and שימי, with a note on the site that says exactly
+that — plus the four images you sent on 27/08, which, as you told us, were AI-made too. Six of the ten
+could not be used (an invented product name, another company's branding, a stock-photo look), and the
+same rules now reject a rendering with those defects.
 
-**What we need next, in order of usefulness — five services still have no photograph at all:**
+**What a rendering cannot do — and why we still need real photographs:**
 
-1. **זיפות גגות** — the bitumen going on, mid-application.
-2. **איטום מרפסות** — a balcony deck stripped back, and the upstand where it meets the wall.
-3. **איטום קירות חיצוניים** — a wall face mid-treatment, ideally with the damp patch still visible.
-4. **סיוד והלבנת גגות** — a roof half white, half not. That single frame explains the whole service.
-5. **איטום מרתפים** — a basement wall or floor junction being sealed.
+1. **The Google Business Profile.** Google wants real photos of real jobs there, and renderings never
+   go into the profile. A profile with no real photos ranks and converts worse than one with twenty.
+2. **One-for-one replacement.** Every rendering on the site sits in a slot that a real photo of the
+   same kind of work can take over — the same aspect ratio, the same place on the page. The more real
+   ones arrive, the fewer renderings remain.
 
-**Then the ongoing habit:** at the diagnosis visit, one wide shot of the roof and one detail shot of the
-stain; at completion, the same two shots from the same standing position. Three jobs a week fills a
-gallery in a fortnight.
+**Most useful first** — the five services whose pictures are all renderings today: זיפות גגות (the
+bitumen going on), איטום מרפסות (a balcony stripped back and the upstand at the wall), איטום קירות
+חיצוניים (a wall mid-treatment), סיוד והלבנת גגות (a roof half white), איטום מרתפים (a wall-to-floor
+junction being sealed).
+
+**The standing habit, unchanged:** at the diagnosis visit, one wide shot of the roof and one detail
+shot of the stain; at completion, the same two shots from the same standing position. Three jobs a
+week fills a real gallery in a fortnight.
 
 **How to shoot them:** a phone is fine. **1600px on the long edge or better** — do not send a WhatsApp
-forward, which compresses. Keep faces, house numbers and number plates out of frame. **Detail beats a
-wide roof:** a wide shot looks like every other roof, while a drain, a pipe penetration, a chimney
-upstand, manufacturer stamping on the sheet or a lifted tile showing the sealing underneath shows what
-you actually did. Written customer permission for anything you want tagged with a city.
+forward, which compresses. Keep house numbers and number plates out of frame; faces only if they are
+ניסים or שימי. **Detail beats a wide roof:** a drain, a pipe penetration, a chimney upstand,
+manufacturer stamping on the sheet or a lifted tile showing the sealing underneath shows what you
+actually did. Written customer permission for anything you want tagged with a city — and without it,
+no caption on the site will name a city, a customer or a date.
 
 Add one line to your quote sheet: _"מאשר/ת פרסום תמונות העבודה ללא פרטים מזהים"_.
 
-_(business-facts §A · the four published and the six rejected are recorded over `galleryImages` in
-`lib/content.ts`)_
+_(business-facts §A · the decision, the consent and the four images' history are recorded there and
+in `assets/images/README.md`)_
 
 ### 3. The warranty document
 

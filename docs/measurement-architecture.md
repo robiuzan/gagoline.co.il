@@ -24,32 +24,8 @@ that governs all of it.
 
 > **CORRECTED 2026-09-06 — this section had it backwards.** It read: "the single blocking fact: nothing
 > in this repo proves a GA4 property exists." Nothing in the repo ever could: the property is configured
-> in the container, and the live container's hostname Lookup Table maps `(^|\.)gagoline\.co\.il# Measurement architecture
-
-Container mechanics, the `data-cta` inventory, event names and the deploy verification steps live in
-the `tracking-analytics` skill. **This file covers what that skill does not:** the dataLayer contract
-as a stable interface, the double-count risk introduced by `/thank-you/`, whether server-side tagging
-is justified here, how a CRM attaches without touching the critical path, and the performance budget
-that governs all of it.
-
----
-
-## 1. Where measurement actually stands (2026-08-31)
-
-| Layer            | State                                                                                                         |
-| ---------------- | ------------------------------------------------------------------------------------------------------------- |
-| Container        | `GTM-KWGGH438` — the **shared Israeli-fleet container**. Every rule must be hostname-scoped                   |
-| Placement        | Renders in `<body>`, not `<head>` — backlog §13.1, still open                                                 |
-| CTA coverage     | 17 distinct `data-cta` values, `{location}-{action}` convention. Plus `thankyou-call` / `thankyou-whatsapp`   |
-| Events           | `lead_submit` on confirmed Web3Forms success only                                                             |
-| URL conversion   | `/thank-you/` — shipped 2026-08-31, `noindex, follow`, reached by a full navigation                           |
-| **GA4 property** | ✅ **`G-22SPQY0188`** — exists and is routed by hostname in the shared container. Verified live 2026-09-06    |
-| Search Console   | Token read from the manifest at `app/layout.tsx:61` since 2026-08-31 (§2.7 closed). Sitemap still unsubmitted |
-| Consent          | None. No banner, no consent mode                                                                              |
-| CRM              | None. Leads land in an inbox via Web3Forms                                                                    |
-
--> **`G-22SPQY0188`**, and `gtag/js?id=G-22SPQY0188` returns a real configured payload (519 KB vs 428 KB for a bogus-ID control).
-
+> in the container, and the live container's hostname Lookup Table maps `(^|\.)gagoline\.co\.il$` -> **`G-22SPQY0188`**, and `gtag/js?id=G-22SPQY0188` returns a real configured payload (519 KB vs 428 KB for a bogus-ID control).
+>
 > **The real blocking fact is narrower and worse.** The container fires page views and nothing else —
 > it holds no GA4 event tags and no click triggers, and contains neither the string `lead_submit` nor
 > `data-cta`. So `/thank-you/` page views ARE recorded, and the `lead_submit` push from `LeadForm` goes

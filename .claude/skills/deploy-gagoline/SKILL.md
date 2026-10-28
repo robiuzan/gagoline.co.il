@@ -73,15 +73,17 @@ If you build manually before deploying, `rm -rf .next out` first.
 ## Before you deploy
 
 Run `/qa-build-gate` end to end. Its stop-ship list applies — in particular, no rendered 🔶, no
-placeholder text, no doubled `<title>`, no missing canonical, and no `Review`/`AggregateRating`
-without a verifiable source.
+placeholder text, no doubled `<title>`, no missing canonical, no `Review`/`AggregateRating` without a
+verifiable source, and the image rules: `npm run images:check` green, no `out/.images-draft` or
+`out/.live-draft` (a draft build with unapproved candidates — rebuild without `IMAGES_DRAFT=1`), and
+no file deleted from `public/images/` (CLAUDE.md §14).
 
 ## After you deploy — the step that actually matters
 
 A "Deployment complete" line is **not** verification. Prove it against the live site:
 
 ```bash
-curl -sS https://gagoline.co.il/sitemap.xml | grep -c '<url>'          # expect 50
+curl -sS https://gagoline.co.il/sitemap.xml | grep -c '<url>'          # expect 51
 curl -o /dev/null -w '%{http_code}\n' -s https://gagoline.co.il/llms.txt   # expect 200
 curl -sSL https://gagoline.co.il/ | grep -c 'להחלפה'                    # expect 0
 curl -sS https://gagoline.co.il/about/ | grep -o '<title>[^<]*</title>'
@@ -90,11 +92,33 @@ curl -o /dev/null -w '%{http_code}\n' -s "https://www.googletagmanager.com/gtm.j
 curl -sSL https://gagoline.co.il/ | grep -o 'mailto:[^"]*' | head -1
 ```
 
+### Image checks — after any deploy that touched `public/images/` or the manifest
+
+```bash
+# every sitemap URL carries at least 2 content images, each with width, height and alt
+for u in $(curl -sS https://gagoline.co.il/sitemap.xml | grep -o '<loc>[^<]*</loc>' | sed 's|<loc>||; s|</loc>||'); do
+  n=$(curl -sSL "$u" | grep -o '<img[^>]*/images/[^>]*>' | grep -c 'width=.*height=.*alt=');
+  [ "$n" -lt 2 ] && echo "$u: $n";
+done                                                                       # expect nothing
+curl -sSL https://gagoline.co.il/ | grep -c 'data-images-notice="footer"'     # expect 1
+curl -sSL https://gagoline.co.il/ | grep -o 'og:image" content="[^"]*"'        # unchanged: imgquarry.com/gagoline/og.jpg
+curl -sSI https://gagoline.co.il/images/services/<file>.webp | grep -iE '^HTTP|content-type'   # 200, image/webp
+curl -sSL https://gagoline.co.il/services/roof-sealing/ | grep -c 'fetchpriority="high"'      # expect 1
+curl -sSL https://gagoline.co.il/services/roof-sealing/ | grep -o '<script type="application/ld+json">[^<]*' | grep -c '/images/'   # expect 0
+```
+
+Then PageSpeed Insights, mobile and desktop, on `/`, one service page and one city page — mobile LCP
+≤ 2.5 s, CLS 0 — and the Rich Results Test on one service page and one guide (no `Review`, no image
+in the schema). Search Console URL Inspection on a sample a week later. Afterwards, in Media Studio,
+`node page-images/cli.mjs mirror --site gagoline`.
+
+````
+
 ### Then run the AI-crawler probe — every time
 
 ```bash
 npm run aeo:check
-```
+````
 
 **This is not optional and it is not part of `npm run gate`** — it needs network and it hits
 production, so it cannot gate a build. It has to run _after_ a deploy, against the live site.
@@ -133,6 +157,10 @@ npx wrangler pages deploy .\out.prev --project-name gagoline --branch main
 Cloudflare Pages also keeps prior deployments in its dashboard and can roll back there, which is often
 faster — offer both and let the user choose.
 
+**Never delete a `public/images/*` file as a rollback.** Redeploy `out.prev/` (copy the newest
+`_next/static` in first, CLAUDE.md §10) or `git revert` the manifest commit; the image URLs stay valid
+either way, which is the point of the never-delete rule (CLAUDE.md §14).
+
 ## Rules
 
 - **Never deploy without being asked.** Not as the last step of a task, not "while I'm here".
@@ -143,4 +171,5 @@ faster — offer both and let the user choose.
   have gone somewhere nobody can see.
 - Never edit `site.config.json` as part of a deploy — it syncs from the roster.
 - Never deploy with `/qa-build-gate` stop-ship items outstanding.
+- Never deploy a build made with `IMAGES_DRAFT=1`, and never run the deploy with that variable set.
 - Zone settings (AI crawler policy, cache rules, Scrape Shield) are the owner's to change.

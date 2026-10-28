@@ -134,10 +134,13 @@ Blocked on a named person (Sprint 0). If the name arrives, byline the seven arti
 to the `Article` schema. If it does not, authorship stays `Organization` and star rich results stay
 off — that is a correct outcome, not a failure.
 
-**3.3 Images on service and city pages** — backlog §7.3. Four verified photographs exist and are used
-only in `/gallery/`. For a visual trade this is a trust gap. Reuse them where they are truthful; do not
-caption beyond what is inside the frame. Wire the kit's `SiteImage`/`srcsetFor` pipeline **before** the
-first image ships, or CLS regresses.
+**3.3 Images on service and city pages** — backlog §7.3. **Resolved 2026-10-28 as illustration:** AI
+renderings under a site-wide note on all 48 content pages, made through the Media Studio page-images
+toolkit (CLAUDE.md §14, skill `page-images-pipeline`); the four supplied images were AI-made and stay
+as owner-supplied illustrations. Captions never go beyond what is inside the frame and never name a
+job or a city. Every image ships through `Figure` with a baked box, so CLS stays 0 by construction.
+Real photographs remain the Sprint 5 ask — for the Google Business Profile, which renderings never
+serve, and for one-for-one replacement.
 
 **3.4 `/gallery/` out of `ALLOWED_ZERO`** — backlog §9.8, found 2026-08-31. It got real photographs and
 left `noindex` on 2026-08-27 but was never removed from the exemption set, so the gate has not checked
@@ -200,15 +203,15 @@ Cannot be scheduled, only unblocked. Each ships **in the same commit** that remo
 
 A rule no script enforces is a suggestion. Each sprint adds its own ratchet:
 
-| Sprint | Assertion to add                                                   |
-| ------ | ------------------------------------------------------------------ |
-| 1      | Answer block present on every service/city page, 40–60 words       |
-| 1      | GTM script index precedes `<body` in every page                    |
-| 1      | `llms.txt` exists; every URL in it appears in the sitemap          |
-| 2      | Every page carrying buying intent has a reachable form or call CTA |
-| 3      | No image without dimensions (CLS reserve)                          |
-| 4      | Font preload present for both families                             |
-| 4      | `package.json` has no dependency with zero imports                 |
+| Sprint | Assertion to add                                                                                                                                                                                                                                                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1      | Answer block present on every service/city page, 40–60 words                                                                                                                                                                                                                     |
+| 1      | GTM script index precedes `<body` in every page                                                                                                                                                                                                                                  |
+| 1      | `llms.txt` exists; every URL in it appears in the sitemap                                                                                                                                                                                                                        |
+| 2      | Every page carrying buying intent has a reachable form or call CTA                                                                                                                                                                                                               |
+| 3      | `scripts/images/check-images-out.mjs` (postbuild + `npm run images:check`): dimensions and alt on every `<img>`, one `priority` per page, byte budgets, no stray or unapproved file, no rendering in schema or `og:image`, the three disclosure markers — **shipped 2026-10-28** |
+| 4      | Font preload present for both families                                                                                                                                                                                                                                           |
+| 4      | `package.json` has no dependency with zero imports                                                                                                                                                                                                                               |
 
 ---
 
