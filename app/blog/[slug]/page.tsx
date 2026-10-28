@@ -7,8 +7,10 @@ import { articleJsonLd } from "@/lib/article-jsonld";
 import { articles, getArticle } from "@/content/articles";
 import { manifest, cities } from "@/lib/site-config";
 import { serviceCards } from "@/lib/content";
+import { imageFor } from "@/lib/images";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Section } from "@/components/ui/Section";
+import { Figure } from "@/components/ui/Figure";
 import { ArticleBody } from "@/components/blog/ArticleBody";
 import { FinalCta } from "@/components/marketing/FinalCta";
 
@@ -49,6 +51,12 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
   // the markup cannot describe questions the page does not show.
   const faqItems = a.blocks.flatMap((b) => (b.kind === "faq" ? [...b.items] : []));
 
+  // The guide's `lead` image (contract §2) sits after the byline and is the page's priority image;
+  // the `mid` figure inside the body is lazy. Neither is passed to articleJsonLd — the Article
+  // node carries no `image`, because a rendering is an illustration, not the article's subject.
+  const route = `/blog/${a.slug}/`;
+  const lead = imageFor(route, "lead");
+
   const jsonLd = [
     articleJsonLd(manifest, {
       slug: a.slug,
@@ -82,8 +90,9 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
             נכתב על ידי צוות גגוליין · עודכן{" "}
             <time dateTime={a.dateModified}>{formatDate(a.dateModified)}</time>
           </p>
+          {lead && <Figure image={lead} priority className="mt-6" />}
 
-          <ArticleBody blocks={a.blocks} />
+          <ArticleBody blocks={a.blocks} route={route} />
 
           <div className="mt-14 border-t border-gray-100 pt-8">
             <h2 className="font-heading text-lg font-bold text-primary">

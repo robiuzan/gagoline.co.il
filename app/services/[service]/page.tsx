@@ -12,12 +12,14 @@ import {
   cities,
   type ServiceSlug,
 } from "@/lib/site-config";
-import { serviceCards, processSteps, relatedServices, serviceImage } from "@/lib/content";
+import { serviceCards, processSteps, relatedServices } from "@/lib/content";
+import { galleryServiceNames, imageFor } from "@/lib/images";
 import { serviceDepth } from "@/lib/service-depth";
 import { articlesForService } from "@/content/articles";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
+import { Figure } from "@/components/ui/Figure";
 import { Prose } from "@/components/ui/Prose";
 import { FinalCta } from "@/components/marketing/FinalCta";
 
@@ -70,13 +72,27 @@ export default function ServicePage({ params }: { params: { service: string } })
     const match = serviceCards.find((c) => c.slug === slug);
     return match ? [match] : [];
   });
-  const photo = serviceImage[card.slug];
   const nearbyCities = citiesForService(card.slug);
   const relatedArticles = articlesForService(card.slug);
 
+  /**
+   * The three service slots (contract §2): `main` under the answer block (an overview of the
+   * method), `detail` after the prep paragraph (one detail done right), `work` after the
+   * duration/weather paragraphs (the finished result). Every one comes from
+   * content/images/manifest.json through lib/images.ts; the page only says where each belongs.
+   * The first that renders is the page's single priority image. Nothing here reaches the JSON-LD
+   * below — renderings are illustrations, never evidence.
+   */
+  const route = `/services/${card.slug}/`;
+  const main = imageFor(route, "main");
+  const detail = imageFor(route, "detail");
+  const work = imageFor(route, "work");
+  const first = main ?? detail ?? work;
+  const galleryNames = galleryServiceNames();
+
   // Service node binds this page to the RoofingContractor node; FAQPage covers the per-service
   // questions rendered below (all visible, so the markup matches what the user sees).
-  // PageHeader emits the BreadcrumbList.
+  // PageHeader emits the BreadcrumbList. No image: renderings never enter structured data.
   const jsonLd = [
     serviceJsonLd(manifest, {
       name: card.name,
@@ -110,34 +126,7 @@ export default function ServicePage({ params }: { params: { service: string } })
               {depth.answerQ}
             </h2>
             <p className="mt-3 text-lg leading-relaxed text-gray-700">{depth.answerA}</p>
-
-            {/*
-             * A real photograph of THIS service, on the three pages where one exists (§7.3). The
-             * other five link to /gallery/ instead — see the note on `serviceImage`: showing a
-             * bituminous-sheet roof on the basement-sealing page would be a fabricated claim, just
-             * a quiet one.
-             *
-             * Plain <img> with intrinsic width/height, matching Header.tsx: images.unoptimized is
-             * true, so next/image would emit no srcset and only add client JS. The dimensions are
-             * what reserve the box and keep CLS flat.
-             */}
-            {photo && (
-              <figure className="mt-6">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={photo.src}
-                  alt={photo.alt}
-                  width={photo.width}
-                  height={photo.height}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full rounded-xl"
-                />
-                <figcaption className="mt-2 text-sm text-gray-500">
-                  {photo.caption}
-                </figcaption>
-              </figure>
-            )}
+            {main && <Figure image={main} priority={main === first} className="mt-6" />}
 
             {depth.intro.map((p, i) => (
               <Prose key={i} parts={p} className="mt-4 text-gray-700" />
@@ -153,26 +142,29 @@ export default function ServicePage({ params }: { params: { service: string } })
             </h2>
             <p className="mt-3 text-gray-700">{depth.materials}</p>
             <p className="mt-3 text-gray-700">{depth.prep}</p>
+            {detail && (
+              <Figure image={detail} priority={detail === first} className="mt-6" />
+            )}
             {/*
              * The contextual link /gallery/ never had. It sat at 52 inbound links and ZERO
              * contextual ones — every single link to it came from the footer — while remaining
-             * exempt in link-graph-check, so the gate had not looked at it since it gained real
-             * photographs on 2026-08-27 (backlog §9.8).
+             * exempt in link-graph-check (backlog §9.8). Placed here because this is the paragraph
+             * about materials and surface preparation, which is what the gallery shows.
              *
-             * Placed here because this is the paragraph about materials and surface preparation,
-             * and that is literally what the four photographs show. A link from the footer is
-             * reachability; a link from here is a reason.
+             * DERIVED, not typed (images contract §7): the list names the services that have an
+             * approved rendering in the gallery's generated group, so the sentence can never
+             * promise a picture the gallery does not hold — and it never says the work was ours.
+             * Empty list → the bare link.
              */}
             <p className="mt-3 text-gray-700">
-              איך זה נראה בפועל —{" "}
+              איך זה נראה —{" "}
               <Link
                 href="/gallery/"
                 className="font-medium text-secondary-600 underline decoration-secondary-200 underline-offset-2 hover:decoration-secondary-600"
               >
-                תמונות מעבודות איטום שביצענו
-              </Link>{" "}
-              : יריעות פרוסות על גג שטוח, איטום נוזלי סביב צינור חודר, ואיטום שנפרס מתחת
-              לרעפים.
+                בגלריה
+              </Link>
+              {galleryNames.length > 0 ? `: ${galleryNames.join(", ")}.` : "."}
             </p>
 
             {/* PER SERVICE. Was a hardcoded array shared by all 8 pages, so ceiling-damp advice
@@ -216,6 +208,7 @@ export default function ServicePage({ params }: { params: { service: string } })
             </h2>
             <p className="mt-3 text-gray-700">{depth.duration}</p>
             <p className="mt-3 text-gray-700">{depth.weather}</p>
+            {work && <Figure image={work} priority={work === first} className="mt-6" />}
             <p className="mt-3 text-gray-700">
               המחיר נגזר משטח הגג, ממספר השכבות שצריך להסיר ומכמות פרטי הקצה — ולכן הוא
               נקבע אחרי הביקור ולא בטלפון.{" "}

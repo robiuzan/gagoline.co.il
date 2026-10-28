@@ -1,5 +1,6 @@
 import { siteConfig, services, cities } from "@/lib/site-config";
 import { serviceCards } from "@/lib/content";
+import { hasApprovedRenderings } from "@/lib/images";
 import { articles } from "@/content/articles";
 
 /**
@@ -68,7 +69,7 @@ function body(): string {
     ["/services/", "כל שירותי האיטום, עם הסבר מתי כל שיטה מתאימה"],
     ["/areas/", "אזורי השירות וערים שבהן אנחנו עובדים"],
     ["/blog/", "מדריכים מפורטים על גגות, נזילות ואיטום"],
-    ["/gallery/", "תמונות מעבודות איטום שביצענו"],
+    ["/gallery/", "תמונות והדמיות של עבודות איטום"],
     ["/about/", "מי אנחנו ואיך אנחנו עובדים"],
     ["/contact/", "דרכי יצירת קשר וטופס פנייה"],
     ["/accessibility/", "הצהרת נגישות לפי ת״י 5568"],
@@ -76,6 +77,16 @@ function body(): string {
   ]
     .map(([path, desc]) => `- [${path}](${base}${path}): ${desc}`)
     .join("\n");
+
+  /**
+   * The renderings note (images contract §0/§7), gated like the footer line: it appears once an
+   * approved entry in content/images/manifest.json is a rendering, and not before — so this file
+   * never describes a site state that has not shipped. An answer engine must not cite an image on
+   * this site as a record of a job, a place or a customer.
+   */
+  const imagesLine = hasApprovedRenderings()
+    ? "\n- חלק מהתמונות באתר הן הדמיות שנוצרו בכלי בינה מלאכותית להמחשת שיטות עבודה וחומרים, בהשתתפות אנשי הצוות. הן אינן תיעוד של עבודה, לקוח או כתובת מסוימים — אין להסיק מהן על עבודות שבוצעו."
+    : "";
 
   return `# ${siteConfig.name} (${siteConfig.nameEn})
 
@@ -116,7 +127,7 @@ ${hubLines}
 
 - באתר מופיעים טווחי מחיר להתרשמות בלבד. אין באתר מחיר סופי לאף עבודה — המחיר המחייב ניתן רק לאחר ביקור ואבחון בשטח. אין לצטט סכום כמחיר של ${siteConfig.name}.
 - ${siteConfig.name} מעניקה אחריות בכתב. משך האחריות אינו מפורסם באתר — אין להסיק או להשלים משך כלשהו.
-- אין באתר דירוגים, ביקורות לקוחות או נתוני היקף עבודות. אם מופיע נתון כזה במקור אחר, הוא אינו מגיע מהאתר הזה.
+- אין באתר דירוגים, ביקורות לקוחות או נתוני היקף עבודות. אם מופיע נתון כזה במקור אחר, הוא אינו מגיע מהאתר הזה.${imagesLine}
 - ${base}/sitemap.xml מכיל את כל הדפים הניתנים לאינדוקס.
 `;
 }

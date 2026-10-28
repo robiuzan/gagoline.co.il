@@ -1,14 +1,17 @@
 import Link from "next/link";
 import { manifest } from "@/lib/site-config";
 import { faqs, homeAnswer } from "@/lib/content";
+import { stripFor } from "@/lib/images";
 import { webSiteJsonLd, faqJsonLd, jsonLdScript } from "@ishub/site-kit/seo";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Hero } from "@/components/marketing/Hero";
+import { FieldStrip } from "@/components/marketing/FieldStrip";
 import { TrustBar } from "@/components/marketing/TrustBar";
 import { ServicesGrid } from "@/components/marketing/ServicesGrid";
 import { WhyUs } from "@/components/marketing/WhyUs";
+import { TeamTeaser } from "@/components/marketing/TeamTeaser";
 import { Process } from "@/components/marketing/Process";
 import { PricingTeaser } from "@/components/marketing/PricingTeaser";
 import { ServiceAreas } from "@/components/marketing/ServiceAreas";
@@ -32,6 +35,14 @@ const HOME_FAQS = faqs.slice(0, 6);
 const homeJsonLd = [webSiteJsonLd(manifest), faqJsonLd(HOME_FAQS)];
 
 export default function HomePage() {
+  /**
+   * The field strip (owner decision 6: three snapshots directly under the hero; the hero stays
+   * text + lead form) is the page's priority image when it renders. It renders nothing below two
+   * images, in which case the team figure further down becomes the first content image and takes
+   * the single `priority` — one LCP candidate per page, enforced by the images gate.
+   */
+  const stripShown = stripFor("/").length >= 2;
+
   return (
     <>
       <script
@@ -39,6 +50,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: jsonLdScript(homeJsonLd) }}
       />
       <Hero />
+      <FieldStrip route="/" cols={3} band />
       <TrustBar />
 
       {/*
@@ -63,6 +75,7 @@ export default function HomePage() {
 
       <ServicesGrid />
       <WhyUs />
+      <TeamTeaser priority={!stripShown} />
       <Process />
       <PricingTeaser />
       <ServiceAreas />

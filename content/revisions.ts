@@ -22,17 +22,17 @@
  */
 export const revisions = {
   /** Fallback for any route not listed below. Also the "site last touched" date. */
-  site: "2026-08-31",
+  site: "2026-10-28",
 
-  "/": "2026-08-25",
-  "/services/": "2026-08-25",
-  "/areas/": "2026-08-25",
-  "/about/": "2026-08-24",
-  "/pricing/": "2026-08-24",
-  "/faq/": "2026-08-24",
-  "/contact/": "2026-08-25",
-  "/gallery/": "2026-08-27",
-  "/blog/": "2026-08-25",
+  "/": "2026-10-28",
+  "/services/": "2026-10-28",
+  "/areas/": "2026-10-28",
+  "/about/": "2026-10-28",
+  "/pricing/": "2026-10-28",
+  "/faq/": "2026-10-28",
+  "/contact/": "2026-10-28",
+  "/gallery/": "2026-10-28",
+  "/blog/": "2026-10-28",
   "/privacy/": "2026-08-24",
   "/accessibility/": "2026-08-24",
   "/terms/": "2026-08-24",

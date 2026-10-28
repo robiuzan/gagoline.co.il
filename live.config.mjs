@@ -18,6 +18,13 @@ export default {
   /** No card here, but the bar is normal: the lead form page — the card would compete with it. */
   noDialog: ["/contact/"],
 
+  /**
+   * Files the site renders but cannot vouch for as a fact (live-kit README: "exact paths, or
+   * folders ending in /"): a line may never cite them. The image manifest's alt texts and captions
+   * describe renderings — illustrations, never a record of a job — so no tip may rest on one.
+   */
+  forbiddenSources: ["content/images/"],
+
   /** The homepage strip sits in the site's own container width. */
   updatesContainerClass: "mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8",
 

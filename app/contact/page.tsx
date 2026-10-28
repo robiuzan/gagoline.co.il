@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { siteConfig, telHref, whatsappHref } from "@/lib/site-config";
+import { imageFor, imagesFor, stripFor } from "@/lib/images";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Section } from "@/components/ui/Section";
+import { Figure } from "@/components/ui/Figure";
 import { EmailLink } from "@/components/ui/EmailAddress";
 import { LeadForm } from "@/components/forms/LeadForm";
 
@@ -14,6 +16,12 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
+  // `main` (the crew at a roof-access door, no plates) under the details list; the `team` entry
+  // the homepage and /about/ share, reused in a two-tile row under the grid (contract §2). The
+  // first one that renders is the page's single priority image.
+  const main = imageFor("/contact/", "main");
+  const row = [...imagesFor("/contact/", "team"), ...stripFor("/contact/")].slice(0, 2);
+
   return (
     <>
       <PageHeader
@@ -83,6 +91,7 @@ export default function ContactPage() {
                 </span>
               </li>
             </ul>
+            {main && <Figure image={main} priority caption={false} className="mt-8" />}
           </div>
 
           {/* Form */}
@@ -96,6 +105,16 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
+
+        {row.length > 0 && (
+          <ul className="mt-10 grid gap-4 sm:grid-cols-2">
+            {row.map((img, i) => (
+              <li key={img.id}>
+                <Figure image={img} priority={!main && i === 0} caption={false} />
+              </li>
+            ))}
+          </ul>
+        )}
       </Section>
     </>
   );

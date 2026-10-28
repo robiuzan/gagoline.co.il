@@ -46,5 +46,14 @@ out.prev
 
 # Supplied 2026-08-27 but NOT publishable: 2 AI-generated, 3 stock, 1 carrying a third
 # party's branding. Kept for reference, deliberately outside public/ so no build can ship
-# them. See the provenance note over `galleryImages` in lib/content.ts.
+# them. History: assets/images/README.md.
 /.rejected-photos/
+
+# Page images (Media Studio/page-images). Candidates are staged here for review with
+# IMAGES_DRAFT=1 and never enter git — only an installed, approved file under public/images/
+# does (scripts/images/check-images-out.mjs prunes the folder from a production export).
+/public/images/_candidates/
+
+# Local copies of masters and review material for this PC; only the README is tracked.
+/assets/images/*
+!/assets/images/README.md

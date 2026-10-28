@@ -15,7 +15,7 @@ export const article: Article = {
   description:
     "השוואה מלאה בין זיפות ליריעות ביטומניות: לאיזה גג כל שיטה מתאימה, כמה כל אחת מחזיקה, מתי זיפות הוא בזבוז כסף ומתי יריעות הן יתר לצורך.",
   datePublished: "2026-08-24",
-  dateModified: "2026-08-24",
+  dateModified: "2026-10-28",
   relatedServices: ["roof-tarring", "bituminous-sheets", "roof-sealing"],
   relatedCities: ["holon", "bat-yam"],
   blocks: [
@@ -57,6 +57,7 @@ export const article: Article = {
       text: "שימו לב שהטבלה לא אומרת שיריעות עדיפות. היא אומרת שהן עמידות יותר ויקרות יותר. בגג שלא צריך את העמידות הזו, ההפרש הוא כסף שלא קונה כלום.",
     },
     { kind: "heading", level: 2, text: "מתי זיפות הוא הבחירה הנכונה?" },
+    { kind: "figure", slot: "mid" },
     {
       kind: "list",
       items: [

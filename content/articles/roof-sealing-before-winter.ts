@@ -16,7 +16,7 @@ export const article: Article = {
   description:
     "למה חלון העבודה נסגר מוקדם יותר משנדמה, מה בודקים בגג לפני החורף, ומה בכלל אפשר ומה לא אפשר לעשות כשהגשם כבר התחיל.",
   datePublished: "2026-08-24",
-  dateModified: "2026-08-24",
+  dateModified: "2026-10-28",
   relatedServices: ["roof-sealing", "leak-detection", "roof-tarring"],
   relatedCities: ["netanya", "kfar-saba"],
   blocks: [
@@ -44,6 +44,7 @@ export const article: Article = {
       text: "בגג מוצל או בגג עם מים עומדים, זמן הייבוש ארוך משמעותית מהממוצע. באלה כדאי להקדים ולא לדחות לספטמבר.",
     },
     { kind: "heading", level: 2, text: "מה בודקים בגג לפני החורף?" },
+    { kind: "figure", slot: "mid" },
     {
       kind: "list",
       ordered: true,

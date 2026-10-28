@@ -3,6 +3,8 @@ import { Info, TriangleAlert } from "lucide-react";
 import type { Block } from "@/content/articles/types";
 import { Prose } from "@/components/ui/Prose";
 import { Button } from "@/components/ui/Button";
+import { Figure } from "@/components/ui/Figure";
+import { imageFor, type PlacedImage } from "@/lib/images";
 import { telHref, whatsappHref, siteConfig } from "@/lib/site-config";
 
 /**
@@ -12,8 +14,21 @@ import { telHref, whatsappHref, siteConfig } from "@/lib/site-config";
  *
  * The `answer` and `faq` blocks are rendered here AND drive the JSON-LD in the route. One source,
  * so schema cannot describe content that is not on the page.
+ *
+ * A `figure` block resolves through lib/images.ts at render time — the article declares WHERE an
+ * image belongs, the manifest decides WHETHER one is approved for that slot. Nothing renders
+ * (not even an empty box) while the slot is unfilled.
  */
-function BlockView({ block }: { block: Block }) {
+function BlockView({
+  block,
+  image,
+  priority,
+}: {
+  block: Block;
+  /** Resolved for `figure` blocks by ArticleBody; undefined otherwise. */
+  image?: PlacedImage;
+  priority?: boolean;
+}) {
   switch (block.kind) {
     case "paragraph":
       return <p className="mt-4 leading-relaxed text-gray-700">{block.text}</p>;
@@ -150,6 +165,9 @@ function BlockView({ block }: { block: Block }) {
         </div>
       );
 
+    case "figure":
+      return image ? <Figure image={image} priority={priority} className="mt-8" /> : null;
+
     default: {
       // Exhaustiveness guard: a new Block kind fails the build here.
       const _never: never = block;
@@ -158,11 +176,33 @@ function BlockView({ block }: { block: Block }) {
   }
 }
 
-export function ArticleBody({ blocks }: { blocks: readonly Block[] }) {
+/**
+ * `route` is the guide's own path (`/blog/<slug>/`), the key every `figure` block is looked up by.
+ * Exactly one content image per page is `priority`: the route's `lead` figure when it renders
+ * (the page places it above the body), otherwise the first figure block that resolves to an image.
+ */
+export function ArticleBody({
+  blocks,
+  route,
+}: {
+  blocks: readonly Block[];
+  route: string;
+}) {
+  const images = blocks.map((b) =>
+    b.kind === "figure" ? imageFor(route, b.slot) : undefined,
+  );
+  const leadShown = imageFor(route, "lead") !== undefined;
+  const firstFigure = images.findIndex((img) => img !== undefined);
+
   return (
     <div>
       {blocks.map((b, i) => (
-        <BlockView key={i} block={b} />
+        <BlockView
+          key={i}
+          block={b}
+          image={images[i]}
+          priority={!leadShown && i === firstFigure}
+        />
       ))}
     </div>
   );

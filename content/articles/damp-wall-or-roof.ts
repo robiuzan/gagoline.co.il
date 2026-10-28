@@ -12,7 +12,7 @@ export const article: Article = {
   description:
     "איך מבדילים בין רטיבות שמקורה בגג, בקיר חיצוני, בצנרת או בעליית מים מהקרקע — לפי מיקום הכתם, העיתוי והצורה שלו.",
   datePublished: "2026-08-24",
-  dateModified: "2026-08-24",
+  dateModified: "2026-10-28",
   relatedServices: ["exterior-wall-sealing", "basement-sealing", "leak-detection"],
   relatedCities: ["givatayim", "netanya"],
   blocks: [
@@ -55,6 +55,7 @@ export const article: Article = {
       ],
     },
     { kind: "heading", level: 2, text: "מתי הכתם מופיע?" },
+    { kind: "figure", slot: "mid" },
     {
       kind: "list",
       items: [

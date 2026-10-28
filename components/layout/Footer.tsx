@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { siteConfig, telHref, services, cities } from "@/lib/site-config";
+import { imagesNote } from "@/lib/content";
+import { hasApprovedRenderings } from "@/lib/images";
 import { Container } from "@/components/ui/Container";
 import { EmailLink } from "@/components/ui/EmailAddress";
 
@@ -10,6 +12,18 @@ export function Footer() {
   // remembers to edit it, whereas a build-time year self-corrects on the next deploy. The site
   // deploys often enough that this is strictly better, and it is still deterministic per build.
   const year = new Date().getFullYear();
+
+  /**
+   * The site-wide disclosure line (images contract §7), on every page — but only once at least one
+   * approved entry in content/images/manifest.json is a rendering, so the live site is unchanged
+   * until the first batch ships. The label is a plain `/gallery/` href: seo-assert rejects an
+   * internal href with a fragment. Split around the label so the sentence stays one string in
+   * lib/content.ts, where the gate asserts it verbatim.
+   */
+  const showImagesNote = hasApprovedRenderings();
+  const [noteLead = "", noteTail = ""] = imagesNote.footer.split(
+    imagesNote.footerLinkLabel,
+  );
 
   return (
     <footer className="bg-primary text-white/90">
@@ -161,11 +175,25 @@ export function Footer() {
       </Container>
 
       <div className="border-t border-white/10">
-        <Container className="flex flex-col items-center justify-between gap-2 py-5 text-xs text-white/60 sm:flex-row">
-          <p>
-            © {year} {siteConfig.name}. כל הזכויות שמורות.
-          </p>
-          <p>איטום גגות בתל אביב והמרכז</p>
+        <Container className="py-5 text-xs text-white/60">
+          {showImagesNote && (
+            <p data-images-notice="footer" className="mb-3 text-center sm:text-start">
+              {noteLead}
+              <Link
+                href="/gallery/"
+                className="underline underline-offset-2 hover:text-white"
+              >
+                {imagesNote.footerLinkLabel}
+              </Link>
+              {noteTail}
+            </p>
+          )}
+          <div className="flex flex-col items-center justify-between gap-2 sm:flex-row">
+            <p>
+              © {year} {siteConfig.name}. כל הזכויות שמורות.
+            </p>
+            <p>איטום גגות בתל אביב והמרכז</p>
+          </div>
         </Container>
       </div>
     </footer>

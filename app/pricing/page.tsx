@@ -3,8 +3,10 @@ import Link from "next/link";
 import { AlertTriangle, Check } from "lucide-react";
 import { faqJsonLd, jsonLdScript } from "@ishub/site-kit/seo";
 import { pricingContent } from "@/lib/content";
+import { imageFor } from "@/lib/images";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Section } from "@/components/ui/Section";
+import { Figure } from "@/components/ui/Figure";
 import { PricingTeaser } from "@/components/marketing/PricingTeaser";
 import { FinalCta } from "@/components/marketing/FinalCta";
 import { LeadForm } from "@/components/forms/LeadForm";
@@ -29,6 +31,12 @@ export const metadata: Metadata = {
 const jsonLd = faqJsonLd(pricingContent.faqs);
 
 export default function PricingPage() {
+  // `survey` (a tape measure on a roof, no readable digits) under the intro; `layers` (a cut edge
+  // showing old coating layers) after the factors. The first one that renders is the priority
+  // image. Neither is a price fact — see the Offer note above for why that matters here.
+  const survey = imageFor("/pricing/", "survey");
+  const layers = imageFor("/pricing/", "layers");
+
   return (
     <>
       <script
@@ -54,6 +62,7 @@ export default function PricingPage() {
               {p}
             </p>
           ))}
+          {survey && <Figure image={survey} priority className="mt-8" />}
         </div>
       </Section>
 
@@ -72,6 +81,7 @@ export default function PricingPage() {
               </div>
             ))}
           </dl>
+          {layers && <Figure image={layers} priority={!survey} className="mt-8" />}
 
           <h2 className="mt-12 font-heading text-xl font-bold text-primary">
             {pricingContent.quoteTitle}

@@ -13,7 +13,7 @@ export const article: Article = {
   description:
     "שבע הסיבות שבגללן איטום נכשל אחרי חודשים ספורים, איך מזהים איזו מהן קרתה אצלכם, ומה לשאול לפני שמשלמים לקבלן הבא על אותה עבודה.",
   datePublished: "2026-08-24",
-  dateModified: "2026-08-24",
+  dateModified: "2026-10-28",
   relatedServices: ["leak-detection", "roof-sealing", "roof-tarring"],
   relatedCities: ["holon", "or-yehuda"],
   blocks: [
@@ -40,6 +40,7 @@ export const article: Article = {
       text: "איך מזהים שזה מה שקרה: הנזילה חזרה באותו מקום בדיוק, בעוצמה דומה, ובגשם הראשון או השני. אם האיטום היה תקין והבעיה הייתה בשכבה, היינו מצפים לפחות לשיפור זמני.",
     },
     { kind: "heading", level: 2, text: "2. המשטח לא הוכן" },
+    { kind: "figure", slot: "mid" },
     {
       kind: "paragraph",
       text: "שכבת איטום עובדת רק כשהיא מחוברת למה שמתחתיה. אם היא נפרשה על אבק, על שכבה מתקלפת, על משטח לח או מעל ערימת שכבות ישנות שספגו מים — היא שוכבת על הגג ולא מחוברת אליו.",

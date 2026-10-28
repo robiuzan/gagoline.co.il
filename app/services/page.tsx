@@ -5,6 +5,7 @@ import { servicesContent } from "@/lib/content";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Section } from "@/components/ui/Section";
 import { ServicesGrid } from "@/components/marketing/ServicesGrid";
+import { FieldStrip } from "@/components/marketing/FieldStrip";
 import { FinalCta } from "@/components/marketing/FinalCta";
 
 export const metadata: Metadata = {
@@ -36,6 +37,8 @@ export default function ServicesPage() {
               {p}
             </p>
           ))}
+          {/* The hub's pair (contract §2: pair-1, pair-2) closes the answer column, before the grid. */}
+          <FieldStrip route="/services/" cols={2} className="mt-8" />
         </div>
       </Section>
 

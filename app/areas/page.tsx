@@ -5,6 +5,7 @@ import { regions, citiesInRegion } from "@/lib/site-config";
 import { areasContent, serviceCards } from "@/lib/content";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Section } from "@/components/ui/Section";
+import { FieldStrip } from "@/components/marketing/FieldStrip";
 import { FinalCta } from "@/components/marketing/FinalCta";
 
 /**
@@ -48,6 +49,8 @@ export default function AreasPage() {
               {p}
             </p>
           ))}
+          {/* One roof archetype per region (contract §2: strip-1..3) — never a city, in frame or in words. */}
+          <FieldStrip route="/areas/" cols={3} className="mt-8" />
         </div>
       </Section>
 

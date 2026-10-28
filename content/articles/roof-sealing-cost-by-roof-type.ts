@@ -31,7 +31,7 @@ export const article: Article = {
   description:
     "מה באמת מרכיב את מחיר איטום הגג — ולמה סוג הגג, כמות פרטי הקצה ומצב המשטח משנים את ההצעה הרבה יותר משטח הגג. פירוט לפי גג בטון, גג מרוצף, רעפים ואיסכורית.",
   datePublished: "2026-09-16",
-  dateModified: "2026-09-16",
+  dateModified: "2026-10-28",
   relatedServices: ["roof-sealing", "bituminous-sheets", "balcony-sealing"],
   relatedCities: ["bnei-brak", "rehovot"],
   blocks: [
@@ -69,6 +69,7 @@ export const article: Article = {
       level: 2,
       text: "איך סוג הגג משנה את המחיר?",
     },
+    { kind: "figure", slot: "mid" },
     {
       kind: "paragraph",
       text: "לכל סוג גג יש גורם מייקר אחד דומיננטי. אם מזהים אותו מראש, אפשר להבין מאיפה מגיע ההפרש בין ההצעות — ולפעמים גם להוזיל את העבודה בלי לוותר על איכות.",

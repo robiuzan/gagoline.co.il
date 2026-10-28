@@ -3,7 +3,9 @@ import Link from "next/link";
 import { Check, X } from "lucide-react";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Section } from "@/components/ui/Section";
-import { aboutContent } from "@/lib/content";
+import { Figure } from "@/components/ui/Figure";
+import { aboutContent, imagesNote } from "@/lib/content";
+import { imageFor } from "@/lib/images";
 import { TrustBar } from "@/components/marketing/TrustBar";
 import { FinalCta } from "@/components/marketing/FinalCta";
 
@@ -32,6 +34,19 @@ const values = [
 ];
 
 export default function AboutPage() {
+  /**
+   * The three about-page slots (contract §2): `team` under the answer block — the same entry the
+   * homepage teaser shares, here WITH its caption and, under it, the one line on the site that
+   * names the two technicians (`imagesNote.about`, owner decision 2: first names, /about/ only);
+   * `story` after the story (a flood test); `work` after the principles. Both the figure and the
+   * named line render only when the team image exists, and the first image that renders is the
+   * page's single priority image.
+   */
+  const team = imageFor("/about/", "team");
+  const story = imageFor("/about/", "story");
+  const work = imageFor("/about/", "work");
+  const first = team ?? story ?? work;
+
   return (
     <>
       <PageHeader
@@ -48,6 +63,14 @@ export default function AboutPage() {
           <p className="mt-3 text-lg leading-relaxed text-gray-700">
             {aboutContent.answerA}
           </p>
+          {team && (
+            <>
+              <Figure image={team} priority={team === first} className="mt-8" />
+              <p data-images-notice="about" className="mt-3 text-sm text-gray-500">
+                {imagesNote.about}
+              </p>
+            </>
+          )}
 
           <h2 className="mt-10 font-heading text-xl font-bold text-primary">
             {aboutContent.storyTitle}
@@ -67,6 +90,7 @@ export default function AboutPage() {
             </Link>{" "}
             — וגם כשהוא מסתיים בלי עבודת איטום, הוא עשה את מה שהוא נועד לעשות.
           </p>
+          {story && <Figure image={story} priority={story === first} className="mt-8" />}
 
           <h2 className="mt-10 font-heading text-xl font-bold text-primary">
             {aboutContent.principlesTitle}
@@ -79,6 +103,7 @@ export default function AboutPage() {
               </div>
             ))}
           </dl>
+          {work && <Figure image={work} priority={work === first} className="mt-8" />}
 
           <h2 className="mt-10 font-heading text-xl font-bold text-primary">
             {aboutContent.whoTitle}

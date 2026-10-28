@@ -14,7 +14,7 @@ export const article: Article = {
   description:
     "למה הכתם בתקרה כמעט אף פעם לא נמצא מתחת לנקודת החדירה, איך עובדת בדיקת הצפה, ומה ההבדל בין איתור מקור לבין ניחוש — מדריך מלא.",
   datePublished: "2026-08-24",
-  dateModified: "2026-08-24",
+  dateModified: "2026-10-28",
   relatedServices: ["leak-detection", "roof-sealing", "balcony-sealing"],
   relatedCities: ["tel-aviv", "ramat-gan"],
   blocks: [
@@ -42,6 +42,7 @@ export const article: Article = {
       text: "אם מישהו מציע לאטום את השטח שמעל הכתם בלי לבדוק דבר — הוא מציע לתקן את נקודת היציאה. במקרה הטוב זה לא יעזור. במקרה הרע זה יחסום את דרך היציאה של המים ויגרום להם להופיע במקום אחר.",
     },
     { kind: "heading", level: 2, text: "מה בודקים, ובאיזה סדר?" },
+    { kind: "figure", slot: "mid" },
     {
       kind: "paragraph",
       text: "סדר הבדיקה נקבע לפי הסתברות. רוב הנזילות מתחילות באותם מקומות, ולכן בודקים אותם ראשונים — זה חוסך זמן וכסף לשני הצדדים.",

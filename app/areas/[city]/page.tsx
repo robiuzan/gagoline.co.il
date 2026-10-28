@@ -12,11 +12,13 @@ import {
   type CitySlug,
 } from "@/lib/site-config";
 import { serviceCards } from "@/lib/content";
+import { imageFor } from "@/lib/images";
 import { cityDepth } from "@/lib/city-depth";
 import { articlesForCity } from "@/content/articles";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
+import { Figure } from "@/components/ui/Figure";
 import { Prose } from "@/components/ui/Prose";
 import { FinalCta } from "@/components/marketing/FinalCta";
 
@@ -61,6 +63,16 @@ export default function AreaPage({ params }: { params: { city: string } }) {
     .map((slug) => cities.find((c) => c.slug === slug))
     .filter((c): c is (typeof cities)[number] => Boolean(c));
 
+  /**
+   * The two city slots (contract §2): `main` under the answer block — technicians on a roof typical
+   * of THIS city's stock — and `detail` after the stock paragraphs, a people-free roof-stock
+   * detail. The manifest forbids sharing a file between two city pages and a city name in any
+   * alt, caption or file name: the page's own H2s supply the city, the image illustrates the roof
+   * type. The first one that renders is the page's single priority image.
+   */
+  const main = imageFor(`/areas/${city.slug}/`, "main");
+  const detail = imageFor(`/areas/${city.slug}/`, "detail");
+
   // Service + areaServed:City. This is the only machine-readable statement that the business
   // serves THIS city — everything else on the page is prose. serviceType stays the category
   // ("איטום גגות") while name carries the city, so 23 pages do not invent 23 categories.
@@ -104,6 +116,7 @@ export default function AreaPage({ params }: { params: { city: string } }) {
               {depth.answerQ}
             </h2>
             <p className="mt-3 text-lg leading-relaxed text-gray-700">{depth.answerA}</p>
+            {main && <Figure image={main} priority className="mt-6" />}
 
             <h2 className="mt-10 font-heading text-xl font-bold text-primary">
               הגגות ש{city.name} בנויה מהם
@@ -111,6 +124,7 @@ export default function AreaPage({ params }: { params: { city: string } }) {
             {depth.stock.map((p, i) => (
               <Prose key={i} parts={p} className="mt-4 text-gray-700" />
             ))}
+            {detail && <Figure image={detail} priority={!main} className="mt-6" />}
 
             <h2 className="mt-10 font-heading text-xl font-bold text-primary">
               תנאי הסביבה ב{city.name}

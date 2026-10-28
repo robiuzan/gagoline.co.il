@@ -11,7 +11,7 @@ export const article: Article = {
   description:
     "מתי אפשר לאטום מעל ריצוף קיים ומתי חובה להרים אותו, איך בודקים את זה לפני שמתחילים, ומה ההבדל בעלות, בעמידות ובמשך העבודה.",
   datePublished: "2026-08-24",
-  dateModified: "2026-08-24",
+  dateModified: "2026-10-28",
   relatedServices: ["balcony-sealing", "roof-sealing", "leak-detection"],
   relatedCities: ["herzliya", "raanana"],
   blocks: [
@@ -34,6 +34,7 @@ export const article: Article = {
       text: "כשהפוגות מתפוררות, כמות המים שמגיעה למטה גדלה. אם השכבה האטומה מתחת התבלתה, נסדקה או מעולם לא הייתה שם כמו שצריך — המים ממשיכים אל הבטון ומשם אל התקרה של החדר. לכן מרפסת יכולה להיראות מושלמת מלמעלה בזמן שהבעיה נמצאת שני סנטימטרים מתחת לאריח.",
     },
     { kind: "heading", level: 2, text: "מתי מותר לאטום מעל הריצוף?" },
+    { kind: "figure", slot: "mid" },
     {
       kind: "list",
       items: [

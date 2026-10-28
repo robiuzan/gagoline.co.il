@@ -205,8 +205,9 @@ export const faqs = [
  * yet (backlog §7.1–7.2), and pointing sitewide navigation at them spent the site's strongest
  * internal signal on the two pages that best demonstrated it was unfinished.
  *
- * "גלריה" was restored 2026-08-27 with four verified photographs. "המלצות" stays out until
- * real reviews land — inventing them is what got the originals deleted.
+ * "גלריה" was restored 2026-08-27 with the four owner-supplied images (AI-made per the owner,
+ * 2026-10-28 — see `imagesNote`). "המלצות" stays out until real reviews land — inventing them is
+ * what got the originals deleted.
  */
 export const navItems = [
   { label: "השירותים שלנו", href: "/services/" },
@@ -497,65 +498,40 @@ export const servicesContent = {
 } as const;
 
 /**
- * `/gallery/` — photographs of waterproofing work.
+ * The site-wide disclosure for renderings — the exact texts of the page-images contract §7. The
+ * images gate (scripts/images/check-images-out.mjs) asserts the markers
+ * `data-images-notice="gallery" | "footer" | "about"` around these strings, so edit them here and
+ * nowhere else.
  *
- * ⚠️ PROVENANCE, NOT LAYOUT, IS THE POINT OF THIS BLOCK. A portfolio gallery asserts "this is our
- * work", so every image here is a business fact under CLAUDE.md rule 1 — the same rule that got the
- * three invented testimonials deleted on 2026-08-17. An unsourced photo is a fabricated review with
- * better production values.
- *
- * Ten photos were supplied on 2026-08-27 and SIX WERE REJECTED. Do not re-add them:
- *   gagoline_9, gagoline_10 — AI-generated. _9 carries an invented product ("MEMBRANE PRO-SERIES /
- *                             ROOFSEAL-X4") and a smear of garbled glyphs where a logo would sit.
- *   gagoline_4              — a THIRD PARTY's branding ("ULTRA-SEAL PRECISION FLASHING SYSTEMS")
- *                             over a North American skyline.
- *   gagoline_2, _5, _8      — stock photography; _2 is a northern-European tile roof.
- *
- * The four kept are Israeli sites, with real manufacturer stamping and no foreign branding.
- *
- * `alt` and `caption` describe ONLY what is inside the frame. No city, no date, no customer, no
- * מ״ר, and no לפני/אחרי — none of that is sourced (docs/business-facts.md §A), and a caption can
- * fabricate a fact exactly as easily as a testimonial can. Dimensions are the intrinsic pixel size
- * of each file and are emitted on the <img>, so the grid reserves its boxes and CLS stays flat.
+ * WHY ONE NOTE AND NOT A LABEL PER IMAGE (owner decision 2026-10-28): a label on some images
+ * implies the others are photographs, and none are — the four supplied gallery images were AI-made
+ * too. The rule therefore moved from the pixels to the words: alt and captions describe what is in
+ * frame and never claim a job, a city, a date, a customer, an area or a rating
+ * (scripts/images/lib/manifest-rules.mjs enforces the stems), and renderings never feed JSON-LD
+ * or og:image. The images themselves live in content/images/manifest.json, written by the fleet
+ * toolkit; the history of the supplied set and the six rejected files is in assets/images/README.md.
  */
-export const galleryImages = [
-  {
-    src: "/gagoline_1.jpg",
-    width: 1000,
-    height: 1000,
-    alt: "גג שטוח מכוסה יריעות ביטומניות, עם פתח ניקוז ורשת ומעטפת איטום סביב ארובה נמוכה",
-    caption:
-      "יריעות ביטומניות פרוסות על כל שטח הגג, עם טיפול נקודתי סביב פתח הניקוז והארובה.",
-  },
-  {
-    src: "/gagoline_7.jpg",
-    width: 1000,
-    height: 1000,
-    alt: "גג שטוח מכוסה יריעות ביטומניות עם הטבעת יצרן, ואיטום סביב צרור צינורות בולטים",
-    caption: "יריעות ביטומניות בעובי 4 מ״מ, עם איטום סביב צרור הצינורות שבמרכז הגג.",
-  },
-  {
-    src: "/gagoline_6.jpg",
-    width: 1334,
-    height: 1000,
-    alt: "עובד ברתמת בטיחות מורח איטום נוזלי במברשת סביב צינור חודר בגג פח",
-    caption:
-      "איטום נוזלי סביב חדירת צינור בגג פח — נקודות החדירה הן המקום שממנו נזילות מתחילות.",
-  },
-  {
-    src: "/gagoline_3.jpg",
-    width: 1777,
-    height: 1000,
-    alt: "גג משופע בשלב עבודה — יריעת איטום פרוסה על המשטח, לטות עץ מעליה וערימות רעפים מוכנות להנחה",
-    caption:
-      "בגג רעפים האיטום נמצא מתחת לרעפים: היריעה נפרסת על המשטח, ורק אחר כך חוזרות הלטות והרעפים.",
-  },
-] as const;
+export const imagesNote = {
+  /** Under the supplied group on /gallery/ (and the gallery intro's twin on /about/ is `about`). */
+  gallery:
+    "כדי להראות איך נראית כל עבודת איטום גם כשאין צילום מהשטח, חלק מהתמונות באתר הן הדמיות שנוצרו בכלי בינה מלאכותית, בהשתתפות אנשי הצוות שלנו. הן ממחישות שיטות עבודה וחומרים, ואינן תיעוד של עבודה, לקוח או כתובת מסוימים.",
+  /**
+   * Every page's footer once a rendering is approved. `footerLinkLabel` is the part that links to
+   * /gallery/ — a plain href, no fragment (seo-assert rejects fragments on internal hrefs).
+   */
+  footer: "חלק מהתמונות באתר הן הדמיות להמחשה — פרטים בגלריה.",
+  footerLinkLabel: "פרטים בגלריה",
+  /** Under the team figure on /about/ — the only place a first name appears (owner decision 2). */
+  about:
+    "בתמונה: ניסים ושימי מצוות גגוליין. התמונות באתר שבהן הם מופיעים הן הדמיות להמחשת העבודה, לא צילומים מעבודה מסוימת.",
+} as const;
 
 /** Copy for `/gallery/`. Deliberately free of counts, locations and dates — none are sourced. */
 export const galleryContent = {
   intro:
-    "תמונות מעבודות איטום — יריעות ביטומניות על גגות שטוחים, איטום נוזלי סביב חדירות בגג פח, ואיטום שנפרס מתחת לרעפים. לכל גג יש נקודת תורפה משלו, ורוב הנזילות מתחילות בדיוק במקומות שנראים כאן: פתחי ניקוז, צינורות חודרים וחיבורים.",
+    "תמונות והדמיות של עבודות איטום — יריעות ביטומניות על גגות שטוחים, איטום נוזלי סביב חדירות, איטום מרפסות וקירות, ואיטום שנפרס מתחת לרעפים. לכל גג יש נקודת תורפה משלו, ורוב הנזילות מתחילות בדיוק במקומות שנראים כאן: פתחי ניקוז, צינורות חודרים וחיבורים.",
+  /** H2 over the generated group, rendered only once a generated entry is approved. */
+  generatedTitle: "הדמיות — כך נראית העבודה",
   cta: "רוצים לדעת מה מתאים לגג שלכם? התקשרו אלינו ונסביר בדיוק מה נדרש.",
 } as const;
 
@@ -617,8 +593,10 @@ export const thankYouContent = {
   ],
   urgentHeading: "צריכים מענה מיידי?",
   urgentBody: "אם יש נזילה פעילה עכשיו, אל תחכו לשיחה חוזרת — התקשרו או שלחו וואטסאפ.",
+  // Links to /gallery/, so it says how the work LOOKS — never "work we did" (the gallery holds
+  // renderings, and the images contract keeps that claim away from every /gallery/ link).
   meanwhile:
-    "בינתיים אפשר לראות עבודות איטום שביצענו, או לקרוא מדריכים על הכנת הגג לחורף.",
+    "בינתיים אפשר לראות איך נראות עבודות איטום בגלריה, או לקרוא מדריכים על הכנת הגג לחורף.",
 } as const;
 
 /**
@@ -726,31 +704,3 @@ export const notFoundContent = {
     "הכתובת שהגעתם אליה לא קיימת — ייתכן שהיא הוסרה או שנפלה טעות בהקלדה. אם יש נזילה עכשיו, מהיר יותר פשוט להתקשר.",
   linksHeading: "אולי חיפשתם",
 } as const;
-
-/**
- * Which service pages carry one of the four verified photographs (backlog §7.3).
- *
- * THREE OF EIGHT, AND THE FIVE OMISSIONS ARE THE POINT.
- *
- * The four photographs in `galleryImages` show bituminous sheets on flat roofs, liquid sealing
- * around a pipe penetration on a metal roof, and membrane going down under roof tiles. That is what
- * is inside the frames. Putting one of them on the זיפות, מרפסות, קירות חיצוניים, סיוד or מרתפים
- * page would present a photograph of one kind of work as an example of a different kind — which is
- * the same category of fabrication as an invented testimonial, just harder to notice.
- * docs/business-facts.md §A: "a photo presented as our work that isn't" is never permitted, and
- * "our work, but not this work" fails for the same reason.
- *
- * NO PHOTOGRAPH GOES ON A CITY PAGE, for the same reason at one remove: a photo on /areas/netanya/
- * asserts that this roof is in נתניה, and no location is sourced for any of the four.
- *
- * The other five pages link to /gallery/ in context instead, which is true and still useful.
- */
-export const serviceImage: Partial<Record<ServiceSlug, (typeof galleryImages)[number]>> =
-  {
-    // Bituminous sheets over a whole flat roof, with the drain and chimney detailed — roof sealing.
-    "roof-sealing": galleryImages[0],
-    // The same material, photographed close enough to read the manufacturer stamping.
-    "bituminous-sheets": galleryImages[1],
-    // Liquid sealing worked around a pipe penetration: penetrations are where leaks start.
-    "leak-detection": galleryImages[2],
-  };

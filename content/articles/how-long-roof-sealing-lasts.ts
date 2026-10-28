@@ -14,7 +14,7 @@ export const article: Article = {
   description:
     "למה אין מספר אחד שעונה על השאלה, אילו גורמים באמת קובעים את אורך חיי האיטום, ומה אפשר לעשות כדי להאריך אותו בלי להוציא כסף מיותר.",
   datePublished: "2026-08-24",
-  dateModified: "2026-08-24",
+  dateModified: "2026-10-28",
   relatedServices: ["roof-sealing", "roof-tarring", "roof-whitening"],
   relatedCities: ["petah-tikva", "rishon-lezion"],
   blocks: [
@@ -55,6 +55,7 @@ export const article: Article = {
       text: "שימו לב שארבעה מתוך שבעת הגורמים נמצאים בשליטה מלאה או חלקית — ושניים מהם נקבעים ביום העבודה עצמו. אורך חיי האיטום נקבע ברובו לפני שהחומר בכלל הגיע לגג.",
     },
     { kind: "heading", level: 2, text: "למה הכנת המשטח חשובה יותר מהחומר?" },
+    { kind: "figure", slot: "mid" },
     {
       kind: "paragraph",
       text: "כי שכבת איטום עובדת רק כשהיא מחוברת למה שמתחתיה. אם היא נפרשה על אבק, על שכבה מתקלפת, על משטח לח או מעל ערימת שכבות ישנות שספגו מים — היא לא באמת מודבקת לגג. היא שוכבת עליו.",

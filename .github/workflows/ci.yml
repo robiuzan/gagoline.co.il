@@ -55,6 +55,13 @@ jobs:
       - name: SEO assertions
         run: npm run seo:assert
 
+      # The images gate: every image in out/ is an approved manifest entry with the header
+      # dimensions and bytes the manifest records, one priority image per page, Hebrew alt and
+      # captions free of claim stems, no rendering in JSON-LD or og:image, no candidate shipped.
+      # postbuild already ran it; this step makes a failure visible by name.
+      - name: Images gate
+        run: npm run images:check
+
       # Orphans, inbound degree, trailing slashes and BreadcrumbList item URLs are all fatal.
       # Enforcing since the footer slice was removed (2026-08-24) and every route reached 43
       # inbound links; docs/link-graph.md §3 holds the thresholds.

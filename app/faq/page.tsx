@@ -4,6 +4,7 @@ import { faqs } from "@/lib/content";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Section } from "@/components/ui/Section";
 import { Faq } from "@/components/marketing/Faq";
+import { FieldStrip } from "@/components/marketing/FieldStrip";
 import { FinalCta } from "@/components/marketing/FinalCta";
 
 export const metadata: Metadata = {
@@ -31,6 +32,8 @@ export default function FaqPage() {
         crumbs={[{ label: "בית", href: "/" }, { label: "שאלות ותשובות" }]}
       />
       <Section tone="white">
+        {/* Two service `main` images reused as a pair above the accordion (contract §2). */}
+        <FieldStrip route="/faq/" cols={2} className="mb-10" />
         <Faq items={faqs} />
       </Section>
       <FinalCta />

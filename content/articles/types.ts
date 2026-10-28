@@ -22,7 +22,14 @@ export type Block =
   /** Derives FAQPage. Every question here renders visibly, so the markup matches the page. */
   | { kind: "faq"; items: readonly { q: string; a: string }[] }
   | { kind: "callout"; tone: "note" | "warn"; text: string }
-  | { kind: "cta"; text: string };
+  | { kind: "cta"; text: string }
+  /**
+   * A content image from content/images/manifest.json at this guide's `mid` or `end` slot
+   * (lib/images.ts `imageFor(route, slot)`). Renders nothing while no approved entry is placed
+   * there, so a guide reads exactly as before until its image is installed. The pixels and the
+   * Hebrew alt/caption live in the manifest, never in the article file.
+   */
+  | { kind: "figure"; slot: "mid" | "end" };
 
 export interface Article {
   slug: string;
