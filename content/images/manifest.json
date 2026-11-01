@@ -10,13 +10,13 @@
   "images": [
     {
       "id": "gallery-supplied-01",
-      "file": "gallery/supplied-01.jpg",
-      "legacySrc": "/gagoline_1.jpg",
-      "width": 1000,
-      "height": 1000,
-      "bytes": 269483,
-      "sha256": "d5867a831270f6448cb9387c03867d514b22d1f60cc9ba175c19b4e22abde7aa",
-      "sizeClass": "large",
+      "file": "gallery/flat-roof-sheets-drain-and-vent-01.webp",
+      "legacySrc": null,
+      "width": 1200,
+      "height": 1200,
+      "bytes": 174648,
+      "sha256": "c1313e01cffd3943e406c62dfd9b4a3fcab6f674b763b4f2d541a335987d5f26",
+      "sizeClass": "half",
       "alt": "גג שטוח מכוסה יריעות ביטומניות, עם פתח ניקוז ורשת ומעטפת איטום סביב ארובה נמוכה",
       "caption": "יריעות ביטומניות פרוסות על כל שטח הגג, עם טיפול נקודתי סביב פתח הניקוז והארובה.",
       "altEn": null,
@@ -39,7 +39,11 @@
         "originAsserted": false,
         "note": "AI-made per the owner, 2026-10-28"
       },
-      "watermark": null,
+      "watermark": {
+        "logo": "navy",
+        "corner": "bottom-right",
+        "widthPct": 17
+      },
       "review": {
         "automated": null,
         "owner": {
@@ -54,13 +58,13 @@
     },
     {
       "id": "gallery-supplied-02",
-      "file": "gallery/supplied-02.jpg",
-      "legacySrc": "/gagoline_7.jpg",
-      "width": 1000,
-      "height": 1000,
-      "bytes": 262679,
-      "sha256": "a380ecc3cb3615788c08b3bc05505423eb9d2bd8ea54a2a331b11ca0ad88c58b",
-      "sizeClass": "large",
+      "file": "gallery/flat-roof-sheets-pipe-cluster-01.webp",
+      "legacySrc": null,
+      "width": 1200,
+      "height": 1200,
+      "bytes": 164258,
+      "sha256": "464af5d608a877cf584b6817ab0a48800211ace95d922eaab134eefd7d56b4fb",
+      "sizeClass": "half",
       "alt": "גג שטוח מכוסה יריעות ביטומניות עם הטבעת יצרן, ואיטום סביב צרור צינורות בולטים",
       "caption": "יריעות ביטומניות על גג שטוח, עם איטום סביב צרור הצינורות שבמרכז הגג.",
       "altEn": null,
@@ -83,7 +87,11 @@
         "originAsserted": false,
         "note": "AI-made per the owner, 2026-10-28"
       },
-      "watermark": null,
+      "watermark": {
+        "logo": "white",
+        "corner": "bottom-right",
+        "widthPct": 17
+      },
       "review": {
         "automated": null,
         "owner": {
@@ -98,13 +106,13 @@
     },
     {
       "id": "gallery-supplied-03",
-      "file": "gallery/supplied-03.jpg",
-      "legacySrc": "/gagoline_6.jpg",
-      "width": 1334,
-      "height": 1000,
-      "bytes": 234043,
-      "sha256": "5e5b2028654b3ba6f3c74136f63231ef57af33fcae5cf6a45c7cf26666e549af",
-      "sizeClass": "large",
+      "file": "gallery/metal-roof-liquid-sealing-pipe-01.webp",
+      "legacySrc": null,
+      "width": 1200,
+      "height": 900,
+      "bytes": 107424,
+      "sha256": "130d2e62f098aab2a48bf8d2ff85e4d82186ab85f726c1099f1c21da62322f2d",
+      "sizeClass": "half",
       "alt": "עובד ברתמת בטיחות מורח איטום נוזלי במברשת סביב צינור חודר בגג פח",
       "caption": "איטום נוזלי סביב חדירת צינור בגג פח — נקודות החדירה הן המקום שממנו נזילות מתחילות.",
       "altEn": null,
@@ -127,7 +135,11 @@
         "originAsserted": false,
         "note": "AI-made per the owner, 2026-10-28"
       },
-      "watermark": null,
+      "watermark": {
+        "logo": "white",
+        "corner": "bottom-right",
+        "widthPct": 17
+      },
       "review": {
         "automated": null,
         "owner": {
@@ -142,13 +154,13 @@
     },
     {
       "id": "gallery-supplied-04",
-      "file": "gallery/supplied-04.jpg",
-      "legacySrc": "/gagoline_3.jpg",
-      "width": 1777,
-      "height": 1000,
-      "bytes": 468662,
-      "sha256": "a3c2c89650331efe1812fba287998ddc969b90ec003260ff030c837b0964d32f",
-      "sizeClass": "large",
+      "file": "gallery/pitched-roof-membrane-under-tiles-01.webp",
+      "legacySrc": null,
+      "width": 1200,
+      "height": 675,
+      "bytes": 154902,
+      "sha256": "7b6e71f14558d79b6b6f68fa6fc32698851e3e8db691969d79d9356143dba58b",
+      "sizeClass": "half",
       "alt": "גג משופע בשלב עבודה — יריעת איטום פרוסה על המשטח, לטות עץ מעליה וערימות רעפים מוכנות להנחה",
       "caption": "בגג רעפים האיטום נמצא מתחת לרעפים: היריעה נפרסת על המשטח, ורק אחר כך חוזרות הלטות והרעפים.",
       "altEn": null,
@@ -171,7 +183,11 @@
         "originAsserted": false,
         "note": "AI-made per the owner, 2026-10-28"
       },
-      "watermark": null,
+      "watermark": {
+        "logo": "white",
+        "corner": "bottom-right",
+        "widthPct": 17
+      },
       "review": {
         "automated": null,
         "owner": {
@@ -6092,7 +6108,7 @@
       "bytes": 198936,
       "sha256": "052798b3472c67404f951652a2cd1f92dcd07a711e3f40aa4e379a0cff571acc",
       "sizeClass": "large",
-      "alt": "פינת מעקה בגג שטוח מצופה ציפוי אלסטומרי אפור, רולר רטוב נשען עליו, דליים פתוחים ומגש צבע, ומשטח הגג הישן בצבע לבן־קירח ומסוד מתחת לים.",
+      "alt": "פינת מעקה בגג שטוח מצופה ציפוי אפור, רולר רטוב נשען עליו, דליים ומגש צבע, ומשטח גג ישן וסדוק, עם בניינים וים ברקע.",
       "caption": "ציפוי אלסטומרי במעקה נמרח ברולר ברצף סביב הפינה, כדי שלא יישארו תפרים בנקודה שבה המים נוטים להצטבר. מברשת משלימה את הקצוות שהרולר לא מגיע אליהם.",
       "altEn": "Parapet corner on a flat roof freshly coated in grey elastomeric, a wet roller leaning on it, open pails nearby, and old chalky roof beyond with the sea behind.",
       "thumb": null,
@@ -6294,7 +6310,7 @@
       "sha256": "56a220793bf670a4b32fffc8775934cf2215886a35bde74055af4febba13efda",
       "sizeClass": "half",
       "alt": "ציפוי אפור בהיר שהתקלף מגג שטוח כיריעה אחת וקצהו מתעקל, מתחתיו אבק ופירורי ציפוי ישן ובטון כהה לח עם סדק דק",
-      "caption": "בבדיקת גג שטוח בוחנים את צדו התחתון של ציפוי שהתנתק: אבק ושאריות ציפוי ישן מעידים על משטח לא נקי שהציפוי הודבק עליו, וסדק בבטון מסמן נקודה לבדיקה.",
+      "caption": "בבדיקת גג שטוח בוחנים את צדו התחתון של ציפוי שהתנתק: אבק ופירורים עליו יכולים להעיד שהמשטח לא נוקה היטב, והסדק בבטון מסמן נקודה לבדיקה.",
       "altEn": "Close view of a pale grey coating peeled from a flat concrete roof, curled edge, dusty underside, damp dark concrete with a thin crack.",
       "thumb": {
         "file": "blog/fresh-coating-peeling-off-dusty-unprepared-surface-01-thumb.webp",
@@ -6370,8 +6386,8 @@
       "bytes": 238386,
       "sha256": "2b87d26aa28d7cb7ebd4250e7ddfd1c0e199d6502e1c1d741fe56211c973131c",
       "sizeClass": "half",
-      "alt": "גג שטוח רטוב עם סדק לאורך מעקה מכוסה אזוב, שקי חול, צינור גינה, דלי וגלאי לחות, ועלים נשירים בצל עצים.",
-      "caption": "בשלב האבחון בודקים את הסדקים ואת מפגש המעקה עם הגג, ומשתמשים בגלאי לחות ובבדיקת הצפה מבוקרת כדי לאתר את מקור הנזילה.",
+      "alt": "סדק ארוך בתפר בין שני משטחי גג כהים ורטובים, עם אזוב ירוק ועלים בתוכו, פסי מלח לבנים משני צדיו וכתמי אור מבעד לעצים",
+      "caption": "בתפר בין גג ישן לתוספת בנייה נוטה להיפתח סדק. אזוב ופסי מלח לאורכו מראים שהמקום נשאר לח, ולכן בודקים אותו בזהירות בשלב האבחון.",
       "altEn": "Wet flat roof with a cracked, mossy parapet joint, sandbags, a garden hose, a bucket and a moisture meter, with fallen leaves in tree shade.",
       "thumb": null,
       "placements": [
@@ -6433,7 +6449,7 @@
       "bytes": 137428,
       "sha256": "f18becd830fb948b5e3b373cd18a52bb08f642d0dccdc8df3d4b5a1077bd3099",
       "sizeClass": "half",
-      "alt": "גג רעפים אדומים ישנים עם טחב בין השורות, רעף אחד מורם על שבר רעף וחושף יריעת תחתית אפורה ויבשה מעל קורת עץ.",
+      "alt": "גג רעפים אדומים ישנים עם אזוב בין השורות, רעף אחד מורם על שבר רעף וחושף יריעת תחתית אפורה ויבשה מעל קורת עץ.",
       "caption": "באבחון גג רעפים מרימים רעף בודד כדי לראות את שכבת התחתית שמתחתיו, כי היא זו שמגנה על הגג כשהמים חודרים מתחת לרעפים.",
       "altEn": "Weathered red clay roof tiles with moss in the overlaps; one tile is propped up on a tile shard, exposing grey dry underlay over a timber batten.",
       "thumb": null,
@@ -7039,7 +7055,7 @@
       "bytes": 232366,
       "sha256": "90768a300b49ea167874f09c047eaf7245a61a525619f12b32ec49bd25ea7833",
       "sizeClass": "large",
-      "alt": "עובד בכפפות עבות דוחף מגב רחב בשכבת ביטומן חם על גג שטוח, ומאחוריו קומקום זפת עם עשן, דלי, יריעת רשת ודודי שמש באור שקיעה",
+      "alt": "עובד בכפפות עבות דוחף מגב רחב בשכבת ביטומן חם על גג שטוח, ומאחוריו קומקום זפת עם עשן, דלי, יריעת רשת ודודי שמש באור נמוך",
       "caption": "פריסת הביטומן החם במגב מפזרת אותו בשכבה אחידה על הבטון. הקומקום נשאר קרוב לאזור העבודה כדי שהחומר יישאר חם וזורם בזמן הזיפות.",
       "altEn": "Worker in heavy gloves pushes a wide squeegee through hot bitumen on a flat roof, with a tar kettle, bucket, mesh roll and solar heaters behind.",
       "thumb": null,

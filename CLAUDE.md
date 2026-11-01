@@ -448,12 +448,14 @@ toolkit, `cd "C:/Users/robiu/antigravity/Projects/Media Studio"` then
 `node page-images/cli.mjs <cmd> --site gagoline`: `plan lint` → `brief` (prompts with
 `approved: null`) → `digest` (one page for the owner) → the owner's **yes in chat** →
 `approve --batch <sha8> --by "owner in chat"` → `qa --calibrate` once → `generate` (idempotent, every
-paid call in the ledger, refused past the cap) → `qa` (deterministic checks + two vision judges; a
-HARD code from either rejects, SOFT codes need both) → `alt` (Hebrew alt + caption from the finished
+paid call in the ledger, refused past the cap) → `qa` (deterministic checks + two vision judges; a HARD code from
+either rejects, except `impossible`, `unsafe-edge`, `wrong-trade` and `foreign`, which need both
+judges or one at confidence ≥ 0.8; SOFT codes need both) → `alt` (Hebrew alt + caption from the finished
 pixels) → `finish` (exact slot box, logo bottom-right, WebP q80) → `stage` (candidates into
 `public/images/_candidates/` plus `candidate` manifest entries) → **review** (`npm run dev:images`
 and the board at `http://localhost:4310`, each card linking to `#img-<id>` on the real page; the
-`image-qa-reviewer` agent spot-checks first) → `install` (approved → `public/images/<group>/`,
+`image-qa-reviewer` agent checks every frame first, and again for any frame re-rendered after
+that: on gagoline the judges passed 13 of 93 frames a reviewer sent back) → `install` (approved → `public/images/<group>/`,
 rejected deleted from `_candidates/`, regenerate queued) → `npm run images:status` → `npm run gate`
 → deploy (ask) → the post-deploy image checks in the `deploy-gagoline` skill. Every command prints
 its plan with `--dry-run`. Full runbook: skill `page-images-pipeline`. The contract every path, slot

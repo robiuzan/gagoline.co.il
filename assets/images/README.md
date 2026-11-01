@@ -39,8 +39,10 @@ This history moved here on 2026-10-28 from the header comment over `galleryImage
   been removed everywhere. The four stay on the site (owner decision 3 of 2026-10-28) as
   **owner-supplied, AI-made** illustrations: manifest `provenance.kind: "owner-supplied"` with
   `originAsserted: false`, under the site-wide disclosure note, first in the gallery. Their original
-  files keep their live URLs (`/gagoline_1.jpg` etc., via `legacySrc`); the watermarked copies the
-  toolkit writes live at new slugs under `public/images/gallery/`.
+  files stay at their old URLs (`/gagoline_1.jpg` etc.) but are no longer linked; the page shows the
+  watermarked copies added 2026-11-01 at new slugs under `public/images/gallery/`, 1200 px on the
+  long edge, made with the toolkit's finish code by a one-off script. Remove the old JPEGs no earlier
+  than 60 days after that deploy, in one commit.
 - **Do not re-add any of the six rejected files.** The reasons they were rejected — text and
   branding in frame, foreign building stock, stock-photo look — are now HARD and SOFT codes in the
   toolkit's QA (skill `page-imagery` §9), so a generated frame with the same defects is rejected

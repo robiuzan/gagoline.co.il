@@ -433,10 +433,11 @@ for (const p of all) {
     problems.min.push(
       `${p.route}: ${n} content image(s), minimum ${gates.minPerContentPage}`,
     );
-  // The legacy originals pre-date the budgets (manifest-rules.mjs); everything else counts.
+  // The four owner-supplied originals sit outside the page sum, as they always have; their
+  // watermarked copies (2026-11-01) are 590 KB against the 1.2 MB of the JPEGs they replaced.
   const bytes = contentImgs.reduce((s, i) => {
     const { entry, thumb } = srcToEntry.get(i.a.src);
-    if (entry.legacySrc) return s;
+    if (entry.legacySrc || entry.provenance?.kind === "owner-supplied") return s;
     return s + (thumb ? (entry.thumb.bytes ?? 0) : entry.bytes);
   }, 0);
   if (bytes > gates.maxPageImageBytes)
