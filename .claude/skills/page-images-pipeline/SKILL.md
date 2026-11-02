@@ -16,13 +16,13 @@ the validator (`lib/images.ts`) and the gate (`scripts/images/check-images-out.m
 
 ## The owner's five touches — everything else runs unattended
 
-| #   | Touch                                                                                 | Where                                                 |
-| --- | ------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| 1   | Approve the plan (done 2026-10-28)                                                    | chat                                                  |
-| 2   | Keep the consent record for ניסים and שימי (relayed in chat; signed copies to follow) | `Media Studio\refs\gagoline\CONSENT.md` (outside git) |
-| 3   | One "yes" on the prompt-batch digest                                                  | `Media Studio\sites\gagoline\plan-digest.md` → chat   |
-| 4   | One board session (~110 cards: "approve all passing" + spot checks)                   | `http://localhost:4310` beside `npm run dev:images`   |
-| 5   | Confirm the deploy                                                                    | `ops/deploy-site.ps1 -Domain gagoline.co.il -Confirm` |
+| #   | Touch                                                                                          | Where                                                 |
+| --- | ---------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| 1   | Approve the plan (done 2026-10-28)                                                             | chat                                                  |
+| 2   | Keep the consent record for ניסים and שימי (relayed in chat; no signed copy, owner 2026-11-02) | `Media Studio\refs\gagoline\CONSENT.md` (outside git) |
+| 3   | One "yes" on the prompt-batch digest                                                           | `Media Studio\sites\gagoline\plan-digest.md` → chat   |
+| 4   | One board session (~110 cards: "approve all passing" + spot checks)                            | `http://localhost:4310` beside `npm run dev:images`   |
+| 5   | Confirm the deploy                                                                             | `ops/deploy-site.ps1 -Domain gagoline.co.il -Confirm` |
 
 Expected unattended time ≈ 1.5 h; expected spend ≈ US$28 against a hard cap of US$50.
 

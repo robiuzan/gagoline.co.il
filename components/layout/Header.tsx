@@ -82,13 +82,17 @@ export function Header() {
         <Link href="/" className="shrink-0" aria-label={`${siteConfig.name} — דף הבית`}>
           {/* Plain <img>, not next/image: `images.unoptimized` is true, so next/image emits no
               srcset here and only adds client JS. Intrinsic size is declared so the header
-              reserves the box before the logo paints (CLS). */}
+              reserves the box before the logo paints (CLS).
+              The file is a 120-px-tall palette PNG made from gagoline_logo.png (3 KB against
+              41 KB): the mark shows at 36-40 px, so 120 px covers a 3x screen. React preloads
+              this <img> from <head> on every page, so every byte of it counts against the first
+              paint on a phone. The 600-px original stays in public/ as the master. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/gagoline_logo.png"
+            src="/gagoline_logo_h120.png"
             alt={siteConfig.name}
-            width={600}
-            height={166}
+            width={434}
+            height={120}
             className="h-9 w-auto sm:h-10"
           />
         </Link>

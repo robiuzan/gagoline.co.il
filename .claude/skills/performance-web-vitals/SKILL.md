@@ -27,13 +27,35 @@ Heebo + Rubik self-host via `next/font/google`, and since 2026-08-31 `scripts/fo
 describe are closed.
 
 Since 2026-10-28 every content page carries **two or more images** (CLAUDE.md §14). The hero stays
-text + form (owner decision 6), so on phones the LCP element is still the H1; on desktop the first
+text + form (owner decision 6), so on phones the LCP element is still hero text; on desktop the first
 figure — about 500 px down on a service or city page, the home strip directly under the hero — can
 become the LCP candidate. That is why **the first content image on a page is its single `priority`
 image** (`fetchpriority="high"`, never lazy — lazy-loading an in-viewport LCP image is the known
 regression) and is byte-capped at 220 KB (`large`), 90 KB for the home strip's first tile. Measure
 with PageSpeed Insights after each deploy that changes images: mobile LCP ≤ 2.5 s, CLS 0; if the home
 strip regresses LCP, it moves below `TrustBar`.
+
+### How the phone LCP number is made (measured 2026-11-02)
+
+On phones the LCP element is hero text: the paragraph under the H1 on `/` (`p.mt-5`), painted in
+the same frame as FCP, about 0.15 s after navigation on a fast line. Lighthouse's simulated mobile
+LCP then charges every request that **finished** before that paint, except low-priority images,
+and replays them on slow 4G. So what matters is the bytes that land before the first paint, not the
+LCP element's own load:
+
+- **The header logo is in that set on every page.** React preloads an eager `<img>` from `<head>`.
+  It was a 41 KB 600-px PNG shown at 36–40 px; the 3 KB `gagoline_logo_h120.png` cut simulated LCP
+  by 0.2–0.3 s on `/`, a service and a city page (local A/B, 5 runs each). The footer logo is lazy
+  for the same reason: eager, it was preloaded too.
+- **GTM is not in it.** `gtm.js` (130 KB) finished after the first paint in all 13 live and local
+  runs checked, and loading it after `load` changed nothing. Don't defer GTM for this metric.
+- **Dropping `fetchpriority="high"` from the first figure gained nothing** (the home strip sits
+  below the first phone screen, at 1,390 px). Keep the one-priority rule for desktop.
+- What remains is shared by every page: the two Hebrew font preloads plus the Latin subsets (digits
+  in the phone number and "2014"), the Next/React runtime chunks, the CSS and the document.
+- The number swings ±0.5 s between runs on this PC's line. Compare medians of 3–5 runs, and A/B
+  local exports served side by side (`out/` copies on separate ports, arms alternated), not one
+  live run against another.
 
 ## The image contract
 
@@ -79,7 +101,8 @@ a service page and a location page, not just the homepage.
 
 ## Checklist
 
-- [ ] LCP element identified per route type (the H1 on phones; the first figure or the home strip on desktop).
+- [ ] LCP element identified per route type (hero text on phones; the first figure or the home strip on desktop).
+- [ ] Nothing eager and heavy above the first paint: the header logo stays the small `_h120` file, the footer logo stays lazy.
 - [ ] Exactly one `priority` / `fetchpriority="high"` image per page, and it is the first content image.
 - [ ] Every image inside its byte budget; `out/images` ≤ 20 MB (`npm run images:check`).
 - [ ] `out/` contains no unreferenced file over 1 MB.

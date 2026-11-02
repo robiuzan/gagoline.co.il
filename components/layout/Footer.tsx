@@ -31,13 +31,18 @@ export function Footer() {
         {/* Brand + contact */}
         <div>
           {/* Plain <img>, not next/image — see Header.tsx. The dark-background variant of the
-              mark is a separate file because the footer sits on `bg-primary`. */}
+              mark is a separate file because the footer sits on `bg-primary`. A 120-px-tall
+              palette PNG of gagoline_logo_dark_bg.png (5 KB against 37 KB), like the header's.
+              Lazy because the footer is never in the first screen: an eager <img> is preloaded
+              from <head>, so a phone fetched this one before the page's first paint. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/gagoline_logo_dark_bg.png"
+            src="/gagoline_logo_dark_bg_h120.png"
             alt={siteConfig.name}
-            width={600}
-            height={176}
+            width={409}
+            height={120}
+            loading="lazy"
+            decoding="async"
             className="h-10 w-auto"
           />
           <p className="mt-3 text-sm text-white/70">{siteConfig.tagline}</p>

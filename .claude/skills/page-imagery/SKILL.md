@@ -113,15 +113,18 @@ image: `/privacy/ /terms/ /accessibility/ /404/ /thank-you/ /reviews/`.
 
 **Not photo slots** — never propose a picture for these:
 
-| Surface     | File / intrinsic                    | Markup                                                 | Rendered                                                                                                                                           |
-| ----------- | ----------------------------------- | ------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Header logo | `gagoline_logo.png` 600×166         | `Header.tsx` — `h-9 w-auto sm:h-10`                    | 130 → **145px** wide                                                                                                                               |
-| Footer logo | `gagoline_logo_dark_bg.png` 600×176 | `Footer.tsx` — `h-10 w-auto`; a separate file for navy | **136px** wide                                                                                                                                     |
-| Favicon     | `gagoline_favicon.webp` 50×50       | `app/layout.tsx` declares the derived `.png` + `.ico`  | 16–32px; no apple-touch-icon (source is 50px)                                                                                                      |
-| OG card     | `gagoline/og.jpg` on imgquarry.com  | `manifest.images.og`, sha256-pinned, brand not photo   | **1200×630**                                                                                                                                       |
-| Hero        | —                                   | `Hero.tsx` — two radial gradients, text + lead form    | **No image** (owner decision 6). The font preload stays the LCP lever on phones; on desktop the first figure may become LCP — measure after deploy |
+| Surface     | File / intrinsic                                                         | Markup                                                                   | Rendered                                                                                                                                           |
+| ----------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Header logo | `gagoline_logo_h120.png` 434×120 (3 KB palette PNG of the 600-px master) | `Header.tsx` — `h-9 w-auto sm:h-10`; eager, so React preloads it         | 130 → **145px** wide                                                                                                                               |
+| Footer logo | `gagoline_logo_dark_bg_h120.png` 409×120 (5 KB, same)                    | `Footer.tsx` — `h-10 w-auto`, `loading="lazy"`; a separate file for navy | **136px** wide                                                                                                                                     |
+| Favicon     | `gagoline_favicon.webp` 50×50                                            | `app/layout.tsx` declares the derived `.png` + `.ico`                    | 16–32px; no apple-touch-icon (source is 50px)                                                                                                      |
+| OG card     | `gagoline/og.jpg` on imgquarry.com                                       | `manifest.images.og`, sha256-pinned, brand not photo                     | **1200×630**                                                                                                                                       |
+| Hero        | —                                                                        | `Hero.tsx` — two radial gradients, text + lead form                      | **No image** (owner decision 6). The font preload stays the LCP lever on phones; on desktop the first figure may become LCP — measure after deploy |
 
-The same two logo files are the watermark masters in `Media Studio\sites\gagoline\brand\`
+The 600-px masters `gagoline_logo.png` and `gagoline_logo_dark_bg.png` stay in `public/` (never
+delete a published file); a new `_h120` copy is made from them with sharp in Media Studio
+(`resize({ height: 120 })`, `png({ palette: true, effort: 10, compressionLevel: 9 })`), never with
+a dependency here. The two masters are the watermark masters in `Media Studio\sites\gagoline\brand\`
 (`logo-navy.png`, `logo-white.png`), byte-identical to the Drive copies.
 
 ---

@@ -360,9 +360,10 @@ Because Cloudflare proxies the zone, several things are true and easy to forget 
   `retired` date on the old entry, file kept ≥ 60 days (§14). `keep-previous-assets` does not cover
   `/images/` and does not need to — the URLs are stable.
 - **A draft build must never ship.** `IMAGES_DRAFT=1` writes `out/.images-draft` and
-  `out/.live-draft`; the hub's `deploy-site.ps1` already refuses `.live-draft`, and a one-line
-  `.images-draft` check in its `Test-OutDir` is a pending follow-up in the hub repo. If either file
-  is in `out/`, rebuild without the variable before anything else.
+  `out/.live-draft`; the hub's `deploy-site.ps1` refuses an `out/` holding either marker or a
+  leftover `out/images/_candidates/` (`Test-OutDir`), and never keeps one as `out.prev/`
+  (`Test-DraftExport`). If either file is in `out/`, rebuild without the variable before anything
+  else.
 
 ---
 
