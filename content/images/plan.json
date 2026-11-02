@@ -66,7 +66,7 @@
         "home-team",
         "services-bituminous-sheets-main",
         "services-bituminous-sheets-detail",
-        "services-bituminous-sheets-work",
+        "services-bituminous-sheets-work-2",
         "gallery-generated-3"
       ]
     },
@@ -104,7 +104,7 @@
         "about-work",
         "areas-strip-1",
         "blog-how-long-roof-sealing-lasts-lead",
-        "blog-roof-sealing-before-winter-lead",
+        "blog-roof-sealing-before-winter-lead-2",
         "blog-roof-sealing-cost-by-roof-type-lead"
       ]
     },
@@ -199,7 +199,7 @@
         "services-roof-sealing-work",
         "gallery-generated-1",
         "cities-hod-hasharon-main",
-        "cities-azor-main",
+        "cities-azor-main-2",
         "cities-ganei-tikva-main",
         "cities-kfar-saba-main",
         "cities-nes-ziona-main",
@@ -299,7 +299,7 @@
       "differentiateFrom": [
         "services-roof-tarring-detail",
         "services-roof-tarring-work",
-        "gallery-generated-2",
+        "gallery-generated-9",
         "blog-tarring-vs-bituminous-sheets-lead"
       ]
     },
@@ -326,7 +326,7 @@
       "differentiateFrom": [
         "services-roof-tarring-main",
         "services-roof-tarring-work",
-        "gallery-generated-2",
+        "gallery-generated-9",
         "blog-tarring-vs-bituminous-sheets-lead"
       ]
     },
@@ -353,7 +353,7 @@
       "differentiateFrom": [
         "services-roof-tarring-main",
         "services-roof-tarring-detail",
-        "gallery-generated-2",
+        "gallery-generated-9",
         "blog-tarring-vs-bituminous-sheets-lead"
       ]
     },
@@ -379,7 +379,7 @@
       "context": "יריעות ביטומניות הן שכבת איטום שמולחמת לגג בלהבה, ברוחב אחיד ובעובי מבוקר. זו השיטה העמידה ביותר לגגות בטון ולמרתפים, ומתאימה במיוחד כשנדרשת שכבה אחידה ואמינה לאורך שנים.",
       "differentiateFrom": [
         "services-bituminous-sheets-detail",
-        "services-bituminous-sheets-work",
+        "services-bituminous-sheets-work-2",
         "gallery-generated-3",
         "home-strip-2"
       ]
@@ -406,18 +406,18 @@
       "context": "המשטח חייב להיות ישר, נקי ויבש, עם פריימר ביטומני שמבטיח הידבקות. שקעים ובליטות מונעים הידבקות מלאה ויוצרים כיסי אוויר, ולכן יישור מקדים הוא חלק מהעבודה ולא תוספת לה.",
       "differentiateFrom": [
         "services-bituminous-sheets-main",
-        "services-bituminous-sheets-work",
+        "services-bituminous-sheets-work-2",
         "gallery-generated-3",
         "home-strip-2"
       ]
     },
     {
-      "id": "services-bituminous-sheets-work",
+      "id": "services-bituminous-sheets-work-2",
       "route": "/services/bituminous-sheets/",
       "slot": "work",
       "order": 3,
       "group": "services",
-      "fileSlug": "finished-membrane-roof-welded-overlaps-01",
+      "fileSlug": "finished-membrane-roof-welded-overlaps-02",
       "priority": false,
       "caption": true,
       "people": "none",
@@ -426,7 +426,7 @@
       "time": "late-afternoon",
       "service": "bituminous-sheets",
       "city": null,
-      "subject": "A finished flat roof covered in new mineral-surfaced bituminous sheets with neat welded overlaps, the sheets turned up the parapet with a metal capping, a clean drain with its grate, a gas torch and a plain steel seam roller resting on the sheet by the roof door, blank-tank solar heaters, hazy blocks beyond. The bottom-right corner is plain sheet surface.",
+      "subject": "A finished flat roof covered in new mineral-surfaced bituminous sheets with neat welded overlaps, the sheets turned up the parapet with a metal capping, a clean drain with its grate, one gas torch with one wand on one hose from a grey cylinder, a plain steel seam roller lying beside it by the roof door, blank-tank solar heaters, hazy blocks beyond. The bottom-right corner is plain sheet surface.",
       "aspect": "3:2",
       "longEdge": 1200,
       "sizeClass": "half",
@@ -463,7 +463,7 @@
         "services-balcony-sealing-work",
         "gallery-generated-4",
         "cities-herzliya-main",
-        "cities-raanana-main",
+        "cities-raanana-main-2",
         "blog-seal-tiled-roof-without-lifting-lead",
         "cities-ganei-tikva-detail",
         "cities-raanana-detail",
@@ -497,7 +497,7 @@
         "cities-herzliya-detail",
         "cities-ganei-tikva-detail",
         "cities-raanana-detail",
-        "cities-raanana-main",
+        "cities-raanana-main-2",
         "cities-herzliya-main",
         "blog-seal-tiled-roof-without-lifting-lead"
       ]
@@ -531,7 +531,7 @@
         "cities-raanana-detail",
         "blog-seal-tiled-roof-without-lifting-lead",
         "cities-herzliya-main",
-        "cities-raanana-main"
+        "cities-raanana-main-2"
       ]
     },
     {
@@ -662,7 +662,7 @@
         "gallery-generated-6",
         "cities-givatayim-main",
         "cities-netanya-detail",
-        "cities-rosh-haayin-detail",
+        "cities-rosh-haayin-detail-2",
         "blog-damp-wall-or-roof-lead",
         "cities-givatayim-detail",
         "cities-hod-hasharon-detail"
@@ -695,7 +695,7 @@
         "cities-hod-hasharon-detail",
         "cities-givatayim-detail",
         "cities-netanya-detail",
-        "cities-rosh-haayin-detail",
+        "cities-rosh-haayin-detail-2",
         "blog-damp-wall-or-roof-lead",
         "cities-givatayim-main"
       ]
@@ -728,7 +728,7 @@
         "blog-damp-wall-or-roof-lead",
         "cities-hod-hasharon-detail",
         "cities-netanya-detail",
-        "cities-rosh-haayin-detail",
+        "cities-rosh-haayin-detail-2",
         "cities-givatayim-main"
       ]
     },
@@ -918,14 +918,14 @@
         "services-roof-sealing-detail",
         "services-roof-sealing-work",
         "gallery-generated-1",
-        "blog-roof-sealing-before-winter-lead",
+        "blog-roof-sealing-before-winter-lead-2",
         "cities-hod-hasharon-main",
         "cities-holon-main",
         "cities-or-yehuda-detail",
         "cities-ramat-gan-detail",
         "blog-how-long-roof-sealing-lasts-lead",
         "blog-roof-sealing-cost-by-roof-type-lead",
-        "cities-azor-main"
+        "cities-azor-main-2"
       ]
     },
     {
@@ -956,12 +956,12 @@
         "services-roof-sealing-work",
         "gallery-generated-1",
         "blog-how-long-roof-sealing-lasts-lead",
-        "blog-roof-sealing-before-winter-lead",
+        "blog-roof-sealing-before-winter-lead-2",
         "cities-bnei-brak-detail",
         "cities-holon-detail",
         "cities-ramat-hasharon-main",
         "blog-roof-sealing-cost-by-roof-type-lead",
-        "cities-azor-main",
+        "cities-azor-main-2",
         "cities-holon-main"
       ]
     },
@@ -1141,7 +1141,7 @@
         "cities-holon-detail",
         "cities-petah-tikva-detail",
         "cities-holon-main",
-        "cities-azor-main",
+        "cities-azor-main-2",
         "cities-hod-hasharon-main",
         "cities-kfar-saba-main"
       ]
@@ -1174,7 +1174,7 @@
         "gallery-generated-6",
         "cities-hod-hasharon-detail",
         "cities-netanya-detail",
-        "cities-rosh-haayin-detail",
+        "cities-rosh-haayin-detail-2",
         "blog-damp-wall-or-roof-lead"
       ]
     },
@@ -1206,7 +1206,7 @@
         "gallery-generated-6",
         "cities-hod-hasharon-detail",
         "cities-netanya-detail",
-        "cities-rosh-haayin-detail",
+        "cities-rosh-haayin-detail-2",
         "blog-damp-wall-or-roof-lead"
       ]
     },
@@ -1452,7 +1452,7 @@
         "services-roof-sealing-detail",
         "services-roof-sealing-work",
         "gallery-generated-1",
-        "cities-azor-main",
+        "cities-azor-main-2",
         "cities-bat-yam-main",
         "cities-bnei-brak-main",
         "cities-ganei-tikva-main",
@@ -1493,7 +1493,7 @@
         "cities-holon-detail",
         "cities-petah-tikva-detail",
         "cities-holon-main",
-        "cities-azor-main",
+        "cities-azor-main-2",
         "cities-hod-hasharon-main",
         "cities-kfar-saba-main"
       ]
@@ -1529,7 +1529,7 @@
         "cities-nes-ziona-main",
         "cities-rehovot-main",
         "cities-rishon-lezion-main",
-        "cities-azor-main",
+        "cities-azor-main-2",
         "cities-bat-yam-main",
         "cities-bnei-brak-main"
       ]
@@ -1597,7 +1597,7 @@
         "services-roof-sealing-work",
         "gallery-generated-1",
         "cities-kfar-saba-main",
-        "cities-azor-main",
+        "cities-azor-main-2",
         "cities-bat-yam-main",
         "cities-bnei-brak-main",
         "cities-hod-hasharon-main",
@@ -1663,7 +1663,7 @@
       "sizeClass": "large",
       "context": "ראש העין גדלה מאוד בשני העשורים האחרונים, ורוב מלאי הבנייה בה חדש יחסית.",
       "differentiateFrom": [
-        "cities-rosh-haayin-detail",
+        "cities-rosh-haayin-detail-2",
         "services-leak-detection-main",
         "services-leak-detection-detail",
         "services-leak-detection-work",
@@ -1679,12 +1679,12 @@
       ]
     },
     {
-      "id": "cities-rosh-haayin-detail",
+      "id": "cities-rosh-haayin-detail-2",
       "route": "/areas/rosh-haayin/",
       "slot": "detail",
       "order": 2,
       "group": "cities",
-      "fileSlug": "window-frame-head-joint-wind-driven-damp-fan-01",
+      "fileSlug": "window-frame-head-joint-wind-driven-damp-fan-02",
       "priority": false,
       "caption": true,
       "people": "none",
@@ -1693,7 +1693,7 @@
       "time": "morning",
       "service": "exterior-wall-sealing",
       "city": "rosh-haayin",
-      "subject": "Close detail on the outer wall of a tall new building, seen from an adjoining roof terrace: an aluminium window frame set in pale plaster, the sealant line along the frame's head cracked and pulled away in a short dark gap, a wind-driven damp fan spreading across the plaster beneath the corner of the frame, rain streaks running down from it. Bright, clear morning light from the side, a hard-edged shadow under the window head, a faint line of low hills far beyond. No people, no tools. Phone close-up, slightly tilted; the bottom-right corner is plain plastered wall.",
+      "subject": "A level, straight-on view of the vertical outer wall of a tall new building: an upright aluminium window set in pale plaster, the sealant line along its head cracked and pulled away in a short dark gap, a wind-driven damp fan spreading straight down the plaster beside the frame with drip lines running straight down the wall past the sill. Bright morning side light. No people, no tools. Phone snapshot; the bottom-right corner is plain plastered wall.",
       "aspect": "3:2",
       "longEdge": 1200,
       "sizeClass": "half",
@@ -1744,7 +1744,7 @@
         "cities-or-yehuda-main",
         "cities-rishon-lezion-main",
         "cities-yehud-main",
-        "cities-azor-main"
+        "cities-azor-main-2"
       ]
     },
     {
@@ -1777,16 +1777,16 @@
         "cities-herzliya-detail",
         "cities-herzliya-main",
         "blog-seal-tiled-roof-without-lifting-lead",
-        "cities-raanana-main"
+        "cities-raanana-main-2"
       ]
     },
     {
-      "id": "cities-azor-main",
+      "id": "cities-azor-main-2",
       "route": "/areas/azor/",
       "slot": "main",
       "order": 1,
       "group": "cities",
-      "fileSlug": "low-building-flat-roof-first-coat-workshops-beyond-01",
+      "fileSlug": "low-building-flat-roof-first-coat-workshops-beyond-02",
       "priority": true,
       "caption": true,
       "people": "shimi",
@@ -1795,7 +1795,7 @@
       "time": "morning",
       "service": "roof-sealing",
       "city": "azor",
-      "subject": "Flat concrete roof of a low older residential building standing beside a zone of workshops: beyond the parapet, a cluster of corrugated metal roofs and sheds. A technician in a plain navy polo lays the first pass of fresh grey coating with a long-handled roller, the swept and scraped half of the roof pale and dusty beside the smooth new coat, the boundary running diagonally across the frame, a heap of peeled old coating against the parapet behind him. Clear summer morning light, long shadows, a solar heater at the edge. Phone snapshot from standing height; the bottom-right corner is plain coated roof.",
+      "subject": "Flat concrete roof of a low older residential building beside a zone of workshops, corrugated metal roofs and sheds beyond the parapet. A technician in a plain navy polo, alone on the roof, lays the first pass of fresh grey coating with a long-handled roller held in both hands, the scraped half of the roof pale beside the smooth new coat, the boundary running diagonally across the frame. Mid-morning sun high on the right, every shadow short on the roof floor, the parapet faces plain and evenly lit. Phone snapshot from standing height; the bottom-right corner is plain coated roof.",
       "aspect": "4:3",
       "longEdge": 1600,
       "sizeClass": "large",
@@ -1837,7 +1837,7 @@
       "sizeClass": "half",
       "context": "המאפיין המבדל של אזור הוא מבני המלאכה והתעשייה. בגג איסכורית הפח עצמו בדרך כלל תקין, והמים נכנסים דרך הברגים, החפיפות בין היריעות והחיבורים לרכיבים אחרים.",
       "differentiateFrom": [
-        "cities-azor-main",
+        "cities-azor-main-2",
         "services-leak-detection-main",
         "services-leak-detection-detail",
         "services-leak-detection-work",
@@ -1878,7 +1878,7 @@
         "services-balcony-sealing-detail",
         "services-balcony-sealing-work",
         "gallery-generated-4",
-        "cities-raanana-main",
+        "cities-raanana-main-2",
         "cities-ganei-tikva-detail",
         "cities-raanana-detail",
         "blog-seal-tiled-roof-without-lifting-lead"
@@ -1912,7 +1912,7 @@
         "gallery-generated-4",
         "cities-ganei-tikva-detail",
         "cities-raanana-detail",
-        "cities-raanana-main",
+        "cities-raanana-main-2",
         "blog-seal-tiled-roof-without-lifting-lead"
       ]
     },
@@ -1942,7 +1942,7 @@
         "services-roof-sealing-detail",
         "services-roof-sealing-work",
         "gallery-generated-1",
-        "cities-azor-main",
+        "cities-azor-main-2",
         "cities-kiryat-ono-main",
         "cities-nes-ziona-main",
         "cities-netanya-main",
@@ -2015,7 +2015,7 @@
         "services-roof-sealing-work",
         "gallery-generated-1",
         "cities-petah-tikva-main",
-        "cities-azor-main",
+        "cities-azor-main-2",
         "cities-bat-yam-main",
         "cities-bnei-brak-main",
         "cities-hod-hasharon-main",
@@ -2061,21 +2061,21 @@
       ]
     },
     {
-      "id": "cities-raanana-main",
+      "id": "cities-raanana-main-2",
       "route": "/areas/raanana/",
       "slot": "main",
       "order": 1,
       "group": "cities",
-      "fileSlug": "terrace-tiles-lifted-liquid-membrane-upstand-01",
+      "fileSlug": "terrace-tiles-lifted-liquid-membrane-upstand-02",
       "priority": true,
       "caption": true,
       "people": "none",
       "phase": "in-progress",
       "season": "summer",
-      "time": "midday",
+      "time": "morning",
       "service": "balcony-sealing",
       "city": "raanana",
-      "subject": "A tiled terrace of a Sharon private house in soft morning light: the tiles lifted along one edge to expose the grey screed, a fresh band of grey liquid sealant brushed up the wall as an upstand, a plain white pail and a wide brush beside it, a pergola and a lemon tree beyond the railing. The bottom-right corner is plain tile surface.",
+      "subject": "A tiled terrace of a Sharon private house in soft morning light: a neat stack of lifted tiles at the left, a grey liquid-membrane upstand with mesh at its base rising up the plaster wall, one white pail with a wide brush on its lid and a trowel on the bare screed. The pergola and lemon tree stay beyond the railing. The bottom-right corner is plain evenly lit cream tile.",
       "aspect": "4:3",
       "longEdge": 1600,
       "sizeClass": "large",
@@ -2113,7 +2113,7 @@
       "sizeClass": "half",
       "context": "המאפיין השני הוא כמות המרפסות והפרגולות. מרפסת מרוצפת מעל חדר מקורה היא אחד המקרים השכיחים ביותר שאנחנו רואים: הריצוף נראה תקין, אך הפוגות התפוררו והמים יורדים דרכן אל המצע.",
       "differentiateFrom": [
-        "cities-raanana-main",
+        "cities-raanana-main-2",
         "services-balcony-sealing-main",
         "services-balcony-sealing-detail",
         "services-balcony-sealing-work",
@@ -2150,7 +2150,7 @@
         "services-roof-sealing-detail",
         "services-roof-sealing-work",
         "gallery-generated-1",
-        "cities-azor-main",
+        "cities-azor-main-2",
         "cities-ganei-tikva-main",
         "cities-kfar-saba-main",
         "cities-nes-ziona-main",
@@ -2188,7 +2188,7 @@
         "gallery-generated-6",
         "cities-givatayim-detail",
         "cities-netanya-detail",
-        "cities-rosh-haayin-detail",
+        "cities-rosh-haayin-detail-2",
         "blog-damp-wall-or-roof-lead",
         "cities-givatayim-main"
       ]
@@ -2255,7 +2255,7 @@
         "services-exterior-wall-sealing-detail",
         "services-exterior-wall-sealing-work",
         "gallery-generated-6",
-        "cities-rosh-haayin-detail",
+        "cities-rosh-haayin-detail-2",
         "cities-givatayim-detail",
         "cities-hod-hasharon-detail",
         "blog-damp-wall-or-roof-lead",
@@ -2290,7 +2290,7 @@
         "gallery-generated-1",
         "cities-kfar-saba-main",
         "cities-petah-tikva-main",
-        "cities-azor-main",
+        "cities-azor-main-2",
         "cities-bat-yam-main",
         "cities-bnei-brak-main",
         "cities-hod-hasharon-main",
@@ -2496,7 +2496,7 @@
         "services-roof-sealing-detail",
         "services-roof-sealing-work",
         "gallery-generated-1",
-        "cities-azor-main",
+        "cities-azor-main-2",
         "cities-or-yehuda-main",
         "cities-ramat-hasharon-main",
         "cities-yehud-main",
@@ -2709,12 +2709,12 @@
       "differentiateFrom": []
     },
     {
-      "id": "pricing-survey",
+      "id": "pricing-survey-2",
       "route": "/pricing/",
       "slot": "survey",
       "order": 1,
       "group": "pricing",
-      "fileSlug": "tape-measure-along-parapet-survey-01",
+      "fileSlug": "tape-measure-along-parapet-survey-02",
       "priority": true,
       "caption": true,
       "people": "nissim",
@@ -2723,7 +2723,7 @@
       "time": "morning",
       "service": null,
       "city": null,
-      "subject": "Close detail of a roof survey: a technician's hands in the sleeves of a plain navy polo pulling a steel tape measure along the top of a plastered parapet, the tape's blade seen at a glancing angle so its markings are a blur of ticks with no readable digits, the tape case plain and unbranded, a chalk mark on the parapet at the far end. The old grey roof surface and a solar heater out of focus below. Clear morning light, the long shadow of the hands across the parapet. Phone close-up, hand-held; the bottom-right corner is plain roof surface.",
+      "subject": "The technician stands on the roof deck behind a plastered parapet with its coping at his hips, drawing the steel blade from a normal rectangular tape-measure case along the top of the coping, the blade's markings a blur of ticks, a chalk stroke at the far end. The inner roof deck fills the foreground. Clear morning light. Phone snapshot from behind him on the roof; the bottom-right corner is plain roof deck.",
       "aspect": "3:2",
       "longEdge": 1200,
       "sizeClass": "half",
@@ -2751,7 +2751,7 @@
       "sizeClass": "half",
       "context": "גג שחודש כמה פעמים נושא ערימת שכבות ישנות. הסרה ופינוי שלהן היא עבודה בפני עצמה, ולעיתים היא החלק היקר יותר מהאיטום עצמו.",
       "differentiateFrom": [
-        "pricing-survey",
+        "pricing-survey-2",
         "services-roof-sealing-main",
         "services-roof-sealing-detail",
         "services-roof-sealing-work",
@@ -2787,7 +2787,7 @@
       "sizeClass": "half",
       "context": "הדמיות — כך נראית העבודה · איטום גגות: איטום גג הוא יצירת שכבה רציפה שמונעת חדירת מים, אחרי שאיתרנו מאיפה המים נכנסים בפועל.",
       "differentiateFrom": [
-        "gallery-generated-2",
+        "gallery-generated-9",
         "gallery-generated-3",
         "gallery-generated-4",
         "gallery-generated-5",
@@ -2804,16 +2804,16 @@
         "areas-strip-1",
         "areas-strip-3",
         "blog-how-long-roof-sealing-lasts-lead",
-        "blog-roof-sealing-before-winter-lead"
+        "blog-roof-sealing-before-winter-lead-2"
       ]
     },
     {
-      "id": "gallery-generated-2",
+      "id": "gallery-generated-9",
       "route": "/gallery/",
       "slot": "generated",
       "order": 6,
       "group": "gallery",
-      "fileSlug": "tarred-roof-edge-check-walk-01",
+      "fileSlug": "tarred-roof-edge-check-walk-02",
       "priority": false,
       "caption": true,
       "people": "nissim",
@@ -2822,7 +2822,7 @@
       "time": "late-afternoon",
       "service": "roof-tarring",
       "city": null,
-      "subject": "A freshly tarred flat roof cured to a deep matte black, the tar turned up the parapet in a neat band and the reinforcing mesh's faint pattern showing through in a raking light. A technician in a plain navy polo walks slowly along the parapet checking the edge band, hands empty, his long shadow across the black surface. Low late-afternoon autumn sun, warm light on the parapet render, neighbouring rooftops beyond. Candid phone snapshot from across the roof; the bottom-right corner is plain tarred roof.",
+      "subject": "A freshly tarred flat roof cured to a deep matte black, the tar turned up a chest-high parapet in a neat band and the reinforcing mesh's faint pattern showing through in a raking light. A technician in a plain navy polo walks slowly along the foot of the parapet checking the edge band, hands empty, wearing only his polo, work trousers and boots, the roof clear of tools. Low late-afternoon autumn sun, neighbouring rooftops beyond. Candid phone snapshot from across the roof; the bottom-right corner is plain tarred roof.",
       "aspect": "4:3",
       "longEdge": 1200,
       "sizeClass": "half",
@@ -2863,7 +2863,7 @@
       "context": "הדמיות — כך נראית העבודה · איטום ביריעות ביטומניות: יריעות ביטומניות הן שכבת איטום שמולחמת לגג בלהבה, ברוחב אחיד ובעובי מבוקר.",
       "differentiateFrom": [
         "gallery-generated-1",
-        "gallery-generated-2",
+        "gallery-generated-9",
         "gallery-generated-4",
         "gallery-generated-5",
         "gallery-generated-6",
@@ -2871,7 +2871,7 @@
         "gallery-generated-8",
         "services-bituminous-sheets-main",
         "services-bituminous-sheets-detail",
-        "services-bituminous-sheets-work",
+        "services-bituminous-sheets-work-2",
         "home-strip-2"
       ]
     },
@@ -2897,7 +2897,7 @@
       "context": "הדמיות — כך נראית העבודה · איטום מרפסות: נזילה ממרפסת מגיעה כמעט תמיד מהריצוף ומהפרטים סביבו — הפוגות, סף הדלת והחיבור לקיר — ולא מהמשטח עצמו.",
       "differentiateFrom": [
         "gallery-generated-1",
-        "gallery-generated-2",
+        "gallery-generated-9",
         "gallery-generated-3",
         "gallery-generated-5",
         "gallery-generated-6",
@@ -2907,7 +2907,7 @@
         "services-balcony-sealing-detail",
         "services-balcony-sealing-work",
         "blog-seal-tiled-roof-without-lifting-lead",
-        "cities-raanana-main",
+        "cities-raanana-main-2",
         "cities-ganei-tikva-detail",
         "cities-herzliya-detail",
         "cities-herzliya-main",
@@ -2936,7 +2936,7 @@
       "context": "הדמיות — כך נראית העבודה · איתור ותיקון נזילות: איתור נזילה מתחיל מהגג ולא מהכתם שבתקרה.",
       "differentiateFrom": [
         "gallery-generated-1",
-        "gallery-generated-2",
+        "gallery-generated-9",
         "gallery-generated-3",
         "gallery-generated-4",
         "gallery-generated-6",
@@ -2977,7 +2977,7 @@
       "context": "הדמיות — כך נראית העבודה · איטום קירות חיצוניים: רטיבות שמופיעה בקיר חיצוני, בפינות או סביב חלונות מגיעה לרוב מסדקים בטיח, מחיבורי אלמנטים או מאיטום לקוי סביב פתחים — ולא מהגג.",
       "differentiateFrom": [
         "gallery-generated-1",
-        "gallery-generated-2",
+        "gallery-generated-9",
         "gallery-generated-3",
         "gallery-generated-4",
         "gallery-generated-5",
@@ -2991,7 +2991,7 @@
         "cities-givatayim-main",
         "cities-hod-hasharon-detail",
         "cities-netanya-detail",
-        "cities-rosh-haayin-detail"
+        "cities-rosh-haayin-detail-2"
       ]
     },
     {
@@ -3016,7 +3016,7 @@
       "context": "הדמיות — כך נראית העבודה · סיוד והלבנת גגות: הלבנת גג היא מריחת שכבה בהירה ומחזירת קרינה על הגג.",
       "differentiateFrom": [
         "gallery-generated-1",
-        "gallery-generated-2",
+        "gallery-generated-9",
         "gallery-generated-3",
         "gallery-generated-4",
         "gallery-generated-5",
@@ -3050,7 +3050,7 @@
       "context": "הדמיות — כך נראית העבודה · איטום מרתפים: במרתף המים לוחצים על הקיר מבחוץ פנימה בלחץ קבוע, ולא יורדים מלמעלה בכוח הכובד. לכן איטום מרתף מתמודד עם לחץ מתמשך ולא עם חשיפה לגשם.",
       "differentiateFrom": [
         "gallery-generated-1",
-        "gallery-generated-2",
+        "gallery-generated-9",
         "gallery-generated-3",
         "gallery-generated-4",
         "gallery-generated-5",
@@ -3087,7 +3087,7 @@
         "services-roof-sealing-work",
         "gallery-generated-1",
         "blog-how-long-roof-sealing-lasts-lead",
-        "blog-roof-sealing-before-winter-lead",
+        "blog-roof-sealing-before-winter-lead-2",
         "areas-strip-3",
         "cities-petah-tikva-detail",
         "pricing-layers",
@@ -3167,12 +3167,12 @@
       ]
     },
     {
-      "id": "blog-roof-sealing-before-winter-lead",
+      "id": "blog-roof-sealing-before-winter-lead-2",
       "route": "/blog/roof-sealing-before-winter/",
       "slot": "lead",
       "order": 1,
       "group": "blog",
-      "fileSlug": "pre-winter-roof-check-drain-grate-clearing-01",
+      "fileSlug": "pre-winter-roof-check-drain-grate-clearing-02",
       "priority": true,
       "caption": true,
       "people": "shimi",
@@ -3181,7 +3181,7 @@
       "time": "morning",
       "service": "roof-sealing",
       "city": null,
-      "subject": "Flat concrete roof of an apartment building on a clear late-summer morning: a technician in a plain navy polo kneels at a roof drain lifting out the grate and scooping a handful of dry leaves and grit from the outlet, the old grey coating around the drain crazed with fine cracks, a bucket and a brush beside him, a solar heater and the parapet behind. Clear dry morning light, long shadows, a cloudless sky. Candid phone snapshot from standing height; the bottom-right corner is plain roof surface.",
+      "subject": "Flat concrete roof of an apartment building on a clear late-summer morning with the sun high: a technician in a plain navy polo kneels at a roof drain lifting out the grate and holding a handful of dry leaves and grit from the outlet, the old grey coating around the drain crazed with fine cracks, a bucket and a brush beside him. Every shadow is short, falls the same way on the roof floor and belongs to a visible object; the parapet face is plain and evenly lit. Candid phone snapshot from standing height; the bottom-right corner is plain roof surface.",
       "aspect": "4:3",
       "longEdge": 1200,
       "sizeClass": "half",
@@ -3195,7 +3195,7 @@
         "blog-roof-sealing-cost-by-roof-type-lead",
         "areas-strip-1",
         "areas-strip-2",
-        "cities-azor-main",
+        "cities-azor-main-2",
         "cities-holon-main",
         "cities-or-yehuda-detail",
         "cities-ramat-gan-detail"
@@ -3225,7 +3225,7 @@
         "services-roof-tarring-main",
         "services-roof-tarring-detail",
         "services-roof-tarring-work",
-        "gallery-generated-2"
+        "gallery-generated-9"
       ]
     },
     {
@@ -3254,7 +3254,7 @@
         "services-roof-sealing-work",
         "gallery-generated-1",
         "blog-roof-sealing-cost-by-roof-type-lead",
-        "blog-roof-sealing-before-winter-lead",
+        "blog-roof-sealing-before-winter-lead-2",
         "cities-bnei-brak-detail",
         "cities-holon-detail",
         "areas-strip-2",
@@ -3292,7 +3292,7 @@
         "cities-raanana-detail",
         "cities-herzliya-detail",
         "cities-herzliya-main",
-        "cities-raanana-main"
+        "cities-raanana-main-2"
       ]
     },
     {
@@ -3323,7 +3323,7 @@
         "cities-givatayim-detail",
         "cities-hod-hasharon-detail",
         "cities-netanya-detail",
-        "cities-rosh-haayin-detail",
+        "cities-rosh-haayin-detail-2",
         "cities-givatayim-main"
       ]
     }
@@ -3402,7 +3402,7 @@
       "route": "/blog/",
       "slot": "lead",
       "order": 4,
-      "of": "blog-roof-sealing-before-winter-lead"
+      "of": "blog-roof-sealing-before-winter-lead-2"
     },
     {
       "route": "/blog/tarring-vs-bituminous-sheets/",

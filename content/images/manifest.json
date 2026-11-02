@@ -1115,7 +1115,7 @@
           "order": 4
         }
       ],
-      "status": "approved",
+      "status": "retired",
       "people": [
         "shimi"
       ],
@@ -1163,8 +1163,8 @@
           "note": "owner in chat 2026-10-28: approve all"
         }
       },
-      "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null,
+      "approved": null,
+      "retired": "2026-11-02",
       "phone": {
         "file": "blog/pre-winter-roof-check-drain-grate-clearing-01-w720.webp",
         "width": 720,
@@ -2202,7 +2202,7 @@
           "order": 1
         }
       ],
-      "status": "approved",
+      "status": "retired",
       "people": [
         "shimi"
       ],
@@ -2249,8 +2249,8 @@
           "note": "owner in chat 2026-10-28: approve all"
         }
       },
-      "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null,
+      "approved": null,
+      "retired": "2026-11-02",
       "phone": {
         "file": "cities/low-building-flat-roof-first-coat-workshops-beyond-01-w720.webp",
         "width": 720,
@@ -3551,7 +3551,7 @@
           "order": 2
         }
       ],
-      "status": "approved",
+      "status": "retired",
       "people": [],
       "phase": "diagnosis",
       "service": "exterior-wall-sealing",
@@ -3594,8 +3594,8 @@
           "note": "owner in chat 2026-10-28: approve all"
         }
       },
-      "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null,
+      "approved": null,
+      "retired": "2026-11-02",
       "phone": {
         "file": "cities/window-frame-head-joint-wind-driven-damp-fan-01-w720.webp",
         "width": 720,
@@ -3855,7 +3855,7 @@
           "order": 6
         }
       ],
-      "status": "approved",
+      "status": "retired",
       "people": [
         "nissim"
       ],
@@ -3904,8 +3904,8 @@
           "note": "owner in chat 2026-10-28: approve all"
         }
       },
-      "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null,
+      "approved": null,
+      "retired": "2026-11-02",
       "phone": {
         "file": "gallery/tarred-roof-edge-check-walk-01-w720.webp",
         "width": 720,
@@ -6526,7 +6526,7 @@
           "order": 3
         }
       ],
-      "status": "approved",
+      "status": "retired",
       "people": [],
       "phase": "done",
       "service": "bituminous-sheets",
@@ -6569,8 +6569,8 @@
           "note": "owner in chat 2026-10-28: approve all"
         }
       },
-      "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null,
+      "approved": null,
+      "retired": "2026-11-02",
       "phone": {
         "file": "services/finished-membrane-roof-welded-overlaps-01-w720.webp",
         "width": 720,
@@ -7493,7 +7493,7 @@
           "order": 1
         }
       ],
-      "status": "approved",
+      "status": "retired",
       "people": [],
       "phase": "in-progress",
       "service": "balcony-sealing",
@@ -7535,8 +7535,8 @@
           "note": "owner in chat 2026-10-28: approve all"
         }
       },
-      "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null,
+      "approved": null,
+      "retired": "2026-11-02",
       "phone": {
         "file": "cities/terrace-tiles-lifted-liquid-membrane-upstand-01-w720.webp",
         "width": 720,
@@ -7709,7 +7709,7 @@
           "order": 1
         }
       ],
-      "status": "approved",
+      "status": "retired",
       "people": [
         "nissim"
       ],
@@ -7757,8 +7757,8 @@
           "note": "owner in chat 2026-10-28: approve all"
         }
       },
-      "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null,
+      "approved": null,
+      "retired": "2026-11-02",
       "phone": {
         "file": "pricing/tape-measure-along-parapet-survey-01-w720.webp",
         "width": 720,
@@ -7845,6 +7845,547 @@
         "height": 540,
         "bytes": 47416,
         "sha256": "4af94a8e4fce4f6a6e189427a2cd36a46a8d471da29cf025dced6a41fc37fa1e"
+      }
+    },
+    {
+      "id": "blog-roof-sealing-before-winter-lead-2",
+      "file": "blog/pre-winter-roof-check-drain-grate-clearing-02.webp",
+      "legacySrc": null,
+      "width": 1200,
+      "height": 900,
+      "bytes": 117038,
+      "sha256": "cf2e689ac1928d5a8c835b0771017e87067752ccb8121be66ad50ce7653c60e3",
+      "sizeClass": "half",
+      "alt": "איש בחולצת פולו כחולה כורע ליד פתח ניקוז בגג שטוח, מרים סבכה ומחזיק חופן עלים יבשים; לידו דלי לבן ומברשת, ומאחוריו דוד שמש.",
+      "caption": "לפני החורף בודקים את פתח הניקוז ומפנים ממנו עלים ועפר, כדי שהמים יזרמו החוצה ולא יעמדו על הגג. בדיקה מקרוב מאפשרת לראות גם את מצב הציפוי סביב הפתח.",
+      "altEn": "Man in a navy polo kneels at a roof drain on a flat roof, lifting the grate and holding dry leaves, with a white bucket and brush beside him.",
+      "thumb": {
+        "file": "blog/pre-winter-roof-check-drain-grate-clearing-02-thumb.webp",
+        "width": 480,
+        "height": 360,
+        "bytes": 23368,
+        "sha256": "567ff3d339c33aeb20f80b5e30dfb950e1d70147bc75221fee2845198e9cdd74"
+      },
+      "placements": [
+        {
+          "route": "/blog/roof-sealing-before-winter/",
+          "slot": "lead",
+          "order": 1
+        },
+        {
+          "route": "/blog/",
+          "slot": "lead",
+          "order": 4
+        }
+      ],
+      "status": "approved",
+      "people": [
+        "shimi"
+      ],
+      "phase": "diagnosis",
+      "service": "roof-sealing",
+      "city": null,
+      "provenance": {
+        "kind": "ai-generated",
+        "tool": "google-gemini",
+        "model": "gemini-3-pro-image",
+        "created": "2026-11-01",
+        "prompt": "prompts/gagoline/blog-roof-sealing-before-winter-lead-2.md",
+        "promptSha": "de56d7f6d40ef04cb360d943cbabac8d58ef9642424ae44078a76fa1ee178b1f",
+        "masterSha": "f736fa15ac281553ee4b17e49a58a0cd955ff771eda85bbe2ea58e1992cc1516",
+        "refs": [
+          "shimi-01",
+          "shimi-02",
+          "shimi-03"
+        ]
+      },
+      "watermark": {
+        "logo": "navy",
+        "corner": "bottom-right",
+        "widthPct": 17
+      },
+      "review": {
+        "automated": {
+          "verdict": "pass-with-note",
+          "codes": [
+            "stray-mark",
+            "impossible"
+          ],
+          "judges": {
+            "claude": "reject",
+            "gemini": "pass"
+          },
+          "judgesDisagreed": true,
+          "checkedAt": "2026-11-01"
+        },
+        "owner": {
+          "decision": "approved",
+          "by": "owner",
+          "at": "2026-11-02",
+          "note": "approved by the owner in chat on 2026-11-02 ('i approve'), after the agent's reviewer pass; the board was not used"
+        }
+      },
+      "approved": "2026-11-02 — owner, board 4d37afac",
+      "retired": null,
+      "phone": {
+        "file": "blog/pre-winter-roof-check-drain-grate-clearing-02-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 36254,
+        "sha256": "a712d3d6492e0e1b39262dbe6a0de9dd23d3b9ac31bc7f18dc190d3049b6a4d6"
+      }
+    },
+    {
+      "id": "cities-azor-main-2",
+      "file": "cities/low-building-flat-roof-first-coat-workshops-beyond-02.webp",
+      "legacySrc": null,
+      "width": 1600,
+      "height": 1200,
+      "bytes": 149538,
+      "sha256": "9d136f03b11a6c61bf6be7a5d6034fd1abeb747ba9e679b5c81755efbb801183",
+      "sizeClass": "large",
+      "alt": "עובד בחולצת פולו כחולה על גג שטוח מורח ציפוי אלסטומרי אפור ברולר על ידית ארוכה, ולצדו דלי ומגש, ודוד שמש ליד המעקה",
+      "caption": "ציפוי אלסטומרי מורחים ברולר במעברים רציפים על בטון שנוקה מראש, כדי שהשכבה תיצמד היטב ותתפרס באופן אחיד על פני הגג.",
+      "altEn": "Worker in a navy polo rolls grey elastomeric coating onto a flat concrete roof with a long-handled roller, a pail and tray beside him.",
+      "thumb": null,
+      "placements": [
+        {
+          "route": "/areas/azor/",
+          "slot": "main",
+          "order": 1
+        }
+      ],
+      "status": "approved",
+      "people": [
+        "shimi"
+      ],
+      "phase": "in-progress",
+      "service": "roof-sealing",
+      "city": "azor",
+      "provenance": {
+        "kind": "ai-generated",
+        "tool": "google-gemini",
+        "model": "gemini-3-pro-image",
+        "created": "2026-11-01",
+        "prompt": "prompts/gagoline/cities-azor-main-2.md",
+        "promptSha": "f1235eb725c4ed1d396f6e7ede188f8f048b6d717c7a21de004ba8e1ed232af8",
+        "masterSha": "c0c26442a70095ae7e0db728cc453442eb9829ac5f190278b26b20b37016a13d",
+        "refs": [
+          "shimi-01",
+          "shimi-02",
+          "shimi-03"
+        ]
+      },
+      "watermark": {
+        "logo": "white",
+        "corner": "bottom-right",
+        "widthPct": 17
+      },
+      "review": {
+        "automated": {
+          "verdict": "pass-with-note",
+          "codes": [
+            "stray-mark",
+            "impossible",
+            "scene-mismatch",
+            "scene-mismatch"
+          ],
+          "judges": {
+            "claude": "reject",
+            "gemini": "pass-with-note"
+          },
+          "judgesDisagreed": true,
+          "checkedAt": "2026-11-01"
+        },
+        "owner": {
+          "decision": "approved",
+          "by": "owner",
+          "at": "2026-11-02",
+          "note": "approved by the owner in chat on 2026-11-02 ('i approve'), after the agent's reviewer pass; the board was not used"
+        }
+      },
+      "approved": "2026-11-02 — owner, board 4d37afac",
+      "retired": null,
+      "phone": {
+        "file": "cities/low-building-flat-roof-first-coat-workshops-beyond-02-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 31262,
+        "sha256": "529a356d146051c7c9cc303aff75f112a96c5a07c2883e55b6c9183871b8d0d4"
+      }
+    },
+    {
+      "id": "cities-raanana-main-2",
+      "file": "cities/terrace-tiles-lifted-liquid-membrane-upstand-02.webp",
+      "legacySrc": null,
+      "width": 1600,
+      "height": 1200,
+      "bytes": 155418,
+      "sha256": "841ba5fd2e9b295203936038e49ffc26f7b493c3dd4d2acc59ea717c7951c118",
+      "sizeClass": "large",
+      "alt": "מרפסת מרוצפת עם פס שהריצוף בו הורם, מצע חשוף וחומר איטום נוזלי אפור שעולה על הקיר, ולצדם ערימת אריחים, דלי עם מברשת ומאלג׳ פלדה",
+      "caption": "לפני הנחת הריצוף מחדש מעלים את חומר האיטום הנוזלי על הקיר, עם רשת חיזוק בבסיס, כדי שהמים לא יחדרו בחיבור בין הקיר לרצפה.",
+      "altEn": "Balcony with a lifted strip of tiles, grey screed and liquid waterproofing up the wall, with stacked tiles, a pail with brush and a steel trowel.",
+      "thumb": null,
+      "placements": [
+        {
+          "route": "/areas/raanana/",
+          "slot": "main",
+          "order": 1
+        }
+      ],
+      "status": "approved",
+      "people": [],
+      "phase": "in-progress",
+      "service": "balcony-sealing",
+      "city": "raanana",
+      "provenance": {
+        "kind": "ai-generated",
+        "tool": "google-gemini",
+        "model": "gemini-nano-banana-2.1",
+        "created": "2026-11-01",
+        "prompt": "prompts/gagoline/cities-raanana-main-2.md",
+        "promptSha": "9505ed7dcbf5e9f3510b205a83cb98fd466e3c96d7d95f2001593d51446e962b",
+        "masterSha": "0d84065601c37bddb0739411b65426a575fc6395ba038a1995b4f17aca0d1361",
+        "refs": []
+      },
+      "watermark": {
+        "logo": "navy",
+        "corner": "bottom-right",
+        "widthPct": 17
+      },
+      "review": {
+        "automated": {
+          "verdict": "pass-with-note",
+          "codes": [
+            "stray-mark",
+            "scene-mismatch",
+            "season-mismatch"
+          ],
+          "judges": {
+            "claude": "pass-with-note",
+            "gemini": "pass"
+          },
+          "judgesDisagreed": false,
+          "checkedAt": "2026-11-01"
+        },
+        "owner": {
+          "decision": "approved",
+          "by": "owner",
+          "at": "2026-11-02",
+          "note": "approved by the owner in chat on 2026-11-02 ('i approve'), after the agent's reviewer pass; the board was not used"
+        }
+      },
+      "approved": "2026-11-02 — owner, board 4d37afac",
+      "retired": null,
+      "phone": {
+        "file": "cities/terrace-tiles-lifted-liquid-membrane-upstand-02-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 37634,
+        "sha256": "bbf79bda69ca5473c4c878d035a3cae2c1128667f20e4defe91d1c9bcc8d8289"
+      }
+    },
+    {
+      "id": "cities-rosh-haayin-detail-2",
+      "file": "cities/window-frame-head-joint-wind-driven-damp-fan-02.webp",
+      "legacySrc": null,
+      "width": 1200,
+      "height": 800,
+      "bytes": 20170,
+      "sha256": "d626da249460ff4c730700d9e227dc1375a04010b438c83b9194a7b0abe42060",
+      "sizeClass": "half",
+      "alt": "קיר חיצוני מטויח בגוון בהיר עם חלון אלומיניום, סדק פתוח בטיח ליד הפינה העליונה של המסגרת, וכתם רטיבות עם קווי טפטוף יורד לצד המסגרת.",
+      "caption": "בבדיקה ראשונית מסתכלים על מפגש החלון והקיר, כי שם חיבור האיטום נוטה להיפתח, ועוקבים אחרי כיוון הטפטוף כדי להבין מאיפה המים נכנסים.",
+      "altEn": "Pale plaster exterior wall with an aluminium window, a cracked sealant gap at the head, and a damp stain with drip lines beside the frame.",
+      "thumb": null,
+      "placements": [
+        {
+          "route": "/areas/rosh-haayin/",
+          "slot": "detail",
+          "order": 2
+        }
+      ],
+      "status": "approved",
+      "people": [],
+      "phase": "diagnosis",
+      "service": "exterior-wall-sealing",
+      "city": "rosh-haayin",
+      "provenance": {
+        "kind": "ai-generated",
+        "tool": "google-gemini",
+        "model": "gemini-nano-banana-2.1",
+        "created": "2026-11-01",
+        "prompt": "prompts/gagoline/cities-rosh-haayin-detail-2.md",
+        "promptSha": "ad68686126e8957f73c53ac4fea5428ea9a029e60d9aa28cec07af026955ab5c",
+        "masterSha": "33bb1df71550cd4df5995bd39b9a41e786ca16502786371b8e7cee34a73472f9",
+        "refs": []
+      },
+      "watermark": {
+        "logo": "navy",
+        "corner": "bottom-right",
+        "widthPct": 17
+      },
+      "review": {
+        "automated": {
+          "verdict": "pass-with-note",
+          "codes": [
+            "scene-mismatch"
+          ],
+          "judges": {
+            "claude": "pass-with-note",
+            "gemini": "pass"
+          },
+          "judgesDisagreed": false,
+          "checkedAt": "2026-11-01"
+        },
+        "owner": {
+          "decision": "approved",
+          "by": "owner",
+          "at": "2026-11-02",
+          "note": "approved by the owner in chat on 2026-11-02 ('i approve'), after the agent's reviewer pass; the board was not used"
+        }
+      },
+      "approved": "2026-11-02 — owner, board 4d37afac",
+      "retired": null,
+      "phone": {
+        "file": "cities/window-frame-head-joint-wind-driven-damp-fan-02-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 6890,
+        "sha256": "ac8b9110b73572c0b8dde491182b5363f81322ad76d1ba191b96f020883d8ffd"
+      }
+    },
+    {
+      "id": "gallery-generated-9",
+      "file": "gallery/tarred-roof-edge-check-walk-02.webp",
+      "legacySrc": null,
+      "width": 1200,
+      "height": 900,
+      "bytes": 122040,
+      "sha256": "018898d1a44239189e4ed47968b481841ff9d8fbdb832704f671637fd81b4aeb",
+      "sizeClass": "half",
+      "alt": "גג שטוח מזופת בשחור עם דוגמת רשת חיזוק גלויה, פס זפת על תחתית המעקה המטויח, ואיש בחולצת פולו כחולה הולך לאורך המעקה בראש מורכן",
+      "caption": "בזיפות גג שטוח מעלים את הציפוי השחור גם על המעקה, וצועדים לאורך הקצה כדי לבדוק שהרצועה אחידה והשוליים ישרים.",
+      "altEn": "Flat roof tarred matte black with faint mesh pattern, a man in a navy polo walking head bowed along the tar band on a pale parapet wall.",
+      "thumb": null,
+      "placements": [
+        {
+          "route": "/gallery/",
+          "slot": "generated",
+          "order": 6
+        }
+      ],
+      "status": "approved",
+      "people": [
+        "nissim"
+      ],
+      "phase": "done",
+      "service": "roof-tarring",
+      "city": null,
+      "provenance": {
+        "kind": "ai-generated",
+        "tool": "google-gemini",
+        "model": "gemini-3-pro-image",
+        "created": "2026-11-01",
+        "prompt": "prompts/gagoline/gallery-generated-9.md",
+        "promptSha": "a478bb9f0a2a18b6cf18337554e7a393fb0075419a0d72f7bcaaf60b59cc3c1c",
+        "masterSha": "96ecd22e0ca9cb51969ca0eb2a066f787dff0d552331bf3bb154841ca5a3b637",
+        "refs": [
+          "nissim-01",
+          "nissim-02",
+          "nissim-03"
+        ]
+      },
+      "watermark": {
+        "logo": "white",
+        "corner": "bottom-right",
+        "widthPct": 17
+      },
+      "review": {
+        "automated": {
+          "verdict": "pass-with-note",
+          "codes": [
+            "stray-mark",
+            "scene-mismatch",
+            "season-mismatch",
+            "season-mismatch"
+          ],
+          "judges": {
+            "claude": "pass-with-note",
+            "gemini": "pass-with-note"
+          },
+          "judgesDisagreed": false,
+          "checkedAt": "2026-11-01"
+        },
+        "owner": {
+          "decision": "approved",
+          "by": "owner",
+          "at": "2026-11-02",
+          "note": "approved by the owner in chat on 2026-11-02 ('i approve'), after the agent's reviewer pass; the board was not used"
+        }
+      },
+      "approved": "2026-11-02 — owner, board 4d37afac",
+      "retired": null,
+      "phone": {
+        "file": "gallery/tarred-roof-edge-check-walk-02-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 27232,
+        "sha256": "9fd9cebfb1d9caf11cccc3b522b37547d0f948397bb38ba8b91bf351b6b6a8e8"
+      }
+    },
+    {
+      "id": "pricing-survey-2",
+      "file": "pricing/tape-measure-along-parapet-survey-02.webp",
+      "legacySrc": null,
+      "width": 1200,
+      "height": 800,
+      "bytes": 73072,
+      "sha256": "eb613e1b5204282fd592eb1e72c22ca82ea89612a4158c3c0adb815337c49635",
+      "sizeClass": "half",
+      "alt": "גבר בחולצת פולו כחולה עומד על גג שטוח מבטון ומותח סרט מדידה לאורך כיסוי בטון של מעקה, ומאחוריו בנייני מגורים ודודי שמש באובך.",
+      "caption": "מדידת המעקה וסימון בגיר הם חלק מהאבחון בגג שטוח: המידות עוזרות לחשב את אורך הרולקה ואת היקף העבודה לפני שבוחרים שיטת איטום.",
+      "altEn": "Man in a navy polo stands on a flat concrete roof, drawing a tape measure along the parapet coping, with hazy apartment blocks and a solar heater behind.",
+      "thumb": null,
+      "placements": [
+        {
+          "route": "/pricing/",
+          "slot": "survey",
+          "order": 1
+        }
+      ],
+      "status": "approved",
+      "people": [
+        "nissim"
+      ],
+      "phase": "diagnosis",
+      "service": null,
+      "city": null,
+      "provenance": {
+        "kind": "ai-generated",
+        "tool": "google-gemini",
+        "model": "gemini-3-pro-image",
+        "created": "2026-11-01",
+        "prompt": "prompts/gagoline/pricing-survey-2.md",
+        "promptSha": "160f318ffdf598dabc59e3b867a2d4904d3129832ce21e65015d1c597317e7b7",
+        "masterSha": "c06c28e9a2f6d64f229affc27a3d95805a5593ef71f2869cdd4146b337a68adf",
+        "refs": [
+          "nissim-01",
+          "nissim-02",
+          "nissim-03"
+        ]
+      },
+      "watermark": {
+        "logo": "white",
+        "corner": "bottom-right",
+        "widthPct": 17
+      },
+      "review": {
+        "automated": {
+          "verdict": "pass-with-note",
+          "codes": [
+            "scene-mismatch",
+            "impossible",
+            "wrong-trade",
+            "scene-mismatch"
+          ],
+          "judges": {
+            "claude": "reject",
+            "gemini": "pass-with-note"
+          },
+          "judgesDisagreed": true,
+          "checkedAt": "2026-11-01"
+        },
+        "owner": {
+          "decision": "approved",
+          "by": "owner",
+          "at": "2026-11-02",
+          "note": "approved by the owner in chat on 2026-11-02 ('i approve'), after the agent's reviewer pass; the board was not used"
+        }
+      },
+      "approved": "2026-11-02 — owner, board 4d37afac",
+      "retired": null,
+      "phone": {
+        "file": "pricing/tape-measure-along-parapet-survey-02-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 22802,
+        "sha256": "0e35cadf55df2b0f62a5b14e1632b0160be81957c4f32d11ab74069f45fb09e8"
+      }
+    },
+    {
+      "id": "services-bituminous-sheets-work-2",
+      "file": "services/finished-membrane-roof-welded-overlaps-02.webp",
+      "legacySrc": null,
+      "width": 1200,
+      "height": 800,
+      "bytes": 150528,
+      "sha256": "836a65a3b36d99f9d03eb1c067c10ae047a72ee01f65cbabed4bf3a2e8f69435",
+      "sizeClass": "half",
+      "alt": "גג שטוח מכוסה יריעות ביטומניות אפורות עם חפיפות מולחמות בקווים ישרים, פתח ניקוז באמצע, ולצדו מבער גז ורולר מונחים ליד בלון גז, ודודי שמש לאורך המעקה",
+      "caption": "חפיפות היריעות מולחמות בלהבה לאורך קו ישר, והיריעה עולה על המעקה ונסגרת בפס סיום. אחרי ההלחמה בודקים שכל חפיפה סגורה ושהשוליים אחידים לכל אורכה.",
+      "altEn": "Flat roof covered in grey bituminous membrane with welded laps, a drain, a propane torch and seam roller at rest, and solar heaters by the parapet.",
+      "thumb": null,
+      "placements": [
+        {
+          "route": "/services/bituminous-sheets/",
+          "slot": "work",
+          "order": 3
+        }
+      ],
+      "status": "approved",
+      "people": [],
+      "phase": "done",
+      "service": "bituminous-sheets",
+      "city": null,
+      "provenance": {
+        "kind": "ai-generated",
+        "tool": "google-gemini",
+        "model": "gemini-nano-banana-2.1",
+        "created": "2026-11-01",
+        "prompt": "prompts/gagoline/services-bituminous-sheets-work-2.md",
+        "promptSha": "2ef607155b58aebb17f199431e7b738d37fafae76299d86812b2bc2e1ac1f3b3",
+        "masterSha": "315cbe45eb1a49077e1973de14e8c5254921f823341a4a512c0d7b0a9ce45177",
+        "refs": []
+      },
+      "watermark": {
+        "logo": "white",
+        "corner": "bottom-right",
+        "widthPct": 17
+      },
+      "review": {
+        "automated": {
+          "verdict": "pass-with-note",
+          "codes": [
+            "stray-mark",
+            "busy-corner",
+            "impossible",
+            "impossible",
+            "scene-mismatch"
+          ],
+          "judges": {
+            "claude": "reject",
+            "gemini": "pass"
+          },
+          "judgesDisagreed": true,
+          "checkedAt": "2026-11-01"
+        },
+        "owner": {
+          "decision": "approved",
+          "by": "owner",
+          "at": "2026-11-02",
+          "note": "approved by the owner in chat on 2026-11-02 ('i approve'), after the agent's reviewer pass; the board was not used"
+        }
+      },
+      "approved": "2026-11-02 — owner, board 4d37afac",
+      "retired": null,
+      "phone": {
+        "file": "services/finished-membrane-roof-welded-overlaps-02-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 41062,
+        "sha256": "e95e14dfcb01c13ddcf5e50aa40162ba209d3dbc6c0b02c2db900948f23e27c6"
       }
     }
   ]
