@@ -103,6 +103,7 @@ done                                                                       # exp
 curl -sSL https://gagoline.co.il/ | grep -c 'data-images-notice="footer"'     # expect 1
 curl -sSL https://gagoline.co.il/ | grep -o 'og:image" content="[^"]*"'        # unchanged: imgquarry.com/gagoline/og.jpg
 curl -sSI https://gagoline.co.il/images/services/<file>.webp | grep -iE '^HTTP|content-type'   # 200, image/webp
+curl -sSI https://gagoline.co.il/images/services/<file>-w720.webp | grep -iE '^HTTP|content-type'   # the phone copy: 200, image/webp
 curl -sSL https://gagoline.co.il/services/roof-sealing/ | grep -c 'fetchpriority="high"'      # expect 1
 curl -sSL https://gagoline.co.il/services/roof-sealing/ | grep -o '<script type="application/ld+json">[^<]*' | grep -c '/images/'   # expect 0
 ```

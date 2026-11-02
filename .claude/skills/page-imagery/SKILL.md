@@ -76,7 +76,8 @@ no `--breakpoint` or `--container` override in `app/globals.css`. Prose pages (`
 `grid gap-10 lg:grid-cols-2` = **524px** per column.
 
 Fixed by the contract (§2): scenes **4:3**, details **3:2**, one ratio per row; size classes
-`large` 1600 long edge, `half` 1200 and `tile` 1200 each ≤ 256 KB (raised 2026-10-28: phone-grain macros do not compress below ~240 KB; the 900 KB per-page sum is the budget that matters), `thumb` 480 ≤ 45 KB;
+`large` 1600 long edge, `half` 1200 and `tile` 1200 each ≤ 256 KB (raised 2026-10-28: phone-grain macros do not compress below ~240 KB; the 900 KB per-page sum is the budget that matters), `thumb` 480 ≤ 45 KB; every approved image also has a **phone copy** 720 px wide, ≤ 120 KB, written
+after install by `page-images/tools/phone-copies.mjs` (§4);
 **exactly one `priority` image per page = the first content image in DOM order**; everything else
 `loading="lazy" decoding="async"`. The rendered widths for the new slots below are computed from the
 container math and a `gap-8` row gap; confirm them against the built markup once the components
@@ -156,8 +157,11 @@ link.
   the box; CLS stays 0 by construction.
 - **Exactly one `priority` per page.** The gate counts `fetchpriority="high"` and checks it is the
   first `/images/` image in the DOM.
-- **Local `public/` paths get no `srcset`, correctly.** A static export has no resizer; never
-  hand-write a `sizes` without a `srcset`.
+- **Phones get the phone copy through `<picture>`.** A static export has no resizer and the kit's
+  `SiteImage` serves a local file verbatim, so `Figure` wraps it: `<source media="(max-width: 640px)"
+srcSet="…-w720.webp">` around the same `<img>`. Below 640 px a phone downloads about 39 KB instead
+  of 136 KB. Never hand-write a `sizes` without a `srcset`; nothing here needs one. The gate fails an
+  approved entry with no copy, and a figure that does not offer it.
 - **Anything in `public/` is copied into `out/` and published by every deploy.** Approved files live
   in `public/images/<group>/`; staged candidates in `public/images/_candidates/` (gitignored) are
   pruned from `out/` unless `IMAGES_DRAFT=1`.

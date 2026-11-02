@@ -275,7 +275,9 @@ See the `hebrew-rtl` skill for the full rule set.
   disclosure markers `data-images-notice="footer|gallery|about"` must be present. No `/images/`
   path inside any `application/ld+json` or `og:image`. A published `public/images/*` file is never
   deleted or renamed casually (§10, §14). `scripts/images/check-images-out.mjs` asserts all of this
-  on `out/`; the `page-imagery` skill carries the full list.
+  on `out/`; the `page-imagery` skill carries the full list. Below 640 px a phone loads the 720-px
+  copy through `<picture>` (`-w720.webp`, about 39 KB against 136 KB); the gate fails an approved
+  image without one.
 - **Accessibility target: WCAG 2.1 AA + IS 5568**, and `/accessibility/` publishes a conformance
   statement — so a contrast failure makes a published statement false. The accent CTA is at **2.56:1**
   and the WhatsApp CTA at **1.98:1** against white. See the `responsive-accessibility` skill.
@@ -456,7 +458,8 @@ pixels) → `finish` (exact slot box, logo bottom-right, WebP q80) → `stage` (
 and the board at `http://localhost:4310`, each card linking to `#img-<id>` on the real page; the
 `image-qa-reviewer` agent checks every frame first, and again for any frame re-rendered after
 that: on gagoline the judges passed 13 of 93 frames a reviewer sent back) → `install` (approved → `public/images/<group>/`,
-rejected deleted from `_candidates/`, regenerate queued) → `npm run images:status` → `npm run gate`
+rejected deleted from `_candidates/`, regenerate queued) → `node page-images/tools/phone-copies.mjs
+--site gagoline` (the phone copy of each new image) → `npm run images:status` → `npm run gate`
 → deploy (ask) → the post-deploy image checks in the `deploy-gagoline` skill. Every command prints
 its plan with `--dry-run`. Full runbook: skill `page-images-pipeline`. The contract every path, slot
 id, text and command obeys: `Media Studio/page-images/docs/contract.md`.
@@ -475,7 +478,9 @@ id, text and command obeys: `Media Studio/page-images/docs/contract.md`.
 - **Retire, never delete.** Replacement = a new slug + `retired: "YYYY-MM-DD"` on the old entry; the
   old file stays ≥ 60 days, then goes in one commit with its entry. Revoked consent = a people-free
   twin at the same box, swapped the same way, the refs deleted the same day, live removal within 14
-  days of written notice.
+  days of written notice. Live removal covers every public copy (full file, `-w720` phone copy,
+  thumbnail): that promise to the person beats the 60-day keep. `revoked: "YYYY-MM-DD"` on the retired
+  entry makes the gate require those files gone instead of kept.
 - **Fleet reuse.** The toolkit is site-agnostic; the per-site policy (faces, names, proof of work,
   disclosure, excluded routes) lives in `Media Studio/sites/<slug>/site.json`. Onboarding the next
   site: `Media Studio/runbooks/page-images-for-a-site.md` and that project's skill `page-images`.

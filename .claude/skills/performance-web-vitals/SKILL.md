@@ -1,6 +1,6 @@
 ---
 name: performance-web-vitals
-description: Core Web Vitals for a static export on Cloudflare Pages — the LCP element per route now that every content page carries images (text hero on phones, the first figure or the home strip on desktop), the Figure/SiteImage contract (one priority per page, baked dimensions, byte budgets, lazy rest, no srcset for local files, never delete a published file), the shipped font preloads, CLS reserves, the INP client-JS budget, and keeping out/ clean. Use before shipping or when LCP, CLS or INP regress. Triggers "perf pass", "Core Web Vitals", "LCP slow", "image optimization", "bundle size", "srcset".
+description: Core Web Vitals for a static export on Cloudflare Pages — the LCP element per route now that every content page carries images (text hero on phones, the first figure or the home strip on desktop), the Figure/SiteImage contract (one priority per page, baked dimensions, byte budgets, lazy rest, the phone copy through <picture>, never delete a published file), the shipped font preloads, CLS reserves, the INP client-JS budget, and keeping out/ clean. Use before shipping or when LCP, CLS or INP regress. Triggers "perf pass", "Core Web Vitals", "LCP slow", "image optimization", "bundle size", "srcset".
 ---
 
 # Core Web Vitals
@@ -43,12 +43,16 @@ image renders through `components/ui/Figure.tsx` over the kit's `SiteImage` in a
 - `width`/`height` baked from the manifest's measured pixels — CLS 0 by construction;
 - exactly one `priority` per page (the first content image in DOM order); everything else
   `loading="lazy" decoding="async"`;
-- **no `srcset` for local files, correctly** — a static export has no resizer, so `srcsetFor` emits
-  nothing and a hand-written `sizes` would be inert. The worst option is still passing `sizes` to an
+- **phones get a phone copy through `<picture>`** — a static export has no resizer, so `srcsetFor`
+  emits nothing and a hand-written `sizes` would be inert. `Figure` wraps the kit's `<img>` in a
+  `<picture>` whose `<source media="(max-width: 640px)">` names the `-w720.webp` copy that
+  `page-images/tools/phone-copies.mjs` writes after install. The `<img>`, its box and its loading
+  attributes stay exactly as the kit writes them. The worst option is still passing `sizes` to an
   image with no `srcset`, because it looks right and does nothing;
-- byte budgets per size class, enforced by `scripts/images/check-images-out.mjs`: `large` (1600 long
-  edge) ≤ 220 KB, `half`/`tile` (1200) ≤ 170 KB, `thumb` (480) ≤ 45 KB, ≤ 900 KB of images per page,
-  ≤ 20 MB under `out/images`; WebP q80 from the toolkit, re-encoded at q74 above 160 KB;
+- byte budgets, enforced by `scripts/images/check-images-out.mjs`: `large` (1600 long edge), `half`
+  and `tile` (1200) each ≤ 256 KB, `thumb` (480) ≤ 45 KB, the phone copy (720) ≤ 120 KB, ≤ 900 KB of
+  images per page, ≤ 20 MB under `out/images` (phone copies included; 18.3 MB on 2026-11-01, so the
+  next large batch needs a decision on this cap); WebP q80 from the toolkit, q76 for phone copies;
 - **never delete or rename a published file** — a replacement is a new slug plus a `retired` date
   (CLAUDE.md §14). The imgquarry/`srcsetFor` route (real width variants against the media host) stays
   a follow-up; file names are kept compatible with it.

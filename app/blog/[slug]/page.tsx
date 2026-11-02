@@ -14,8 +14,6 @@ import { Figure } from "@/components/ui/Figure";
 import { ArticleBody } from "@/components/blog/ArticleBody";
 import { FinalCta } from "@/components/marketing/FinalCta";
 
-export const dynamicParams = false;
-
 export function generateStaticParams(): { slug: string }[] {
   return articles.map((a) => ({ slug: a.slug }));
 }

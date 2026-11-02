@@ -54,7 +54,14 @@
         }
       },
       "approved": "2026-08-27 — owner",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "gallery/flat-roof-sheets-drain-and-vent-01-w720.webp",
+        "width": 720,
+        "height": 720,
+        "bytes": 57084,
+        "sha256": "7cb536d74898734b018a00f4506700852882d6c1627f1e600b6fbfe545d9d2a6"
+      }
     },
     {
       "id": "gallery-supplied-02",
@@ -102,7 +109,14 @@
         }
       },
       "approved": "2026-08-27 — owner",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "gallery/flat-roof-sheets-pipe-cluster-01-w720.webp",
+        "width": 720,
+        "height": 720,
+        "bytes": 56140,
+        "sha256": "0322fd51e429644aa8e4461a41d656e9fdc28c8338134327d134f47400e4e3be"
+      }
     },
     {
       "id": "gallery-supplied-03",
@@ -150,7 +164,14 @@
         }
       },
       "approved": "2026-08-27 — owner",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "gallery/metal-roof-liquid-sealing-pipe-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 39660,
+        "sha256": "799bfb14d8b7d5d1f7a7c819cee58ee96c32b657148cbbd33a20b2895535e00c"
+      }
     },
     {
       "id": "gallery-supplied-04",
@@ -198,7 +219,14 @@
         }
       },
       "approved": "2026-08-27 — owner",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "gallery/pitched-roof-membrane-under-tiles-01-w720.webp",
+        "width": 720,
+        "height": 405,
+        "bytes": 58096,
+        "sha256": "3e942f4df3532b0ef23492c8352a2f8f2f6550614e1561569f94de52ce686651"
+      }
     },
     {
       "id": "about-story",
@@ -272,7 +300,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 8c61b82b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "about/single-technician-flood-test-watching-water-line-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 41752,
+        "sha256": "b30cc64c955a68c38170dae377eb9f057f52759b82e9503968620e14fe17b543"
+      }
     },
     {
       "id": "cities-tel-aviv-detail",
@@ -336,7 +371,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 8c61b82b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/rusted-drain-collar-old-coating-layers-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 61090,
+        "sha256": "043fe4c17e0cfbf12fdd89e5d2b99941ca7475499b371c5bb0634e0053c03907"
+      }
     },
     {
       "id": "home-strip-3",
@@ -400,7 +442,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 8c61b82b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "home/finished-grey-roof-wide-low-angle-heaters-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 20854,
+        "sha256": "32b2b03a242395cd9aa297eed50280055e43e6915a5fb8ba76a87ad7e781d988"
+      }
     },
     {
       "id": "home-team",
@@ -485,7 +534,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 8c61b82b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "home/two-technicians-roof-portrait-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 31490,
+        "sha256": "678069b46d9bec1fed7d5b84f34518ab9552ad7eece35c227fa3ef82b9c7f995"
+      }
     },
     {
       "id": "services-roof-sealing-main",
@@ -562,7 +618,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 8c61b82b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/roof-sealing-parapet-coating-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 27894,
+        "sha256": "d99dfd72fe14ea4fbfc4a1dab9a19f13144426826e8fe71f466be9940ed0ba8b"
+      }
     },
     {
       "id": "services-bituminous-sheets-detail",
@@ -630,7 +693,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 8c61b82b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/sheet-overlap-seam-roller-bitumen-bead-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 112718,
+        "sha256": "ec440f18d5077c64819413a2da9de5b4d6624f03057ee1fbbcc48e67e057609a"
+      }
     },
     {
       "id": "gallery-generated-1",
@@ -693,7 +763,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 8c61b82b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "gallery/finished-coated-roof-parapet-corner-drain-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 16460,
+        "sha256": "2fed3a282dc273d6795cb17b2bd08519a92da16de85794f4bf0850cadbe3a936"
+      }
     },
     {
       "id": "about-work",
@@ -758,7 +835,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "about/roof-half-stripped-prepared-surface-cracks-filled-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 36400,
+        "sha256": "cc346d2671204532a64da2fa178ae5ada4f61d92ffa8b53426a94a03445d5dbd"
+      }
     },
     {
       "id": "areas-strip-3",
@@ -824,7 +908,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "areas/shikun-block-roof-sea-haze-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 36706,
+        "sha256": "61d68d68004a7b8e5c48b002c7aa9a4c0d1ae6c29f9227e839572c442023ad34"
+      }
     },
     {
       "id": "blog-how-long-roof-sealing-lasts-lead",
@@ -900,7 +991,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "blog/coating-intact-in-shade-chalked-in-sun-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 47292,
+        "sha256": "be528d8e77dee11ed4e53234161cd1b1c47eaa83a5a5507cccfe93a346e6e465"
+      }
     },
     {
       "id": "blog-tarring-vs-bituminous-sheets-lead",
@@ -977,7 +1075,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "blog/hot-bitumen-pail-squeegee-beside-membrane-roll-torch-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 41664,
+        "sha256": "aee97be7f677ac7966eb492c0a066261f16d2f63edfeb0a7621fb5eb385a9b77"
+      }
     },
     {
       "id": "blog-roof-sealing-before-winter-lead",
@@ -1059,7 +1164,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "blog/pre-winter-roof-check-drain-grate-clearing-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 38404,
+        "sha256": "e9b7e70f0a80040b1993fd1e5770b7577fc92189aabbcaa8e6647d8fa5c7dd20"
+      }
     },
     {
       "id": "blog-roof-sealing-cost-by-roof-type-lead",
@@ -1139,7 +1251,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "blog/roof-crowded-with-edge-details-chimney-ac-pipes-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 46858,
+        "sha256": "f5b4b2748c9d31563d1b812e462d9badd01fdd96eab32ff6027c5d0bcc7bf81d"
+      }
     },
     {
       "id": "blog-seal-tiled-roof-without-lifting-lead",
@@ -1225,7 +1344,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "blog/tapping-terrace-tiles-hollow-sound-check-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 36366,
+        "sha256": "70d1757924101fbaee3f48219556c076912d4a9785ec821ef5d81bae87daccd7"
+      }
     },
     {
       "id": "blog-find-roof-leak-source-lead",
@@ -1308,7 +1434,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "blog/tracing-water-track-chalk-on-roof-slope-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 30288,
+        "sha256": "c16d7990690590def1b421a30d08d409b3a136e07e70f67b2f457bd3f790bd43"
+      }
     },
     {
       "id": "blog-damp-wall-or-roof-lead",
@@ -1382,7 +1515,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "blog/wall-damp-stain-beside-window-dry-ceiling-junction-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 7778,
+        "sha256": "aedc2d664fee9a04623d9a447198b2a49c90bf18693587e92f9a36afb28e36ed"
+      }
     },
     {
       "id": "cities-kiryat-ono-detail",
@@ -1445,7 +1585,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/addition-roof-drain-leaf-choked-standing-water-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 42412,
+        "sha256": "3a964bece4ed5dd50d1a1ae4b19e00d689e95c953e8aa425d868826fac849dcf"
+      }
     },
     {
       "id": "cities-tel-aviv-main",
@@ -1517,7 +1664,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/bauhaus-flat-roof-flood-test-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 36308,
+        "sha256": "3987c621de987556294e034bef88764f469313d714698ab815b7452976622497"
+      }
     },
     {
       "id": "cities-holon-detail",
@@ -1584,7 +1738,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/blistered-lifted-old-coating-low-parapet-factory-haze-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 52486,
+        "sha256": "85c3b9057fbaf3154c29295af8a4a435bde2f090e1f7ab8d50a4e40bf3d905ca"
+      }
     },
     {
       "id": "cities-azor-detail",
@@ -1649,7 +1810,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/corrugated-metal-roof-bolt-heads-rust-sealant-caps-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 38802,
+        "sha256": "af2e6e964505444d281318c250b3ec48b29c6545259d4240d993fb5dc1525567"
+      }
     },
     {
       "id": "cities-rehovot-main",
@@ -1721,7 +1889,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/courtyard-house-closed-balcony-seam-sealing-tree-shade-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 70652,
+        "sha256": "61486f5303b5ed3aef8395e1269b41c122dcbbf4326d826786a1c5243bcb5f12"
+      }
     },
     {
       "id": "cities-nes-ziona-detail",
@@ -1787,7 +1962,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/cracked-mortar-fillet-tile-roof-wall-junction-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 44640,
+        "sha256": "13784be45a395d132af673dc2fa31bdb3128d6b1e6ee690a9a40998f04f4bb2f"
+      }
     },
     {
       "id": "cities-ramat-hasharon-detail",
@@ -1848,7 +2030,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/gutter-choked-with-leaves-roof-wall-junction-moss-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 59592,
+        "sha256": "3e33b37a6b4b5f227ac4eaab1ed726fa8a0a5b117346acf6c29eb78c1a327cef"
+      }
     },
     {
       "id": "cities-bnei-brak-detail",
@@ -1912,7 +2101,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/heater-anchor-foot-cracked-coating-worn-walkway-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 52424,
+        "sha256": "d0afad011a8007cf2907025e5a669813db1a32ecab59de373e490c95b99a48ef"
+      }
     },
     {
       "id": "cities-yehud-detail",
@@ -1977,7 +2173,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/loose-tile-worn-underlay-batten-exposed-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 35814,
+        "sha256": "291e3ddce841d78a1235598222bce9ac60581a75adede9f921e506ea84666f74"
+      }
     },
     {
       "id": "cities-azor-main",
@@ -2047,7 +2250,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/low-building-flat-roof-first-coat-workshops-beyond-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 35728,
+        "sha256": "52d20d68870794fabdded97f1ced3aca82d05a31cbe2d604a238aacf81e20aa5"
+      }
     },
     {
       "id": "cities-or-yehuda-detail",
@@ -2112,7 +2322,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/minimal-slope-roof-dried-puddle-tide-ring-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 47312,
+        "sha256": "ebe4d39e091ebe5a9d4463f7209d883c1c4c18e01cb97f4972700175e61568fa"
+      }
     },
     {
       "id": "cities-givat-shmuel-detail",
@@ -2177,7 +2394,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/new-membrane-parapet-upstand-corner-hairline-crack-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 13170,
+        "sha256": "2b929b129a71bc9290704b4607d2230c64d0f7f1adcbb423a4529a2852d59890"
+      }
     },
     {
       "id": "cities-givat-shmuel-main",
@@ -2249,7 +2473,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/new-tower-roof-ac-anchor-flood-check-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 32350,
+        "sha256": "23071ad43c9cda2a1f99f47ec361d0d01d2cf9fa276cfb9fb7dd58e2cd7f9156"
+      }
     },
     {
       "id": "cities-petah-tikva-detail",
@@ -2314,7 +2545,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/old-parapet-crumbling-concrete-exposed-rebar-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 41944,
+        "sha256": "41d081f27e0b4de5ad2123f12ab93bb5ca56ec07f25984951492d805ef6cf490"
+      }
     },
     {
       "id": "cities-hod-hasharon-detail",
@@ -2380,7 +2618,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/raw-untreated-addition-block-wall-damp-line-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 68148,
+        "sha256": "e9ffb4ded3306d85a143fcd5b974b66fc9660d576c8076dafb3300a36c31f924"
+      }
     },
     {
       "id": "cities-givatayim-detail",
@@ -2445,7 +2690,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/roof-level-step-wall-junction-filled-crack-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 45612,
+        "sha256": "c73315d08f0767b1d74a04068fa4519f5718155c1e364f97d66d5b29c99df376"
+      }
     },
     {
       "id": "cities-bat-yam-detail",
@@ -2510,7 +2762,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/rusted-railing-post-base-rust-streaks-roof-coating-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 52506,
+        "sha256": "431af6af947e0dd2dac31129d06279aa82e97beb91ec60d80f26e54cfee2c7e8"
+      }
     },
     {
       "id": "cities-herzliya-detail",
@@ -2575,7 +2834,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/sea-air-corroded-railing-post-base-terrace-tiles-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 24064,
+        "sha256": "5c9dd84628c8946fa338303e8f3096118ecc20d2fff1e9c378b3738983564d3c"
+      }
     },
     {
       "id": "cities-or-yehuda-main",
@@ -2647,7 +2913,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/shikun-roof-old-layers-removal-scraper-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 59028,
+        "sha256": "572d859981202849cf2753d0e7ac7860016ada3f53ccd6a78322c3824dff562f"
+      }
     },
     {
       "id": "cities-rishon-lezion-detail",
@@ -2712,7 +2985,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/sun-chalked-old-coating-meets-new-coating-line-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 21354,
+        "sha256": "e2076d6d873620e75870156889965a5258b22828158a71ad4ddb881f2efa8820"
+      }
     },
     {
       "id": "cities-raanana-detail",
@@ -2776,7 +3056,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/terrace-door-threshold-tile-level-damp-band-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 25684,
+        "sha256": "1e35065108669bb1f301f1993f7f04c2bebb14f04a95a095017d5a8992a7a983"
+      }
     },
     {
       "id": "cities-ganei-tikva-detail",
@@ -2840,7 +3127,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/terrace-over-room-pergola-post-anchor-level-step-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 29986,
+        "sha256": "5ca914bfa1a5648fd00644a4d418e1ec4ebfb6ab890c073158f51217092699ec"
+      }
     },
     {
       "id": "cities-kfar-saba-detail",
@@ -2905,7 +3199,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/tile-roof-valley-gutter-leaf-filled-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 69188,
+        "sha256": "ddf917939515e88d05a424eed76a72f93e37dc7c6081ee35a49c45f9341bbfea"
+      }
     },
     {
       "id": "cities-kiryat-ono-main",
@@ -2982,7 +3283,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/tiled-roof-flat-addition-seam-membrane-band-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 57596,
+        "sha256": "b64e327b84248d49b8bdccbeeebd6005f3216df9477fd7b1226e4c29b64633f1"
+      }
     },
     {
       "id": "cities-nes-ziona-main",
@@ -3055,7 +3363,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/tiled-roof-wall-junction-new-flashing-membrane-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 51036,
+        "sha256": "3448301fefed6bc92edb101c9a88aba27022018fc9ca2e4d91e02ce033c298ff"
+      }
     },
     {
       "id": "cities-herzliya-main",
@@ -3126,7 +3441,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/villa-tiled-terrace-regrout-clear-coating-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 35374,
+        "sha256": "b3c2ac5a61e5d9ab29c8aa28ab1910326840b3d7d0aa5c2c5b73c0407ab3272b"
+      }
     },
     {
       "id": "cities-rishon-lezion-main",
@@ -3200,7 +3522,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/wide-exposed-roof-light-top-coat-over-new-sealing-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 27378,
+        "sha256": "ce6c2540c61594e52ee93f1f70518613f479d8ace44d99b7b4308dbdfb810174"
+      }
     },
     {
       "id": "cities-rosh-haayin-detail",
@@ -3266,7 +3595,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/window-frame-head-joint-wind-driven-damp-fan-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 12078,
+        "sha256": "70055506f4c6499e74fc862a1b3966e84dda17d102f676fedf553058de87402f"
+      }
     },
     {
       "id": "contact-main",
@@ -3341,7 +3677,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "contact/crew-at-roof-access-door-arriving-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 40256,
+        "sha256": "dc4f86cefb0539aaae96e38cbe8aab99ee7798a188b0f14394ab33845dfc4f02"
+      }
     },
     {
       "id": "gallery-generated-8",
@@ -3411,7 +3754,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "gallery/finished-basement-wall-hand-check-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 20464,
+        "sha256": "320b217ae309d257c13afa8ab5993164e17bf06b56fc4f62f48e5007a229cbdf"
+      }
     },
     {
       "id": "gallery-generated-3",
@@ -3476,7 +3826,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "gallery/finished-sheet-collar-around-vent-pipe-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 92536,
+        "sha256": "db76fb488555655142912a0942f464dd85f4379f53a87db0d34d7bb525b36b03"
+      }
     },
     {
       "id": "gallery-generated-2",
@@ -3548,7 +3905,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "gallery/tarred-roof-edge-check-walk-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 42168,
+        "sha256": "ba89f61a3d14cf2f85c9650758f4625c60ab5e9afd042beee9c4ef5230159cc8"
+      }
     },
     {
       "id": "gallery-generated-7",
@@ -3612,7 +3976,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "gallery/white-roof-from-stair-bulkhead-door-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 16990,
+        "sha256": "d396f395a7715a0d9431e302a9c497dcd1d2410ec5737a884a3f1b17104548c4"
+      }
     },
     {
       "id": "home-strip-2",
@@ -3687,7 +4058,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "home/unrolling-bitumen-sheet-on-primed-roof-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 40476,
+        "sha256": "da16ab690945f03deb2952edf783bbefae7884d1b943daf902ad67fcabd37942"
+      }
     },
     {
       "id": "pricing-layers",
@@ -3757,7 +4135,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "pricing/cut-edge-old-roof-coating-layers-cross-section-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 51718,
+        "sha256": "0390c762d0e30eed38485e87b1aa3daa83f8c984d0ad58f95558667206047243"
+      }
     },
     {
       "id": "services-balcony-sealing-main",
@@ -3828,7 +4213,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/balcony-tiles-lifted-screed-upstand-coating-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 34090,
+        "sha256": "8fec5a6a8904c9c5426d0eba0afbc1b63efc252179220830e8bf853fe31b2f5b"
+      }
     },
     {
       "id": "services-basement-sealing-main",
@@ -3900,7 +4292,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/basement-wall-cementitious-slurry-work-light-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 31504,
+        "sha256": "378bb1e3cc6820c11ef1552a0d9053ed203ae70ede476faee089385afc178ae0"
+      }
     },
     {
       "id": "services-leak-detection-detail",
@@ -3968,7 +4367,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/ceiling-damp-stain-bubbled-paint-top-floor-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 7228,
+        "sha256": "3705155df5f1ab8366ea88ddc7e38d3a0f17c881e23ef3b69a29b762356e07c2"
+      }
     },
     {
       "id": "services-exterior-wall-sealing-work",
@@ -4035,7 +4441,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/coated-facade-section-window-joints-finished-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 13998,
+        "sha256": "071c4f3b11e11376ca1efe906ed69576228397f8c48bc9301cf7d16aaf525816"
+      }
     },
     {
       "id": "services-balcony-sealing-detail",
@@ -4105,7 +4518,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/door-threshold-sealing-tape-balcony-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 23568,
+        "sha256": "6eee3752daa9f23f633221f21a30fca47e1f4df23a25a9ef3bea99e1de157b08"
+      }
     },
     {
       "id": "services-roof-sealing-work",
@@ -4178,7 +4598,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/finished-coated-roof-crew-packing-up-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 20574,
+        "sha256": "1f9895c9c4e411220ed5012df580e94da5d6144437d8ad65816b100c11ea53ba"
+      }
     },
     {
       "id": "services-basement-sealing-work",
@@ -4243,7 +4670,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/finished-grey-basement-wall-dry-sealed-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 13340,
+        "sha256": "3dd9e8fdd288933c1acf4e962776c65d1f06725daf5c31e18f23824fb2ad3144"
+      }
     },
     {
       "id": "services-roof-whitening-work",
@@ -4309,7 +4743,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/finished-white-roof-heaters-long-shadows-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 21164,
+        "sha256": "f2ecceba9fea0d14c1d122c724675c4ac43c88adcf29bd212da7580306b9417d"
+      }
     },
     {
       "id": "services-leak-detection-main",
@@ -4388,7 +4829,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/flood-test-taped-section-hose-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 34710,
+        "sha256": "a380f97baa3e66e1f2586b59467a979faa7b1a4b7d256df1eef08e21f6db349b"
+      }
     },
     {
       "id": "services-roof-tarring-work",
@@ -4451,7 +4899,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/freshly-tarred-roof-drying-matte-black-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 23360,
+        "sha256": "3f6906491781d51e81f83f20d14a0e1cf534a8298409c23e4db696bd9f551e76"
+      }
     },
     {
       "id": "services-exterior-wall-sealing-detail",
@@ -4522,7 +4977,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/plaster-crack-routed-filled-flexible-sealant-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 24974,
+        "sha256": "1c33996835ccd44cf2a694257d82cbafcaf864ea9c4046d90af76cf697dda294"
+      }
     },
     {
       "id": "services-balcony-sealing-work",
@@ -4587,7 +5049,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/re-tiled-balcony-clear-coating-finished-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 32404,
+        "sha256": "116d0aae954efe9e045e6e1d3c4e092ff4e487ec3f4e6923aa3805b8ea0b30a1"
+      }
     },
     {
       "id": "services-roof-tarring-detail",
@@ -4664,7 +5133,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/reinforcing-mesh-pressed-into-hot-bitumen-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 56878,
+        "sha256": "81b59c12264f35a740fc25e71614cfa26fca70b9275df2c2755710f7d417c3d1"
+      }
     },
     {
       "id": "services-roof-sealing-detail",
@@ -4734,7 +5210,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/roof-drain-collar-new-seal-detail-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 65288,
+        "sha256": "6908e386333a65215309521de3e75f19bb568c5791cf21e1f688dd170821315f"
+      }
     },
     {
       "id": "services-exterior-wall-sealing-main",
@@ -4806,7 +5289,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/rope-access-facade-crack-coating-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 17924,
+        "sha256": "177ed2ac28a852cc361030b8ba454e13789d8f779a0d8edfd432ac466124ca91"
+      }
     },
     {
       "id": "services-pair-1",
@@ -4873,7 +5363,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/sealing-materials-laid-out-on-roof-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 56494,
+        "sha256": "ed62de9d0b4b6e37df60e27c3509853286210343c4d2786a0875ed44d8e424b6"
+      }
     },
     {
       "id": "services-bituminous-sheets-main",
@@ -4946,7 +5443,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/torch-on-bitumen-sheet-welding-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 35584,
+        "sha256": "52706ee578045cdc841394d1a4e804d6873ed6aacd8fd81006d876ddd6ca125a"
+      }
     },
     {
       "id": "services-pair-2",
@@ -5018,7 +5522,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/two-technicians-deciding-method-at-drain-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 39622,
+        "sha256": "8d333dab0408521ca99c923deb73920fa7f5e71b46cf40aba2c1196a14fc0f56"
+      }
     },
     {
       "id": "services-basement-sealing-detail",
@@ -5083,7 +5594,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/wall-floor-junction-coving-slurry-basement-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 39998,
+        "sha256": "91953ef4c67973989b502ffbaae8df066919e2b6ff3eed913f5d3668483b21af"
+      }
     },
     {
       "id": "services-roof-whitening-detail",
@@ -5155,7 +5673,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/white-roof-coating-roller-tray-on-dark-roof-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 35350,
+        "sha256": "cfe9bd4d349e8cbbf82072decb32def23104f2e27fc8a96fdfcf3873a92b8ee0"
+      }
     },
     {
       "id": "gallery-generated-5",
@@ -5224,7 +5749,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "gallery/found-source-wet-track-chalk-marks-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 43520,
+        "sha256": "2ee4aaa2d5d5560b5145a1777a5d904aa7f262c013848cd58ed3ae376959d94a"
+      }
     },
     {
       "id": "areas-strip-2",
@@ -5299,7 +5831,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "areas/red-tile-roof-garden-suburb-technician-eave-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 52574,
+        "sha256": "077f04463d5ecdfc3203eabecd2dd2f4e31680b97dc7f8748dffff76cd407662"
+      }
     },
     {
       "id": "cities-hod-hasharon-main",
@@ -5372,7 +5911,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/extended-house-addition-seam-wall-base-coating-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 61142,
+        "sha256": "74fc2b2c88f192632f00208596231f4abfeadd368d728f388584f2202f784ebb"
+      }
     },
     {
       "id": "cities-ganei-tikva-main",
@@ -5443,7 +5989,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/split-level-roof-terrace-upper-wall-junction-sealing-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 37740,
+        "sha256": "13b007cc8b155aadd33e2a7d0c901480f5b4f38e742a3600a854ddb39baf5c1e"
+      }
     },
     {
       "id": "cities-ramat-hasharon-main",
@@ -5508,7 +6061,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/tiled-roof-ridge-mortar-renewal-under-trees-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 56660,
+        "sha256": "60e459036fd2e296142f8e20d6e3d00bbc85fae2b0e9cce5839fbaabf56a69a1"
+      }
     },
     {
       "id": "services-roof-whitening-main",
@@ -5580,7 +6140,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/half-white-roof-reflective-coating-rollers-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 27140,
+        "sha256": "a1bf07f3d4084828a0d6f190d2e73af3b261aef8a43edb1bd1cf93660cbc5f84"
+      }
     },
     {
       "id": "cities-holon-main",
@@ -5645,7 +6212,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/shikun-roof-flood-test-sandbag-line-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 43270,
+        "sha256": "b905a1fd3bdb04f0c1f5bea24f89ef3b60a74fc2edd7d49bc9f5d628bca8056a"
+      }
     },
     {
       "id": "cities-yehud-main",
@@ -5710,7 +6284,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/small-flat-roof-grey-coating-heater-collar-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 35414,
+        "sha256": "33d11253fa9f61359e50ac90a8bccb067cdb0c3159a9191f8488cd9ebbb2b659"
+      }
     },
     {
       "id": "cities-kfar-saba-main",
@@ -5774,7 +6355,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/tiled-roof-ridge-rebedded-valley-sealant-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 69708,
+        "sha256": "197894b21d79a78540907c9dd571167b66fe34f25a188f4b5370762c1c5d84b6"
+      }
     },
     {
       "id": "cities-petah-tikva-main",
@@ -5839,7 +6427,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/wide-block-roof-fresh-tar-squeegee-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 42174,
+        "sha256": "660f586877e9d7487595a1207593b4e27b940067ccfe3ebbfa8573572e6f84c6"
+      }
     },
     {
       "id": "gallery-generated-6",
@@ -5902,7 +6497,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "gallery/finished-exterior-wall-uniform-coating-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 29630,
+        "sha256": "f86370efdd34951c281c0ac618aef5275effd92d5cff661275b0e8848bd4b6b3"
+      }
     },
     {
       "id": "services-bituminous-sheets-work",
@@ -5968,7 +6570,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/finished-membrane-roof-welded-overlaps-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 32028,
+        "sha256": "437fe6ed9a48c4600d057ccbade2ded3e026ff43fd284e409341d8dfc0e81c4d"
+      }
     },
     {
       "id": "services-leak-detection-work",
@@ -6033,7 +6642,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/found-crack-chalk-circle-sealed-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 32166,
+        "sha256": "65dcdab51861c88cfef29c58064cfc6d4c52eeec9f53d459a095f5094d7fe302"
+      }
     },
     {
       "id": "cities-ramat-gan-main",
@@ -6097,7 +6713,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/midrise-block-roof-crack-bridging-coating-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 32282,
+        "sha256": "ccedaa9d028cf6d5f5ca6b3e3fff060cd8f39a5f1575b169a62f322266d3f66e"
+      }
     },
     {
       "id": "cities-netanya-main",
@@ -6163,7 +6786,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/seaside-roof-parapet-corner-fresh-coating-roller-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 42642,
+        "sha256": "b928338dc2c4c962ad8de065d7d253cb7932ff9a5dd0313c65b79b2c18eac8b3"
+      }
     },
     {
       "id": "gallery-generated-4",
@@ -6228,7 +6858,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "gallery/finished-balcony-new-tiles-sealant-bead-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 36746,
+        "sha256": "f0777894953d6d25b63619e7c9831f8c96c11dfbe590271c58292e66295c93b5"
+      }
     },
     {
       "id": "areas-strip-1",
@@ -6298,7 +6935,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "areas/flat-concrete-roof-dense-skyline-technician-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 40154,
+        "sha256": "4152e0d58a29b0d7bbbd7eae6aa3c2140f394a344d37ba80fd3d8cace9a18044"
+      }
     },
     {
       "id": "blog-why-roof-sealing-failed-lead",
@@ -6375,7 +7019,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "blog/fresh-coating-peeling-off-dusty-unprepared-surface-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 37534,
+        "sha256": "aaf89540b6ae02bd15f1dcc35fce1e2d2dcfdaa56dc37eea7479e92bbf63c76f"
+      }
     },
     {
       "id": "cities-rehovot-detail",
@@ -6438,7 +7089,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/addition-seam-crack-moss-shaded-roof-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 75050,
+        "sha256": "e2efe5f83c0f223f1cf347f91fbdc65017e7a498802a96399d6ea1202494e1d3"
+      }
     },
     {
       "id": "cities-ramat-gan-detail",
@@ -6503,7 +7161,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/clay-tile-ridge-crumbled-mortar-underlay-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 56738,
+        "sha256": "38e80887dd8510dab3544f249c388c76feb804f4e18d2f5520e005cfd8b131fe"
+      }
     },
     {
       "id": "cities-bnei-brak-main",
@@ -6576,7 +7241,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/crowded-roof-solar-heater-anchor-sealing-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 42728,
+        "sha256": "14ef9f179b7685bdff77244d8fea724e891b85e208bc3986381161e214b5d1d6"
+      }
     },
     {
       "id": "cities-givatayim-main",
@@ -6650,7 +7322,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/exposed-party-wall-coating-from-lower-roof-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 29848,
+        "sha256": "1628a0b35a0b57a2e153d8c543121a3f0560cab8b290092b4036108514928cda"
+      }
     },
     {
       "id": "cities-netanya-detail",
@@ -6713,7 +7392,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/precast-facade-panel-joint-failed-sealant-salt-streaks-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 16420,
+        "sha256": "e4699bda65a7ccdb6182f946dfa1a1c9ae11b1e15962aec50f941c4eadda8c23"
+      }
     },
     {
       "id": "cities-bat-yam-main",
@@ -6778,7 +7464,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/seaside-shikun-roof-rusted-drain-collar-replacement-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 35738,
+        "sha256": "79fa0055bd80fdf593e4917dde2bb7eb6518f2194b2410eff62f20bb6f940a58"
+      }
     },
     {
       "id": "cities-raanana-main",
@@ -6843,7 +7536,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/terrace-tiles-lifted-liquid-membrane-upstand-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 42760,
+        "sha256": "22bb1594b10b5a21c55f14efa53ec70f3c1ec864e7650f4cf23426d4d8b3a8e3"
+      }
     },
     {
       "id": "cities-rosh-haayin-main",
@@ -6908,7 +7608,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 20b6395a",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "cities/tower-roof-condenser-stand-feet-sealed-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 33454,
+        "sha256": "084d872c17734d5348db4244a5c2f08b13760acd60c778a90213d526b3443c00"
+      }
     },
     {
       "id": "home-strip-1",
@@ -6973,7 +7680,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 20b6395a",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "home/first-bitumen-sheet-roll-laid-along-parapet-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 37476,
+        "sha256": "80e5eddf06aa9f2b58173e1735ef98aca109dd2dd3a3d4918ff48d5340e62681"
+      }
     },
     {
       "id": "pricing-survey",
@@ -7044,7 +7758,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "pricing/tape-measure-along-parapet-survey-01-w720.webp",
+        "width": 720,
+        "height": 480,
+        "bytes": 23922,
+        "sha256": "9351942567c3159c1c64e0e409f8fc88e8a5449ff089917c05cc3cc41fb020e7"
+      }
     },
     {
       "id": "services-roof-tarring-main",
@@ -7117,7 +7838,14 @@
         }
       },
       "approved": "2026-10-28 — owner, board 9874b99b",
-      "retired": null
+      "retired": null,
+      "phone": {
+        "file": "services/hot-bitumen-pour-squeegee-spread-01-w720.webp",
+        "width": 720,
+        "height": 540,
+        "bytes": 47416,
+        "sha256": "4af94a8e4fce4f6a6e189427a2cd36a46a8d471da29cf025dced6a41fc37fa1e"
+      }
     }
   ]
 }

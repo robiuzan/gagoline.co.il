@@ -61,6 +61,14 @@ export const SIZE_CLASSES = Object.freeze({
   thumb: { longEdge: 480, maxBytes: 46080 },
 });
 
+/**
+ * The phone copy of an image (contract §2): a static export has no resizer, so phones would otherwise
+ * download the 1200–1600 px file. Written after install by Media Studio
+ * page-images/tools/phone-copies.mjs; Figure offers it through <picture> at PHONE_MEDIA.
+ */
+export const PHONE_COPY = Object.freeze({ width: 720, maxBytes: 122880 });
+export const PHONE_MEDIA = "(max-width: 640px)";
+
 /** The routes that never carry a content image (contract §0 decision 4). */
 export const EXCLUDED_ROUTES = Object.freeze([
   "/privacy/",
@@ -214,6 +222,15 @@ export function thumbSrcOf(entry) {
 }
 
 /**
+ * The public path of an entry's phone copy, or null. Only approved entries carry one.
+ * @param {{ phone?: { file: string } | null }} entry
+ * @returns {string | null}
+ */
+export function phoneSrcOf(entry) {
+  return entry.phone ? `/images/${entry.phone.file}` : null;
+}
+
+/**
  * Whether an entry renders: approved always; a candidate only in draft mode (IMAGES_DRAFT=1).
  * @param {{ status: string }} entry
  * @param {boolean} draft
@@ -363,6 +380,38 @@ export function entryProblems(e, ctx, gates) {
       p(`thumb bytes exceed ${SIZE_CLASSES.thumb.maxBytes}`);
   }
 
+  if (e.phone !== null && e.phone !== undefined) {
+    const wantFile =
+      typeof e.file === "string"
+        ? e.file.replace(/\.(webp|jpe?g|png)$/, `-w${PHONE_COPY.width}.webp`)
+        : null;
+    if (!isObj(e.phone) || e.phone.file !== wantFile)
+      p(`phone.file must be ${wantFile}: a phone copy belongs to its own entry`);
+    else if (!isPosInt(e.phone.width) || !isPosInt(e.phone.height))
+      p("phone.width/height must be positive integers");
+    else {
+      if (e.phone.width !== Math.min(PHONE_COPY.width, e.width))
+        p(
+          `phone.width must be ${PHONE_COPY.width} (or the file's own width, if smaller)`,
+        );
+      // Same shape as the full file: the <img> width and height reserve the box for both.
+      if (Math.abs(e.phone.height - (e.phone.width * e.height) / e.width) > 1)
+        p("phone copy must keep the shape of the full file");
+    }
+    if (
+      isObj(e.phone) &&
+      (!isPosInt(e.phone.bytes) || e.phone.bytes > PHONE_COPY.maxBytes)
+    )
+      p(`phone bytes must be a positive integer ≤ ${PHONE_COPY.maxBytes}`);
+    if (
+      isObj(e.phone) &&
+      (typeof e.phone.sha256 !== "string" || !/^[0-9a-f]{64}$/.test(e.phone.sha256))
+    )
+      p("phone.sha256 must be 64 lowercase hex chars");
+    if (e.status === "candidate")
+      p("a candidate has no phone copy; phone-copies.mjs runs after install");
+  }
+
   if (!STATUSES.includes(e.status)) p(`status must be ${STATUSES.join("|")}`);
   if (!Array.isArray(e.people) || e.people.some((x) => !PEOPLE_IDS.includes(x)))
     p(`people must list only ${PEOPLE_IDS.join("|")}`);
@@ -419,6 +468,11 @@ export function entryProblems(e, ctx, gates) {
       p("retired must be an ISO date on a retired entry");
   } else if (e.retired !== null && e.retired !== undefined)
     p("retired must be null unless status is retired");
+  if (e.revoked !== null && e.revoked !== undefined) {
+    if (e.status !== "retired") p("revoked is set only on a retired entry");
+    if (typeof e.revoked !== "string" || !ISO_DATE.test(e.revoked))
+      p("revoked must be an ISO date (the day the written notice arrived)");
+  }
 
   return out;
 }
@@ -457,7 +511,11 @@ export function manifestProblems(raw, ctx) {
       if (ids.has(e.id)) p(`${label}: duplicate id (also images[${ids.get(e.id)}])`);
       ids.set(e.id, i);
     }
-    for (const f of [e.file, isObj(e.thumb) ? e.thumb.file : null]) {
+    for (const f of [
+      e.file,
+      isObj(e.thumb) ? e.thumb.file : null,
+      isObj(e.phone) ? e.phone.file : null,
+    ]) {
       if (typeof f !== "string") continue;
       if (files.has(f)) p(`${label}: duplicate file ${f} (also images[${files.get(f)}])`);
       files.set(f, i);

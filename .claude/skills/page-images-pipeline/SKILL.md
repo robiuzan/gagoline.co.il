@@ -141,6 +141,10 @@ build. Then rebuild without the variable before anything else.
 ```powershell
 node page-images/cli.mjs install --site gagoline --dry-run
 node page-images/cli.mjs install --site gagoline
+# replacing an approved image? retire the old entry here, before anything builds: status retired,
+# retired <date>, approved null. install does not do it, and lib/images.ts throws on two approved
+# entries in one slot.
+node page-images/tools/phone-copies.mjs --site gagoline   # the 720-px copy of every newly approved image
 npm run images:status          # plan vs manifest per route
 npm run gate                   # lint · typecheck · format:check · build (+postbuild) · seo:assert · links:check · contrast:check · images:check
 ```
@@ -188,6 +192,9 @@ report — the cap is the owner's number.
   `_next/static` in first, CLAUDE.md §10) or `git revert` of the manifest commit.
 - Revoked consent: a people-free twin at the same dimensions for every frame the person is in,
   installed as above, old entries retired, the refs deleted the same day, live removal within 14 days.
+  Live removal means every public copy of those frames: the full file, the `-w720` phone copy and any
+  thumbnail. The 14-day promise to the person beats the 60-day keep: set `revoked: "YYYY-MM-DD"` on
+  each retired entry, and the gate then requires those files gone instead of kept.
 - The four owner-supplied images stay first in the gallery (decision 3). The board shows them with
   their QA notes so they can be swapped one by one when the owner wants.
 
@@ -212,3 +219,16 @@ city image mode), the people and their consent lines, the brand and logo files, 
 the models. On the site side: the slot table and components, the disclosure texts in
 `lib/content.ts`, the banned stems in `lib/images.ts`, the excluded routes, and `plan.json`. The
 onboarding steps are `Media Studio\runbooks\page-images-for-a-site.md`.
+
+## Reviewing on a PC shared with other sessions
+
+The board links to port 3000, which another site's dev server may hold. Give this site its own port:
+
+```powershell
+$env:IMAGES_DRAFT = '1'; npx next dev -p 3101          # in the site repo
+$env:PAGE_IMAGES_DEV_ORIGIN = 'http://localhost:3101'  # in Media Studio, same shell
+node page-images/cli.mjs review --site gagoline --no-dev
+```
+
+Follow one link before handing the board over. A production build and a dev server cannot share
+`.next/`, so stop the dev server before `npm run gate` or a deploy.

@@ -31,11 +31,10 @@ sites ~14 MB per deploy. The static export on a CDN-fronted host means TTFB and 
 2. **LCP element per route type.** Identify it for the homepage, a service page and a location page.
    They differ, and with no hero image the answer is probably the `Hero` heading or the `PageHeader`
    band.
-3. **Images.** There are **none** — no `next/image`, no `<img>`. So there is nothing to optimise today,
-   but record the trap for when they land: `next.config.mjs` sets `images: { unoptimized: true }`, so
-   `next/image` will emit a bare `<img>` with no `srcset` and any `sizes` prop will be inert. The kit
-   ships `SiteImage`, `mediaUrl`, `srcsetFor` and `preloadPropsFor` backed by the `imgquarry.com` media
-   host in the manifest. Recommend the pipeline **before** the first image ships, not after.
+3. **Images.** Every content page carries two or more (CLAUDE.md §14). `next.config.mjs` sets
+   `images: { unoptimized: true }`, so `next/image` stays unused; `components/ui/Figure.tsx` renders
+   each one over the kit's `SiteImage`, with a `<picture>` that gives phones the 720-px copy. Check
+   that a phone really downloads the `-w720.webp` file, and that the first image is the only eager one.
 4. **JS budget (INP).** Four client components: `LeadForm` and `Reveal` genuinely need it; `Header` is
    client for a single boolean; `Faq` could be `<details>`/`<summary>` with zero JS — while keeping
    answers in the DOM, which the `FAQPage` schema depends on.

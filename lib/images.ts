@@ -20,11 +20,15 @@ import { articles } from "@/content/articles";
 import manifestJson from "@/content/images/manifest.json";
 import {
   EXCLUDED_ROUTES,
+  PHONE_MEDIA,
   isVisible,
   manifestProblems,
+  phoneSrcOf,
   srcOf as srcOfEntry,
   thumbSrcOf,
 } from "@/scripts/images/lib/manifest-rules.mjs";
+
+export { PHONE_MEDIA };
 
 export type ImageStatus = "candidate" | "approved" | "rejected" | "retired";
 export type SlotId =
@@ -102,6 +106,15 @@ export interface ImageThumb {
   sha256?: string;
 }
 
+/** The smaller copy phones load; written after install by the toolkit's phone-copies.mjs. */
+export interface ImagePhone {
+  file: string;
+  width: number;
+  height: number;
+  bytes: number;
+  sha256: string;
+}
+
 export interface ImageEntry {
   id: string;
   file: string;
@@ -126,6 +139,9 @@ export interface ImageEntry {
   review: { automated: AutomatedReview | null; owner: OwnerReview | null };
   approved: string | null;
   retired: string | null;
+  /** Consent withdrawn: the day the written notice arrived. Every file of this entry is gone. */
+  revoked?: string | null;
+  phone?: ImagePhone | null;
 }
 
 export interface ImageGates {
@@ -155,6 +171,8 @@ export interface PlacedImage {
   people: readonly PersonId[];
   /** The derived 480-px thumbnail (blog index cards), when the toolkit produced one. */
   thumb?: { src: string; width: number; height: number };
+  /** The smaller copy for phones. Absent on a candidate: it is made after install. */
+  phone?: { src: string; width: number; height: number };
 }
 
 /** `IMAGES_DRAFT=1` — read at build/dev time in RSC, like the live-kit's LIVE_DRAFT. */
@@ -235,6 +253,14 @@ function place(entry: ImageEntry): PlacedImage {
       src: thumbSrc,
       width: entry.thumb.width,
       height: entry.thumb.height,
+    };
+  }
+  const phoneSrc = phoneSrcOf(entry);
+  if (entry.phone && phoneSrc) {
+    placed.phone = {
+      src: phoneSrc,
+      width: entry.phone.width,
+      height: entry.phone.height,
     };
   }
   return placed;
